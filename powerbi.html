@@ -1,0 +1,245 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Power BI Projects | Ishan Mathur</title>
+  <meta name="description" content="A curated hub of Ishan Mathur’s Power BI projects: executive dashboards, geospatial analysis, AI insights." />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+  <style>
+    /* Subtle polish for the hub */
+    .filters { margin: 2rem 0 0.5rem; }
+    .filters .row { align-items: flex-end; }
+    .filters .field label { margin-bottom: .5rem; display: block; }
+    .tag {
+      display:inline-block; font-size: .75rem; line-height: 1;
+      padding: .4rem .55rem; border-radius: 999px; margin: .2rem .25rem 0 0;
+      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15);
+    }
+    .tag[data-active="true"] { background: #2ebaae; border-color: #2ebaae; color: #fff; }
+    .muted { opacity: .65; }
+    /* Hide cards when filtered */
+    .card-hidden { display: none !important; }
+  </style>
+</head>
+<body class="is-preload">
+<div id="wrapper">
+
+  <!-- Header -->
+  <header id="header" class="alt">
+    <a href="index.html" class="logo"><strong>Ishan Mathur</strong><span>&nbsp;Portfolio</span></a>
+    <nav><a href="#menu">Menu</a></nav>
+  </header>
+
+  <!-- Off‑canvas mobile menu -->
+  <nav id="menu">
+    <ul class="links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="powerbi.html">Power BI</a></li>
+      <li><a href="resume.html">Resume</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Banner / Hero -->
+  <section id="banner" class="major">
+    <div class="inner">
+      <header class="major">
+        <h1>Power BI Projects</h1>
+      </header>
+      <div class="content">
+        <p>Executive dashboards, return‑rate diagnostics, geospatial insights, and AI‑assisted analysis.<br class="hide-on-mobile"/>
+           Built with DAX, Power Query, dimensional modeling, and clean UX.</p>
+        <ul class="actions">
+          <li><a href="mailto:mathur.ishan11@gmail.com" class="button">Contact</a></li>
+          <li><a href="https://www.linkedin.com/in/mathurishan" target="_blank" class="button">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filters -->
+  <div id="main" class="filters">
+    <div class="inner">
+      <div class="row gtr-25">
+        <div class="col-6 col-12-small field">
+          <label for="search">Search projects</label>
+          <input type="text" id="search" name="search" placeholder="Type keywords e.g. retail, returns, geography, AI..." />
+        </div>
+        <div class="col-6 col-12-small field">
+          <label>Filter by tags</label>
+          <div id="tagBar">
+            <!-- Clickable filter chips (toggle) -->
+            <span class="tag" data-tag="retail">Retail</span>
+            <span class="tag" data-tag="returns">Returns</span>
+            <span class="tag" data-tag="geospatial">Geospatial</span>
+            <span class="tag" data-tag="executive">Executive</span>
+            <span class="tag" data-tag="ai">AI Insights</span>
+            <span class="tag" data-tag="sales">Sales</span>
+            <!-- Add more tags as you add projects -->
+          </div>
+        </div>
+      </div>
+      <p class="muted">Tip: combine search + tags to quickly narrow down dashboards.</p>
+    </div>
+  </div>
+
+  <!-- Tile Grid -->
+  <div id="main">
+    <section class="tiles" id="projectGrid">
+
+      <!-- Project: Retail Sales & Returns (LIVE) -->
+      <article class="project-card"
+        data-title="Retail Sales & Returns Dashboard"
+        data-tags="retail,returns,geospatial,executive,ai,sales">
+        <span class="image">
+          <img src="images/projects/retail/executive-overview.jpg" alt="Retail Sales & Returns dashboard cover" />
+        </span>
+        <header class="major">
+          <h3><a href="powerbi-retail.html" class="link">Retail Sales &amp; Returns</a></h3>
+          <p>Net Sales, Return Rate, Geo hot‑spots, Purchaser impact, AI insights</p>
+          <div class="muted" aria-hidden="true">
+            <span class="tag">Retail</span>
+            <span class="tag">Returns</span>
+            <span class="tag">Geospatial</span>
+            <span class="tag">Executive</span>
+            <span class="tag">AI Insights</span>
+          </div>
+        </header>
+      </article>
+
+      <!-- Placeholder for NEXT project (example) -->
+      <article class="project-card"
+        data-title="Supply Chain OTIF Performance"
+        data-tags="operations,executive,trend,shipping">
+        <span class="image">
+          <img src="images/pic02.jpg" alt="Placeholder cover for upcoming Power BI project" />
+        </span>
+        <header class="major">
+          <h3><a href="#" class="link">Supply Chain OTIF</a></h3>
+          <p>On‑Time‑In‑Full performance, root causes, SLA risk</p>
+          <div class="muted" aria-hidden="true">
+            <span class="tag">Operations</span>
+            <span class="tag">Executive</span>
+            <span class="tag">Trend</span>
+          </div>
+        </header>
+      </article>
+
+      <!-- Another placeholder -->
+      <article class="project-card"
+        data-title="Customer Cohorts & LTV"
+        data-tags="executive,cohorts,finance">
+        <span class="image">
+          <img src="images/pic03.jpg" alt="Placeholder cover for upcoming Power BI project" />
+        </span>
+        <header class="major">
+          <h3><a href="#" class="link">Customer Cohorts &amp; LTV</a></h3>
+          <p>Acquisition cohorts, retention curves, CLV drivers</p>
+          <div class="muted" aria-hidden="true">
+            <span class="tag">Executive</span>
+            <span class="tag">Cohorts</span>
+            <span class="tag">Finance</span>
+          </div>
+        </header>
+      </article>
+
+    </section>
+  </div>
+
+  <!-- Contact/Footer (consistent with theme) -->
+  <section id="contact">
+    <div class="inner">
+      <section class="split">
+        <section>
+          <div class="contact-method"><span class="icon solid alt fa-envelope"></span><h3>Email</h3><a href="mailto:mathur.ishan11@gmail.com">mathur.ishan11@gmail.com</a></div>
+        </section>
+        <section>
+          <div class="contact-method"><span class="icon solid alt fa-home"></span><h3>Location</h3><span>Hamilton, New Zealand</span></div>
+        </section>
+      </section>
+    </div>
+  </section>
+
+  <footer id="footer">
+    <div class="inner">
+      <ul class="icons">
+        <li><a href="https://github.com/mathurishan" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+        <li><a href="https://www.linkedin.com/in/mathurishan" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+      </ul>
+      <ul class="copyright">
+        <li>&copy; 2025 Ishan Mathur</li><li>Design: HTML5 UP Forty</li>
+      </ul>
+    </div>
+  </footer>
+
+</div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+
+<!-- Lightweight filter logic -->
+<script>
+  (function() {
+    const searchInput = document.getElementById('search');
+    const tagBar = document.getElementById('tagBar');
+    const cards = Array.from(document.querySelectorAll('.project-card'));
+    const activeTags = new Set();
+
+    function normalize(s) { return (s || '').toLowerCase(); }
+
+    function applyFilters() {
+      const q = normalize(searchInput.value);
+
+      cards.forEach(card => {
+        const title = normalize(card.getAttribute('data-title'));
+        const tags = normalize(card.getAttribute('data-tags'));
+        // Search matches title or tags
+        const matchesSearch = !q || title.includes(q) || tags.includes(q);
+
+        // Active tag filter: all selected tags must be present
+        let matchesTags = true;
+        if (activeTags.size > 0) {
+          matchesTags = [...activeTags].every(t => tags.includes(t));
+        }
+
+        card.classList.toggle('card-hidden', !(matchesSearch && matchesTags));
+      });
+    }
+
+    // Search typing
+    if (searchInput) {
+      searchInput.addEventListener('input', applyFilters);
+    }
+
+    // Tag toggles
+    if (tagBar) {
+      tagBar.addEventListener('click', (e) => {
+        const chip = e.target.closest('.tag');
+        if (!chip) return;
+        const tag = normalize(chip.dataset.tag || chip.textContent);
+        const isActive = chip.getAttribute('data-active') === 'true';
+        if (isActive) {
+          chip.setAttribute('data-active', 'false');
+          activeTags.delete(tag);
+        } else {
+          chip.setAttribute('data-active', 'true');
+          activeTags.add(tag);
+        }
+        applyFilters();
+      });
+    }
+
+    // Initial render
+    applyFilters();
+  })();
+</script>
+</body>
+</html>
