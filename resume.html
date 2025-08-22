@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="assets/css/main.css" />
  <!-- Custom width override: limits line length to ~58 em on large screens -->
     <style>
-      /* Applies only to this page because #main.alt exists only here */
+      /* Width override for pages using #main.alt */
       #main.alt .inner {
         max-width: 50em;   /* ≈ 800 px for comfy reading */
         margin: 0 auto;
@@ -19,21 +19,6 @@
         margin: 0 auto;
         padding-left: 0;
         padding-right: 0;
-      }
-      /* Contact strip layout */
-      #main.alt ul.contact {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 1.5rem;
-      }
-      #main.alt ul.contact li {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
       }
     </style>
   </head>
@@ -61,17 +46,23 @@
     </section>
 
     <!-- Main -->
-    <div id="main" class="alt">
-      <!-- Contact strip -->
-      <section class="inner" style="text-align:center; padding:1rem 0 2rem 0;">
-        <ul class="contact">
-          <li><span class="icon solid fa-map-marker-alt"></span>University of Waikato, Hillcrest, Hamilton, NZ</li>
-          <li><span class="icon solid fa-envelope"></span><a href="mailto:mathur.ishan11@gmail.com">mathur.ishan11@gmail.com</a></li>
-          <li><span class="icon brands fa-linkedin"></span><a href="https://www.linkedin.com/in/mathurishan" target="_blank">linkedin.com/in/mathurishan</a></li>
-        </ul>
-      </section>
+      <div id="main" class="alt">
+        <!-- Contact strip -->
+        <section class="inner" style="text-align:center; padding:1rem 0 2rem 0;">
+          <section class="split">
+            <section>
+              <div class="contact-method"><span class="icon solid alt fa-map-marker-alt"></span><h3>Location</h3><span>University of Waikato, Hillcrest, Hamilton, NZ</span></div>
+            </section>
+            <section>
+              <div class="contact-method"><span class="icon solid alt fa-envelope"></span><h3>Email</h3><a href="mailto:mathur.ishan11@gmail.com">mathur.ishan11@gmail.com</a></div>
+            </section>
+            <section>
+              <div class="contact-method"><span class="icon brands alt fa-linkedin"></span><h3>LinkedIn</h3><a href="https://www.linkedin.com/in/mathurishan" target="_blank" rel="noopener">linkedin.com/in/mathurishan</a></div>
+            </section>
+          </section>
+        </section>
 
-      <!-- Summary -->
+        <!-- Summary -->
       <section id="summary" class="inner">
         <header class="major"><h2>Professional Statement</h2></header>
         <p>Business &amp; Data Analyst (<strong>PMP‑certified</strong>) with <strong>4+ years</strong> experience across fintech, banking and mortgage‑tech. Delivered <strong>15–25% efficiency gains</strong> by automating data workflows, building insight dashboards and optimising processes. Proficient in <strong>Power BI, Python, SQL and Excel/VBA</strong>. Currently pursuing a Master of Management (Business Analytics) at the University of Waikato. Eligible for <strong>20 hrs/week</strong> during term and full‑time in holidays with full NZ work rights.</p>
