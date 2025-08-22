@@ -20,6 +20,21 @@
         padding-left: 0;
         padding-right: 0;
       }
+      /* Contact strip layout */
+      #main.alt ul.contact {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.5rem;
+      }
+      #main.alt ul.contact li {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
     </style>
   </head>
   <body class="is-preload">
@@ -49,9 +64,11 @@
     <div id="main" class="alt">
       <!-- Contact strip -->
       <section class="inner" style="text-align:center; padding:1rem 0 2rem 0;">
-        <strong>Location:</strong> University of Waikato, Hillcrest, Hamilton, NZ &nbsp;|&nbsp;
-        <strong>Email:</strong> <a href="mailto:mathur.ishan11@gmail.com">mathur.ishan11@gmail.com</a> &nbsp;|&nbsp;
-        <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/mathurishan" target="_blank">/in/mathurishan</a>
+        <ul class="contact">
+          <li><span class="icon solid fa-map-marker-alt"></span>University of Waikato, Hillcrest, Hamilton, NZ</li>
+          <li><span class="icon solid fa-envelope"></span><a href="mailto:mathur.ishan11@gmail.com">mathur.ishan11@gmail.com</a></li>
+          <li><span class="icon brands fa-linkedin"></span><a href="https://www.linkedin.com/in/mathurishan" target="_blank">linkedin.com/in/mathurishan</a></li>
+        </ul>
       </section>
 
       <!-- Summary -->
