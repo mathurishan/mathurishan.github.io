@@ -1,0 +1,230 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Python Projects | Ishan Mathur</title>
+  <meta name="description" content="A curated hub of Ishan Mathur’s Python projects: EDA, automation, data apps, APIs, ML experiments." />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+  <style>
+    .filters { margin: 2rem 0 0.5rem; }
+    .filters .row { align-items: flex-end; }
+    .filters .field label { margin-bottom: .5rem; display: block; }
+    .tag {
+      display:inline-block; font-size: .75rem; line-height: 1;
+      padding: .4rem .55rem; border-radius: 999px; margin: .2rem .25rem 0 0;
+      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15);
+    }
+    .tag[data-active="true"] { background: #2ebaae; border-color: #2ebaae; color: #fff; }
+    .muted { opacity: .65; }
+    .card-hidden { display: none !important; }
+  </style>
+</head>
+<body class="is-preload">
+<div id="wrapper">
+
+  <!-- Header -->
+  <header id="header" class="alt">
+    <a href="index.html" class="logo"><strong>Ishan Mathur</strong><span>&nbsp;Portfolio</span></a>
+    <nav><a href="#menu">Menu</a></nav>
+  </header>
+
+  <!-- Off‑canvas mobile menu -->
+  <nav id="menu">
+    <ul class="links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="powerbi.html">Power BI</a></li>
+      <li><a href="python.html">Python</a></li>
+      <li><a href="resume.html">Resume</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Banner / Hero -->
+  <section id="banner" class="major">
+    <div class="inner">
+      <header class="major">
+        <h1>Python Projects</h1>
+      </header>
+      <div class="content">
+        <p>Exploratory data analysis, automation scripts, APIs, and lightweight data apps.<br class="hide-on-mobile"/>
+           Built with Python, Pandas, Matplotlib, and clean, reproducible code.</p>
+        <ul class="actions">
+          <li><a href="mailto:mathur.ishan11@gmail.com" class="button">Contact</a></li>
+          <li><a href="https://github.com/mathurishan" target="_blank" class="button">GitHub</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filters -->
+  <div id="main" class="filters">
+    <div class="inner">
+      <div class="row gtr-25">
+        <div class="col-6 col-12-small field">
+          <label for="search">Search projects</label>
+          <input type="text" id="search" name="search" placeholder="Type keywords e.g. EDA, automation, API, ML..." />
+        </div>
+        <div class="col-6 col-12-small field">
+          <label>Filter by tags</label>
+          <div id="tagBar">
+            <span class="tag" data-tag="eda">EDA</span>
+            <span class="tag" data-tag="visualization">Visualization</span>
+            <span class="tag" data-tag="pandas">Pandas</span>
+            <span class="tag" data-tag="matplotlib">Matplotlib</span>
+            <span class="tag" data-tag="automation">Automation</span>
+            <span class="tag" data-tag="api">API</span>
+            <span class="tag" data-tag="ml">ML</span>
+          </div>
+        </div>
+      </div>
+      <p class="muted">Tip: combine search + tags to quickly narrow down notebooks and scripts.</p>
+    </div>
+  </div>
+
+  <!-- Tile Grid -->
+  <div id="main">
+    <section class="tiles" id="projectGrid">
+
+      <!-- Project: Business Financials EDA (LIVE) -->
+      <article class="project-card"
+        data-title="Business Financials EDA"
+        data-tags="eda,visualization,pandas,matplotlib">
+        <span class="image">
+          <!-- replace with a real thumbnail if you have one: images/projects/python/financials-cover.jpg -->
+          <img src="images/pic04.jpg" alt="EDA of business financial data in Python" />
+        </span>
+        <header class="major">
+          <h3>
+            <!-- if you publish a notebook/script page, point this link there -->
+            <a href="https://github.com/mathurishan" target="_blank" class="link">Business Financials EDA</a>
+          </h3>
+          <p>Cleaning, profiling and visualizing <code>business_financial_data.csv</code> with Pandas + Matplotlib.</p>
+          <div class="muted" aria-hidden="true">
+            <span class="tag">EDA</span>
+            <span class="tag">Pandas</span>
+            <span class="tag">Matplotlib</span>
+          </div>
+          <p class="muted" style="margin-top:.5rem;">
+            Code: <code>try 1 gemini.py</code> • Dataset: <code>business_financial_data.csv</code>
+          </p>
+        </header>
+      </article>
+
+      <!-- Placeholder for next Python project -->
+      <article class="project-card"
+        data-title="Retail KPI Automation Script"
+        data-tags="automation,pandas,api">
+        <span class="image">
+          <img src="images/pic05.jpg" alt="Placeholder cover for upcoming Python automation project" />
+        </span>
+        <header class="major">
+          <h3><a href="#" class="link">Retail KPI Automation</a></h3>
+          <p>Scheduled KPIs from CSV/API with email summary</p>
+          <div class="muted" aria-hidden="true">
+            <span class="tag">Automation</span>
+            <span class="tag">Pandas</span>
+            <span class="tag">API</span>
+          </div>
+        </header>
+      </article>
+
+      <!-- Another placeholder -->
+      <article class="project-card"
+        data-title="Returns Forecast (Baseline)"
+        data-tags="ml,eda,visualization">
+        <span class="image">
+          <img src="images/pic06.jpg" alt="Placeholder cover for returns forecasting notebook" />
+        </span>
+        <header class="major">
+          <h3><a href="#" class="link">Returns Forecast (Baseline)</a></h3>
+          <p>Baseline model to predict weekly return rates</p>
+          <div class="muted" aria-hidden="true">
+            <span class="tag">ML</span>
+            <span class="tag">EDA</span>
+            <span class="tag">Visualization</span>
+          </div>
+        </header>
+      </article>
+
+    </section>
+  </div>
+
+  <!-- Contact/Footer -->
+  <section id="contact">
+    <div class="inner">
+      <section class="split">
+        <section>
+          <div class="contact-method"><span class="icon solid alt fa-envelope"></span><h3>Email</h3><a href="mailto:mathur.ishan11@gmail.com">mathur.ishan11@gmail.com</a></div>
+        </section>
+        <section>
+          <div class="contact-method"><span class="icon solid alt fa-home"></span><h3>Location</h3><span>Hamilton, New Zealand</span></div>
+        </section>
+      </section>
+    </div>
+  </section>
+
+  <footer id="footer">
+    <div class="inner">
+      <ul class="icons">
+        <li><a href="https://github.com/mathurishan" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+        <li><a href="https://www.linkedin.com/in/mathurishan" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+      </ul>
+      <ul class="copyright">
+        <li>&copy; 2025 Ishan Mathur</li><li>Design: HTML5 UP Forty</li>
+      </ul>
+    </div>
+  </footer>
+
+</div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+
+<!-- Same lightweight filter logic as Power BI page -->
+<script>
+  (function() {
+    const searchInput = document.getElementById('search');
+    const tagBar = document.getElementById('tagBar');
+    const cards = Array.from(document.querySelectorAll('.project-card'));
+    const activeTags = new Set();
+    const normalize = s => (s || '').toLowerCase();
+
+    function applyFilters() {
+      const q = normalize(searchInput.value);
+      cards.forEach(card => {
+        const title = normalize(card.getAttribute('data-title'));
+        const tags = normalize(card.getAttribute('data-tags'));
+        const matchesSearch = !q || title.includes(q) || tags.includes(q);
+        let matchesTags = true;
+        if (activeTags.size > 0) {
+          matchesTags = [...activeTags].every(t => tags.includes(t));
+        }
+        card.classList.toggle('card-hidden', !(matchesSearch && matchesTags));
+      });
+    }
+
+    if (searchInput) searchInput.addEventListener('input', applyFilters);
+    if (tagBar) {
+      tagBar.addEventListener('click', (e) => {
+        const chip = e.target.closest('.tag');
+        if (!chip) return;
+        const tag = normalize(chip.dataset.tag || chip.textContent);
+        const isActive = chip.getAttribute('data-active') === 'true';
+        chip.setAttribute('data-active', String(!isActive));
+        if (isActive) activeTags.delete(tag); else activeTags.add(tag);
+        applyFilters();
+      });
+    }
+    applyFilters();
+  })();
+</script>
+</body>
+</html>
