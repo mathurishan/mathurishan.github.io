@@ -1,0 +1,203 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Python • NZ Business Financials | Ishan Mathur</title>
+  <meta name="description" content="Exploratory data analysis in Python on Stats NZ Business Financial Data. Sales, profit, industry trends, recovery, and efficiency metrics. By Ishan Mathur." />
+  <meta property="og:title" content="Python • NZ Business Financials" />
+  <meta property="og:description" content="EDA in Python: sales & profit by industry, sector trends, YoY growth, recovery, profitability & efficiency scorecards." />
+  <meta property="og:image" content="images/projects/python/hero-nz-business.png" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+  <style>
+    .meta-list { display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+    .code { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.15); border-radius: .5rem; padding: 1rem; overflow:auto; }
+    .kbd { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15); border-radius: .35rem; padding: .12rem .35rem; }
+    .gallery .image.fit { box-shadow: 0 8px 24px rgba(0,0,0,.25); border-radius: .75rem; overflow:hidden; }
+    .muted { opacity: .7; }
+  </style>
+</head>
+<body class="is-preload">
+<div id="wrapper">
+
+  <!-- Header -->
+  <header id="header" class="alt">
+    <a href="index.html" class="logo"><strong>Ishan Mathur</strong><span>&nbsp;Portfolio</span></a>
+    <nav><a href="#menu">Menu</a></nav>
+  </header>
+
+  <!-- Off‑canvas menu -->
+  <nav id="menu">
+    <ul class="links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="powerbi.html">Power BI</a></li>
+      <li><a href="python-business-financials.html">Python • NZ Business</a></li>
+      <li><a href="resume.html">Resume</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <ul class="actions stacked">
+      <li><a href="mailto:mathur.ishan11@gmail.com" class="button primary fit">Email Me</a></li>
+      <li><a href="https://github.com/mathurishan" target="_blank" class="button fit" rel="noopener">GitHub</a></li>
+    </ul>
+  </nav>
+
+  <!-- Banner / Hero -->
+  <section id="banner" class="major">
+    <div class="inner">
+      <header class="major">
+        <h1>Python • NZ Business Financials</h1>
+      </header>
+      <div class="content">
+        <p>Exploratory analysis of Stats NZ quarterly business financial data using <span class="kbd">pandas</span>, <span class="kbd">matplotlib</span> &amp; <span class="kbd">seaborn</span>.
+          Generates 10+ decision‑ready charts: industry sales &amp; profit, sector trends, YoY growth, recovery and efficiency.</p>
+        <ul class="actions">
+          <!-- Replace the href below with the repo link when ready -->
+          <li><a href="https://github.com/mathurishan" class="button" target="_blank" rel="noopener">View on GitHub</a></li>
+          <li><a href="#howto" class="button">How to run</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main -->
+  <div id="main" class="alt">
+    <section id="one">
+      <div class="inner">
+        <header class="major">
+          <h2>Overview</h2>
+          <p class="major">From raw CSV to clear visuals in minutes. This project cleans the Stats NZ data, builds focused subsets, and outputs PNG charts for your portfolio.</p>
+        </header>
+
+        <div class="meta-list">
+          <div class="box">
+            <h3><span class="icon solid fa-database"></span>&nbsp; Data</h3>
+            <p><strong>business_financial_data.csv</strong><br/>
+              Quarterly NZ business financials — sales (operating income), operating profit, assets, inventories and more, broken down by industry.</p>
+          </div>
+          <div class="box">
+            <h3><span class="icon solid fa-code"></span>&nbsp; Stack</h3>
+            <p>Python 3 • pandas • matplotlib • seaborn • matplotlib.ticker</p>
+          </div>
+          <div class="box">
+            <h3><span class="icon solid fa-chart-line"></span>&nbsp; Outputs</h3>
+            <p>High‑res PNGs exported by the script:<br/>
+              financial_correlation_heatmap.png, growth_profit_matrix.png, industry_profitability_scorecard.png, industry_sales_volatility.png, key_sector_sales_trends.png, manufacturing_profit_margin.png, post_covid_recovery.png, profit_contribution_over_time.png, sector_seasonality.png, top_industries_by_profit.png, top_industries_by_sales.png, yoy_sales_growth.png</p>
+          </div>
+        </div>
+
+        <hr/>
+
+        <h3 id="howto">How to run locally</h3>
+        <ol>
+          <li>Open the folder in <strong>VS Code</strong>.</li>
+          <li>Ensure the CSV is named <span class="kbd">business_financial_data.csv</span> and sits next to the Python file.</li>
+          <li>Create a virtual env (optional) and install deps:
+            <div class="code"><pre><code>python -m venv .venv
+. .venv/bin/activate    # (Mac/Linux)
+# .venv\Scripts\activate  # (Windows)
+pip install pandas matplotlib seaborn</code></pre></div>
+          </li>
+          <li>Run the script:
+            <div class="code"><pre><code>python "try 1 gemini.py"    # uses the provided filename
+# or rename to main.py and run
+# python main.py</code></pre></div>
+          </li>
+          <li>PNG charts will be saved in the project folder. Move them into <span class="kbd">images/projects/python/</span> to show on this page.</li>
+        </ol>
+
+        <p class="muted">Tip: commit both the code and <span class="kbd">images/projects/python/</span> folder to GitHub Pages so the visuals appear on your live site.</p>
+
+        <hr/>
+
+        <h3>Gallery (auto‑generated charts)</h3>
+        <div class="box alt gallery">
+          <div class="row gtr-50 gtr-uniform">
+            <div class="col-12"><span class="image fit"><img src="images/projects/python/financial_correlation_heatmap.png" alt="Financial correlation heatmap"/></span></div>
+            <div class="col-12"><span class="image fit"><img src="images/projects/python/growth_profit_matrix.png" alt="Growth vs Profit matrix"/></span></div>
+            <div class="col-12"><span class="image fit"><img src="images/projects/python/industry_profitability_scorecard.png" alt="Industry profitability scorecard"/></span></div>
+            <div class="col-12"><span class="image fit"><img src="images/projects/python/industry_sales_volatility.png" alt="Industry sales volatility"/></span></div>
+            <div class="col-12"><span class="image fit"><img src="images/projects/python/key_sector_sales_trends.png" alt="Key sector sales trends"/></span></div>
+            <div class="col-12"><span class="image fit"><img src="images/projects/python/manufacturing_profit_margin.png" alt="Manufacturing profit margin"/></span></div>
+            <div class="col-12"><span class="image fit"><img src="images/projects/python/post_covid_recovery.png" alt="Post‑COVID recovery comparison"/></span></div>
+            <div class="col-12"><span class="image fit"><img src="images/projects/python/profit_contribution_over_time.png" alt="Profit contribution over time"/></span></div>
+            <div class="col-12"><span class="image fit"><img src="images/projects/python/sector_seasonality.png" alt="Sector seasonality"/></span></div>
+            <div class="col-12"><span class="image fit"><img src="images/projects/python/top_industries_by_profit.png" alt="Top industries by profit"/></span></div>
+            <div class="col-12"><span class="image fit"><img src="images/projects/python/top_industries_by_sales.png" alt="Top industries by sales"/></span></div>
+            <div class="col-12"><span class="image fit"><img src="images/projects/python/yoy_sales_growth.png" alt="Year‑over‑year sales growth"/></span></div>
+          </div>
+        </div>
+
+        <hr/>
+
+        <h3>Key highlights</h3>
+        <div class="row">
+          <div class="col-6 col-12-small">
+            <ul>
+              <li>Clean, typed time series (e.g., <span class="kbd">period</span> to datetime) and numeric casting with safe coercion.</li>
+              <li>Focused subsets: Sales vs Profit vs Assets vs Inventories; key sectors like Manufacturing & Retail.</li>
+              <li>Consistent chart styling, proper currency tick formatting and readable legends.</li>
+            </ul>
+          </div>
+          <div class="col-6 col-12-small">
+            <ul>
+              <li>Scorecards for profit margin & contribution; recovery comparison (pre/post‑COVID); efficiency (asset turnover).</li>
+              <li>Portable: produces static PNGs ready for portfolio pages like this.</li>
+              <li>VS Code + GitHub friendly: simple run, commit, and publish on GitHub Pages.</li>
+            </ul>
+          </div>
+        </div>
+
+        <hr/>
+
+        <h3>Code</h3>
+        <p class="muted">Below is a trimmed header so recruiters can preview the project. The full code lives in the repository.</p>
+        <div class="code"><pre><code># analyze_business_financials() — loads the CSV, cleans columns & types,
+# creates sales/profit/assets/inventories subsets, and exports 10+ charts.
+# Stack: pandas, matplotlib, seaborn, matplotlib.ticker
+
+if __name__ == "__main__":
+    analyze_business_financials()</code></pre></div>
+
+      </div>
+    </section>
+  </div>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="inner">
+      <section class="split">
+        <section>
+          <div class="contact-method"><span class="icon solid alt fa-envelope"></span><h3>Email</h3><a href="mailto:mathur.ishan11@gmail.com">mathur.ishan11@gmail.com</a></div>
+        </section>
+        <section>
+          <div class="contact-method"><span class="icon solid alt fa-home"></span><h3>Location</h3><span>Hamilton, New Zealand</span></div>
+        </section>
+      </section>
+    </div>
+  </section>
+
+  <footer id="footer">
+    <div class="inner">
+      <ul class="icons">
+        <li><a href="https://github.com/mathurishan" class="icon brands alt fa-github" target="_blank"><span class="label">GitHub</span></a></li>
+        <li><a href="https://www.linkedin.com/in/mathurishan" class="icon brands alt fa-linkedin-in" target="_blank"><span class="label">LinkedIn</span></a></li>
+      </ul>
+      <ul class="copyright">
+        <li>&copy; 2025 Ishan Mathur</li><li>Design: HTML5 UP Forty</li>
+      </ul>
+    </div>
+  </footer>
+
+</div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
