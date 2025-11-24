@@ -2,96 +2,63 @@
 <!--
   index.html – Phase 1 clean‑up
   ---------------------------------------------
-  Changes in this version:
-    1) Fixed <head> metadata and title.
-    2) Updated header navigation (links scroll to sections or open resume.html).
-    3) Removed template off‑canvas menu items (Landing / Generic / Elements) & dummy buttons.
-    4) Added TODO comments where we’ll work next (tiles, about, footer).
-
-  Next step (Phase 2): replace demo project tiles with real projects.
 -->
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Ishan Mathur | Portfolio</title>
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-  </head>
-  <body class="is-preload">
-    <div id="wrapper">
-      <!-- Header (site nav) -->
-      <header id="header" class="alt">
-        <a href="#banner" class="logo"><strong>Ishan Mathur</strong><span>&nbsp;Data Analyst</span></a>
-        <nav>
-          <a href="#projects">Projects</a>
-          <a href="#skills">Skills</a>
-          <a href="resume.html">Resume</a>
-          <a href="#contact">Contact</a>
-        </nav>
-      </header>
 
-      <!-- Off‑canvas mobile menu (simplified) -->
-      <nav id="menu">
-        <ul class="links">
-          <li><a href="#banner">Home</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="resume.html">Resume</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ishan Mathur | Portfolio</title>
 
-      <!-- Banner / Hero -->
-      <section id="banner" class="major">
-        <div class="inner">
-          <header class="major">
-            <h1>Ishan Mathur</h1>
-          </header>
-          <div class="content">
-            <p>Business &amp; Data Analyst skilled in SQL · Power BI · Python · R</p>
-            <ul class="actions">
-              <li><a href="#projects" class="button next scrolly">View Projects</a></li>
-              <li><a href="https://www.linkedin.com/in/mathurishan" target="_blank" class="button">LinkedIn</a></li>
-            </ul>
-          </div>
-        </div>
-      </section>
+  <!-- Open Graph / SEO -->
+  <meta property="og:title" content="Ishan Mathur | Data Analyst Portfolio" />
+  <meta property="og:description"
+    content="Business & Data Analyst skilled in SQL, Power BI, Python, and R. View my projects and skills." />
+  <meta property="og:image" content="images/pic01.jpg" />
+  <meta property="og:url" content="https://mathurishan.github.io/" />
+  <meta property="og:type" content="website" />
 
-      <!-- MAIN CONTENT -->
-      <div id="main">
-        <!-- TODO Phase 2: Replace demo tiles with real project cards  -->
-        <section id="projects" class="tiles">
-          <!-- placeholder tiles remain for now; we’ll replace next round -->
-          <article>
-            <span class="image"><img src="images/pic01.jpg" alt="" /></span>
-            <header class="major"><h3><a href="#" class="link">SQL</a></h3><p>Data wrangling &amp; optimisation</p></header>
-          </article>
-          <article>
-            <span class="image"><img src="images/pic02.jpg" alt="" /></span>
-            <header class="major"><h3><a href="python.html" class="link">Python</a></h3><p>Automation &amp; ML scripts</p></header>
-          </article>
-          <article>
-            <span class="image"><img src="images/pic03.jpg" alt="" /></span>
-            <header class="major"><h3><a href="powerbi.html" class="link">Power BI</a></h3><p>Interactive dashboards</p></header>
-          </article>
-          <article>
-            <span class="image"><img src="images/pic04.jpg" alt="" /></span>
-            <header class="major"><h3><a href="#" class="link">R Programming</a></h3><p>Statistical analysis</p></header>
-          </article>
-        </section>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@500;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <noscript>
+    <link rel="stylesheet" href="assets/css/noscript.css" />
+  </noscript>
+</head>
 
-        <!-- TODO Phase 3: Skills/About section  -->
-        <section id="skills" class="spotlights">
+</article>
+<article>
+  <span class="image"><img src="images/pic03.jpg" alt="" loading="lazy" /></span>
+  <header class="major">
+    <h3><a href="powerbi.html" class="link">Power BI</a></h3>
+    <p>Interactive dashboards</p>
+  </header>
+</article>
+<article>
+  <span class="image"><img src="images/pic04.jpg" alt="" loading="lazy" /></span>
+  <header class="major">
+    <h3><a href="#" class="link">R Programming</a></h3>
+    <p>Statistical analysis</p>
+  </header>
+</article>
+</section>
+
+<!-- TODO Phase 3: Skills/About section  -->
+<section id="skills" class="spotlights">
   <div class="inner">
-    <header class="major"><h2>About Me &amp; Core Skills</h2></header>
+    <header class="major">
+      <h2>About Me &amp; Core Skills</h2>
+    </header>
 
     <p>I’m a <strong>PMP‑certified Business &amp; Data Analyst</strong> with
-       <strong>4+ years</strong> delivering 15‑25 % efficiency gains across fintech,
-       banking, and mortgage‑tech. My mission: turn messy data into strategic
-       insight that drives productivity and growth. Currently pursuing a Master
-       of Management (Business Analytics) at the University of Waikato, I blend
-       technical depth with business acumen to solve high‑stakes problems.</p>
+      <strong>4+ years</strong> delivering 15‑25 % efficiency gains across fintech,
+      banking, and mortgage‑tech. My mission: turn messy data into strategic
+      insight that drives productivity and growth. Currently pursuing a Master
+      of Management (Business Analytics) at the University of Waikato, I blend
+      technical depth with business acumen to solve high‑stakes problems.
+    </p>
 
     <div class="row gtr-uniform">
       <!-- Column 1 – Technical -->
@@ -122,49 +89,50 @@
     </div>
   </div>
 </section>
+</div>
 
-
-      </div>
-
-      <!-- Contact -->
-      <section id="contact">
-        <div class="inner">
-          <section class="split">
-            <section>
-              <div class="contact-method"><span class="icon solid alt fa-envelope"></span><h3>Email</h3><a href="mailto:mathur.ishan11@gmail.com">mathur.ishan11@gmail.com</a></div>
-            </section>
-            <section>
-              <div class="contact-method"><span class="icon solid alt fa-phone"></span><h3>Phone</h3><span>Available on request</span></div>
-            </section>
-            <section>
-              <div class="contact-method"><span class="icon solid alt fa-home"></span><h3>Location</h3><span>Hamilton, New Zealand</span></div>
-            </section>
-          </section>
+<!-- Contact -->
+<section id="contact">
+  <div class="inner">
+    <section class="split">
+      <section>
+        <div class="contact-method"><span class="icon solid alt fa-envelope"></span>
+          <h3>Email</h3><a href="mailto:mathur.ishan11@gmail.com">mathur.ishan11@gmail.com</a>
         </div>
       </section>
-
-      <!-- Footer -->
-      <footer id="footer">
-        <div class="inner">
-          <ul class="icons">
-            <li><a href="https://github.com/mathurishan" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-            <li><a href="https://www.linkedin.com/in/mathurishan" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-          </ul>
-          <ul class="copyright">
-            <li>&copy; Ishan Mathur 2025</li><li>Design adapted from <a href="https://html5up.net/forty">HTML5 UP Forty</a></li>
-          </ul>
+      <section>
+        <div class="contact-method"><span class="icon solid alt fa-phone"></span>
+          <h3>Phone</h3><span>Available on request</span>
         </div>
-      </footer>
-    </div>
+      </section>
+      <section>
+        <div class="contact-method"><span class="icon solid alt fa-home"></span>
+          <h3>Location</h3><span>Hamilton, New Zealand</span>
+        </div>
+      </section>
+    </section>
+  </div>
+</section>
 
-    <!-- Scripts -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/jquery.scrolly.min.js"></script>
-    <script src="assets/js/jquery.scrollex.min.js"></script>
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
-  </body>
+<!-- Footer -->
+<footer id="footer">
+  <div class="inner">
+    <ul class="icons">
+      <li><a href="https://github.com/mathurishan" class="icon brands alt fa-github"><span
+            class="label">GitHub</span></a></li>
+      <li><a href="https://www.linkedin.com/in/mathurishan" class="icon brands alt fa-linkedin-in"><span
+            class="label">LinkedIn</span></a></li>
+    </ul>
+    <ul class="copyright">
+      <li>&copy; Ishan Mathur 2025</li>
+      <li>Design adapted from <a href="https://html5up.net/forty">HTML5 UP Forty</a></li>
+    </ul>
+  </div>
+</footer>
+</div>
+
+<!-- Scripts -->
+<script src="assets/js/main.js" defer></script>
+</body>
+
 </html>
-
