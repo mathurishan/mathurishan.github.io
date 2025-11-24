@@ -1,0 +1,262 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SQL Projects | Ishan Mathur</title>
+    <meta name="description"
+        content="A curated hub of Ishan Mathur’s SQL projects: Data modeling, ETL pipelines, performance optimization, and complex queries." />
+
+    <!-- Open Graph / SEO -->
+    <meta property="og:title" content="SQL Projects | Ishan Mathur" />
+    <meta property="og:description"
+        content="Data modeling, ETL pipelines, performance optimization, and complex queries." />
+    <meta property="og:image" content="images/pic01.jpg" />
+    <meta property="og:url" content="https://mathurishan.github.io/sql.html" />
+    <meta property="og:type" content="website" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript>
+        <link rel="stylesheet" href="assets/css/noscript.css" />
+    </noscript>
+    <style>
+        .filters {
+            margin: 2rem 0 0.5rem;
+        }
+
+        .filters .row {
+            align-items: flex-end;
+        }
+
+        .filters .field label {
+            margin-bottom: .5rem;
+            display: block;
+        }
+
+        .tag {
+            display: inline-block;
+            font-size: .75rem;
+            line-height: 1;
+            padding: .4rem .55rem;
+            border-radius: 999px;
+            margin: .2rem .25rem 0 0;
+            background: rgba(255, 255, 255, .08);
+            border: 1px solid rgba(255, 255, 255, .15);
+        }
+
+        .tag[data-active="true"] {
+            background: #2ebaae;
+            border-color: #2ebaae;
+            color: #fff;
+        }
+
+        .muted {
+            opacity: .65;
+        }
+
+        .card-hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body class="is-preload">
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header" class="alt">
+            <a href="index.html" class="logo"><strong>Ishan Mathur</strong><span>&nbsp;Portfolio</span></a>
+            <nav><a href="#menu">Menu</a></nav>
+        </header>
+
+        <!-- Off‑canvas mobile menu -->
+        <nav id="menu">
+            <ul class="links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="powerbi.html">Power BI</a></li>
+                <li><a href="python.html">Python</a></li>
+                <li><a href="sql.html">SQL</a></li>
+                <li><a href="resume.html">Resume</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- Banner / Hero -->
+        <section id="banner" class="major">
+            <div class="inner">
+                <header class="major">
+                    <h1>SQL Projects</h1>
+                </header>
+                <div class="content">
+                    <p>Data modeling, ETL pipelines, performance optimization, and complex queries.<br
+                            class="hide-on-mobile" />
+                        Built with PostgreSQL, MySQL, and modern data warehousing techniques.</p>
+                    <ul class="actions">
+                        <li><a href="mailto:mathur.ishan11@gmail.com" class="button">Contact</a></li>
+                        <li><a href="https://github.com/mathurishan" target="_blank" class="button">GitHub</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Filters -->
+        <div id="main" class="filters">
+            <div class="inner">
+                <div class="row gtr-25">
+                    <div class="col-6 col-12-small field">
+                        <label for="search">Search projects</label>
+                        <input type="text" id="search" name="search"
+                            placeholder="Type keywords e.g. ETL, optimization, modeling, finance..." />
+                    </div>
+                    <div class="col-6 col-12-small field">
+                        <label>Filter by tags</label>
+                        <div id="tagBar">
+                            <span class="tag" data-tag="sql">SQL</span>
+                            <span class="tag" data-tag="etl">ETL</span>
+                            <span class="tag" data-tag="modeling">Data Modeling</span>
+                            <span class="tag" data-tag="optimization">Optimization</span>
+                            <span class="tag" data-tag="analytics">Analytics</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="muted">Tip: combine search + tags to quickly narrow down projects.</p>
+            </div>
+        </div>
+
+        <!-- Tile Grid -->
+        <div id="main">
+            <section class="tiles" id="projectGrid">
+
+                <!-- Placeholder Project 1 -->
+                <article class="project-card" data-title="E-commerce Data Warehouse" data-tags="sql,etl,modeling">
+                    <span class="image">
+                        <img src="images/pic01.jpg" alt="Placeholder cover for SQL project" loading="lazy" />
+                    </span>
+                    <header class="major">
+                        <h3><a href="#" class="link">E-commerce Data Warehouse</a></h3>
+                        <p>Designed a star schema for sales analysis, improving query performance by 40%.</p>
+                        <div class="muted" aria-hidden="true">
+                            <span class="tag">SQL</span>
+                            <span class="tag">ETL</span>
+                            <span class="tag">Modeling</span>
+                        </div>
+                    </header>
+                </article>
+
+                <!-- Placeholder Project 2 -->
+                <article class="project-card" data-title="Customer Retention Analysis" data-tags="sql,analytics">
+                    <span class="image">
+                        <img src="images/pic02.jpg" alt="Placeholder cover for SQL project" loading="lazy" />
+                    </span>
+                    <header class="major">
+                        <h3><a href="#" class="link">Customer Retention Analysis</a></h3>
+                        <p>Complex queries to calculate cohort retention and churn rates.</p>
+                        <div class="muted" aria-hidden="true">
+                            <span class="tag">SQL</span>
+                            <span class="tag">Analytics</span>
+                        </div>
+                    </header>
+                </article>
+
+                <!-- Placeholder Project 3 -->
+                <article class="project-card" data-title="Inventory Management System" data-tags="sql,optimization">
+                    <span class="image">
+                        <img src="images/pic03.jpg" alt="Placeholder cover for SQL project" loading="lazy" />
+                    </span>
+                    <header class="major">
+                        <h3><a href="#" class="link">Inventory Management System</a></h3>
+                        <p>Optimized stored procedures for real-time inventory tracking.</p>
+                        <div class="muted" aria-hidden="true">
+                            <span class="tag">SQL</span>
+                            <span class="tag">Optimization</span>
+                        </div>
+                    </header>
+                </article>
+
+            </section>
+        </div>
+
+        <!-- Contact/Footer -->
+        <section id="contact">
+            <div class="inner">
+                <section class="split">
+                    <section>
+                        <div class="contact-method"><span class="icon solid alt fa-envelope"></span>
+                            <h3>Email</h3><a href="mailto:mathur.ishan11@gmail.com">mathur.ishan11@gmail.com</a>
+                        </div>
+                    </section>
+                    <section>
+                        <div class="contact-method"><span class="icon solid alt fa-home"></span>
+                            <h3>Location</h3><span>Hamilton, New Zealand</span>
+                        </div>
+                    </section>
+                </section>
+            </div>
+        </section>
+
+        <footer id="footer">
+            <div class="inner">
+                <ul class="icons">
+                    <li><a href="https://github.com/mathurishan" class="icon brands alt fa-github"><span
+                                class="label">GitHub</span></a></li>
+                    <li><a href="https://www.linkedin.com/in/mathurishan" class="icon brands alt fa-linkedin-in"><span
+                                class="label">LinkedIn</span></a></li>
+                </ul>
+                <ul class="copyright">
+                    <li>&copy; 2025 Ishan Mathur</li>
+                    <li>Design: HTML5 UP Forty</li>
+                </ul>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/main.js" defer></script>
+
+    <!-- Same lightweight filter logic as Power BI page -->
+    <script>
+        (function () {
+            const searchInput = document.getElementById('search');
+            const tagBar = document.getElementById('tagBar');
+            const cards = Array.from(document.querySelectorAll('.project-card'));
+            const activeTags = new Set();
+            const normalize = s => (s || '').toLowerCase();
+
+            function applyFilters() {
+                const q = normalize(searchInput.value);
+                cards.forEach(card => {
+                    const title = normalize(card.getAttribute('data-title'));
+                    const tags = normalize(card.getAttribute('data-tags'));
+                    const matchesSearch = !q || title.includes(q) || tags.includes(q);
+                    let matchesTags = true;
+                    if (activeTags.size > 0) {
+                        matchesTags = [...activeTags].every(t => tags.includes(t));
+                    }
+                    card.classList.toggle('card-hidden', !(matchesSearch && matchesTags));
+                });
+            }
+
+            if (searchInput) searchInput.addEventListener('input', applyFilters);
+            if (tagBar) {
+                tagBar.addEventListener('click', (e) => {
+                    const chip = e.target.closest('.tag');
+                    if (!chip) return;
+                    const tag = normalize(chip.dataset.tag || chip.textContent);
+                    const isActive = chip.getAttribute('data-active') === 'true';
+                    chip.setAttribute('data-active', String(!isActive));
+                    if (isActive) activeTags.delete(tag); else activeTags.add(tag);
+                    applyFilters();
+                });
+            }
+            applyFilters();
+        })();
+    </script>
+</body>
+
+</html>
