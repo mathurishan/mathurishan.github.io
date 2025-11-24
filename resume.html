@@ -1,19 +1,16 @@
 <!DOCTYPE HTML>
-<!--  Resume Page for Ishan Mathur – Updated Nov 2025  -->
 <html lang="en">
 
 <head>
   <title>Ishan Mathur | Resume</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-
-  <!-- Open Graph / SEO -->
   <meta property="og:title" content="Ishan Mathur | Resume" />
   <meta property="og:description" content="Business Intelligence & Data Analyst | Power BI, SQL, Excel | PMP®" />
   <meta property="og:image" content="images/profile-square.jpg" />
   <meta property="og:url" content="https://mathurishan.github.io/resume.html" />
   <meta property="og:type" content="profile" />
-
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@500;700&display=swap"
@@ -22,17 +19,12 @@
   <noscript>
     <link rel="stylesheet" href="assets/css/noscript.css" />
   </noscript>
-
-  <!-- Custom width override: limits line length to ~58em on large screens -->
   <style>
-    /* Applies only to this page because #main.alt exists only here */
     #main.alt .inner {
       max-width: 50em;
-      /* ≈ 800px for comfy reading */
       margin: 0 auto;
     }
 
-    /* Match banner width to body inner width */
     #banner.style2 .inner {
       max-width: 50em;
       margin: 0 auto;
@@ -40,7 +32,6 @@
       padding-right: 0;
     }
 
-    /* --- Resume Contact Section (polished) --- */
     .resume-contact {
       text-align: center;
       padding: 1.75rem 0 2.5rem;
@@ -59,7 +50,6 @@
     .resume-contact .row-top .icon {
       margin-right: .4rem;
       color: #2ebaae;
-      /* theme accent */
     }
 
     .resume-contact .row-bottom {
@@ -67,7 +57,6 @@
       justify-content: center;
       gap: .75rem;
       flex-wrap: wrap;
-      /* wraps gracefully on small screens */
     }
 
     .resume-contact .badge {
@@ -87,7 +76,6 @@
 
     .resume-contact .badge .icon {
       color: currentColor;
-      /* icon follows text color */
     }
 
     .resume-contact .badge:hover {
@@ -96,38 +84,31 @@
       color: #fff;
     }
 
-    /* Slight spacing insurance before first section heading */
     #summary>header.major {
       margin-top: 0;
     }
 
-    /* Resume specific typography tweaks */
     #experience h3,
     #education h3 {
       margin-bottom: 0.2em;
-      /* Tighter spacing between title and subtitle */
     }
 
     p.sub {
       font-style: italic;
       opacity: 0.8;
       margin-bottom: 1em;
-      /* Space before the list */
       font-size: 0.9em;
     }
 
     #experience ul,
     #education ul {
       margin-bottom: 2.5em;
-      /* Space between jobs */
     }
 
     #experience ul li {
       margin-bottom: 0.5em;
-      /* Breathing room between bullets */
     }
 
-    /* Optional: tweak size on very small screens */
     @media (max-width: 480px) {
       .resume-contact {
         font-size: .95rem;
@@ -137,7 +118,6 @@
 </head>
 
 <body class="is-preload">
-  <!-- Header -->
   <header id="header" class="alt">
     <a href="index.html" class="logo"><strong>Ishan Mathur</strong><span>&nbsp;Portfolio</span></a>
     <nav>
@@ -149,30 +129,23 @@
       <a href="#contact">Contact</a>
     </nav>
   </header>
-
-  <!-- Banner -->
-  <section id="banner" class="style2" style="background-image:url('images/banner-resume.jpg');">
+  <section id="banner" class="style2 animate-on-scroll" style="background-image:url('images/banner-resume.jpg');">
     <div class="inner">
       <span class="image"><img src="images/profile-square.jpg" alt="Ishan Mathur" /></span>
-      <header class="major">
+      <header class="major animate-on-scroll">
         <h1>Résumé</h1>
       </header>
-      <div class="content">
+      <div class="content animate-on-scroll delay-1">
         <p>Business Intelligence &amp; Data Analyst | Power BI, SQL, Excel | PMP®</p>
       </div>
     </div>
   </section>
-
-  <!-- Main -->
   <div id="main" class="alt">
-
-    <!-- Contact strip (location on top, pill badges + full links below) -->
-    <section class="inner resume-contact">
+    <section class="inner resume-contact animate-on-scroll">
       <div class="row-top">
         <span class="icon solid fa-map-marker-alt" aria-hidden="true"></span>
         Hamilton, New Zealand
       </div>
-
       <div class="row-bottom">
         <div class="contact-item">
           <a href="mailto:mathur.ishan11@gmail.com" class="badge">
@@ -181,7 +154,6 @@
           </a>
           <span class="link-text">mathur.ishan11@gmail.com</span>
         </div>
-
         <div class="contact-item">
           <a href="https://www.linkedin.com/in/mathurishan" target="_blank" rel="noopener" class="badge">
             <span class="icon brands fa-linkedin-in" aria-hidden="true"></span>
@@ -191,10 +163,7 @@
         </div>
       </div>
     </section>
-
-
-    <!-- Summary -->
-    <section id="summary" class="inner">
+    <section id="summary" class="inner animate-on-scroll">
       <header class="major">
         <h2>About</h2>
       </header>
@@ -205,9 +174,7 @@
       <p>I don’t just report numbers; I work to understand the business logic and operational constraints behind them.
         <strong>PMP® certified</strong> and experienced in coordinating multiple stakeholders and deadlines.</p>
     </section>
-
-    <!-- Skills -->
-    <section id="skills" class="inner">
+    <section id="skills" class="inner animate-on-scroll">
       <header class="major">
         <h2>Core Competencies</h2>
       </header>
@@ -230,13 +197,10 @@
         </div>
       </div>
     </section>
-
-    <!-- Experience -->
-    <section id="experience" class="inner">
+    <section id="experience" class="inner animate-on-scroll">
       <header class="major">
         <h2>Work History</h2>
       </header>
-
       <h3>Student Assistant – Library (Collections Strategy &amp; Access)</h3>
       <p class="sub">University of Waikato | Jul 2025 – Present | Hamilton, NZ</p>
       <ul>
@@ -246,7 +210,6 @@
         <li>Use spreadsheets and internal tools to track progress and prioritize tasks during peak periods.</li>
         <li>Strengthened process discipline and stakeholder communication in a local NZ university environment.</li>
       </ul>
-
       <h3>Consultant</h3>
       <p class="sub">Arcesium (D.E. Shaw Group) | Mar 2022 – Jun 2025 | Gurugram, India</p>
       <ul>
@@ -259,7 +222,6 @@
           timelines.</li>
         <li><strong>Tech Stack</strong>: SQL, Power BI, Python, Excel, JIRA.</li>
       </ul>
-
       <h3>Underwriting Analyst</h3>
       <p class="sub">Better.com | Sep 2021 – Mar 2022 | Gurugram, India</p>
       <ul>
@@ -268,7 +230,6 @@
         <li>Interacted with stakeholders to expedite the mortgage process while adhering to compliance requirements.
         </li>
       </ul>
-
       <h3>Management Trainee</h3>
       <p class="sub">HDFC Bank | May 2019 – Aug 2019 | New Delhi, India</p>
       <ul>
@@ -276,7 +237,6 @@
         <li>Analyzed risk tolerance and recommended suitable financial services to meet short and long-term goals.</li>
         <li>Coordinated with internal teams to ensure smooth transaction processing and account maintenance.</li>
       </ul>
-
       <h3>Summer Intern</h3>
       <p class="sub">GAIL (India) Limited | May 2018 – Jun 2018 | New Delhi, India</p>
       <ul>
@@ -284,27 +244,20 @@
         <li>Undertook M&A research for the Finance and Accounts department.</li>
       </ul>
     </section>
-
-    <!-- Education -->
-    <section id="education" class="inner">
+    <section id="education" class="inner animate-on-scroll">
       <header class="major">
         <h2>Education</h2>
       </header>
-
       <h3>Master of Management (Business Analytics)</h3>
       <p class="sub">University of Waikato | Jul 2025 – Jun 2026</p>
-      <p>Focus: Business Analytics, data-driven decision-making, business intelligence.<br>
-        Tools: Power BI, SQL, R, Excel, Python.</p>
-
+      <p>Focus: Business Analytics, data-driven decision-making, business intelligence.<br>Tools: Power BI, SQL, R,
+        Excel, Python.</p>
       <h3>Master of Business Administration (Finance)</h3>
       <p class="sub">Institute of Management Technology, Ghaziabad | 2017 – 2019</p>
       <p>Major in Finance. National finalist, Hult Prize India 2018.</p>
-
       <h3>B.Tech – Electronics &amp; Communication Engineering</h3>
       <p class="sub">IPEC Ghaziabad | 2012 – 2016</p>
     </section>
-
-    <!-- Certifications -->
     <section id="certs" class="inner">
       <header class="major">
         <h2>Certifications</h2>
@@ -315,16 +268,11 @@
         <li><strong>Harnessing the Power of Data with Power BI</strong> — Microsoft (Mar 2024)</li>
       </ul>
     </section>
-
-    <!-- Download button -->
     <section class="inner" style="text-align:center; padding-bottom:4rem;">
-      <a href="assets/docs/Ishan_Mathur_CV.pdf" class="button primary icon solid fa-download" download>
-        Download PDF Version
-      </a>
+      <a href="assets/docs/Ishan_Mathur_CV.pdf" class="button primary icon solid fa-download" download>Download PDF
+        Version</a>
     </section>
   </div>
-
-  <!-- Footer -->
   <footer id="footer">
     <div class="inner">
       <ul class="icons">
@@ -333,13 +281,9 @@
         <li><a href="https://www.linkedin.com/in/mathurishan" class="icon brands alt fa-linkedin-in"><span
               class="label">LinkedIn</span></a></li>
       </ul>
-      <div class="copyright">
-        &copy; 2025 Ishan Mathur. Design: HTML5 UP.
-      </div>
+      <div class="copyright">&copy; 2025 Ishan Mathur. Design: HTML5 UP.</div>
     </div>
   </footer>
-
-  <!-- Scripts -->
   <script src="assets/js/main.js" defer></script>
 </body>
 

@@ -15,11 +15,11 @@ Since you are working in a downloaded folder (`mathurishan.github.io-main`) and 
     # 1. Initialize a new git repository
     git init
 
-    # 2. Add all new files
+    # 2. Add all new files (including sql.html, favicon.svg, etc.)
     git add .
 
     # 3. Commit the changes
-    git commit -m "Modernize portfolio: Remove jQuery, update design, add SQL page"
+    git commit -m "Modernize portfolio: Remove jQuery, update design, add SQL page, add favicon & animations"
 
     # 4. Rename branch to main
     git branch -M main
