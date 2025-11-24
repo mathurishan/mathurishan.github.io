@@ -63,7 +63,7 @@
 
         if (link) {
             var linkClone = link.cloneNode(true);
-            linkClone.className = 'primary';
+            linkClone.classList.add('primary');
             linkClone.innerText = ''; // Clear text
             tile.appendChild(linkClone);
         }
