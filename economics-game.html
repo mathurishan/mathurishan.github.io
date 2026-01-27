@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>EcoQuest 🏰🐉 – Retro MCQ Arcade</title>
+    <style>
+        :root {
+            --bg: #0a0d18;
+            --bg-deep: #060810;
+            --panel: #141a2a;
+            --panel-dark: #0e1322;
+            --accent: #ffd700;
+            --accent-glow: #ffed4e;
+            --accent2: #8ef5ff;
+            --hp: #ff4d4d;
+            --hp-glow: #ff6b6b;
+            --good: #6cf06c;
+            --good-glow: #8fff8f;
+            --bad: #ff6565;
+            --text: #e6e6f0;
+            --text-dim: #9da3b8;
+            --stone: #1e2740;
+            --stone-light: #2a3458;
+            --streak-color: #ff9500;
+        }
+
+        @keyframes flicker {
+
+            0%,
+            100% {
+                opacity: .95
+            }
+
+            50% {
+                opacity: .85
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-4px);
+            }
+
+            75% {
+                transform: translateX(4px);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes heartDeath {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(0.8) rotate(-10deg);
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 0.2;
+            }
+        }
+
+        @keyframes buttonPress {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(0.98);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes glow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 10px rgba(255, 215, 0, 0.3), inset 0 0 10px rgba(255, 215, 0, 0.1);
+            }
+
+            50% {
+                box-shadow: 0 0 20px rgba(255, 215, 0, 0.5), inset 0 0 15px rgba(255, 215, 0, 0.2);
+            }
+        }
+
+        @keyframes floatUp {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-50px) scale(1.2);
+            }
+        }
+
+        @keyframes hitShake {
+
+            0%,
+            100% {
+                transform: translateX(0) rotate(0deg);
+            }
+
+            10% {
+                transform: translateX(-8px) rotate(-3deg);
+            }
+
+            30% {
+                transform: translateX(8px) rotate(3deg);
+            }
+
+            50% {
+                transform: translateX(-6px) rotate(-2deg);
+            }
+
+            70% {
+                transform: translateX(6px) rotate(2deg);
+            }
+
+            90% {
+                transform: translateX(-3px) rotate(-1deg);
+            }
+        }
+
+        @keyframes enemyHit {
+            0% {
+                transform: scale(1);
+                filter: brightness(1);
+            }
+
+            25% {
+                transform: scale(0.9) rotate(-5deg);
+                filter: brightness(2) hue-rotate(45deg);
+            }
+
+            50% {
+                transform: scale(1.05);
+                filter: brightness(1.5);
+            }
+
+            100% {
+                transform: scale(1);
+                filter: brightness(1);
+            }
+        }
+
+        @keyframes heroHit {
+            0% {
+                transform: scale(1);
+                filter: brightness(1);
+            }
+
+            25% {
+                transform: scale(0.85) rotate(5deg);
+                filter: brightness(0.5) sepia(1);
+            }
+
+            50% {
+                transform: scale(1.02);
+                filter: brightness(1.2) hue-rotate(-20deg);
+            }
+
+            100% {
+                transform: scale(1);
+                filter: brightness(1);
+            }
+        }
+
+        @keyframes comboPopIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.5) rotate(-10deg);
+            }
+
+            50% {
+                transform: scale(1.2) rotate(5deg);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        @keyframes comboFadeOut {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(0.8) translateY(-20px);
+            }
+        }
+
+        @keyframes streakPulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                text-shadow: 0 0 10px var(--streak-color);
+            }
+
+            50% {
+                transform: scale(1.1);
+                text-shadow: 0 0 20px var(--streak-color), 0 0 30px var(--streak-color);
+            }
+        }
+
+        @keyframes progressGlow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 5px rgba(142, 245, 255, 0.3);
+            }
+
+            50% {
+                box-shadow: 0 0 15px rgba(142, 245, 255, 0.6);
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            background: linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 60%, #040608 100%);
+            color: var(--text);
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            image-rendering: pixelated;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .crt {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background: radial-gradient(ellipse at center, transparent 0%, transparent 60%, rgba(255, 255, 255, 0.05) 100%);
+            mix-blend-mode: overlay;
+            z-index: 999;
+        }
+
+        .scan {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background: linear-gradient(rgba(255, 255, 255, .04) 1px, transparent 3px);
+            background-size: 100% 3px;
+            opacity: .15;
+            animation: flicker 2s infinite;
+            z-index: 999;
+        }
+
+        .wrap {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 24px;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        header {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .brand {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .brand .castle {
+            font-size: 26px;
+            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.4));
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        .title {
+            font-weight: 900;
+            letter-spacing: 1px;
+            background: linear-gradient(135deg, var(--accent-glow), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            opacity: .8;
+            font-size: 12px;
+            color: var(--text-dim);
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .hud {
+            display: grid;
+            grid-template-columns: 1fr auto auto auto;
+            gap: 12px;
+            align-items: center;
+            background: linear-gradient(180deg, var(--stone), var(--panel-dark));
+            border: 2px solid var(--stone-light);
+            border-radius: 12px;
+            padding: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .hp-bar {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+
+        .heart {
+            width: 20px;
+            height: 20px;
+            background: var(--hp);
+            clip-path: path("M9 4 C9 2.5 7.8 1.4 6.3 1.4 C4.8 1.4 3.6 2.5 3.6 4 C3.6 6.5 9 10.5 9 10.5 C9 10.5 14.4 6.5 14.4 4 C14.4 2.5 13.2 1.4 11.7 1.4 C10.2 1.4 9 2.5 9 4 Z");
+            filter: drop-shadow(0 0 6px var(--hp-glow));
+            transition: all 0.3s ease;
+        }
+
+        .heart.damaged {
+            animation: heartDeath 0.5s ease-out forwards;
+        }
+
+        .heart.dead {
+            opacity: .2;
+            filter: grayscale(1);
+        }
+
+        .gold-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .gold {
+            font-weight: 800;
+            color: var(--accent);
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .gold-float {
+            position: absolute;
+            left: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent);
+            font-weight: 900;
+            font-size: 16px;
+            pointer-events: none;
+            animation: floatUp 1s ease-out forwards;
+            text-shadow: 0 0 10px var(--accent-glow);
+            white-space: nowrap;
+            margin-left: 8px;
+        }
+
+        .streak-hud {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            background: linear-gradient(180deg, #2a2040, #1a1030);
+            border: 2px solid #4a3070;
+            border-radius: 999px;
+            font-size: 13px;
+            transition: all 0.3s ease;
+        }
+
+        .streak-hud.active {
+            border-color: var(--streak-color);
+            background: linear-gradient(180deg, #3d2a20, #2a1a10);
+            animation: streakPulse 1s ease-in-out infinite;
+        }
+
+        .streak-icon {
+            font-size: 16px;
+        }
+
+        .streak-count {
+            font-weight: 800;
+            color: var(--streak-color);
+        }
+
+        .badge-pill {
+            background: var(--stone-light);
+            padding: 6px 12px;
+            border-radius: 999px;
+            border: 1px solid #3a4670;
+            font-size: 12px;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            margin-top: 12px;
+            background: linear-gradient(180deg, #0a0d18, #060810);
+            border: 2px solid var(--stone-light);
+            border-radius: 10px;
+            padding: 4px;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .progress-bar {
+            height: 16px;
+            background: linear-gradient(90deg, #1a3050, #2a4a70);
+            border-radius: 6px;
+            position: relative;
+            overflow: hidden;
+            animation: progressGlow 2s ease-in-out infinite;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent2), #5ad5e5, var(--accent2));
+            background-size: 200% 100%;
+            border-radius: 6px;
+            transition: width 0.5s ease-out;
+            position: relative;
+            box-shadow: 0 0 10px var(--accent2);
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.3), transparent);
+            border-radius: 6px 6px 0 0;
+        }
+
+        .progress-text {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 11px;
+            font-weight: 800;
+            color: #fff;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .panel {
+            margin-top: 16px;
+            background: linear-gradient(180deg, var(--panel), var(--panel-dark));
+            border: 2px solid var(--stone-light);
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05);
+        }
+
+        .scene {
+            padding: 20px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
+            position: relative;
+        }
+
+        /* Combo message container */
+        .combo-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .combo-message {
+            font-size: 28px;
+            font-weight: 900;
+            text-align: center;
+            text-shadow: 0 0 20px currentColor, 0 2px 4px rgba(0, 0, 0, 0.5);
+            animation: comboPopIn 0.4s ease-out forwards;
+            white-space: nowrap;
+        }
+
+        .combo-message.fade-out {
+            animation: comboFadeOut 0.5s ease-out forwards;
+        }
+
+        .combo-1 {
+            color: #7fff7f;
+        }
+
+        .combo-2 {
+            color: #ffff00;
+        }
+
+        .combo-3 {
+            color: #ff9500;
+        }
+
+        .combo-4 {
+            color: #ff00ff;
+        }
+
+        .combo-5 {
+            color: #00ffff;
+        }
+
+        .sprite {
+            width: 96px;
+            height: 96px;
+            background: conic-gradient(from 75deg, #7c2 0 25%, #561 0 50%, #7c2 0 75%, #561 0);
+            border: 3px ridge #2a3b5a;
+            border-radius: 12px;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        .sprite:hover {
+            transform: scale(1.05);
+        }
+
+        .sprite:before {
+            content: "🛡️";
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            font-size: 44px;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        .sprite.enemy {
+            background: conic-gradient(from 0deg, #933 0 25%, #611 0 50%, #933 0 75%, #611 0);
+        }
+
+        .sprite.enemy:before {
+            content: "🐉";
+        }
+
+        .sprite.hit-enemy {
+            animation: enemyHit 0.5s ease-out;
+        }
+
+        .sprite.hit-hero {
+            animation: heroHit 0.5s ease-out;
+        }
+
+        .question {
+            padding: 20px;
+            border-top: 2px dashed #32406a;
+            background: linear-gradient(180deg, #10172b, #0a1020);
+        }
+
+        .qtext {
+            font-weight: 800;
+            line-height: 1.5;
+            font-size: 15px;
+            color: var(--text);
+        }
+
+        .choices {
+            display: grid;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        button.choice {
+            text-align: left;
+            background: linear-gradient(180deg, #1a2540, #14203a);
+            border: 2px solid #2c3b62;
+            padding: 12px 16px;
+            color: var(--text);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            font-family: inherit;
+            font-size: 14px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        button.choice::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        button.choice:hover:not(:disabled) {
+            transform: translateY(-2px);
+            background: linear-gradient(180deg, #1f2d4a, #0f1a34);
+            border-color: #3c4f84;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        button.choice:hover:not(:disabled)::before {
+            left: 100%;
+        }
+
+        button.choice:active:not(:disabled) {
+            animation: buttonPress 0.2s ease;
+        }
+
+        button.choice.correct {
+            border-color: var(--good);
+            background: linear-gradient(180deg, #1a3d1a, #0f2a14);
+            box-shadow: 0 0 20px rgba(108, 240, 108, 0.3), inset 0 0 10px rgba(108, 240, 108, 0.1);
+        }
+
+        button.choice.wrong {
+            border-color: var(--bad);
+            background: linear-gradient(180deg, #3d1a1a, #2a1111);
+            box-shadow: 0 0 20px rgba(255, 101, 101, 0.3), inset 0 0 10px rgba(255, 101, 101, 0.1);
+            animation: shake 0.4s ease;
+        }
+
+        .footerbar {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 12px 16px;
+            background: #0b1020;
+            border-top: 2px solid #223057;
+            align-items: center;
+        }
+
+        .btn {
+            background: linear-gradient(180deg, #2a3a66, #1b2746);
+            color: #eaf;
+            border: 2px solid #3c4f84;
+            border-radius: 10px;
+            padding: 10px 16px;
+            cursor: pointer;
+            font-weight: 700;
+            font-family: inherit;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            font-size: 14px;
+        }
+
+        .btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(180deg, #3545a0, #253280);
+        }
+
+        .btn:active:not(:disabled) {
+            animation: buttonPress 0.2s ease;
+        }
+
+        .btn.gold {
+            background: linear-gradient(180deg, #d4a029, #b38a00);
+            border-color: #ffed4e;
+            color: #1a0f00;
+            font-weight: 800;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        .btn.gold:hover:not(:disabled) {
+            background: linear-gradient(180deg, #ffcc00, #d4a029);
+        }
+
+        .btn:disabled {
+            opacity: .5;
+            cursor: not-allowed;
+            transform: none;
+            animation: none;
+        }
+
+        .btn-sound {
+            background: linear-gradient(180deg, #2a4a3a, #1b3626);
+            border-color: #3a704a;
+            color: #8f8;
+            padding: 8px 12px;
+            font-size: 18px;
+        }
+
+        .btn-sound.muted {
+            background: linear-gradient(180deg, #4a2a2a, #361b1b);
+            border-color: #703a3a;
+            color: #f88;
+        }
+
+        .toast {
+            position: fixed;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #1a2540, #121a30);
+            border: 2px solid #30406c;
+            padding: 12px 20px;
+            border-radius: 10px;
+            display: none;
+            max-width: 90%;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        /* Modal styles */
+        dialog {
+            background: linear-gradient(180deg, #0d1222, #08090f);
+            color: var(--text);
+            border: 2px solid #374a7c;
+            border-radius: 14px;
+            max-width: 560px;
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.8);
+            padding: 0;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        dialog::backdrop {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-head {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 2px dashed #32406a;
+            padding: 16px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent);
+        }
+
+        .modal-head strong {
+            font-size: 18px;
+        }
+
+        .modal-body {
+            padding: 20px;
+        }
+
+        .game-over-content {
+            text-align: center;
+        }
+
+        .game-over-icon {
+            font-size: 64px;
+            margin: 20px 0;
+            filter: drop-shadow(0 0 20px rgba(255, 77, 77, 0.5));
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        .game-over-stats {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid #2c3b62;
+            border-radius: 10px;
+            padding: 16px;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px dashed #32406a;
+        }
+
+        .stat-row:last-child {
+            border-bottom: none;
+        }
+
+        .stat-label {
+            color: var(--text-dim);
+        }
+
+        .stat-value {
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 12px;
+        }
+
+        .medal {
+            background: linear-gradient(180deg, #15203a, #0f162b);
+            border: 2px solid #2c3b62;
+            border-radius: 12px;
+            padding: 12px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        .medal:not(.lock):hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .medal .icon {
+            font-size: 32px;
+            display: block;
+            margin-bottom: 8px;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        .medal.lock {
+            opacity: .35;
+            filter: grayscale(1);
+        }
+
+        .credits {
+            margin-top: 12px;
+            opacity: .6;
+            font-size: 12px;
+            text-align: center;
+            color: var(--text-dim);
+        }
+
+        @media (max-width: 700px) {
+            .wrap {
+                padding: 16px;
+            }
+
+            .scene {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hud {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .hp-bar {
+                justify-content: center;
+            }
+
+            header {
+                flex-direction: column;
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="crt"></div>
+    <div class="scan"></div>
+    <div class="wrap">
+        <header>
+            <div class="brand">
+                <div class="castle">🏰</div>
+                <div>
+                    <div class="title">EcoQuest: Knights of Elasticity</div>
+                    <div class="subtitle">Defeat dragons with economics. Earn badges. Hoard gold.</div>
+                </div>
+            </div>
+            <div class="header-buttons">
+                <button class="btn btn-sound" id="btn-sound" title="Toggle Sound">🔊</button>
+                <button class="btn" id="btn-badges">🎖️ Badges</button>
+                <button class="btn" id="btn-reset">♻️ Reset</button>
+            </div>
+        </header>
+
+        <div class="hud">
+            <div class="hp-bar" id="hp">
+                <span class="heart"></span><span class="heart"></span><span class="heart"></span><span
+                    class="heart"></span><span class="heart"></span>
+            </div>
+            <div class="gold-container">
+                <div class="gold">💰 Gold: <span id="gold">0</span></div>
+            </div>
+            <div class="streak-hud" id="streakHud">
+                <span class="streak-icon">🔥</span>
+                <span class="streak-count" id="streakCount">0</span>
+            </div>
+            <div class="badge-pill">🏅 Badges: <span id="badgeCount">0</span></div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 10%;"></div>
+                <div class="progress-text" id="progressText">1 / 10</div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="scene">
+                <div class="sprite" id="hero"></div>
+                <div style="flex:1">
+                    <div><strong>Quest:</strong> Answer correctly to slay the dragon and claim the pot of gold.</div>
+                    <div style="color: var(--text-dim); margin-top: 4px;">Theme: medieval fantasy • Mode:
+                        multiple-choice • Style: retro</div>
+                </div>
+                <div class="sprite enemy" id="enemy"></div>
+
+                <!-- Combo Message Container -->
+                <div class="combo-container" id="comboContainer"></div>
+            </div>
+
+            <div class="question">
+                <div class="qtext" id="qtext">Loading question…</div>
+                <div class="choices" id="choices"></div>
+            </div>
+
+            <div class="footerbar">
+                <button id="next" class="btn gold" disabled>➡️ Next Encounter</button>
+                <div style="color: var(--text-dim); font-size: 13px;">Encounter <span id="idx">1</span>/<span
+                        id="total">10</span></div>
+            </div>
+        </div>
+
+        <div class="credits">Tip: Use your cheat sheet. Watch the curves and think incentive → response.</div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <!-- Badge Modal -->
+    <dialog id="modal">
+        <div class="modal-head">
+            <strong>🎖️ Your Badges</strong>
+            <span style="margin-left:auto">
+                <button class="btn" onclick="document.getElementById('modal').close()">Close</button>
+            </span>
+        </div>
+        <div class="modal-body">
+            <div class="grid" id="badgeGrid"></div>
+        </div>
+    </dialog>
+
+    <!-- Game Over Modal -->
+    <dialog id="gameOverModal">
+        <div class="modal-head" style="justify-content: center; border-bottom: none;">
+            <strong style="font-size: 24px; color: var(--bad);">💀 GAME OVER 💀</strong>
+        </div>
+        <div class="modal-body">
+            <div class="game-over-content">
+                <div class="game-over-icon">🐉</div>
+                <p id="gameOverMessage" style="font-size: 16px; margin: 16px 0;">The dragon has defeated you!</p>
+
+                <div class="game-over-stats">
+                    <div class="stat-row">
+                        <span class="stat-label">Questions Answered:</span>
+                        <span class="stat-value" id="questionsAnswered">0</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Gold Earned:</span>
+                        <span class="stat-value" id="goldEarned">0</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Best Streak:</span>
+                        <span class="stat-value" id="bestStreak">0</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Badges Unlocked:</span>
+                        <span class="stat-value" id="badgesEarned">0</span>
+                    </div>
+                </div>
+
+                <button class="btn gold" id="playAgainBtn" style="width: 100%; padding: 14px; font-size: 16px;">
+                    ⚔️ Play Again
+                </button>
+            </div>
+        </div>
+    </dialog>
+
+    <script>
+        // ---------- Question bank ----------
+        const BANK = [
+            { q: "A price ceiling set below the market equilibrium will…", choices: ["Create a surplus", "Create a shortage", "Leave the market unchanged", "Increase supply"], answer: 1, explain: "Binding ceilings sit below equilibrium and cause shortage." },
+            { q: "Which event shifts demand for tea to the right?", choices: ["A fall in the price of coffee", "A rise in the price of coffee", "A fall in consumer income", "A fall in the population"], answer: 1, explain: "When substitute price rises, demand for tea increases." },
+            { q: "If demand is inelastic, increasing price will…", choices: ["Decrease total revenue", "Increase total revenue", "Leave total revenue unchanged", "Make supply more elastic"], answer: 1, explain: "Inelastic demand means revenue increases with price." },
+            { q: "In a competitive market with a negative externality…", choices: ["Too little production", "Too much production", "Exact social optimum", "Only a transfer"], answer: 1, explain: "Private decision-makers ignore external costs." },
+            { q: "Who bears more of an excise tax?", choices: ["The more elastic side", "The less elastic side", "Whoever the law says pays", "Always consumers"], answer: 1, explain: "The less responsive side bears more burden." },
+            { q: "World price below domestic price. After opening to trade…", choices: ["Export and producers gain", "Import and consumers gain", "Import and producers gain", "Export and consumers gain"], answer: 1, explain: "Lower world price means imports benefit consumers." },
+            { q: "Positive consumption externality (e.g., education) implies…", choices: ["Market produces too much", "Market produces too little", "No failure", "Tax is optimal"], answer: 1, explain: "Spillover benefits lead to underproduction." },
+            { q: "Which statement is normative?", choices: ["Tax on beer raises price", "Minimum wage should be higher", "Supply increase lowers price", "Falling income reduces demand"], answer: 1, explain: "Normative statements express value judgments." },
+            { q: "A price floor above equilibrium in labour market…", choices: ["Unemployment occurs", "Labour shortage", "No change", "Demand increases more"], answer: 0, explain: "Binding wage floor creates unemployment." },
+            { q: "Nash equilibrium occurs when…", choices: ["One player has dominant strategy", "Mutual best responses", "Players cooperate for max payoffs", "No player gets highest payoff"], answer: 1, explain: "Nash equilibrium is mutual best responses." },
+            { q: "If total revenue unchanged when price changes, demand is…", choices: ["Elastic", "Inelastic", "Unit elastic", "Perfectly inelastic"], answer: 2, explain: "Unit elasticity means TR unchanged." },
+            { q: "Cross-price elasticity is negative for…", choices: ["Substitutes", "Complements", "Inferior goods", "Giffen goods"], answer: 1, explain: "Complements have negative cross elasticity." },
+            { q: "A technology improvement in production will…", choices: ["Shift demand right", "Shift supply right", "Shift supply left", "Move along demand curve"], answer: 1, explain: "Better tech lowers cost, shifts supply right." },
+            { q: "Income falls during recession. For inferior goods…", choices: ["Demand decreases", "Demand increases", "Supply increases", "Price floors non-binding"], answer: 1, explain: "Inferior goods demand rises as income falls." },
+            { q: "Deadweight loss from a tax is…", choices: ["Transfer to sellers", "Transfer to government", "Pure efficiency loss", "Zero if tax is small"], answer: 2, explain: "DWL is lost surplus from reduced trades." },
+        ];
+
+        // ---------- Sound System ----------
+        let soundEnabled = true;
+        let audioContext = null;
+
+        function initAudio() {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+
+        function playBeep(frequency, duration, type = 'sine') {
+            if (!soundEnabled) return;
+            try {
+                initAudio();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+
+                oscillator.frequency.value = frequency;
+                oscillator.type = type;
+
+                gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
+
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + duration);
+            } catch (e) {
+                console.log('Audio not supported');
+            }
+        }
+
+        function playCorrectSound() {
+            playBeep(523, 0.1, 'sine');
+            setTimeout(() => playBeep(659, 0.1, 'sine'), 100);
+            setTimeout(() => playBeep(784, 0.15, 'sine'), 200);
+        }
+
+        function playWrongSound() {
+            playBeep(200, 0.3, 'sawtooth');
+        }
+
+        function playBadgeSound() {
+            playBeep(392, 0.1, 'sine');
+            setTimeout(() => playBeep(523, 0.1, 'sine'), 100);
+            setTimeout(() => playBeep(659, 0.1, 'sine'), 200);
+            setTimeout(() => playBeep(784, 0.2, 'sine'), 300);
+        }
+
+        function playGameOverSound() {
+            playBeep(392, 0.2, 'sawtooth');
+            setTimeout(() => playBeep(330, 0.2, 'sawtooth'), 200);
+            setTimeout(() => playBeep(262, 0.4, 'sawtooth'), 400);
+        }
+
+        // ---------- Game State ----------
+        const TOTAL = 10;
+        let order = [];
+        let idx = 0;
+        let hp = 5;
+        let gold = 0;
+        let badges = {};
+        let answered = false;
+        let gameOver = false;
+        let correctStreak = 0;
+        let maxStreak = 0;
+        let themeCount = { elasticity: 0 };
+
+        try {
+            const saved = localStorage.getItem('eco_badges');
+            if (saved) badges = JSON.parse(saved);
+        } catch (e) { badges = {}; }
+
+        const BADGE_RULES = [
+            { id: 'first_blood', name: "First Knight's Shield", icon: '🛡️', hint: 'Answer first question correctly.' },
+            { id: 'trader', name: 'Master of Trade', icon: '🏴‍☠️', hint: 'Answer a trade question correctly.' },
+            { id: 'dragon', name: 'Dragon Slayer', icon: '🐉', hint: 'Answer 3 in a row correctly.' },
+            { id: 'sage', name: 'Sage of Elasticity', icon: '📈', hint: 'Get 5 elasticity items correct.' },
+            { id: 'perfect', name: 'Perfect Run', icon: '👑', hint: 'Finish without losing health.' },
+        ];
+
+        const COMBO_MESSAGES = [
+            { streak: 2, text: "Nice!", color: 1 },
+            { streak: 3, text: "Great!", color: 2 },
+            { streak: 4, text: "Excellent!", color: 3 },
+            { streak: 5, text: "Amazing!", color: 3 },
+            { streak: 6, text: "Incredible!", color: 4 },
+            { streak: 7, text: "UNSTOPPABLE!", color: 5 },
+            { streak: 8, text: "LEGENDARY!", color: 5 },
+        ];
+
+        // ---------- UI Functions ----------
+        function saveBadges() {
+            try { localStorage.setItem('eco_badges', JSON.stringify(badges)); } catch (e) { }
+            renderBadges();
+        }
+
+        function grant(id) {
+            if (!badges[id]) {
+                badges[id] = Date.now();
+                const badge = BADGE_RULES.find(b => b.id === id);
+                if (badge) {
+                    showToast('Badge unlocked: ' + badge.name + ' 🎖️');
+                    playBadgeSound();
+                }
+                saveBadges();
+            }
+        }
+
+        function renderBadges() {
+            document.getElementById('badgeCount').textContent = Object.keys(badges).length;
+            const grid = document.getElementById('badgeGrid');
+            grid.innerHTML = '';
+            BADGE_RULES.forEach(b => {
+                const owned = !!badges[b.id];
+                const div = document.createElement('div');
+                div.className = 'medal' + (owned ? '' : ' lock');
+                div.innerHTML = `<span class="icon">${b.icon}</span><div style="font-weight:800; margin-bottom: 4px;">${b.name}</div><div style="font-size:11px;opacity:.8">${b.hint}</div>`;
+                grid.appendChild(div);
+            });
+        }
+
+        function setHP(damagedIndex = -1) {
+            const hpEl = document.getElementById('hp');
+            hpEl.innerHTML = '';
+            for (let i = 0; i < 5; i++) {
+                const s = document.createElement('span');
+                if (i < hp) s.className = 'heart';
+                else if (i === damagedIndex) s.className = 'heart damaged';
+                else s.className = 'heart dead';
+                hpEl.appendChild(s);
+            }
+        }
+
+        function updateStreak() {
+            const streakEl = document.getElementById('streakCount');
+            const streakHud = document.getElementById('streakHud');
+            streakEl.textContent = correctStreak;
+
+            if (correctStreak >= 3) {
+                streakHud.classList.add('active');
+            } else {
+                streakHud.classList.remove('active');
+            }
+
+            if (correctStreak > maxStreak) maxStreak = correctStreak;
+        }
+
+        function updateProgress() {
+            const progress = ((idx + 1) / TOTAL) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            document.getElementById('progressText').textContent = (idx + 1) + ' / ' + TOTAL;
+            document.getElementById('idx').textContent = idx + 1;
+        }
+
+        function showGoldAnimation() {
+            const container = document.querySelector('.gold-container');
+            const floater = document.createElement('div');
+            floater.className = 'gold-float';
+            floater.textContent = '+10';
+            container.appendChild(floater);
+            setTimeout(() => floater.remove(), 1000);
+        }
+
+        function showComboMessage(streak) {
+            const combo = COMBO_MESSAGES.find(c => c.streak === streak) ||
+                (streak > 8 ? { text: "GODLIKE! x" + streak, color: 5 } : null);
+            if (!combo) return;
+
+            const container = document.getElementById('comboContainer');
+            container.innerHTML = '';
+
+            const msg = document.createElement('div');
+            msg.className = `combo-message combo-${combo.color}`;
+            msg.textContent = combo.text;
+            container.appendChild(msg);
+
+            setTimeout(() => msg.classList.add('fade-out'), 800);
+            setTimeout(() => container.innerHTML = '', 1300);
+        }
+
+        function animateHit(isCorrect) {
+            const enemy = document.getElementById('enemy');
+            const hero = document.getElementById('hero');
+
+            if (isCorrect) {
+                enemy.classList.add('hit-enemy');
+                setTimeout(() => enemy.classList.remove('hit-enemy'), 500);
+            } else {
+                hero.classList.add('hit-hero');
+                setTimeout(() => hero.classList.remove('hit-hero'), 500);
+            }
+        }
+
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            t.textContent = msg;
+            t.style.display = 'block';
+            setTimeout(() => t.style.display = 'none', 2500);
+        }
+
+        function randPick(n, k) {
+            const arr = [...Array(n).keys()];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr.slice(0, k);
+        }
+
+        function showGameOver() {
+            gameOver = true;
+            playGameOverSound();
+            const modal = document.getElementById('gameOverModal');
+            document.getElementById('questionsAnswered').textContent = idx;
+            document.getElementById('goldEarned').textContent = gold;
+            document.getElementById('bestStreak').textContent = maxStreak;
+            document.getElementById('badgesEarned').textContent = Object.keys(badges).length;
+
+            const messages = [
+                "The dragon proved too powerful!",
+                "Fear not, brave knight! Try again!",
+                "Even heroes face defeat!",
+                "Learn and rise again!",
+                "The realm needs you!"
+            ];
+            document.getElementById('gameOverMessage').textContent = messages[Math.floor(Math.random() * messages.length)];
+            modal.showModal();
+        }
+
+        function newRun() {
+            order = randPick(BANK.length, TOTAL);
+            idx = 0; hp = 5; gold = 0; correctStreak = 0; maxStreak = 0;
+            themeCount.elasticity = 0; answered = false; gameOver = false;
+            setHP();
+            document.getElementById('gold').textContent = gold;
+            document.getElementById('total').textContent = TOTAL;
+            updateStreak();
+            updateProgress();
+            document.getElementById('next').disabled = true;
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            if (gameOver) return;
+            answered = false;
+            const q = BANK[order[idx]];
+            document.getElementById('qtext').textContent = q.q;
+            const box = document.getElementById('choices');
+            box.innerHTML = '';
+            q.choices.forEach((c, i) => {
+                const b = document.createElement('button');
+                b.className = 'choice';
+                b.textContent = ("ABCD"[i] + ') ' + c);
+                b.onclick = () => answerQuestion(i);
+                box.appendChild(b);
+            });
+            document.getElementById('next').disabled = true;
+        }
+
+        function answerQuestion(selectedIndex) {
+            if (answered || gameOver) return;
+            answered = true;
+
+            const q = BANK[order[idx]];
+            const buttons = [...document.querySelectorAll('button.choice')];
+
+            buttons.forEach((b, j) => {
+                b.disabled = true;
+                if (j === q.answer) b.classList.add('correct');
+                if (j === selectedIndex && j !== q.answer) b.classList.add('wrong');
+            });
+
+            if (selectedIndex === q.answer) {
+                // Correct answer
+                playCorrectSound();
+                animateHit(true);
+
+                gold += 10;
+                document.getElementById('gold').textContent = gold;
+                showGoldAnimation();
+
+                correctStreak++;
+                updateStreak();
+                showComboMessage(correctStreak);
+
+                showToast('✅ Correct! +10 gold');
+
+                if (!badges.first_blood) grant('first_blood');
+                if ([0, 2, 4, 8, 10, 12, 14].includes(order[idx])) {
+                    themeCount.elasticity++;
+                    if (themeCount.elasticity >= 5) grant('sage');
+                }
+                if (order[idx] === 5) grant('trader');
+                if (correctStreak >= 3) grant('dragon');
+            } else {
+                // Wrong answer
+                playWrongSound();
+                animateHit(false);
+
+                hp = Math.max(0, hp - 1);
+                setHP(hp);
+                correctStreak = 0;
+                updateStreak();
+                showToast('❌ Wrong. ' + q.explain);
+
+                if (hp === 0) {
+                    setTimeout(showGameOver, 1000);
+                    return;
+                }
+            }
+
+            document.getElementById('next').disabled = false;
+        }
+
+        function nextQ() {
+            if (gameOver) return;
+            if (idx < TOTAL - 1) {
+                idx++;
+                updateProgress();
+                loadQuestion();
+            } else {
+                if (hp === 5) grant('perfect');
+                showToast('🏁 Quest complete! Gold: ' + gold + (hp === 5 ? ' • Perfect!' : ''));
+                setTimeout(newRun, 2000);
+            }
+        }
+
+        // ---------- Event Listeners ----------
+        document.getElementById('btn-badges').onclick = () => {
+            renderBadges();
+            document.getElementById('modal').showModal();
+        };
+
+        document.getElementById('btn-reset').onclick = () => {
+            if (confirm('Reset all progress and badges?')) {
+                localStorage.removeItem('eco_badges');
+                badges = {};
+                saveBadges();
+                showToast('Progress reset.');
+            }
+        };
+
+        document.getElementById('btn-sound').onclick = () => {
+            soundEnabled = !soundEnabled;
+            const btn = document.getElementById('btn-sound');
+            btn.textContent = soundEnabled ? '🔊' : '🔇';
+            btn.classList.toggle('muted', !soundEnabled);
+            if (soundEnabled) {
+                initAudio();
+                playBeep(440, 0.1);
+            }
+        };
+
+        document.getElementById('next').onclick = nextQ;
+
+        document.getElementById('playAgainBtn').onclick = () => {
+            document.getElementById('gameOverModal').close();
+            newRun();
+        };
+
+        // Initialize
+        window.addEventListener('DOMContentLoaded', () => {
+            newRun();
+            renderBadges();
+        });
+    </script>
+</body>
+
+</html>
