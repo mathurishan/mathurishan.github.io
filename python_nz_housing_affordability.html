@@ -1,0 +1,220 @@
+<!DOCTYPE HTML>
+<html lang="en" class="no-js">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Python • NZ Housing Affordability | Ishan Mathur</title>
+  <meta name="description"
+    content="Python case study analysing New Zealand rental affordability using MBIE tenancy bond data, Stats NZ household income, and building consent series." />
+  <meta property="og:title" content="Python • NZ Housing Affordability | Ishan Mathur" />
+  <meta property="og:description"
+    content="A recruiter-friendly Python case study covering rent pressure, affordability thresholds, Hamilton deep dives, and suburb-level hotspots across New Zealand." />
+  <meta property="og:image" content="images/projects/python/nz-housing/09_affordability_risk_index.png" />
+  <meta property="og:url" content="https://mathurishan.github.io/python_nz_housing_affordability.html" />
+  <meta property="og:type" content="article" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@500;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/main.css?v=2" />
+  <noscript>
+    <link rel="stylesheet" href="assets/css/noscript.css" />
+  </noscript>
+  <style>
+    .project-header {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .project-header > :first-child {
+      width: 100%;
+      white-space: normal;
+      overflow-wrap: anywhere;
+    }
+
+    .project-header > p {
+      width: 100%;
+      white-space: normal;
+      overflow-wrap: anywhere;
+      letter-spacing: 0.12em;
+    }
+
+    .metric-list li {
+      margin-bottom: 0.75rem;
+    }
+
+    .box ul.alt li {
+      margin-bottom: 0.45rem;
+    }
+
+    @media screen and (max-width: 736px) {
+      .project-header > p {
+        letter-spacing: 0.08em;
+      }
+    }
+  </style>
+</head>
+
+<body class="is-preload">
+  <div id="wrapper">
+    <header id="header">
+      <a href="index.html" class="logo"><strong>Ishan Mathur</strong><span>&nbsp;Portfolio</span></a>
+      <nav><a href="#menu">Menu</a></nav>
+    </header>
+    <nav id="menu">
+      <ul class="links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="powerbi.html">Power BI</a></li>
+        <li><a href="python.html">Python</a></li>
+        <li><a href="sql.html">SQL</a></li>
+        <li><a href="resume.html">Resume</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <section id="main" class="wrapper">
+      <div class="inner">
+        <header class="major animate-on-scroll project-header">
+          <h1>New Zealand Housing Affordability: Rental Market Pressure &amp; Risk Analysis in Python</h1>
+          <p>A Python case study using MBIE tenancy bond data, Stats NZ household income, and building consents to track where rent pressure is intensifying across New Zealand.</p>
+          <ul class="actions">
+            <li><a href="https://github.com/mathurishan/nz-housing-affordability-analysis" class="button primary"
+                target="_blank" rel="noopener">View on GitHub</a></li>
+            <li><a href="https://github.com/mathurishan/nz-housing-affordability-analysis/blob/main/notebooks/nz_housing_affordability.ipynb"
+                class="button" target="_blank" rel="noopener">View Notebook</a></li>
+          </ul>
+        </header>
+        <span class="image main animate-on-scroll delay-1"><img
+            src="images/projects/python/nz-housing/09_affordability_risk_index.png"
+            alt="Affordability risk index chart ranking New Zealand regions by rental pressure and supply-adjusted risk."
+            loading="lazy" /></span>
+        <div class="row gtr-200">
+          <div class="col-8 col-12-medium animate-on-scroll delay-2">
+            <h3>Project Overview</h3>
+            <p>This project turns multiple public New Zealand housing datasets into a clear analytical story about rent pressure, affordability risk, and emerging hotspots. The workflow combines data cleaning, harmonisation, KPI modelling, chart production, and narrative reporting so the result reads like a hiring-manager-ready case study rather than a loose notebook dump.</p>
+            <h3>Business Question</h3>
+            <p>Where has rental pressure intensified most since 2019, which regions now sit above the typical 30% affordability threshold, and which local markets show the strongest signs of accelerating stress?</p>
+            <h3>Key Findings</h3>
+            <ul class="metric-list">
+              <li><strong>National weekly rents rose by 31.7% from Q1 2019 to Q4 2025</strong>, climbing from $452 to $595 and showing how far the national market reset has moved.</li>
+              <li><strong>Auckland was the most expensive MBIE region in the latest quarter at $650 per week</strong>, versus $441 in West Coast, highlighting a wide regional spread.</li>
+              <li><strong>Six affordability geographies sat above the 30% threshold</strong> in the latest quarter, led by Northland at 35.3%.</li>
+              <li><strong>Hamilton City rents increased by 34.9%</strong> since Q1 2019, which was 3.2 percentage points faster than the national pace and makes Hamilton a strong local deep dive.</li>
+              <li><strong>Mayfield in Marlborough recorded the strongest two-year suburb rent growth</strong> among adequately sampled suburbs at 58.2%, showing how pressure is spreading beyond headline metro markets.</li>
+            </ul>
+            <h3>What Was Analysed</h3>
+            <ul>
+              <li><strong>National and regional rent trends</strong> to show how weekly rents shifted from Q1 2019 through Q4 2025.</li>
+              <li><strong>Affordability ratios</strong> combining quarterly rents with Stats NZ median household income to identify where rent burdens are stretching furthest.</li>
+              <li><strong>Local market deep dives</strong> focusing on Hamilton and Auckland to connect national signals to specific urban dynamics.</li>
+              <li><strong>Supply context</strong> using Stats NZ building consents to add directional evidence on market tightness.</li>
+              <li><strong>Suburb hotspots</strong> using SA2-level tenancy data to surface areas with strong recent rent acceleration.</li>
+            </ul>
+            <h3>Project Summary</h3>
+            <p>The strongest part of this work is the way it moves from descriptive trends into prioritisation. It starts with headline rent movement, layers in affordability and supply, then closes with a composite risk view and suburb-level hotspot screening. That makes the analysis useful not only for explaining what changed, but also for showing where stakeholder attention should go next.</p>
+          </div>
+          <div class="col-4 col-12-medium animate-on-scroll delay-3">
+            <div class="box alt">
+              <h3>Skills Demonstrated</h3>
+              <ul class="alt">
+                <li>Python data analysis with pandas</li>
+                <li>Data cleaning and harmonisation</li>
+                <li>Time-series KPI modelling</li>
+                <li>Affordability and risk analysis</li>
+                <li>Matplotlib and seaborn storytelling</li>
+                <li>Notebook-to-portfolio packaging</li>
+              </ul>
+            </div>
+            <div class="box alt">
+              <h3>Data &amp; Tools</h3>
+              <ul class="alt">
+                <li><strong>Sources:</strong> MBIE tenancy bond data, Stats NZ household income, Stats NZ building consents</li>
+                <li><strong>Workflow:</strong> notebook-first analysis backed by reusable code in <code>src/</code></li>
+                <li><strong>Published on GitHub:</strong> code, notebook, processed datasets, executive summary, and charts</li>
+                <li><strong>Excluded from GitHub:</strong> raw MBIE and Stats NZ source files, which must be supplied locally to rerun the full pipeline</li>
+                <li><strong>Method note:</strong> household income for 2019-2022 is backcast from observed 2023-2025 levels</li>
+              </ul>
+              <ul class="actions stacked">
+                <li><a href="https://github.com/mathurishan/nz-housing-affordability-analysis/blob/main/outputs/executive_summary.md"
+                    class="button fit" target="_blank" rel="noopener">Read Executive Summary</a></li>
+              </ul>
+            </div>
+            <ul class="actions">
+              <li><a href="python.html" class="button icon solid fa-arrow-left">Back to Projects</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="animate-on-scroll">
+          <h3>Analysis Highlights</h3>
+          <div class="row gtr-50">
+            <div class="col-6 col-12-small">
+              <span class="image fit"><img src="images/projects/python/nz-housing/01_national_rent_trends.png"
+                  alt="National weekly rent trend chart for New Zealand from 2019 to 2025." loading="lazy" /></span>
+              <p><strong>National Rent Trends</strong> - The opening chart establishes the scale and consistency of rent growth across the period, making the later affordability discussion more concrete.</p>
+            </div>
+            <div class="col-6 col-12-small">
+              <span class="image fit"><img src="images/projects/python/nz-housing/03_affordability_ratios.png"
+                  alt="Regional affordability ratio chart comparing rent to income across New Zealand." loading="lazy" /></span>
+              <p><strong>Affordability Ratios</strong> - This view shows where rents are taking the largest share of household income and which geographies are already above the 30% benchmark.</p>
+            </div>
+            <div class="col-6 col-12-small">
+              <span class="image fit"><img src="images/projects/python/nz-housing/07_hamilton_deep_dive.png"
+                  alt="Hamilton housing market deep dive chart showing rent movement and affordability context." loading="lazy" /></span>
+              <p><strong>Hamilton Deep Dive</strong> - Hamilton stands out as a locally relevant market where rent growth has outpaced the national trend, making it a useful stakeholder-facing case study.</p>
+            </div>
+            <div class="col-6 col-12-small">
+              <span class="image fit"><img src="images/projects/python/nz-housing/09_affordability_risk_index.png"
+                  alt="Regional affordability risk index chart ranking New Zealand markets by combined stress signals." loading="lazy" /></span>
+              <p><strong>Affordability Risk Index</strong> - A composite score brings affordability, rent momentum, and supply intensity together to highlight where multiple stress signals overlap.</p>
+            </div>
+            <div class="col-12">
+              <span class="image fit"><img src="images/projects/python/nz-housing/10_suburb_hotspots.png"
+                  alt="Suburb hotspot chart highlighting areas with the strongest recent rent growth in New Zealand." loading="lazy" /></span>
+              <p><strong>Suburb Hotspots</strong> - The suburb view makes the analysis more actionable by showing where recent rent acceleration is concentrated rather than stopping at regional averages.</p>
+            </div>
+          </div>
+        </div>
+        <div class="animate-on-scroll">
+          <div class="box">
+            <h3>Why This Project Is a Strong Portfolio Piece</h3>
+            <p>This case study demonstrates more than chart production. It shows end-to-end analytical storytelling: sourcing and cleaning public data, reconciling mismatched geographies, building affordability metrics, and packaging the result into a reproducible Python workflow with stakeholder-ready outputs. It is also grounded in a live New Zealand issue, which gives the project strong local relevance alongside clear business and public-sector value.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="contact">
+      <div class="inner">
+        <section class="split">
+          <section>
+            <div class="contact-method"><span class="icon solid alt fa-envelope"></span>
+              <h3>Email</h3><a href="mailto:mathur.ishan11@gmail.com">mathur.ishan11@gmail.com</a>
+            </div>
+          </section>
+          <section>
+            <div class="contact-method"><span class="icon solid alt fa-home"></span>
+              <h3>Location</h3><span>Hamilton, New Zealand</span>
+            </div>
+          </section>
+        </section>
+      </div>
+    </section>
+    <footer id="footer">
+      <div class="inner">
+        <ul class="icons">
+          <li><a href="https://github.com/mathurishan" class="icon brands alt fa-github"><span
+                class="label">GitHub</span></a></li>
+          <li><a href="https://www.linkedin.com/in/mathurishan" class="icon brands alt fa-linkedin-in"><span
+                class="label">LinkedIn</span></a></li>
+        </ul>
+        <ul class="copyright">
+          <li>&copy; Ishan Mathur 2026</li>
+          <li>Design adapted from <a href="https://html5up.net/forty">HTML5 UP Forty</a></li>
+        </ul>
+      </div>
+    </footer>
+  </div>
+  <script src="assets/js/main.js?v=2" defer></script>
+</body>
+
+</html>
