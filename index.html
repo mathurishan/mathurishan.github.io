@@ -28,7 +28,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/site.css?v=7" />
+  <link rel="stylesheet" href="assets/css/site.css?v=8" />
   <script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){d.setAttribute('data-theme',t);}}catch(e){}})()</script>
 </head>
 
@@ -44,6 +44,7 @@
           <a href="resume.html">Résumé</a>
           <a href="#contact">Contact</a>
         </nav>
+        <button class="search-btn" type="button" data-palette aria-label="Search the site (Ctrl+K)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.5"/><path d="m10.5 10.5 3 3"/></svg>Search<kbd>Ctrl K</kbd></button>
         <button class="theme-toggle" type="button" aria-label="Switch theme">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <mask id="theme-mask">
@@ -338,10 +339,38 @@
       </div>
     </section>
 
+    <section class="section" id="tools" aria-labelledby="tools-title">
+      <div class="wrap">
+        <p class="kicker"><b>04</b> Tools in practice</p>
+        <div class="section-head">
+          <h2 id="tools-title">Where each tool shows up</h2>
+          <span class="muted">Every dot links to the evidence</span>
+        </div>
+        <div class="matrix-card rise">
+          <table class="matrix">
+            <thead><tr><th scope="col"><span class="sr-only">Tool</span></th><th scope="col" data-col="0"><a href="powerbi-retail.html">Retail Sales &amp; Returns</a><small>Power BI</small></th><th scope="col" data-col="1"><a href="powerbi-air-nz.html">Air New Zealand</a><small>Power BI</small></th><th scope="col" data-col="2"><a href="sql-nz-building-consents.html">Building Consents</a><small>SQL</small></th><th scope="col" data-col="3"><a href="python_nz_housing_affordability.html">Housing Affordability</a><small>Python</small></th><th scope="col" data-col="4"><a href="python_business_financials.html">Business Financials</a><small>Python</small></th><th scope="col" class="sep" data-col="5"><a href="resume.html#role-technology-services-collections-analyst">Waikato Library</a><small>2025 – now</small></th><th scope="col" data-col="6"><a href="resume.html#role-consultant-data-operations-client-solutions">Arcesium</a><small>2022 – 2025</small></th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Power BI</th><td data-col="0"><a class="dot" href="powerbi-retail.html#built" aria-label="Power BI: see Retail Sales and Returns"></a></td><td data-col="1"><a class="dot" href="powerbi-air-nz.html#built" aria-label="Power BI: see Air New Zealand"></a></td><td data-col="2"><span class="sr-only">not used</span></td><td data-col="3"><span class="sr-only">not used</span></td><td data-col="4"><span class="sr-only">not used</span></td><td class="sep" data-col="5"><a class="dot" href="resume.html#role-student-assistant-library-collections-strategy-access" aria-label="Power BI: see Waikato Library"></a></td><td data-col="6"><a class="dot" href="resume.html#role-consultant-data-operations-client-solutions" aria-label="Power BI: see Arcesium"></a></td></tr>
+              <tr><th scope="row">DAX</th><td data-col="0"><a class="dot" href="powerbi-retail.html#dax" aria-label="DAX: see Retail Sales and Returns"></a></td><td data-col="1"><a class="dot" href="powerbi-air-nz.html#dax" aria-label="DAX: see Air New Zealand"></a></td><td data-col="2"><span class="sr-only">not used</span></td><td data-col="3"><span class="sr-only">not used</span></td><td data-col="4"><span class="sr-only">not used</span></td><td class="sep" data-col="5"><a class="dot" href="resume.html#role-student-assistant-library-collections-strategy-access" aria-label="DAX: see Waikato Library"></a></td><td data-col="6"><a class="dot" href="resume.html#role-consultant-data-operations-client-solutions" aria-label="DAX: see Arcesium"></a></td></tr>
+              <tr><th scope="row">Power Query</th><td data-col="0"><a class="dot" href="powerbi-retail.html#built" aria-label="Power Query: see Retail Sales and Returns"></a></td><td data-col="1"><a class="dot" href="powerbi-air-nz.html#built" aria-label="Power Query: see Air New Zealand"></a></td><td data-col="2"><span class="sr-only">not used</span></td><td data-col="3"><span class="sr-only">not used</span></td><td data-col="4"><span class="sr-only">not used</span></td><td class="sep" data-col="5"><a class="dot" href="resume.html#role-student-assistant-library-collections-strategy-access" aria-label="Power Query: see Waikato Library"></a></td><td data-col="6"><span class="sr-only">not used</span></td></tr>
+              <tr><th scope="row">Data modelling</th><td data-col="0"><a class="dot" href="powerbi-retail.html#diagram" aria-label="Data modelling: see Retail Sales and Returns"></a></td><td data-col="1"><a class="dot" href="powerbi-air-nz.html#diagram" aria-label="Data modelling: see Air New Zealand"></a></td><td data-col="2"><a class="dot" href="sql-nz-building-consents.html#diagram" aria-label="Data modelling: see Building Consents"></a></td><td data-col="3"><span class="sr-only">not used</span></td><td data-col="4"><span class="sr-only">not used</span></td><td class="sep" data-col="5"><a class="dot" href="resume.html#role-technology-services-collections-analyst" aria-label="Data modelling: see Waikato Library"></a></td><td data-col="6"><a class="dot" href="resume.html#role-consultant-data-operations-client-solutions" aria-label="Data modelling: see Arcesium"></a></td></tr>
+              <tr><th scope="row">SQL</th><td data-col="0"><span class="sr-only">not used</span></td><td data-col="1"><span class="sr-only">not used</span></td><td data-col="2"><a class="dot" href="sql-nz-building-consents.html#sql" aria-label="SQL: see Building Consents"></a></td><td data-col="3"><span class="sr-only">not used</span></td><td data-col="4"><span class="sr-only">not used</span></td><td class="sep" data-col="5"><a class="dot" href="resume.html#role-technology-services-collections-analyst" aria-label="SQL: see Waikato Library"></a></td><td data-col="6"><a class="dot" href="resume.html#role-consultant-data-operations-client-solutions" aria-label="SQL: see Arcesium"></a></td></tr>
+              <tr><th scope="row">Excel</th><td data-col="0"><span class="sr-only">not used</span></td><td data-col="1"><span class="sr-only">not used</span></td><td data-col="2"><span class="sr-only">not used</span></td><td data-col="3"><span class="sr-only">not used</span></td><td data-col="4"><span class="sr-only">not used</span></td><td class="sep" data-col="5"><a class="dot" href="resume.html#role-technology-services-collections-analyst" aria-label="Excel: see Waikato Library"></a></td><td data-col="6"><a class="dot" href="resume.html#role-consultant-data-operations-client-solutions" aria-label="Excel: see Arcesium"></a></td></tr>
+              <tr><th scope="row">Python</th><td data-col="0"><span class="sr-only">not used</span></td><td data-col="1"><span class="sr-only">not used</span></td><td data-col="2"><a class="dot" href="sql-nz-building-consents.html#model" aria-label="Python: see Building Consents"></a></td><td data-col="3"><a class="dot" href="python_nz_housing_affordability.html#built" aria-label="Python: see Housing Affordability"></a></td><td data-col="4"><a class="dot" href="python_business_financials.html#built" aria-label="Python: see Business Financials"></a></td><td class="sep" data-col="5"><span class="sr-only">not used</span></td><td data-col="6"><a class="dot" href="resume.html#role-consultant-data-operations-client-solutions" aria-label="Python: see Arcesium"></a></td></tr>
+              <tr><th scope="row">SharePoint</th><td data-col="0"><span class="sr-only">not used</span></td><td data-col="1"><span class="sr-only">not used</span></td><td data-col="2"><span class="sr-only">not used</span></td><td data-col="3"><span class="sr-only">not used</span></td><td data-col="4"><span class="sr-only">not used</span></td><td class="sep" data-col="5"><a class="dot" href="resume.html#role-technology-services-collections-analyst" aria-label="SharePoint: see Waikato Library"></a></td><td data-col="6"><a class="dot" href="resume.html#role-consultant-data-operations-client-solutions" aria-label="SharePoint: see Arcesium"></a></td></tr>
+              <tr><th scope="row">Power Automate</th><td data-col="0"><span class="sr-only">not used</span></td><td data-col="1"><span class="sr-only">not used</span></td><td data-col="2"><span class="sr-only">not used</span></td><td data-col="3"><span class="sr-only">not used</span></td><td data-col="4"><span class="sr-only">not used</span></td><td class="sep" data-col="5"><a class="dot" href="resume.html#role-technology-services-collections-analyst" aria-label="Power Automate: see Waikato Library"></a></td><td data-col="6"><a class="dot" href="resume.html#role-consultant-data-operations-client-solutions" aria-label="Power Automate: see Arcesium"></a></td></tr>
+              <tr><th scope="row">Tableau</th><td data-col="0"><span class="sr-only">not used</span></td><td data-col="1"><span class="sr-only">not used</span></td><td data-col="2"><span class="sr-only">not used</span></td><td data-col="3"><span class="sr-only">not used</span></td><td data-col="4"><span class="sr-only">not used</span></td><td class="sep" data-col="5"><span class="sr-only">not used</span></td><td data-col="6"><a class="dot" href="resume.html#role-consultant-data-operations-client-solutions" aria-label="Tableau: see Arcesium"></a></td></tr>
+              <tr><th scope="row">Google Analytics 4</th><td data-col="0"><span class="sr-only">not used</span></td><td data-col="1"><span class="sr-only">not used</span></td><td data-col="2"><span class="sr-only">not used</span></td><td data-col="3"><span class="sr-only">not used</span></td><td data-col="4"><span class="sr-only">not used</span></td><td class="sep" data-col="5"><a class="dot" href="resume.html#role-technology-services-collections-analyst" aria-label="Google Analytics 4: see Waikato Library"></a></td><td data-col="6"><span class="sr-only">not used</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
     <section class="section" id="about" aria-labelledby="about-title">
       <div class="wrap split">
         <div>
-          <p class="kicker"><b>04</b> About</p>
+          <p class="kicker"><b>05</b> About</p>
           <h2 id="about-title">Background</h2>
         </div>
         <div class="prose rise">
@@ -385,7 +414,7 @@
 
     <section class="section" id="writing" aria-labelledby="writing-title">
       <div class="wrap">
-        <p class="kicker"><b>05</b> Writing</p>
+        <p class="kicker"><b>06</b> Writing</p>
         <div class="section-head">
           <h2 id="writing-title">Notes on reporting</h2>
           <span class="muted">Short reads on how I work</span>
@@ -469,7 +498,7 @@
     </div>
   </footer>
 
-  <script src="assets/js/site.js?v=7" defer></script>
+  <script src="assets/js/site.js?v=8" defer></script>
 </body>
 
 </html>

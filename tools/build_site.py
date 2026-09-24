@@ -1,14 +1,16 @@
 """Generate the portfolio pages from one set of templates so every page shares
 the same head, header, footer and components. Run from the site root."""
 import html
+import re
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import extras
 import extras2
+import diagrams
 
 SITE = "https://mathurishan.github.io/"
-CSS_V = "7"
-JS_V = "7"
+CSS_V = "8"
+JS_V = "8"
 FONTS = ("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@"
          "0,6..72,400;0,6..72,500;1,6..72,400&display=swap")
 ARROW = ('<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" '
@@ -68,6 +70,7 @@ def header(current=None, home=False):
           {a("resume.html", "Résumé", "resume")}
           {a(base + "#contact", "Contact", "contact")}
         </nav>
+        <button class="search-btn" type="button" data-palette aria-label="Search the site (Ctrl+K)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.5"/><path d="m10.5 10.5 3 3"/></svg>Search<kbd>Ctrl K</kbd></button>
         <button class="theme-toggle" type="button" aria-label="Switch theme">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <mask id="theme-mask">
@@ -334,7 +337,12 @@ def project_page(p, nxt):
     tools = "".join(f"<li>{E(t)}</li>" for t in p["tools"])
     if p["link"]:
         tools += f'<li class="link"><a href="{p["link"][0]}">{E(p["link"][1])} &rarr;</a></li>'
-    glance = "\n          ".join(f"<div><dt>{E(a)}</dt><dd>{E(b)}</dd></div>" for a, b in p["glance"])
+    def glance_dt(v):
+        m = re.fullmatch(r"(\d+)([%+]?)", v)
+        if m:
+            return f'<dt data-count="{m.group(1)}" data-suffix="{m.group(2)}">{E(v)}</dt>'
+        return f"<dt>{E(v)}</dt>"
+    glance = "\n          ".join(f"<div>{glance_dt(a)}<dd>{E(b)}</dd></div>" for a, b in p["glance"])
     findings = "\n          ".join(f'<div class="finding rise{" r" + str(i % 3) if i % 3 else ""}"><p>{E(f)}</p></div>'
                                    for i, f in enumerate(p["findings"]))
     gallery = "\n          ".join(figure(*g) for g in p["gallery"])
@@ -345,9 +353,13 @@ def project_page(p, nxt):
                 f'stroke-linecap="round" aria-hidden="true"><circle cx="8" cy="8" r="6.2"/><path d="M8 7.2v3.6M8 5.2v.1"/></svg>'
                 f'{E(p["note"])}</p>')
     labels = [("problem", "Problem"), ("data", "Data"), ("built", "What I built")]
-    for sid, lab in [("explore", "Explore"), ("model", "Raw to model"), ("sql", "SQL"), ("dax", "DAX")]:
-        if f'id="{sid}"' in p.get("extra", ""):
-            labels.append((sid, lab))
+    extra = p.get("extra", "")
+    found = [(extra.find(f'id="{sid}"'), sid, lab) for sid, lab in
+             [("before-after", "Before and after"), ("explore", "Explore"), ("model", "Raw to model"),
+              ("diagram", "Data flow" if "Data flow" in extra else "Model"), ("sql", "SQL"), ("dax", "DAX")]
+             if f'id="{sid}"' in extra]
+    for _, sid, lab in sorted(found):
+        labels.append((sid, lab))
     labels += [("findings", "What changed"), ("gallery", "Gallery")]
     subnav = "".join(f'<a href="#{sid}">{lab}</a>' for sid, lab in labels)
     return (head(p["seo_title"], p["desc"], p["file"], p["og"], html_class="has-subnav") + header("work") + f'''
@@ -433,14 +445,16 @@ def project_page(p, nxt):
 
 for p in PROJECTS:
     if p["og"] == "sql":
-        p["extra"] = extras.pipeline_chart() + extras2.raw_to_model() + extras.sql_showcase()
+        p["extra"] = extras.pipeline_chart() + extras2.raw_to_model() + diagrams.sql_model() + extras.sql_showcase()
     elif p["og"] == "housing":
-        p["extra"] = extras.rent_chart()
+        p["extra"] = diagrams.housing_flow() + extras.rent_chart()
+    elif p["og"] == "financials":
+        p["extra"] = diagrams.financials_flow()
     elif p["og"] == "retail":
-        p["extra"] = extras2.retail_chart() + extras2.dax_showcase("retail")
+        p["extra"] = extras2.retail_chart() + diagrams.retail_model() + extras2.dax_showcase("retail")
         p["note"] = "Independent portfolio project. Not affiliated with or endorsed by Grupo Bimbo."
     elif p["og"] == "air-nz":
-        p["extra"] = extras2.airnz_chart() + extras2.dax_showcase("airnz")
+        p["extra"] = extras2.before_after_airnz() + extras2.airnz_chart() + diagrams.airnz_model() + extras2.dax_showcase("airnz")
         p["note"] = "Independent analysis of public data. Not affiliated with or endorsed by Air New Zealand."
 
 for i, p in enumerate(PROJECTS):

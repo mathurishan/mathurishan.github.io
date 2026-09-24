@@ -24,7 +24,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/site.css?v=7" />
+  <link rel="stylesheet" href="assets/css/site.css?v=8" />
   <script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){d.setAttribute('data-theme',t);}}catch(e){}})()</script>
 </head>
 
@@ -40,6 +40,7 @@
           <a href="resume.html" aria-current="page">Résumé</a>
           <a href="./#contact">Contact</a>
         </nav>
+        <button class="search-btn" type="button" data-palette aria-label="Search the site (Ctrl+K)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.5"/><path d="m10.5 10.5 3 3"/></svg>Search<kbd>Ctrl K</kbd></button>
         <button class="theme-toggle" type="button" aria-label="Switch theme">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <mask id="theme-mask">
@@ -82,8 +83,8 @@
         </ul>
         <dl class="glance" aria-label="Key achievements">
           <div><dt>&lt;1 hr</dt><dd>for a recurring reporting task that took about 4 hours, using reusable templates</dd></div>
-          <div><dt>40%</dt><dd>less time to produce daily reconciliation reporting for 10+ global investment clients</dd></div>
-          <div><dt>5+</dt><dd>dashboards and reports for senior Library leadership, client groups and third-party stakeholders</dd></div>
+          <div><dt data-count="40" data-suffix="%">40%</dt><dd>less time to produce daily reconciliation reporting for 10+ global investment clients</dd></div>
+          <div><dt data-count="5" data-suffix="+">5+</dt><dd>dashboards and reports for senior Library leadership, client groups and third-party stakeholders</dd></div>
         </dl>
       </div>
     </section>
@@ -98,10 +99,10 @@
               who need answers, in Power BI, SQL and Excel, and publish it through SharePoint to the teams who use it.</p>
           </div>
         </div>
-        <div class="cv-row rise">
+        <div class="cv-row rise" id="experience">
           <h2>Experience</h2>
           <div class="body">
-          <div class="role">
+          <div class="role" id="role-technology-services-collections-analyst">
             <h3>Technology Services &amp; Collections Analyst</h3>
             <p class="when">University of Waikato Library, Hamilton · Jul 2026 – present</p>
             <ul>
@@ -113,7 +114,7 @@
               <li>Published every dashboard and report through SharePoint, each to the site of the team or stakeholder group it serves</li>
             </ul>
           </div>
-          <div class="role">
+          <div class="role" id="role-student-assistant-library-collections-strategy-access">
             <h3>Student Assistant, Library (Collections Strategy &amp; Access)</h3>
             <p class="when">University of Waikato, Hamilton · Jul 2025 – Jun 2026 · part-time</p>
             <ul>
@@ -122,14 +123,14 @@
               <li>Designed QA controls catching incorrect editions, duplicate entries, invalid URLs and access errors earlier in the process</li>
             </ul>
           </div>
-          <div class="role">
+          <div class="role" id="role-sessional-assistant-economics">
             <h3>Sessional Assistant, Economics</h3>
             <p class="when">University of Waikato, Hamilton · Jan 2026 – Jun 2026 · sessional</p>
             <ul>
               <li>Facilitated tutorials for diverse postgraduate cohorts, translating economic theory into practical business applications and structured problem-solving approaches</li>
             </ul>
           </div>
-          <div class="role">
+          <div class="role" id="role-consultant-data-operations-client-solutions">
             <h3>Consultant, Data Operations &amp; Client Solutions</h3>
             <p class="when">Arcesium (a D.E. Shaw Group company), Gurugram · Mar 2022 – Jun 2025</p>
             <ul>
@@ -140,7 +141,7 @@
               <li>Managed multiple concurrent client workstreams end to end: requirements, build, test, release and ongoing support</li>
             </ul>
           </div>
-          <div class="role">
+          <div class="role" id="role-underwriting-analyst">
             <h3>Underwriting Analyst</h3>
             <p class="when">Better.com, Gurugram · Sep 2021 – Mar 2022</p>
             <ul>
@@ -216,7 +217,7 @@
     </div>
   </footer>
 
-  <script src="assets/js/site.js?v=7" defer></script>
+  <script src="assets/js/site.js?v=8" defer></script>
 </body>
 
 </html>

@@ -24,7 +24,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/site.css?v=7" />
+  <link rel="stylesheet" href="assets/css/site.css?v=8" />
   <script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){d.setAttribute('data-theme',t);}}catch(e){}})()</script>
 </head>
 
@@ -40,6 +40,7 @@
           <a href="resume.html">Résumé</a>
           <a href="./#contact">Contact</a>
         </nav>
+        <button class="search-btn" type="button" data-palette aria-label="Search the site (Ctrl+K)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.5"/><path d="m10.5 10.5 3 3"/></svg>Search<kbd>Ctrl K</kbd></button>
         <button class="theme-toggle" type="button" aria-label="Switch theme">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <mask id="theme-mask">
@@ -70,8 +71,8 @@
         
         <dl class="glance">
           <div><dt>2019–25</dt><dd>quarterly rent data</dd></div>
-          <div><dt>3</dt><dd>public data sources</dd></div>
-          <div><dt>30%</dt><dd>affordability threshold tested</dd></div>
+          <div><dt data-count="3" data-suffix="">3</dt><dd>public data sources</dd></div>
+          <div><dt data-count="30" data-suffix="%">30%</dt><dd>affordability threshold tested</dd></div>
           <div><dt>SA2</dt><dd>suburb-level hotspots</dd></div>
         </dl>
       </div>
@@ -87,7 +88,7 @@
     </div>
 
     <nav class="subnav" aria-label="On this page">
-      <div class="wrap"><a href="#problem">Problem</a><a href="#data">Data</a><a href="#built">What I built</a><a href="#explore">Explore</a><a href="#findings">What changed</a><a href="#gallery">Gallery</a></div>
+      <div class="wrap"><a href="#problem">Problem</a><a href="#data">Data</a><a href="#built">What I built</a><a href="#diagram">Data flow</a><a href="#explore">Explore</a><a href="#findings">What changed</a><a href="#gallery">Gallery</a></div>
     </nav>
 
     <section class="case-body">
@@ -120,6 +121,20 @@
       </div>
     </section>
 
+
+    <section class="section" id="diagram" aria-labelledby="diagram-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="diagram-title">Data flow</h2>
+          <span class="muted">From three public sources to one analysis table</span>
+        </div>
+        <div class="erd-card rise">
+          <div class="erd-scroll"><svg class="erd" viewBox="0 0 840 520" role="img" aria-label="Data flow: tenancy bonds, household income and building consents are cleaned into a region-by-quarter affordability table and a suburb table, which feed the charts." preserveAspectRatio="xMidYMid meet"><path class="erd-link" d="M234 95.0H276.0V188H316"/><path class="erd-arrow" d="M309 183L318 188L309 193"/><path class="erd-link" d="M234 259.0H276.0V232H316"/><path class="erd-arrow" d="M309 227L318 232L309 237"/><path class="erd-link" d="M234 409.0H276.0V320H316"/><path class="erd-arrow" d="M309 315L318 320L309 325"/><path class="erd-link" d="M234 95.0H276.0V436H316"/><path class="erd-arrow" d="M309 431L318 436L309 441"/><path class="erd-link" d="M532 254H574.0V188H614"/><path class="erd-arrow" d="M607 183L616 188L607 193"/><path class="erd-link" d="M532 480H574.0V254H614"/><path class="erd-arrow" d="M607 249L616 254L607 259"/><g class="erd-table t-src" transform="translate(24,30)"><rect class="erd-box" width="210" height="130" rx="10"/><path class="erd-head" d="M0 10a10 10 0 0 1 10-10h190a10 10 0 0 1 10 10v24H0z"/><text class="erd-name" x="14" y="22">MBIE tenancy bonds</text><text class="erd-field" x="14" y="50">region / suburb (SA2)</text><text class="erd-field" x="14" y="72">quarter</text><text class="erd-field" x="14" y="94">median, mean rent</text><text class="erd-field" x="14" y="116">active bonds</text></g><g class="erd-table t-src" transform="translate(24,205)"><rect class="erd-box" width="210" height="108" rx="10"/><path class="erd-head" d="M0 10a10 10 0 0 1 10-10h190a10 10 0 0 1 10 10v24H0z"/><text class="erd-name" x="14" y="22">Stats NZ household income</text><text class="erd-field" x="14" y="50">region</text><text class="erd-field" x="14" y="72">year</text><text class="erd-field" x="14" y="94">median income</text></g><g class="erd-table t-src" transform="translate(24,355)"><rect class="erd-box" width="210" height="108" rx="10"/><path class="erd-head" d="M0 10a10 10 0 0 1 10-10h190a10 10 0 0 1 10 10v24H0z"/><text class="erd-name" x="14" y="22">Stats NZ building consents</text><text class="erd-field" x="14" y="50">region</text><text class="erd-field" x="14" y="72">year</text><text class="erd-field" x="14" y="94">consents issued</text></g><g class="erd-table t-dim" transform="translate(318,120)"><rect class="erd-box" width="214" height="218" rx="10"/><path class="erd-head" d="M0 10a10 10 0 0 1 10-10h194a10 10 0 0 1 10 10v24H0z"/><text class="erd-name" x="14" y="22">rental_affordability</text><text class="erd-field" x="14" y="50">region</text><text class="erd-field" x="14" y="72">quarter</text><text class="erd-field" x="14" y="94">median_weekly_rent</text><text class="erd-field" x="14" y="116">median_annual_income</text><text class="erd-field" x="14" y="138">rent_to_income_ratio</text><text class="erd-field" x="14" y="160">affordability_flag</text><text class="erd-field" x="14" y="182">yoy_rent_change_pct</text><text class="erd-field" x="14" y="204">consents_per_1000_bonds</text></g><g class="erd-table t-dim" transform="translate(318,390)"><rect class="erd-box" width="214" height="130" rx="10"/><path class="erd-head" d="M0 10a10 10 0 0 1 10-10h194a10 10 0 0 1 10 10v24H0z"/><text class="erd-name" x="14" y="22">suburb_rental_data</text><text class="erd-field" x="14" y="50">suburb (SA2)</text><text class="erd-field" x="14" y="72">quarter</text><text class="erd-field" x="14" y="94">median rent</text><text class="erd-field" x="14" y="116">bond count</text></g><g class="erd-table t-fact" transform="translate(616,120)"><rect class="erd-box" width="200" height="152" rx="10"/><path class="erd-head" d="M0 10a10 10 0 0 1 10-10h180a10 10 0 0 1 10 10v24H0z"/><text class="erd-name" x="14" y="22">Outputs</text><text class="erd-field" x="14" y="50">rent trends</text><text class="erd-field" x="14" y="72">affordability ratios</text><text class="erd-field" x="14" y="94">Hamilton deep dive</text><text class="erd-field" x="14" y="116">risk index</text><text class="erd-field" x="14" y="138">suburb hotspots</text></g></svg></div>
+          <div class="erd-legend"><span><i class="lg-src"></i>Source</span><span><i class="lg-dim"></i>Prepared data</span><span><i class="lg-fact"></i>Analysis output</span></div>
+          <p class="chart-note">Income for 2019 to 2022 is backcast from observed 2023 to 2025 levels before the ratio is calculated.</p>
+        </div>
+      </div>
+    </section>
 
     <section class="section" id="explore" aria-labelledby="explore-title">
       <div class="wrap">
@@ -213,8 +228,8 @@
     </div>
   </footer>
 
-  <script src="assets/js/site.js?v=7" defer></script>
-  <script src="assets/js/charts.js?v=7" defer></script>
+  <script src="assets/js/site.js?v=8" defer></script>
+  <script src="assets/js/charts.js?v=8" defer></script>
 </body>
 
 </html>

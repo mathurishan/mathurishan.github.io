@@ -24,7 +24,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/site.css?v=7" />
+  <link rel="stylesheet" href="assets/css/site.css?v=8" />
   <script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){d.setAttribute('data-theme',t);}}catch(e){}})()</script>
 </head>
 
@@ -40,6 +40,7 @@
           <a href="resume.html">Résumé</a>
           <a href="./#contact">Contact</a>
         </nav>
+        <button class="search-btn" type="button" data-palette aria-label="Search the site (Ctrl+K)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.5"/><path d="m10.5 10.5 3 3"/></svg>Search<kbd>Ctrl K</kbd></button>
         <button class="theme-toggle" type="button" aria-label="Switch theme">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <mask id="theme-mask">
@@ -70,8 +71,8 @@
         <p class="disclaimer"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><circle cx="8" cy="8" r="6.2"/><path d="M8 7.2v3.6M8 5.2v.1"/></svg>Independent analysis of public data. Not affiliated with or endorsed by Air New Zealand.</p>
         <dl class="glance">
           <div><dt>2020–25</dt><dd>years of public data</dd></div>
-          <div><dt>6</dt><dd>headline KPIs on the overview</dd></div>
-          <div><dt>5</dt><dd>report views shown here</dd></div>
+          <div><dt data-count="6" data-suffix="">6</dt><dd>headline KPIs on the overview</dd></div>
+          <div><dt data-count="5" data-suffix="">5</dt><dd>report views shown here</dd></div>
         </dl>
       </div>
     </section>
@@ -86,7 +87,7 @@
     </div>
 
     <nav class="subnav" aria-label="On this page">
-      <div class="wrap"><a href="#problem">Problem</a><a href="#data">Data</a><a href="#built">What I built</a><a href="#explore">Explore</a><a href="#dax">DAX</a><a href="#findings">What changed</a><a href="#gallery">Gallery</a></div>
+      <div class="wrap"><a href="#problem">Problem</a><a href="#data">Data</a><a href="#built">What I built</a><a href="#before-after">Before and after</a><a href="#explore">Explore</a><a href="#diagram">Model</a><a href="#dax">DAX</a><a href="#findings">What changed</a><a href="#gallery">Gallery</a></div>
     </nav>
 
     <section class="case-body">
@@ -119,6 +120,29 @@
       </div>
     </section>
 
+
+    <section class="section" id="before-after" aria-labelledby="ba-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="ba-title">Before and after</h2>
+          <span class="muted">Drag the handle</span>
+        </div>
+        <div class="ba rise">
+          <img src="images/projects/air-nz/executive-summary-overview.jpg" alt="The finished executive summary dashboard." width="1600" height="925" loading="lazy" />
+          <div class="ba-raw" aria-hidden="true">
+            <table>
+              <thead><tr><th>&nbsp;</th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th><th>G</th></tr></thead>
+              <tbody><tr><td>1</td><th></th><th>route</th><th>sectors_scheduled</th><th>cancellations</th><th>cancel_rate</th><th>arr_otp</th><th>cum_share</th></tr><tr><td>2</td><td>5</td><td>Wellington - Christchurch</td><td>2233</td><td>90</td><td>0.04030452306314376</td><td>0.8235294117647058</td><td>0.030343897505057317</td></tr><tr><td>3</td><td>1</td><td>Christchurch - Auckland</td><td>2768</td><td>81</td><td>0.02926300578034682</td><td>0.7592110160029772</td><td>0.0576534052596089</td></tr><tr><td>4</td><td>0</td><td>Auckland - Christchurch</td><td>2795</td><td>80</td><td>0.02862254025044723</td><td>0.7723756906077348</td><td>0.08462575859743762</td></tr><tr><td>5</td><td>2</td><td>Wellington - Auckland</td><td>2625</td><td>80</td><td>0.03047619047619048</td><td>0.7535377358490566</td><td>0.11159811193526635</td></tr><tr><td>6</td><td>4</td><td>Christchurch - Wellington</td><td>2282</td><td>73</td><td>0.03198948290972831</td><td>0.8559782608695652</td><td>0.13621038435603505</td></tr><tr><td>7</td><td>3</td><td>Auckland - Wellington</td><td>2597</td><td>72</td><td>0.02772429726607624</td><td>0.8209900990099009</td><td>0.1604855023600809</td></tr><tr><td>8</td><td>8</td><td>Palmerston North - Auckland</td><td>1703</td><td>70</td><td>0.04110393423370522</td><td>0.7991426821800367</td><td>0.18408631153068106</td></tr><tr><td>9</td><td>15</td><td>Nelson - Wellington</td><td>1373</td><td>69</td><td>0.05025491624180627</td><td>0.8052147239263804</td><td>0.20734996628455832</td></tr><tr><td>10</td><td>12</td><td>Wellington - Nelson</td><td>1398</td><td>67</td><td>0.04792560801144492</td><td>0.7287753568745304</td><td>0.2299393122049899</td></tr><tr><td>11</td><td>9</td><td>Auckland - Palmerston North</td><td>1701</td><td>66</td><td>0.03880070546737213</td><td>0.7902140672782875</td><td>0.2521915037086986</td></tr><tr><td>12</td><td>6</td><td>Hawke&#x27;s Bay - Auckland</td><td>1834</td><td>64</td><td>0.03489640130861505</td><td>0.7501413227812324</td><td>0.2737693863789616</td></tr><tr><td>13</td><td>18</td><td>New Plymouth - Auckland</td><td>1253</td><td>64</td><td>0.05107741420590583</td><td>0.7905803195962994</td><td>0.29534726904922454</td></tr><tr><td>14</td><td>27</td><td>Hamilton - Wellington</td><td>968</td><td>62</td><td>0.0640495867768595</td><td>0.7836644591611479</td><td>0.3162508428860418</td></tr><tr><td>15</td><td>11</td><td>Nelson - Auckland</td><td>1554</td><td>59</td><td>0.03796653796653797</td><td>0.7538461538461538</td><td>0.3361429534726905</td></tr><tr><td>16</td><td>19</td><td>Auckland - New Plymouth</td><td>1252</td><td>55</td><td>0.0439297124600639</td><td>0.7852965747702589</td><td>0.35468644639244773</td></tr><tr><td>17</td><td>40</td><td>Hawke&#x27;s Bay - Wellington</td><td>708</td><td>54</td><td>0.07627118644067797</td><td>0.845565749235474</td><td>0.3728927848954821</td></tr></tbody>
+            </table>
+          </div>
+          <div class="ba-handle" aria-hidden="true"></div>
+          <span class="ba-tag left">Raw CSV</span>
+          <span class="ba-tag right">Dashboard</span>
+          <input type="range" min="0" max="100" value="50" step="1" aria-label="Reveal the raw data or the finished dashboard" />
+        </div>
+        <p class="chart-note">Left: a route-level extract from the analysis, exactly as exported, unrounded. Right: the finished executive summary page.</p>
+      </div>
+    </section>
 
     <section class="section" id="explore" aria-labelledby="explore-title">
       <div class="wrap">
@@ -163,6 +187,20 @@
               <div><dt>280</dt><dd>fewer cancellations needed to reach the 2% target</dd></div>
             </dl>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="diagram" aria-labelledby="diagram-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="diagram-title">Data model</h2>
+          <span class="muted">Power BI report model</span>
+        </div>
+        <div class="erd-card rise">
+          <div class="erd-scroll"><svg class="erd" viewBox="0 0 840 520" role="img" aria-label="Report model: a shared Date table filters the traffic, monthly summary, forecast and engine tables; route tables stand alone; measures live in their own table." preserveAspectRatio="xMidYMid meet"><path class="erd-link" d="M322 76H271.0V86H220"/><path class="erd-crow" d="M232 86L220 80M232 86L220 86M232 86L220 92"/><path class="erd-one" d="M314 70V82"/><path class="erd-link" d="M322 76H271.0V246H220"/><path class="erd-crow" d="M232 246L220 240M232 246L220 246M232 246L220 252"/><path class="erd-one" d="M314 70V82"/><path class="erd-link" d="M518 76H569.0V86H620"/><path class="erd-crow" d="M608 86L620 80M608 86L620 86M608 86L620 92"/><path class="erd-one" d="M526 70V82"/><path class="erd-link" d="M518 76H569.0V246H620"/><path class="erd-crow" d="M608 246L620 240M608 246L620 246M608 246L620 252"/><path class="erd-one" d="M526 70V82"/><g class="erd-table t-dim" transform="translate(322,30)"><rect class="erd-box" width="196" height="130" rx="10"/><path class="erd-head" d="M0 10a10 10 0 0 1 10-10h176a10 10 0 0 1 10 10v24H0z"/><text class="erd-name" x="14" y="22">Date</text><text class="erd-tag erd-pk" x="182" y="50" text-anchor="end">PK</text><text class="erd-field erd-key" x="14" y="50">Date</text><text class="erd-field" x="14" y="72">Year</text><text class="erd-field" x="14" y="94">MonthName</text><text class="erd-field" x="14" y="116">YearMonth</text></g><g class="erd-table t-fact" transform="translate(24,40)"><rect class="erd-box" width="196" height="108" rx="10"/><path class="erd-head" d="M0 10a10 10 0 0 1 10-10h176a10 10 0 0 1 10 10v24H0z"/><text class="erd-name" x="14" y="22">Table 1</text><text class="erd-tag erd-fk" x="182" y="50" text-anchor="end">FK</text><text class="erd-field erd-key" x="14" y="50">Date</text><text class="erd-field" x="14" y="72">Arrival</text><text class="erd-field" x="14" y="94">Departure</text></g><g class="erd-table t-fact" transform="translate(24,200)"><rect class="erd-box" width="196" height="152" rx="10"/><path class="erd-head" d="M0 10a10 10 0 0 1 10-10h176a10 10 0 0 1 10 10v24H0z"/><text class="erd-name" x="14" y="22">Monthly Summary</text><text class="erd-tag erd-fk" x="182" y="50" text-anchor="end">FK</text><text class="erd-field erd-key" x="14" y="50">Date</text><text class="erd-field" x="14" y="72">Scheduled Sectors</text><text class="erd-field" x="14" y="94">Cancelled Sectors</text><text class="erd-field" x="14" y="116">Flown Arrivals</text><text class="erd-field" x="14" y="138">On-time Arrivals</text></g><g class="erd-table t-fact" transform="translate(620,40)"><rect class="erd-box" width="196" height="108" rx="10"/><path class="erd-head" d="M0 10a10 10 0 0 1 10-10h176a10 10 0 0 1 10 10v24H0z"/><text class="erd-name" x="14" y="22">Forecast &amp; What-If</text><text class="erd-tag erd-fk" x="182" y="50" text-anchor="end">FK</text><text class="erd-field erd-key" x="14" y="50">Date</text><text class="erd-field" x="14" y="72">Scenario</text><text class="erd-field" x="14" y="94">ForecastRPK</text></g><g class="erd-table t-fact" transform="translate(620,200)"><rect class="erd-box" width="196" height="108" rx="10"/><path class="erd-head" d="M0 10a10 10 0 0 1 10-10h176a10 10 0 0 1 10 10v24H0z"/><text class="erd-name" x="14" y="22">Engine Availability</text><text class="erd-tag erd-fk" x="182" y="50" text-anchor="end">FK</text><text class="erd-field erd-key" x="14" y="50">Date</text><text class="erd-field" x="14" y="72">Compensation</text><text class="erd-field" x="14" y="94">Lost Revenue</text></g><g class="erd-table t-misc" transform="translate(322,250)"><rect class="erd-box" width="196" height="108" rx="10"/><path class="erd-head" d="M0 10a10 10 0 0 1 10-10h176a10 10 0 0 1 10 10v24H0z"/><text class="erd-name" x="14" y="22">Sheet1 (routes)</text><text class="erd-field" x="14" y="50">Airline</text><text class="erd-field" x="14" y="72">Arriving Port</text><text class="erd-field" x="14" y="94">Cancellation Rate</text></g><g class="erd-table t-misc" transform="translate(322,390)"><rect class="erd-box" width="196" height="86" rx="10"/><path class="erd-head" d="M0 10a10 10 0 0 1 10-10h176a10 10 0 0 1 10 10v24H0z"/><text class="erd-name" x="14" y="22">Route Performance</text><text class="erd-field" x="14" y="50">Segment</text><text class="erd-field" x="14" y="72">ASK</text></g><g class="erd-table t-misc" transform="translate(620,360)"><rect class="erd-box" width="196" height="86" rx="10"/><path class="erd-head" d="M0 10a10 10 0 0 1 10-10h176a10 10 0 0 1 10 10v24H0z"/><text class="erd-name" x="14" y="22">Route Profitability</text><text class="erd-field" x="14" y="50">Route</text><text class="erd-field" x="14" y="72">ProfitScore</text></g><g class="erd-table t-out" transform="translate(24,380)"><rect class="erd-box" width="196" height="130" rx="10"/><path class="erd-head" d="M0 10a10 10 0 0 1 10-10h176a10 10 0 0 1 10 10v24H0z"/><text class="erd-name" x="14" y="22">Measure</text><text class="erd-field" x="14" y="50">Total Arrivals</text><text class="erd-field" x="14" y="72">Cancellation Rate</text><text class="erd-field" x="14" y="94">Arrival OTP</text><text class="erd-field" x="14" y="116">Arrivals YoY %</text></g><text class="erd-note" x="420" y="236" text-anchor="middle">route-level tables feed their own visuals</text></svg></div>
+          <div class="erd-legend"><span><i class="lg-fact"></i>Fact table</span><span><i class="lg-dim"></i>Dimension</span><span><b>PK</b> primary key</span><span><b>FK</b> foreign key</span><span><svg viewBox="0 0 30 12" aria-hidden="true"><path d="M2 6H28M18 6L28 1M18 6L28 6M18 6L28 11" /></svg>one to many</span><span><i class="lg-out"></i>Measures table</span></div>
+          <p class="chart-note">A shared Date table filters every time-based table, so one date slicer drives the whole report.</p>
         </div>
       </div>
     </section>
@@ -304,8 +342,8 @@
     </div>
   </footer>
 
-  <script src="assets/js/site.js?v=7" defer></script>
-  <script src="assets/js/charts.js?v=7" defer></script>
+  <script src="assets/js/site.js?v=8" defer></script>
+  <script src="assets/js/charts.js?v=8" defer></script>
 </body>
 
 </html>

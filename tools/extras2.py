@@ -400,3 +400,40 @@ def airnz_chart():
       </div>
     </section>
 '''
+
+
+# ------------------------------------------------------------------ Air NZ: before and after slider
+
+def before_after_airnz():
+    import csv
+    import os
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "airnz_top20_routes_raw.csv")
+    rows = list(csv.reader(open(path, encoding="utf-8")))
+    head, body = rows[0], rows[1:17]
+    cols = "".join(f"<th>{E(c) or '&nbsp;'}</th>" for c in ["", "A", "B", "C", "D", "E", "F", "G"][:len(head) + 1])
+    header = "<tr><td>1</td>" + "".join(f"<th>{E(c)}</th>" for c in head) + "</tr>"
+    lines = "".join("<tr><td>" + str(i + 2) + "</td>" + "".join(f"<td>{E(v)}</td>" for v in r) + "</tr>" for i, r in enumerate(body))
+    return f'''
+    <section class="section" id="before-after" aria-labelledby="ba-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="ba-title">Before and after</h2>
+          <span class="muted">Drag the handle</span>
+        </div>
+        <div class="ba rise">
+          <img src="images/projects/air-nz/executive-summary-overview.jpg" alt="The finished executive summary dashboard." width="1600" height="925" loading="lazy" />
+          <div class="ba-raw" aria-hidden="true">
+            <table>
+              <thead><tr>{cols}</tr></thead>
+              <tbody>{header}{lines}</tbody>
+            </table>
+          </div>
+          <div class="ba-handle" aria-hidden="true"></div>
+          <span class="ba-tag left">Raw CSV</span>
+          <span class="ba-tag right">Dashboard</span>
+          <input type="range" min="0" max="100" value="50" step="1" aria-label="Reveal the raw data or the finished dashboard" />
+        </div>
+        <p class="chart-note">Left: a route-level extract from the analysis, exactly as exported, unrounded. Right: the finished executive summary page.</p>
+      </div>
+    </section>
+'''

@@ -24,7 +24,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/site.css?v=7" />
+  <link rel="stylesheet" href="assets/css/site.css?v=8" />
   <script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){d.setAttribute('data-theme',t);}}catch(e){}})()</script>
 </head>
 
@@ -40,6 +40,7 @@
           <a href="resume.html">Résumé</a>
           <a href="./#contact">Contact</a>
         </nav>
+        <button class="search-btn" type="button" data-palette aria-label="Search the site (Ctrl+K)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.5"/><path d="m10.5 10.5 3 3"/></svg>Search<kbd>Ctrl K</kbd></button>
         <button class="theme-toggle" type="button" aria-label="Switch theme">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <mask id="theme-mask">
@@ -69,9 +70,9 @@
         <ul class="tools-row" aria-label="Tools"><li>Power BI</li><li>DAX</li><li>Power Query</li><li>Star schema</li><li class="link"><a href="files/Retail-Sales-Returns-Analysis.pdf">Full report (PDF) &rarr;</a></li></ul>
         <p class="disclaimer"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><circle cx="8" cy="8" r="6.2"/><path d="M8 7.2v3.6M8 5.2v.1"/></svg>Independent portfolio project. Not affiliated with or endorsed by Grupo Bimbo.</p>
         <dl class="glance">
-          <div><dt>6</dt><dd>linked report pages</dd></div>
-          <div><dt>4</dt><dd>headline KPIs on the overview</dd></div>
-          <div><dt>10</dt><dd>product categories compared</dd></div>
+          <div><dt data-count="6" data-suffix="">6</dt><dd>linked report pages</dd></div>
+          <div><dt data-count="4" data-suffix="">4</dt><dd>headline KPIs on the overview</dd></div>
+          <div><dt data-count="10" data-suffix="">10</dt><dd>product categories compared</dd></div>
         </dl>
       </div>
     </section>
@@ -86,7 +87,7 @@
     </div>
 
     <nav class="subnav" aria-label="On this page">
-      <div class="wrap"><a href="#problem">Problem</a><a href="#data">Data</a><a href="#built">What I built</a><a href="#explore">Explore</a><a href="#dax">DAX</a><a href="#findings">What changed</a><a href="#gallery">Gallery</a></div>
+      <div class="wrap"><a href="#problem">Problem</a><a href="#data">Data</a><a href="#built">What I built</a><a href="#explore">Explore</a><a href="#diagram">Model</a><a href="#dax">DAX</a><a href="#findings">What changed</a><a href="#gallery">Gallery</a></div>
     </nav>
 
     <section class="case-body">
@@ -146,6 +147,20 @@
             </table>
           </details>
           <script type="application/json">[{"label": "Snack", "sales": 2.607, "demand": 325482, "rate": 0.8}, {"label": "Bread", "sales": 2.281, "demand": 111482, "rate": 3.6}, {"label": "Bun", "sales": 0.9, "demand": 51910, "rate": 1.7}, {"label": "Tortilla", "sales": 0.561, "demand": 42406, "rate": 2.5}, {"label": "Muffin", "sales": 0.345, "demand": 39574, "rate": 0.8}, {"label": "Cake", "sales": 0.263, "demand": 17314, "rate": 1.0}, {"label": "Donut", "sales": 0.146, "demand": 18106, "rate": 2.8}, {"label": "Sandwich", "sales": 0.04, "demand": 2348, "rate": 0.2}, {"label": "Breadcrumb", "sales": 0.03, "demand": 3239, "rate": 1.4}, {"label": "Beverage", "sales": 0.002, "demand": 292, "rate": 0.0}]</script>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="diagram" aria-labelledby="diagram-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="diagram-title">Data model</h2>
+          <span class="muted">Power BI star schema</span>
+        </div>
+        <div class="erd-card rise">
+          <div class="erd-scroll"><svg class="erd" viewBox="0 0 840 470" role="img" aria-label="Star schema: a Sales fact table joined to Date, Product, Channel, Purchaser and Geography dimensions." preserveAspectRatio="xMidYMid meet"><path class="erd-link" d="M220 106H271.0V196H322"/><path class="erd-crow" d="M310 196L322 190M310 196L322 196M310 196L322 202"/><path class="erd-one" d="M228 100V112"/><path class="erd-link" d="M220 346H271.0V218H322"/><path class="erd-crow" d="M310 218L322 212M310 218L322 218M310 218L322 224"/><path class="erd-one" d="M228 340V352"/><path class="erd-link" d="M620 76H569.0V240H518"/><path class="erd-crow" d="M530 240L518 234M530 240L518 240M530 240L518 246"/><path class="erd-one" d="M612 70V82"/><path class="erd-link" d="M620 236H569.0V262H518"/><path class="erd-crow" d="M530 262L518 256M530 262L518 262M530 262L518 268"/><path class="erd-one" d="M612 230V242"/><path class="erd-link" d="M620 396H569.0V284H518"/><path class="erd-crow" d="M530 284L518 278M530 284L518 284M530 284L518 290"/><path class="erd-one" d="M612 390V402"/><g class="erd-table t-fact" transform="translate(322,150)"><rect class="erd-box" width="196" height="240" rx="10"/><path class="erd-head" d="M0 10a10 10 0 0 1 10-10h176a10 10 0 0 1 10 10v24H0z"/><text class="erd-name" x="14" y="22">Sales</text><text class="erd-tag erd-fk" x="182" y="50" text-anchor="end">FK</text><text class="erd-field erd-key" x="14" y="50">Date Key</text><text class="erd-tag erd-fk" x="182" y="72" text-anchor="end">FK</text><text class="erd-field erd-key" x="14" y="72">Product Key</text><text class="erd-tag erd-fk" x="182" y="94" text-anchor="end">FK</text><text class="erd-field erd-key" x="14" y="94">Channel Key</text><text class="erd-tag erd-fk" x="182" y="116" text-anchor="end">FK</text><text class="erd-field erd-key" x="14" y="116">Purchaser Key</text><text class="erd-tag erd-fk" x="182" y="138" text-anchor="end">FK</text><text class="erd-field erd-key" x="14" y="138">Town Key</text><text class="erd-field" x="14" y="160">Gross Sales</text><text class="erd-field" x="14" y="182">Return Value</text><text class="erd-field" x="14" y="204">Demand Units</text><text class="erd-field" x="14" y="226">Returned Units</text></g><g class="erd-table t-dim" transform="translate(24,60)"><rect class="erd-box" width="196" height="108" rx="10"/><path class="erd-head" d="M0 10a10 10 0 0 1 10-10h176a10 10 0 0 1 10 10v24H0z"/><text class="erd-name" x="14" y="22">Date</text><text class="erd-tag erd-pk" x="182" y="50" text-anchor="end">PK</text><text class="erd-field erd-key" x="14" y="50">Date Key</text><text class="erd-field" x="14" y="72">Week Number</text><text class="erd-field" x="14" y="94">Month</text></g><g class="erd-table t-dim" transform="translate(24,300)"><rect class="erd-box" width="196" height="108" rx="10"/><path class="erd-head" d="M0 10a10 10 0 0 1 10-10h176a10 10 0 0 1 10 10v24H0z"/><text class="erd-name" x="14" y="22">Product</text><text class="erd-tag erd-pk" x="182" y="50" text-anchor="end">PK</text><text class="erd-field erd-key" x="14" y="50">Product Key</text><text class="erd-field" x="14" y="72">Category</text><text class="erd-field" x="14" y="94">Product</text></g><g class="erd-table t-dim" transform="translate(620,30)"><rect class="erd-box" width="196" height="86" rx="10"/><path class="erd-head" d="M0 10a10 10 0 0 1 10-10h176a10 10 0 0 1 10 10v24H0z"/><text class="erd-name" x="14" y="22">Channel</text><text class="erd-tag erd-pk" x="182" y="50" text-anchor="end">PK</text><text class="erd-field erd-key" x="14" y="50">Channel Key</text><text class="erd-field" x="14" y="72">Sales Channel</text></g><g class="erd-table t-dim" transform="translate(620,190)"><rect class="erd-box" width="196" height="86" rx="10"/><path class="erd-head" d="M0 10a10 10 0 0 1 10-10h176a10 10 0 0 1 10 10v24H0z"/><text class="erd-name" x="14" y="22">Purchaser</text><text class="erd-tag erd-pk" x="182" y="50" text-anchor="end">PK</text><text class="erd-field erd-key" x="14" y="50">Purchaser Key</text><text class="erd-field" x="14" y="72">Purchaser</text></g><g class="erd-table t-dim" transform="translate(620,350)"><rect class="erd-box" width="196" height="108" rx="10"/><path class="erd-head" d="M0 10a10 10 0 0 1 10-10h176a10 10 0 0 1 10 10v24H0z"/><text class="erd-name" x="14" y="22">Geography</text><text class="erd-tag erd-pk" x="182" y="50" text-anchor="end">PK</text><text class="erd-field erd-key" x="14" y="50">Town Key</text><text class="erd-field" x="14" y="72">Town</text><text class="erd-field" x="14" y="94">Region</text></g></svg></div>
+          <div class="erd-legend"><span><i class="lg-fact"></i>Fact table</span><span><i class="lg-dim"></i>Dimension</span><span><b>PK</b> primary key</span><span><b>FK</b> foreign key</span><span><svg viewBox="0 0 30 12" aria-hidden="true"><path d="M2 6H28M18 6L28 1M18 6L28 6M18 6L28 11" /></svg>one to many</span></div>
+          <p class="chart-note">One fact table at week-by-product-by-purchaser grain; every page and measure reads from the same model.</p>
         </div>
       </div>
     </section>
@@ -283,8 +298,8 @@
     </div>
   </footer>
 
-  <script src="assets/js/site.js?v=7" defer></script>
-  <script src="assets/js/charts.js?v=7" defer></script>
+  <script src="assets/js/site.js?v=8" defer></script>
+  <script src="assets/js/charts.js?v=8" defer></script>
 </body>
 
 </html>

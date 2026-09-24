@@ -24,7 +24,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/site.css?v=7" />
+  <link rel="stylesheet" href="assets/css/site.css?v=8" />
   <script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){d.setAttribute('data-theme',t);}}catch(e){}})()</script>
 </head>
 
@@ -40,6 +40,7 @@
           <a href="resume.html">Résumé</a>
           <a href="./#contact">Contact</a>
         </nav>
+        <button class="search-btn" type="button" data-palette aria-label="Search the site (Ctrl+K)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.5"/><path d="m10.5 10.5 3 3"/></svg>Search<kbd>Ctrl K</kbd></button>
         <button class="theme-toggle" type="button" aria-label="Switch theme">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <mask id="theme-mask">
@@ -69,10 +70,10 @@
         <ul class="tools-row" aria-label="Tools"><li>SQL (SQLite)</li><li>Window functions</li><li>CTEs</li><li>Python load script</li><li class="link"><a href="https://github.com/mathurishan/nz-building-consents-sql">Code on GitHub &rarr;</a></li></ul>
         
         <dl class="glance">
-          <div><dt>35</dt><dd>years of data, 1990 to 2025</dd></div>
-          <div><dt>16</dt><dd>regions</dd></div>
-          <div><dt>67</dt><dd>territorial authorities</dd></div>
-          <div><dt>10</dt><dd>analytical SQL queries</dd></div>
+          <div><dt data-count="35" data-suffix="">35</dt><dd>years of data, 1990 to 2025</dd></div>
+          <div><dt data-count="16" data-suffix="">16</dt><dd>regions</dd></div>
+          <div><dt data-count="67" data-suffix="">67</dt><dd>territorial authorities</dd></div>
+          <div><dt data-count="10" data-suffix="">10</dt><dd>analytical SQL queries</dd></div>
         </dl>
       </div>
     </section>
@@ -87,7 +88,7 @@
     </div>
 
     <nav class="subnav" aria-label="On this page">
-      <div class="wrap"><a href="#problem">Problem</a><a href="#data">Data</a><a href="#built">What I built</a><a href="#explore">Explore</a><a href="#model">Raw to model</a><a href="#sql">SQL</a><a href="#findings">What changed</a><a href="#gallery">Gallery</a></div>
+      <div class="wrap"><a href="#problem">Problem</a><a href="#data">Data</a><a href="#built">What I built</a><a href="#explore">Explore</a><a href="#model">Raw to model</a><a href="#diagram">Model</a><a href="#sql">SQL</a><a href="#findings">What changed</a><a href="#gallery">Gallery</a></div>
     </nav>
 
     <section class="case-body">
@@ -188,6 +189,20 @@
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3.5 8.5 3 3 6-7"/></svg>
             <p><strong>Reconciliation check:</strong> the three monthly fact rows add back to Stats NZ's published quarter exactly: 292 + 340 + 317 = 949 consents, $506,230,468 in value and 191,777 m² of floor area.</p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="diagram" aria-labelledby="diagram-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="diagram-title">Data model</h2>
+          <span class="muted">SQLite star schema, exactly as built</span>
+        </div>
+        <div class="erd-card rise">
+          <div class="erd-scroll"><svg class="erd" viewBox="0 0 840 520" role="img" aria-label="Star schema: two fact tables for regional and territorial authority consents, joined to date, building type, region and authority dimensions." preserveAspectRatio="xMidYMid meet"><path class="erd-link" d="M220 196H266.0V108H312"/><path class="erd-crow" d="M300 108L312 102M300 108L312 108M300 108L312 114"/><path class="erd-one" d="M228 190V202"/><path class="erd-link" d="M220 196H266.0V368H312"/><path class="erd-crow" d="M300 368L312 362M300 368L312 368M300 368L312 374"/><path class="erd-one" d="M228 190V202"/><path class="erd-link" d="M220 406H266.0V152H312"/><path class="erd-crow" d="M300 152L312 146M300 152L312 152M300 152L312 158"/><path class="erd-one" d="M228 400V412"/><path class="erd-link" d="M220 406H266.0V412H312"/><path class="erd-crow" d="M300 412L312 406M300 412L312 412M300 412L312 418"/><path class="erd-one" d="M228 400V412"/><path class="erd-link" d="M620 106H573.0V130H526"/><path class="erd-crow" d="M538 130L526 124M538 130L526 130M538 130L526 136"/><path class="erd-one" d="M612 100V112"/><path class="erd-link" d="M620 366H573.0V390H526"/><path class="erd-crow" d="M538 390L526 384M538 390L526 390M538 390L526 396"/><path class="erd-one" d="M612 360V372"/><path class="erd-link erd-dash" d="M718.0 168H718.0V320H718.0"/><g class="erd-table t-dim" transform="translate(24,150)"><rect class="erd-box" width="196" height="174" rx="10"/><path class="erd-head" d="M0 10a10 10 0 0 1 10-10h176a10 10 0 0 1 10 10v24H0z"/><text class="erd-name" x="14" y="22">dim_date</text><text class="erd-tag erd-pk" x="182" y="50" text-anchor="end">PK</text><text class="erd-field erd-key" x="14" y="50">date_id</text><text class="erd-field" x="14" y="72">year</text><text class="erd-field" x="14" y="94">quarter</text><text class="erd-field" x="14" y="116">month</text><text class="erd-field" x="14" y="138">month_name</text><text class="erd-field" x="14" y="160">is_summer</text></g><g class="erd-table t-dim" transform="translate(24,360)"><rect class="erd-box" width="196" height="130" rx="10"/><path class="erd-head" d="M0 10a10 10 0 0 1 10-10h176a10 10 0 0 1 10 10v24H0z"/><text class="erd-name" x="14" y="22">dim_building_type</text><text class="erd-tag erd-pk" x="182" y="50" text-anchor="end">PK</text><text class="erd-field erd-key" x="14" y="50">building_type_id</text><text class="erd-field" x="14" y="72">building_type_name</text><text class="erd-field" x="14" y="94">is_residential</text><text class="erd-field" x="14" y="116">is_aggregate</text></g><g class="erd-table t-fact" transform="translate(312,40)"><rect class="erd-box" width="214" height="218" rx="10"/><path class="erd-head" d="M0 10a10 10 0 0 1 10-10h194a10 10 0 0 1 10 10v24H0z"/><text class="erd-name" x="14" y="22">fact_region_consents</text><text class="erd-tag erd-pk" x="200" y="50" text-anchor="end">PK</text><text class="erd-field erd-key" x="14" y="50">id</text><text class="erd-tag erd-fk" x="200" y="72" text-anchor="end">FK</text><text class="erd-field erd-key" x="14" y="72">date_id</text><text class="erd-tag erd-fk" x="200" y="94" text-anchor="end">FK</text><text class="erd-field erd-key" x="14" y="94">region_id</text><text class="erd-tag erd-fk" x="200" y="116" text-anchor="end">FK</text><text class="erd-field erd-key" x="14" y="116">building_type_id</text><text class="erd-field" x="14" y="138">consent_nature</text><text class="erd-field" x="14" y="160">number_of_consents</text><text class="erd-field" x="14" y="182">value_nzd</text><text class="erd-field" x="14" y="204">floor_area_sqm</text></g><g class="erd-table t-fact" transform="translate(312,300)"><rect class="erd-box" width="214" height="218" rx="10"/><path class="erd-head" d="M0 10a10 10 0 0 1 10-10h194a10 10 0 0 1 10 10v24H0z"/><text class="erd-name" x="14" y="22">fact_ta_consents</text><text class="erd-tag erd-pk" x="200" y="50" text-anchor="end">PK</text><text class="erd-field erd-key" x="14" y="50">id</text><text class="erd-tag erd-fk" x="200" y="72" text-anchor="end">FK</text><text class="erd-field erd-key" x="14" y="72">date_id</text><text class="erd-tag erd-fk" x="200" y="94" text-anchor="end">FK</text><text class="erd-field erd-key" x="14" y="94">authority_id</text><text class="erd-tag erd-fk" x="200" y="116" text-anchor="end">FK</text><text class="erd-field erd-key" x="14" y="116">building_type_id</text><text class="erd-field" x="14" y="138">consent_nature</text><text class="erd-field" x="14" y="160">number_of_consents</text><text class="erd-field" x="14" y="182">value_nzd</text><text class="erd-field" x="14" y="204">floor_area_sqm</text></g><g class="erd-table t-dim" transform="translate(620,60)"><rect class="erd-box" width="196" height="108" rx="10"/><path class="erd-head" d="M0 10a10 10 0 0 1 10-10h176a10 10 0 0 1 10 10v24H0z"/><text class="erd-name" x="14" y="22">dim_region</text><text class="erd-tag erd-pk" x="182" y="50" text-anchor="end">PK</text><text class="erd-field erd-key" x="14" y="50">region_id</text><text class="erd-field" x="14" y="72">region_name</text><text class="erd-field" x="14" y="94">is_aggregate</text></g><g class="erd-table t-dim" transform="translate(620,320)"><rect class="erd-box" width="196" height="108" rx="10"/><path class="erd-head" d="M0 10a10 10 0 0 1 10-10h176a10 10 0 0 1 10 10v24H0z"/><text class="erd-name" x="14" y="22">dim_authority</text><text class="erd-tag erd-pk" x="182" y="50" text-anchor="end">PK</text><text class="erd-field erd-key" x="14" y="50">authority_id</text><text class="erd-field" x="14" y="72">authority_name</text><text class="erd-tag erd-fk" x="182" y="94" text-anchor="end">FK</text><text class="erd-field erd-key" x="14" y="94">region_id</text></g><text class="erd-note" x="727" y="276">rolls up to a region</text></svg></div>
+          <div class="erd-legend"><span><i class="lg-fact"></i>Fact table</span><span><i class="lg-dim"></i>Dimension</span><span><b>PK</b> primary key</span><span><b>FK</b> foreign key</span><span><svg viewBox="0 0 30 12" aria-hidden="true"><path d="M2 6H28M18 6L28 1M18 6L28 6M18 6L28 11" /></svg>one to many</span></div>
+          <p class="chart-note">Two fact tables share the date and building-type dimensions; territorial authorities roll up to regions.</p>
         </div>
       </div>
     </section>
@@ -380,8 +395,8 @@ national <span class="tok-k">AS</span> (
     </div>
   </footer>
 
-  <script src="assets/js/site.js?v=7" defer></script>
-  <script src="assets/js/charts.js?v=7" defer></script>
+  <script src="assets/js/site.js?v=8" defer></script>
+  <script src="assets/js/charts.js?v=8" defer></script>
 </body>
 
 </html>

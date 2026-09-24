@@ -165,6 +165,189 @@
         });
     });
 
+    var finePointer = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+    // Depth: a gentle tilt and a soft light that follows the cursor (mouse only, motion allowed).
+    if (finePointer && !calm) {
+        document.querySelectorAll('.feature .stage, .card .frame, .note-card').forEach(function (el) {
+            el.classList.add('tilt', 'glow');
+            var max = el.classList.contains('stage') ? 3 : 4;
+            el.addEventListener('pointermove', function (e) {
+                var r = el.getBoundingClientRect();
+                var px = (e.clientX - r.left) / r.width;
+                var py = (e.clientY - r.top) / r.height;
+                el.classList.add('tilting');
+                el.style.setProperty('--ry', ((px - 0.5) * max * 2).toFixed(2) + 'deg');
+                el.style.setProperty('--rx', ((0.5 - py) * max * 2).toFixed(2) + 'deg');
+                el.style.setProperty('--mx', (px * 100).toFixed(1) + '%');
+                el.style.setProperty('--my', (py * 100).toFixed(1) + '%');
+            });
+            el.addEventListener('pointerleave', function () {
+                el.classList.remove('tilting');
+                el.style.setProperty('--rx', '0deg');
+                el.style.setProperty('--ry', '0deg');
+            });
+        });
+
+        // The two hero dashboards drift apart slightly as the page scrolls.
+        var back = document.querySelector('.hero-visual .pane.back');
+        var front = document.querySelector('.hero-visual .pane.front');
+        if (back && front) {
+            var drift = function () {
+                var y = Math.min(window.scrollY, 700);
+                back.style.translate = '0 ' + (-y * 0.05).toFixed(1) + 'px';
+                front.style.translate = '0 ' + (y * 0.035).toFixed(1) + 'px';
+            };
+            window.addEventListener('scroll', function () { requestAnimationFrame(drift); }, { passive: true });
+            drift();
+        }
+    }
+
+    // Tools grid: highlight the column under the pointer (rows highlight in CSS).
+    document.querySelectorAll('.matrix').forEach(function (table) {
+        var clear = function () {
+            table.querySelectorAll('.col-hover').forEach(function (c) { c.classList.remove('col-hover'); });
+        };
+        table.addEventListener('mouseover', function (e) {
+            var cell = e.target.closest('[data-col]');
+            clear();
+            if (!cell) return;
+            table.querySelectorAll('[data-col="' + cell.getAttribute('data-col') + '"]').forEach(function (c) {
+                c.classList.add('col-hover');
+            });
+        });
+        table.addEventListener('mouseleave', clear);
+    });
+
+    // Before-and-after slider.
+    document.querySelectorAll('.ba').forEach(function (ba) {
+        var range = ba.querySelector('input[type="range"]');
+        var set = function () { ba.style.setProperty('--pos', range.value + '%'); };
+        range.addEventListener('input', set);
+        set();
+    });
+
+    // Quick search: Ctrl+K (or ⌘K) opens a palette of pages, sections and links.
+    var ITEMS = [
+        ['Home', './', 'Page'],
+        ['Selected work', './#work', 'Home'],
+        ['How I work', './#approach', 'Home'],
+        ['Experience timeline', './#experience', 'Home'],
+        ['Tools and projects', './#tools', 'Home'],
+        ['Notes on reporting', './#writing', 'Home'],
+        ['Contact', './#contact', 'Home'],
+        ['Retail Sales & Returns Analysis', 'powerbi-retail.html', 'Power BI'],
+        ['Retail DAX measures', 'powerbi-retail.html#dax', 'Power BI'],
+        ['Air New Zealand Analysis', 'powerbi-air-nz.html', 'Power BI'],
+        ['Air NZ route cancellations', 'powerbi-air-nz.html#explore', 'Power BI'],
+        ['Air NZ DAX measures', 'powerbi-air-nz.html#dax', 'Power BI'],
+        ['NZ Building Consents', 'sql-nz-building-consents.html', 'SQL'],
+        ['Building consents SQL queries', 'sql-nz-building-consents.html#sql', 'SQL'],
+        ['Star schema data model', 'sql-nz-building-consents.html#diagram', 'SQL'],
+        ['NZ Housing Affordability', 'python_nz_housing_affordability.html', 'Python'],
+        ['Rents by region chart', 'python_nz_housing_affordability.html#explore', 'Python'],
+        ['NZ Business Financials', 'python_business_financials.html', 'Python'],
+        ['Validate before you visualise', 'note-validate-before-you-visualise.html', 'Note'],
+        ['Why my reports start with a star schema', 'note-start-with-a-star-schema.html', 'Note'],
+        ['Reading rent data honestly', 'note-reading-rent-data-honestly.html', 'Note'],
+        ['Résumé', 'resume.html', 'Page'],
+        ['Download résumé (PDF)', 'files/Ishan-Mathur-Resume.pdf', 'File'],
+        ['Email Ishan', 'mailto:mathur.ishan11@gmail.com', 'Contact'],
+        ['LinkedIn', 'https://www.linkedin.com/in/mathurishan', 'Contact'],
+        ['GitHub', 'https://github.com/mathurishan', 'Contact']
+    ];
+    var palette = null, input, list, results = [], active = 0, returnFocus = null;
+
+    function buildPalette() {
+        palette = document.createElement('div');
+        palette.className = 'palette';
+        palette.setAttribute('role', 'dialog');
+        palette.setAttribute('aria-modal', 'true');
+        palette.setAttribute('aria-label', 'Search the site');
+        palette.innerHTML = '<div class="palette-box"><input type="text" placeholder="Search projects, notes and sections" ' +
+            'aria-label="Search" role="combobox" aria-expanded="true" aria-controls="palette-list" autocomplete="off" />' +
+            '<ul id="palette-list" role="listbox"></ul>' +
+            '<div class="palette-foot"><span>↑↓ to move</span><span>Enter to open</span><span>Esc to close</span></div></div>';
+        document.body.appendChild(palette);
+        input = palette.querySelector('input');
+        list = palette.querySelector('ul');
+        input.addEventListener('input', render);
+        input.addEventListener('keydown', function (e) {
+            if (e.key === 'ArrowDown') { e.preventDefault(); move(1); }
+            else if (e.key === 'ArrowUp') { e.preventDefault(); move(-1); }
+            else if (e.key === 'Enter' && results[active]) { e.preventDefault(); go(results[active][1]); }
+            else if (e.key === 'Escape') { closePalette(); }
+            else if (e.key === 'Tab') { e.preventDefault(); }
+        });
+        palette.addEventListener('click', function (e) { if (e.target === palette) closePalette(); });
+    }
+
+    function render() {
+        var q = input.value.trim().toLowerCase();
+        results = ITEMS.filter(function (it) {
+            if (!q) return true;
+            var hay = (it[0] + ' ' + it[2]).toLowerCase();
+            return q.split(/\s+/).every(function (w) { return hay.indexOf(w) > -1; });
+        });
+        active = 0;
+        list.innerHTML = results.length ? results.map(function (it, i) {
+            return '<li role="presentation"><a role="option" id="pal-' + i + '" href="' + it[1] + '" aria-selected="' +
+                (i === 0) + '">' + it[0] + '<span>' + it[2] + '</span></a></li>';
+        }).join('') : '<li class="empty">No matches</li>';
+        input.setAttribute('aria-activedescendant', results.length ? 'pal-0' : '');
+        list.querySelectorAll('a').forEach(function (a, i) {
+            a.addEventListener('mousemove', function () { select(i); });
+            a.addEventListener('click', function (e) { e.preventDefault(); go(results[i][1]); });
+        });
+    }
+
+    function select(i) {
+        var links = list.querySelectorAll('a');
+        if (!links.length) return;
+        active = (i + links.length) % links.length;
+        links.forEach(function (a, j) { a.setAttribute('aria-selected', j === active ? 'true' : 'false'); });
+        links[active].scrollIntoView({ block: 'nearest' });
+        input.setAttribute('aria-activedescendant', 'pal-' + active);
+    }
+
+    function move(n) { select(active + n); }
+
+    function go(href) {
+        closePalette();
+        if (/^https?:/.test(href)) { window.open(href, '_blank', 'noopener'); return; }
+        window.location.href = href;
+    }
+
+    function openPalette() {
+        if (!palette) buildPalette();
+        returnFocus = document.activeElement;
+        input.value = '';
+        render();
+        palette.classList.add('open');
+        document.body.classList.add('lightbox-open');
+        input.focus();
+    }
+
+    function closePalette() {
+        if (!palette) return;
+        palette.classList.remove('open');
+        document.body.classList.remove('lightbox-open');
+        if (returnFocus && returnFocus.focus) returnFocus.focus();
+    }
+
+    var isMac = /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
+    document.querySelectorAll('[data-palette]').forEach(function (b) {
+        var k = b.querySelector('kbd');
+        if (k && isMac) k.textContent = '⌘K';
+        b.addEventListener('click', openPalette);
+    });
+    document.addEventListener('keydown', function (e) {
+        if ((e.ctrlKey || e.metaKey) && (e.key === 'k' || e.key === 'K')) {
+            e.preventDefault();
+            if (palette && palette.classList.contains('open')) closePalette(); else openPalette();
+        }
+    });
+
     // Reading progress bar along the top of project and article pages.
     var bar = document.querySelector('.progress');
     if (bar) {

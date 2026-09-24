@@ -13,7 +13,8 @@ from build_site import head, header, footer  # noqa: E402  (also rebuilds projec
 
 def role(title, org, when, bullets):
     lis = "\n              ".join(f"<li>{b}</li>" for b in bullets)
-    return f'''<div class="role">
+    slug = "role-" + "-".join("".join(ch if ch.isalnum() else " " for ch in title.replace("&amp;", "")).lower().split())
+    return f'''<div class="role" id="{slug}">
             <h3>{title}</h3>
             <p class="when">{org} · {when}</p>
             <ul>
@@ -75,8 +76,8 @@ resume = head("Résumé | Ishan Mathur",
         </ul>
         <dl class="glance" aria-label="Key achievements">
           <div><dt>&lt;1 hr</dt><dd>for a recurring reporting task that took about 4 hours, using reusable templates</dd></div>
-          <div><dt>40%</dt><dd>less time to produce daily reconciliation reporting for 10+ global investment clients</dd></div>
-          <div><dt>5+</dt><dd>dashboards and reports for senior Library leadership, client groups and third-party stakeholders</dd></div>
+          <div><dt data-count="40" data-suffix="%">40%</dt><dd>less time to produce daily reconciliation reporting for 10+ global investment clients</dd></div>
+          <div><dt data-count="5" data-suffix="+">5+</dt><dd>dashboards and reports for senior Library leadership, client groups and third-party stakeholders</dd></div>
         </dl>
       </div>
     </section>
@@ -91,7 +92,7 @@ resume = head("Résumé | Ishan Mathur",
               who need answers, in Power BI, SQL and Excel, and publish it through SharePoint to the teams who use it.</p>
           </div>
         </div>
-        <div class="cv-row rise">
+        <div class="cv-row rise" id="experience">
           <h2>Experience</h2>
           <div class="body">
           {"".join(ROLES)}</div>
@@ -168,6 +169,7 @@ page404 = (head("Page not found | Ishan Mathur", "This page doesn't exist or has
           <a href="/resume.html">Résumé</a>
           <a href="/#contact">Contact</a>
         </nav>
+        <button class="search-btn" type="button" data-palette aria-label="Search the site (Ctrl+K)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.5"/><path d="m10.5 10.5 3 3"/></svg>Search<kbd>Ctrl K</kbd></button>
         <button class="theme-toggle" type="button" aria-label="Switch theme">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <mask id="theme-mask">
@@ -197,7 +199,7 @@ page404 = (head("Page not found | Ishan Mathur", "This page doesn't exist or has
       </div>
     </section>
   </main>
-  <script src="/assets/js/site.js?v=7" defer></script>
+  <script src="/assets/js/site.js?v=8" defer></script>
 </body>
 
 </html>

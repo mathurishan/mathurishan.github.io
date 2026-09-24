@@ -24,7 +24,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/site.css?v=7" />
+  <link rel="stylesheet" href="assets/css/site.css?v=8" />
   <script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){d.setAttribute('data-theme',t);}}catch(e){}})()</script>
 </head>
 
@@ -40,6 +40,7 @@
           <a href="resume.html">Résumé</a>
           <a href="./#contact">Contact</a>
         </nav>
+        <button class="search-btn" type="button" data-palette aria-label="Search the site (Ctrl+K)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.5"/><path d="m10.5 10.5 3 3"/></svg>Search<kbd>Ctrl K</kbd></button>
         <button class="theme-toggle" type="button" aria-label="Switch theme">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <mask id="theme-mask">
@@ -69,7 +70,7 @@
         <ul class="tools-row" aria-label="Tools"><li>Python</li><li>pandas</li><li>matplotlib</li><li>seaborn</li></ul>
         
         <dl class="glance">
-          <div><dt>4</dt><dd>measures: sales, profit, assets, inventories</dd></div>
+          <div><dt data-count="4" data-suffix="">4</dt><dd>measures: sales, profit, assets, inventories</dd></div>
           <div><dt>Top 10</dt><dd>industries by operating profit</dd></div>
           <div><dt>Pre / post</dt><dd>COVID sales comparison</dd></div>
         </dl>
@@ -86,7 +87,7 @@
     </div>
 
     <nav class="subnav" aria-label="On this page">
-      <div class="wrap"><a href="#problem">Problem</a><a href="#data">Data</a><a href="#built">What I built</a><a href="#findings">What changed</a><a href="#gallery">Gallery</a></div>
+      <div class="wrap"><a href="#problem">Problem</a><a href="#data">Data</a><a href="#built">What I built</a><a href="#diagram">Data flow</a><a href="#findings">What changed</a><a href="#gallery">Gallery</a></div>
     </nav>
 
     <section class="case-body">
@@ -118,6 +119,20 @@
       </div>
     </section>
 
+
+    <section class="section" id="diagram" aria-labelledby="diagram-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="diagram-title">Data flow</h2>
+          <span class="muted">Long-format CSV to analysis-ready series</span>
+        </div>
+        <div class="erd-card rise">
+          <div class="erd-scroll"><svg class="erd" viewBox="0 0 840 290" role="img" aria-label="Data flow: the Stats NZ quarterly file is typed and reshaped into one series per measure, which feeds the charts." preserveAspectRatio="xMidYMid meet"><path class="erd-link" d="M244 185.0H283.0V150H320"/><path class="erd-arrow" d="M313 145L322 150L313 155"/><path class="erd-link" d="M522 172H567.0V108H610"/><path class="erd-arrow" d="M603 103L612 108L603 113"/><g class="erd-table t-src" transform="translate(24,120)"><rect class="erd-box" width="220" height="130" rx="10"/><path class="erd-head" d="M0 10a10 10 0 0 1 10-10h200a10 10 0 0 1 10 10v24H0z"/><text class="erd-name" x="14" y="22">Stats NZ business financials</text><text class="erd-field" x="14" y="50">period (quarter)</text><text class="erd-field" x="14" y="72">industry</text><text class="erd-field" x="14" y="94">measure</text><text class="erd-field" x="14" y="116">value</text></g><g class="erd-table t-dim" transform="translate(322,60)"><rect class="erd-box" width="200" height="174" rx="10"/><path class="erd-head" d="M0 10a10 10 0 0 1 10-10h180a10 10 0 0 1 10 10v24H0z"/><text class="erd-name" x="14" y="22">Cleaned series</text><text class="erd-field" x="14" y="50">period → date</text><text class="erd-field" x="14" y="72">industry</text><text class="erd-field" x="14" y="94">sales</text><text class="erd-field" x="14" y="116">operating profit</text><text class="erd-field" x="14" y="138">assets</text><text class="erd-field" x="14" y="160">inventories</text></g><g class="erd-table t-fact" transform="translate(612,40)"><rect class="erd-box" width="204" height="152" rx="10"/><path class="erd-head" d="M0 10a10 10 0 0 1 10-10h184a10 10 0 0 1 10 10v24H0z"/><text class="erd-name" x="14" y="22">Outputs</text><text class="erd-field" x="14" y="50">top industries by profit</text><text class="erd-field" x="14" y="72">profitability scorecard</text><text class="erd-field" x="14" y="94">year-on-year growth</text><text class="erd-field" x="14" y="116">seasonality</text><text class="erd-field" x="14" y="138">pre / post COVID</text></g></svg></div>
+          <div class="erd-legend"><span><i class="lg-src"></i>Source</span><span><i class="lg-dim"></i>Prepared data</span><span><i class="lg-fact"></i>Analysis output</span></div>
+          <p class="chart-note">Dates are typed and numbers coerced safely before any subset is built.</p>
+        </div>
+      </div>
+    </section>
 
     <section class="section band" id="findings" aria-labelledby="findings-title">
       <div class="wrap">
@@ -169,7 +184,7 @@
     </div>
   </footer>
 
-  <script src="assets/js/site.js?v=7" defer></script>
+  <script src="assets/js/site.js?v=8" defer></script>
 </body>
 
 </html>
