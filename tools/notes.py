@@ -2,6 +2,66 @@
 
 NOTES = [
     dict(
+        file="note-a-number-needs-a-sentence.html",
+        title="A number needs a sentence",
+        desc="How to explain numbers to people who do not work with data: lead with the sentence, use their words, say what the number cannot tell you and show where the data disagrees.",
+        lead="Most people who read my reports do not work with data. They have a decision to make, and the number is only useful if it helps them make it.",
+        minutes=3,
+        card="Most people who read a report do not work with data. Four habits that make a number easy to understand and hard to misread.",
+        body="""
+<p>A chart on its own asks the reader to do the analysis. Someone who works with data every day will manage it.
+  A manager with ten minutes before a meeting will not. They will skim the chart, guess what it means, and
+  sometimes guess wrong.</p>
+
+<p>Teaching sharpened this for me. As a sessional assistant on a postgraduate
+  economics paper at the University of Waikato, I ran tutorials for mixed groups of students and spent most of
+  that time turning theory into practical business examples. The job taught me one thing: if people leave
+  unsure what the point was, the explanation failed, however good the material. I now build dashboards and
+  reports for senior Library leadership, client groups and third-party stakeholders, and the same rule
+  applies.</p>
+
+<h2>1. Lead with the sentence, then the chart</h2>
+
+<p>Every page of a report should say in words what the chart shows and why it matters: what changed, by how
+  much, and what the reader might do about it. The chart is the evidence for that sentence. If I cannot write
+  the sentence, I do not understand the data well enough to put it in front of anyone.</p>
+
+<h2>2. Use their words, not the system's</h2>
+
+<p>Source systems name things for the software, not for the reader. In the Power BI dashboards I built for
+  reading-list processing, I replaced raw URLs with clean, clickable labels so people who did not work with
+  data could use the dashboards without decoding them. When I brought 58 Library systems into one
+  consolidated view, every alias was mapped to one agreed name, so a reader sees one thing called one thing,
+  wherever it appears.</p>
+
+<h2>3. Say what the number cannot tell you</h2>
+
+<p>Precision can mislead. When templates cut a recurring reporting task from about half a day to under an
+  hour, I say "about" and "under" because the before-and-after was observed, not timed. Turning that into a
+  percentage would sound more rigorous and be less honest.</p>
+
+<p>The same goes for corrections. In one usage analysis, 3,157 events, about 24%, would have been counted twice
+  without de-duplication. "About a quarter of the activity was not real" is a sentence a manager can act on.
+  The exact count belongs in the notes for anyone who wants to check it.</p>
+
+<h2>4. Show where the data disagrees</h2>
+
+<p>It is tempting to tidy disagreements away before anyone sees them. When consolidating those Library systems I
+  found 8 conflicting statuses. I reported each one to its owner instead of quietly picking a winner. Readers
+  trust a report more when it shows its open questions, and the people closest to the data are usually the
+  ones who can settle them.</p>
+
+<p>When a number turns out wrong, I fix the formula, not the chart, and write down why. On a Power BI prototype
+  I corrected the fill-rate calculation and recorded the reason, so the next reader of that number knows what
+  it means and why it changed.</p>
+
+<blockquote>If a reader needs me in the room to understand the chart, the chart is not finished.</blockquote>
+
+<p>None of this is about simplifying the analysis. The analysis stays rigorous. The explanation is what gets
+  simpler, and that is the part most readers see.</p>
+""",
+    ),
+    dict(
         file="note-half-a-day-to-under-an-hour.html",
         title="Half a day to under an hour",
         desc="How templates, upfront checks and automated preparation took the manual work out of recurring reports, and how to state the time saved honestly.",

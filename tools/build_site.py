@@ -9,7 +9,7 @@ import extras2
 import diagrams
 
 SITE = "https://mathurishan.github.io/"
-CSS_V = "14"
+CSS_V = "15"
 JS_V = "11"
 # Links that leave the site open in a new tab
 EXTERNAL = ' target="_blank" rel="noopener"'

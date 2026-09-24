@@ -206,6 +206,60 @@ def _colour_code(body):
     return _re.sub(r"<pre><code>(.*?)</code></pre>", repl, body, flags=_re.S)
 
 
+# Each note gets a small drawing of its idea: beside it in note lists, large at the top of the note,
+# and on the "Next note" card. Hovering a list row or card plays the drawing; an article plays it on load.
+NOTE_ART = {
+    "note-a-number-needs-a-sentence.html": """<svg class="nv nv-say" viewBox="0 0 160 100" aria-hidden="true">
+        <g class="nv-bars"><rect x="10" y="62" width="14" height="28" /><rect x="28" y="46" width="14" height="44" /></g>
+        <rect class="nv-fill" x="46" y="30" width="14" height="60" />
+        <path class="nv-bubble" d="M78 12h66a8 8 0 0 1 8 8v30a8 8 0 0 1-8 8H94l-14 12 2-12a8 8 0 0 1-12-8V20a8 8 0 0 1 8-8z" />
+        <rect class="nv-line nv-write w1" x="82" y="24" width="58" height="5" rx="2.5" />
+        <rect class="nv-line nv-write w2" x="82" y="34" width="46" height="5" rx="2.5" />
+        <rect class="nv-fill nv-write w3" x="82" y="44" width="28" height="5" rx="2.5" />
+      </svg>""",
+    "note-half-a-day-to-under-an-hour.html": """<svg class="nv nv-time" viewBox="0 0 160 100" aria-hidden="true">
+        <text class="nv-label" x="8" y="26">Before</text>
+        <rect class="nv-track" x="8" y="32" width="144" height="14" rx="3" />
+        <rect class="nv-before nv-grow" x="8" y="32" width="144" height="14" rx="3" />
+        <text class="nv-label" x="8" y="66">After</text>
+        <rect class="nv-track" x="8" y="72" width="144" height="14" rx="3" />
+        <rect class="nv-fill nv-grow nv-after" x="8" y="72" width="26" height="14" rx="3" />
+      </svg>""",
+    "note-validate-before-you-visualise.html": """<svg class="nv nv-checks" viewBox="0 0 160 100" aria-hidden="true">
+        <circle class="nv-ring" cx="36" cy="50" r="18" /><circle class="nv-ring" cx="80" cy="50" r="18" /><circle class="nv-ring" cx="124" cy="50" r="18" />
+        <path class="nv-tick t1" pathLength="1" d="M28 50l6 6 11-12" /><path class="nv-tick t2" pathLength="1" d="M72 50l6 6 11-12" /><path class="nv-tick t3" pathLength="1" d="M116 50l6 6 11-12" />
+      </svg>""",
+    "note-start-with-a-star-schema.html": """<svg class="nv nv-star" viewBox="0 0 160 100" aria-hidden="true">
+        <g class="nv-links"><line x1="80" y1="50" x2="80" y2="14" /><line x1="80" y1="50" x2="80" y2="86" /><line x1="80" y1="50" x2="26" y2="50" /><line x1="80" y1="50" x2="134" y2="50" /></g>
+        <g class="nv-dims"><rect class="d-n" x="64" y="6" width="32" height="14" rx="3" /><rect class="d-s" x="64" y="80" width="32" height="14" rx="3" /><rect class="d-w" x="8" y="43" width="32" height="14" rx="3" /><rect class="d-e" x="120" y="43" width="32" height="14" rx="3" /></g>
+        <rect class="nv-fill" x="62" y="38" width="36" height="24" rx="4" />
+      </svg>""",
+    "note-reading-rent-data-honestly.html": """<svg class="nv nv-hist" viewBox="0 0 160 100" aria-hidden="true">
+        <g class="nv-bars"><rect x="14" y="74" width="14" height="16" /><rect x="32" y="56" width="14" height="34" /><rect x="50" y="32" width="14" height="58" /><rect x="68" y="22" width="14" height="68" /><rect x="86" y="40" width="14" height="50" /><rect x="104" y="60" width="14" height="30" /><rect x="122" y="72" width="14" height="18" /><rect x="140" y="80" width="10" height="10" /></g>
+        <line class="nv-median" x1="76" y1="8" x2="76" y2="94" />
+        <text class="nv-label" x="81" y="14">median</text>
+      </svg>""",
+}
+ARROW = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" /></svg>'
+
+
+
+def note_rows(notes, numbered_from=1):
+    """Numbered list rows with each note's drawing, shared by the notes page and the homepage."""
+    return "\n".join(f"""          <li class="note-row nv-host rise{" r" + str(i) if 0 < i < 4 else ""}">
+            <span class="nr-num" aria-hidden="true">{i + numbered_from:02d}</span>
+            <div class="nr-text">
+              <h3><a href="{n["file"]}">{_html.escape(n["title"])}</a></h3>
+              <p>{_html.escape(n["card"])}</p>
+              <span class="n-meta">{n["minutes"]} min read</span>
+            </div>
+            <div class="nr-art">
+      {NOTE_ART[n["file"]]}
+            </div>
+            <span class="nr-go">{ARROW}</span>
+          </li>""" for i, n in enumerate(notes))
+
+
 for i, n in enumerate(NOTES):
     n["body"] = _colour_code(n["body"])
     nxt = NOTES[(i + 1) % len(NOTES)]
@@ -219,13 +273,23 @@ for i, n in enumerate(NOTES):
         <h1>{_html.escape(n["title"])}</h1>
         <p class="lead">{_html.escape(n["lead"])}</p>
         <div class="byline"><span>Ishan Mathur</span><span>September 2026</span><span>{n["minutes"]} min read</span></div>
+        <div class="article-art nv-auto rise">
+      {NOTE_ART[n["file"]]}
+        </div>
         <div class="article-body">
 {n["body"]}
         </div>
-        <div class="article-end">
-          <span class="muted">Next note</span>
-          <a class="next-note" href="{nxt["file"]}">{_html.escape(nxt["title"])} &rarr;</a>
-        </div>
+        <a class="next-card nv-host" href="{nxt["file"]}">
+          <span class="nc-art">
+      {NOTE_ART[nxt["file"]]}
+          </span>
+          <span class="nc-text">
+            <span class="nc-label">Next note</span>
+            <span class="nc-title">{_html.escape(nxt["title"])}</span>
+            <span class="n-meta">{nxt["minutes"]} min read</span>
+          </span>
+          <span class="nr-go">{ARROW}</span>
+        </a>
       </div>
     </article>
   </main>
@@ -262,45 +326,7 @@ about_page = head("About | Ishan Mathur",
 open("about.html", "w", encoding="utf-8", newline="\n").write(about_page)
 print("wrote about.html")
 
-# Each note gets a small drawing of its idea, shown beside it on the notes page.
-NOTE_ART = {
-    "note-half-a-day-to-under-an-hour.html": """<svg class="nv nv-time" viewBox="0 0 160 100" aria-hidden="true">
-        <text class="nv-label" x="8" y="26">Before</text>
-        <rect class="nv-track" x="8" y="32" width="144" height="14" rx="3" />
-        <rect class="nv-before nv-grow" x="8" y="32" width="144" height="14" rx="3" />
-        <text class="nv-label" x="8" y="66">After</text>
-        <rect class="nv-track" x="8" y="72" width="144" height="14" rx="3" />
-        <rect class="nv-fill nv-grow nv-after" x="8" y="72" width="26" height="14" rx="3" />
-      </svg>""",
-    "note-validate-before-you-visualise.html": """<svg class="nv nv-checks" viewBox="0 0 160 100" aria-hidden="true">
-        <circle class="nv-ring" cx="36" cy="50" r="18" /><circle class="nv-ring" cx="80" cy="50" r="18" /><circle class="nv-ring" cx="124" cy="50" r="18" />
-        <path class="nv-tick t1" pathLength="1" d="M28 50l6 6 11-12" /><path class="nv-tick t2" pathLength="1" d="M72 50l6 6 11-12" /><path class="nv-tick t3" pathLength="1" d="M116 50l6 6 11-12" />
-      </svg>""",
-    "note-start-with-a-star-schema.html": """<svg class="nv nv-star" viewBox="0 0 160 100" aria-hidden="true">
-        <g class="nv-links"><line x1="80" y1="50" x2="80" y2="14" /><line x1="80" y1="50" x2="80" y2="86" /><line x1="80" y1="50" x2="26" y2="50" /><line x1="80" y1="50" x2="134" y2="50" /></g>
-        <g class="nv-dims"><rect class="d-n" x="64" y="6" width="32" height="14" rx="3" /><rect class="d-s" x="64" y="80" width="32" height="14" rx="3" /><rect class="d-w" x="8" y="43" width="32" height="14" rx="3" /><rect class="d-e" x="120" y="43" width="32" height="14" rx="3" /></g>
-        <rect class="nv-fill" x="62" y="38" width="36" height="24" rx="4" />
-      </svg>""",
-    "note-reading-rent-data-honestly.html": """<svg class="nv nv-hist" viewBox="0 0 160 100" aria-hidden="true">
-        <g class="nv-bars"><rect x="14" y="74" width="14" height="16" /><rect x="32" y="56" width="14" height="34" /><rect x="50" y="32" width="14" height="58" /><rect x="68" y="22" width="14" height="68" /><rect x="86" y="40" width="14" height="50" /><rect x="104" y="60" width="14" height="30" /><rect x="122" y="72" width="14" height="18" /><rect x="140" y="80" width="10" height="10" /></g>
-        <line class="nv-median" x1="76" y1="8" x2="76" y2="94" />
-        <text class="nv-label" x="81" y="14">median</text>
-      </svg>""",
-}
-ARROW = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" /></svg>'
-
-index_rows = "\n".join(f"""          <li class="note-row rise{" r" + str(i) if 0 < i < 4 else ""}">
-            <span class="nr-num" aria-hidden="true">{i + 1:02d}</span>
-            <div class="nr-text">
-              <h3><a href="{n["file"]}">{_html.escape(n["title"])}</a></h3>
-              <p>{_html.escape(n["card"])}</p>
-              <span class="n-meta">{n["minutes"]} min read</span>
-            </div>
-            <div class="nr-art">
-      {NOTE_ART[n["file"]]}
-            </div>
-            <span class="nr-go">{ARROW}</span>
-          </li>""" for i, n in enumerate(NOTES))
+index_rows = note_rows(NOTES)
 notes_page = head("Notes | Ishan Mathur",
                   "Short notes by Ishan Mathur on reporting: validation, data modelling, automating recurring reports and reading public data honestly.",
                   "notes.html", "home", "website") + header("notes") + f"""
@@ -329,6 +355,13 @@ notes_page = head("Notes | Ishan Mathur",
 """ + footer()
 open("notes.html", "w", encoding="utf-8", newline="\n").write(notes_page)
 print("wrote notes.html")
+
+home = open("index.html", encoding="utf-8").read()
+start, end = "<!-- notes:start -->", "<!-- notes:end -->"
+home = (home[:home.index(start) + len(start)] + "\n        <ol class=\"note-index\">\n" + note_rows(NOTES[:3])
+        + "\n        </ol>\n        " + home[home.index(end):])
+open("index.html", "w", encoding="utf-8", newline="\n").write(home)
+print("updated notes on index.html")
 
 
 # --------------------------------------------------------------------------- sitemap

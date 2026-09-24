@@ -2995,71 +2995,7 @@ html.theme-fading *::after {
   scroll-padding-top: 8rem;
 }
 
-/* --- Writing: cards on the homepage and article pages --- */
-
-.notes {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.25rem;
-}
-
-.note-card {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  padding: 1.6rem 1.5rem 1.4rem;
-  border-radius: 16px;
-  border: 1px solid var(--line);
-  background: var(--surface);
-  box-shadow: var(--shadow);
-  transition: transform 0.25s ease, border-color 0.25s ease;
-}
-
-.note-card:hover {
-  transform: translateY(-3px);
-  border-color: var(--line-strong);
-}
-
-.note-card .n-meta {
-  font-size: 0.8125rem;
-  color: var(--muted);
-  margin: 0 0 0.9rem;
-}
-
-.note-card h3 {
-  font-size: 1.4rem;
-  margin-bottom: 0.6rem;
-}
-
-.note-card h3 a {
-  text-decoration: none;
-}
-
-.note-card h3 a::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-}
-
-.note-card:hover h3 a {
-  color: var(--accent);
-}
-
-.note-card p {
-  margin: 0 0 1.2rem;
-  font-size: 0.95rem;
-  color: var(--muted);
-}
-
-.note-card .more {
-  margin-top: auto;
-}
-
-@media (max-width: 900px) {
-  .notes {
-    grid-template-columns: 1fr;
-  }
-}
+/* --- Writing: article pages --- */
 
 .article {
   padding: clamp(2.5rem, 6vw, 4.5rem) 0 clamp(3rem, 7vw, 5rem);
@@ -3138,22 +3074,115 @@ html.theme-fading *::after {
   background: var(--accent-soft);
 }
 
-.article-end {
+/* "Next note": a card with the next note's drawing */
+.next-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 9.5rem minmax(0, 1fr) 1.5rem;
+  gap: 1.5rem;
+  align-items: center;
   max-width: var(--read);
-  margin-top: 3rem;
-  padding-top: 1.75rem;
-  border-top: 1px solid var(--line);
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem 2rem;
-  justify-content: space-between;
-  align-items: baseline;
+  margin-top: 3.5rem;
+  padding: 1.25rem 1.5rem 1.25rem 1.25rem;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  color: var(--ink);
+  text-decoration: none;
+  transition: transform 0.25s ease, border-color 0.25s ease;
 }
 
-.article-end a.next-note {
+.next-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--line-strong);
+  color: var(--ink);
+}
+
+.nc-art {
+  display: block;
+  padding: 0.6rem 0.75rem;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+}
+
+.nc-art .nv {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.nc-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.nc-label {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.nc-title {
   font-family: var(--serif);
-  font-size: 1.4rem;
-  text-decoration: none;
+  font-size: 1.5rem;
+  line-height: 1.2;
+  transition: color 0.2s ease;
+}
+
+.next-card:hover .nc-title,
+.next-card:hover .nr-go {
+  color: var(--accent);
+}
+
+.next-card .n-meta {
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+.next-card:hover .nr-go {
+  transform: translateX(4px);
+}
+
+@media (max-width: 760px) {
+  .next-card {
+    grid-template-columns: 6.5rem minmax(0, 1fr);
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .next-card .nr-go {
+    display: none;
+  }
+
+  .nc-title {
+    font-size: 1.2rem;
+  }
+}
+
+/* The note's drawing, large, at the top of each note */
+.article-art {
+  max-width: var(--read);
+  margin: 2rem 0 0.5rem;
+  padding: clamp(1rem, 3vw, 1.75rem);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background-color: var(--surface);
+  background-image: linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+.article-art .nv {
+  display: block;
+  width: 100%;
+  max-width: 20rem;
+  height: auto;
+  margin: 0 auto;
 }
 
 @media print {
@@ -4305,6 +4334,22 @@ body.menu-open .site-header {
   fill: var(--muted);
 }
 
+.nv .nv-bubble {
+  fill: var(--surface);
+  stroke: var(--line-strong);
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+}
+
+.nv .nv-line {
+  fill: var(--line-strong);
+}
+
+.nv .nv-write {
+  transform-box: fill-box;
+  transform-origin: left;
+}
+
 .nv .nv-grow {
   transform-box: fill-box;
   transform-origin: left;
@@ -4318,53 +4363,65 @@ body.menu-open .site-header {
   }
 
   /* On hover each drawing acts out its note */
-  .note-row:hover .nv-after {
+  :is(.nv-host:hover, .nv-auto.in) .nv-after {
     animation: nv-fill 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
   }
 
-  .note-row:hover .nv-tick {
+  :is(.nv-host:hover, .nv-auto.in) .nv-tick {
     animation: nv-draw 0.45s ease both;
   }
 
-  .note-row:hover .nv-tick.t2 {
+  :is(.nv-host:hover, .nv-auto.in) .nv-tick.t2 {
     animation-delay: 0.15s;
   }
 
-  .note-row:hover .nv-tick.t3 {
+  :is(.nv-host:hover, .nv-auto.in) .nv-tick.t3 {
     animation-delay: 0.3s;
   }
 
-  .note-row:hover .nv-ring {
+  :is(.nv-host:hover, .nv-auto.in) .nv-ring {
     stroke: var(--accent);
   }
 
-  .note-row:hover .d-n {
+  :is(.nv-host:hover, .nv-auto.in) .d-n {
     transform: translateY(-3px);
   }
 
-  .note-row:hover .d-s {
+  :is(.nv-host:hover, .nv-auto.in) .d-s {
     transform: translateY(3px);
   }
 
-  .note-row:hover .d-w {
+  :is(.nv-host:hover, .nv-auto.in) .d-w {
     transform: translateX(-3px);
   }
 
-  .note-row:hover .d-e {
+  :is(.nv-host:hover, .nv-auto.in) .d-e {
     transform: translateX(3px);
   }
 
-  .note-row:hover .nv-bars rect {
+  :is(.nv-host:hover, .nv-auto.in) .nv-bars rect {
     animation: nv-rise 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
   }
 
-  .note-row:hover .nv-bars rect:nth-child(2) { animation-delay: 0.04s; }
-  .note-row:hover .nv-bars rect:nth-child(3) { animation-delay: 0.08s; }
-  .note-row:hover .nv-bars rect:nth-child(4) { animation-delay: 0.12s; }
-  .note-row:hover .nv-bars rect:nth-child(5) { animation-delay: 0.16s; }
-  .note-row:hover .nv-bars rect:nth-child(6) { animation-delay: 0.2s; }
-  .note-row:hover .nv-bars rect:nth-child(7) { animation-delay: 0.24s; }
-  .note-row:hover .nv-bars rect:nth-child(8) { animation-delay: 0.28s; }
+  :is(.nv-host:hover, .nv-auto.in) .nv-write {
+    animation: nv-fill 0.4s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  :is(.nv-host:hover, .nv-auto.in) .nv-write.w2 {
+    animation-delay: 0.15s;
+  }
+
+  :is(.nv-host:hover, .nv-auto.in) .nv-write.w3 {
+    animation-delay: 0.3s;
+  }
+
+  :is(.nv-host:hover, .nv-auto.in) .nv-bars rect:nth-child(2) { animation-delay: 0.04s; }
+  :is(.nv-host:hover, .nv-auto.in) .nv-bars rect:nth-child(3) { animation-delay: 0.08s; }
+  :is(.nv-host:hover, .nv-auto.in) .nv-bars rect:nth-child(4) { animation-delay: 0.12s; }
+  :is(.nv-host:hover, .nv-auto.in) .nv-bars rect:nth-child(5) { animation-delay: 0.16s; }
+  :is(.nv-host:hover, .nv-auto.in) .nv-bars rect:nth-child(6) { animation-delay: 0.2s; }
+  :is(.nv-host:hover, .nv-auto.in) .nv-bars rect:nth-child(7) { animation-delay: 0.24s; }
+  :is(.nv-host:hover, .nv-auto.in) .nv-bars rect:nth-child(8) { animation-delay: 0.28s; }
 }
 
 @keyframes nh-draw {
