@@ -14,6 +14,65 @@
     }
 
     var calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var root = document.documentElement;
+
+    // Theme switch. Follows the device until the visitor chooses, then remembers.
+    var toggle = document.querySelector('.theme-toggle');
+    var darkQuery = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+
+    function currentTheme() {
+        var set = root.getAttribute('data-theme');
+        if (set === 'light' || set === 'dark') return set;
+        return darkQuery && darkQuery.matches ? 'dark' : 'light';
+    }
+
+    function syncToggle() {
+        var theme = currentTheme();
+        if (toggle) {
+            toggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
+            toggle.setAttribute('title', theme === 'dark' ? 'Light theme' : 'Dark theme');
+        }
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute('content', theme === 'dark' ? '#1a1917' : '#faf9f5');
+    }
+
+    function applyTheme(theme) {
+        root.setAttribute('data-theme', theme);
+        try { localStorage.setItem('theme', theme); } catch (e) { /* private mode: still switches */ }
+        syncToggle();
+    }
+
+    if (toggle) {
+        syncToggle();
+        if (darkQuery && darkQuery.addEventListener) darkQuery.addEventListener('change', syncToggle);
+
+        toggle.addEventListener('click', function () {
+            var next = currentTheme() === 'dark' ? 'light' : 'dark';
+
+            if (calm) { applyTheme(next); return; }
+
+            // Preferred: the new theme spreads out in a circle from the button.
+            if (document.startViewTransition) {
+                var box = toggle.getBoundingClientRect();
+                var x = box.left + box.width / 2;
+                var y = box.top + box.height / 2;
+                var reach = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
+                var transition = document.startViewTransition(function () { applyTheme(next); });
+                transition.ready.then(function () {
+                    root.animate(
+                        { clipPath: ['circle(0px at ' + x + 'px ' + y + 'px)', 'circle(' + reach + 'px at ' + x + 'px ' + y + 'px)'] },
+                        { duration: 700, easing: 'cubic-bezier(0.2, 0.7, 0.2, 1)', pseudoElement: '::view-transition-new(root)' }
+                    );
+                }).catch(function () { });
+                return;
+            }
+
+            // Fallback: a short colour fade.
+            root.classList.add('theme-fading');
+            applyTheme(next);
+            window.setTimeout(function () { root.classList.remove('theme-fading'); }, 500);
+        });
+    }
 
     // Sections rise into view as they reach the screen.
     var risers = document.querySelectorAll('.rise');

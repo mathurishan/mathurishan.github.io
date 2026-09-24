@@ -24,7 +24,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --bg: #1a1917;
     --surface: #22211e;
     --ink: #ecebe6;
@@ -37,6 +37,20 @@
     --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.25);
     color-scheme: dark;
   }
+}
+
+:root[data-theme="dark"] {
+  --bg: #1a1917;
+  --surface: #22211e;
+  --ink: #ecebe6;
+  --ink-2: #cfccc4;
+  --muted: #9d9a92;
+  --line: #33312d;
+  --line-strong: #45433e;
+  --accent: #e0916b;
+  --accent-soft: #3a2a22;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.25);
+  color-scheme: dark;
 }
 
 *,
@@ -271,7 +285,7 @@ strong {
 /* ---------- Home: hero ---------- */
 
 .hero {
-  padding: clamp(4rem, 11vw, 8.5rem) 0 clamp(3rem, 7vw, 5rem);
+  padding: clamp(2.5rem, 6vw, 4.5rem) 0 clamp(3rem, 6vw, 4.5rem);
 }
 
 .hero h1 {
@@ -882,7 +896,7 @@ body.lightbox-open {
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --tone-sand: #2c2823;
     --tone-sage: #252a24;
     --tone-slate: #23272e;
@@ -892,6 +906,17 @@ body.lightbox-open {
     --band: #0f0f0e;
     --band-line: #2c2a27;
   }
+}
+
+:root[data-theme="dark"] {
+  --tone-sand: #2c2823;
+  --tone-sage: #252a24;
+  --tone-slate: #23272e;
+  --tone-clay: #2e2521;
+  --tone-lilac: #29262f;
+  --dot: rgba(236, 235, 230, 0.07);
+  --band: #0f0f0e;
+  --band-line: #2c2a27;
 }
 
 /* --- Hero: two columns with a composed visual --- */
@@ -1750,5 +1775,173 @@ body.lightbox-open {
 @media (max-width: 860px) {
   .feature.flip {
     grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   Theme switch: a sun that eclipses into a crescent moon
+   ========================================================================== */
+
+.header-end {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+.theme-toggle {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(29, 28, 26, 0.05);
+  transition: border-color 0.2s ease, background-color 0.4s ease, transform 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.theme-toggle:hover {
+  border-color: var(--line-strong);
+}
+
+.theme-toggle:active {
+  transform: scale(0.94);
+}
+
+.theme-toggle svg {
+  width: 1.15rem;
+  height: 1.15rem;
+  overflow: visible;
+}
+
+.theme-toggle .core {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1), fill 0.4s ease;
+  fill: currentColor;
+}
+
+.theme-toggle .shade {
+  transition: transform 0.55s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.theme-toggle .rays {
+  transform-origin: center;
+  stroke: currentColor;
+  transition: transform 0.55s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.35s ease;
+}
+
+/* Dark theme: rays fold away, the core grows and is eclipsed into a crescent */
+:root[data-theme="dark"] .theme-toggle .core {
+  transform: scale(1.8);
+  fill: var(--accent);
+}
+
+:root[data-theme="dark"] .theme-toggle .shade {
+  transform: translate(-13px, 7px);
+}
+
+:root[data-theme="dark"] .theme-toggle .rays {
+  transform: rotate(-90deg) scale(0.4);
+  opacity: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-toggle .core {
+    transform: scale(1.8);
+    fill: var(--accent);
+  }
+
+  :root:not([data-theme="light"]) .theme-toggle .shade {
+    transform: translate(-13px, 7px);
+  }
+
+  :root:not([data-theme="light"]) .theme-toggle .rays {
+    transform: rotate(-90deg) scale(0.4);
+    opacity: 0;
+  }
+}
+
+/* The switch itself: a soft circular wipe from the button (where supported) */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-new(root) {
+  z-index: 2;
+}
+
+/* Fallback: a quick colour fade on everything */
+html.theme-fading,
+html.theme-fading *,
+html.theme-fading *::before,
+html.theme-fading *::after {
+  transition: background-color 0.45s ease, color 0.45s ease, border-color 0.45s ease, fill 0.45s ease !important;
+}
+
+@media (max-width: 560px) {
+  .header-end {
+    gap: 1rem;
+  }
+
+  .theme-toggle {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .theme-toggle .core,
+  .theme-toggle .shade,
+  .theme-toggle .rays {
+    transition: none;
+  }
+}
+
+/* Compact header on phones so the name, links and switch all fit */
+@media (max-width: 480px) {
+  .brand {
+    font-size: 1.1rem;
+  }
+
+  .header-end {
+    gap: 0.75rem;
+  }
+
+  .nav {
+    gap: 0.9rem;
+    font-size: 0.875rem;
+  }
+
+  .theme-toggle {
+    width: 2.1rem;
+    height: 2.1rem;
+  }
+}
+
+@media (max-width: 370px) {
+  .site-header .wrap {
+    padding: 0 1rem;
+  }
+
+  .brand {
+    font-size: 1rem;
+  }
+
+  .nav {
+    gap: 0.7rem;
+    font-size: 0.8125rem;
+  }
+
+  .header-end {
+    gap: 0.6rem;
   }
 }
