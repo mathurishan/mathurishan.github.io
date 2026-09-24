@@ -9,8 +9,8 @@ import extras2
 import diagrams
 
 SITE = "https://mathurishan.github.io/"
-CSS_V = "8"
-JS_V = "8"
+CSS_V = "9"
+JS_V = "9"
 FONTS = ("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@"
          "0,6..72,400;0,6..72,500;1,6..72,400&display=swap")
 ARROW = ('<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" '
@@ -53,11 +53,17 @@ def head(title, desc, path, og, og_type="article", html_class=""):
 
 
 def header(current=None, home=False):
+    """Site header. `current` is one of work, about, notes, resume, contact."""
     base = "" if home else "./"
+    links = [(base + "#work", "Work", "work"), ("about.html", "About", "about"), ("notes.html", "Notes", "notes"),
+             ("resume.html", "Résumé", "resume"), (base + "#contact", "Contact", "contact")]
+
     def a(href, label, key):
         cur = ' aria-current="page"' if current == key else ""
         return f'<a href="{href}"{cur}>{label}</a>'
-    return f'''
+    nav = "\n          ".join(a(h, l, k) for h, l, k in links)
+    sheet = "\n        ".join(a(h, l, k) for h, l, k in links)
+    return f"""
 <body>
   <a class="skip" href="#main">Skip to content</a>
 
@@ -66,9 +72,7 @@ def header(current=None, home=False):
       <a class="brand" href="./">Ishan Mathur</a>
       <div class="header-end">
         <nav class="nav" aria-label="Main">
-          {a(base + "#work", "Work", "work")}
-          {a("resume.html", "Résumé", "resume")}
-          {a(base + "#contact", "Contact", "contact")}
+          {nav}
         </nav>
         <button class="search-btn" type="button" data-palette aria-label="Search the site (Ctrl+K)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.5"/><path d="m10.5 10.5 3 3"/></svg>Search<kbd>Ctrl K</kbd></button>
         <button class="theme-toggle" type="button" aria-label="Switch theme">
@@ -85,10 +89,22 @@ def header(current=None, home=False):
             </g>
           </svg>
         </button>
+        <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu-sheet">
+          <span class="bars" aria-hidden="true"><i></i><i></i></span><span class="menu-label">Menu</span>
+        </button>
       </div>
     </div>
   </header>
-'''
+  <div class="menu-sheet" id="menu-sheet" hidden>
+    <nav aria-label="Menu">
+        {sheet}
+    </nav>
+    <div class="menu-foot">
+      <button class="menu-search" type="button" data-palette>Search the site</button>
+      <a href="mailto:mathur.ishan11@gmail.com">mathur.ishan11@gmail.com</a>
+    </div>
+  </div>
+"""
 
 
 def footer(dark=False, links=None, charts=False):

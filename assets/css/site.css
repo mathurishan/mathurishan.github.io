@@ -3881,3 +3881,155 @@ a.dot:focus-visible {
   white-space: nowrap;
   border: 0;
 }
+
+/* ==========================================================================
+   Header with five links; full-screen menu on phones
+   ========================================================================== */
+
+.nav {
+  gap: 1.6rem;
+}
+
+.menu-btn {
+  display: none;
+  align-items: center;
+  gap: 0.55rem;
+  height: 2.5rem;
+  padding: 0 0.9rem 0 0.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.menu-btn .bars {
+  position: relative;
+  width: 1rem;
+  height: 0.7rem;
+}
+
+.menu-btn .bars i {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1.5px;
+  border-radius: 2px;
+  background: currentColor;
+  transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1), top 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.menu-btn .bars i:first-child {
+  top: 0;
+}
+
+.menu-btn .bars i:last-child {
+  top: calc(100% - 1.5px);
+}
+
+.menu-btn[aria-expanded="true"] .bars i:first-child {
+  top: calc(50% - 0.75px);
+  transform: rotate(45deg);
+}
+
+.menu-btn[aria-expanded="true"] .bars i:last-child {
+  top: calc(50% - 0.75px);
+  transform: rotate(-45deg);
+}
+
+.menu-sheet {
+  position: fixed;
+  inset: 4rem 0 0 0;
+  z-index: 45;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem var(--gutter) 2.5rem;
+  background: var(--bg);
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.menu-sheet.open {
+  opacity: 1;
+  transform: none;
+}
+
+.menu-sheet nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-sheet nav a {
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--serif);
+  font-size: 2rem;
+  letter-spacing: -0.015em;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.menu-sheet nav a[aria-current="page"] {
+  color: var(--accent);
+}
+
+.menu-foot {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.menu-search {
+  align-self: flex-start;
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  cursor: pointer;
+}
+
+body.menu-open {
+  overflow: hidden;
+}
+
+body.menu-open .site-header {
+  border-bottom-color: var(--line);
+}
+
+@media (max-width: 980px) {
+  .search-btn {
+    display: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .nav {
+    display: none;
+  }
+
+  .menu-btn {
+    display: inline-flex;
+  }
+}
+
+@media (min-width: 761px) {
+  .menu-sheet {
+    display: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu-sheet,
+  .menu-btn .bars i {
+    transition: none;
+  }
+}

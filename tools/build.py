@@ -7,6 +7,7 @@ this file then writes resume.html and 404.html. index.html and economics-game.ht
 are edited by hand.
 """
 import sys, os
+import re
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from build_site import head, header, footer  # noqa: E402  (also rebuilds project pages)
 
@@ -155,38 +156,17 @@ resume = head("Résumé | Ishan Mathur",
 open("resume.html", "w", encoding="utf-8", newline="\n").write(resume)
 print("wrote resume.html")
 
+def _absolute(markup):
+    """404.html can be served at any path, so its links must be root-relative."""
+    markup = markup.replace('href="./', 'href="/')
+    return re.sub(r'href="(?!https?:|mailto:|/|#)([^"]*)"', r'href="/\1"', markup)
+
+
 page404 = (head("Page not found | Ishan Mathur", "This page doesn't exist or has moved.", "404.html", "home", "website")
            .replace('href="favicon', 'href="/favicon').replace('href="apple-touch', 'href="/apple-touch').replace('href="site.webmanifest', 'href="/site.webmanifest')
            .replace('href="assets/', 'href="/assets/')
            .replace('<meta name="theme-color"', '<meta name="robots" content="noindex" />\n  <meta name="theme-color"')) + '''
-<body>
-  <header class="site-header">
-    <div class="wrap">
-      <a class="brand" href="/">Ishan Mathur</a>
-      <div class="header-end">
-        <nav class="nav" aria-label="Main">
-          <a href="/#work">Work</a>
-          <a href="/resume.html">Résumé</a>
-          <a href="/#contact">Contact</a>
-        </nav>
-        <button class="search-btn" type="button" data-palette aria-label="Search the site (Ctrl+K)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.5"/><path d="m10.5 10.5 3 3"/></svg>Search<kbd>Ctrl K</kbd></button>
-        <button class="theme-toggle" type="button" aria-label="Switch theme">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <mask id="theme-mask">
-              <rect width="24" height="24" fill="#fff" />
-              <circle class="shade" cx="30" cy="0" r="7" fill="#000" />
-            </mask>
-            <g mask="url(#theme-mask)">
-              <circle class="core" cx="12" cy="12" r="5" />
-            </g>
-            <g class="rays" fill="none" stroke-width="1.6" stroke-linecap="round">
-              <path d="M12 2.5v1.8M12 19.7v1.8M2.5 12h1.8M19.7 12h1.8M5.3 5.3l1.3 1.3M17.4 17.4l1.3 1.3M5.3 18.7l1.3-1.3M17.4 6.6l1.3-1.3" />
-            </g>
-          </svg>
-        </button>
-      </div>
-    </div>
-  </header>
+''' + _absolute(header()) + '''
   <main id="main">
     <section class="hero">
       <div class="wrap">
@@ -199,7 +179,7 @@ page404 = (head("Page not found | Ishan Mathur", "This page doesn't exist or has
       </div>
     </section>
   </main>
-  <script src="/assets/js/site.js?v=8" defer></script>
+  <script src="/assets/js/site.js?v=9" defer></script>
 </body>
 
 </html>
@@ -229,12 +209,12 @@ def _colour_code(body):
 for i, n in enumerate(NOTES):
     n["body"] = _colour_code(n["body"])
     nxt = NOTES[(i + 1) % len(NOTES)]
-    page = head(f'{n["title"]} | Ishan Mathur', n["desc"], n["file"], "home") + header("work") + f'''
+    page = head(f'{n["title"]} | Ishan Mathur', n["desc"], n["file"], "home") + header("notes") + f'''
   <div class="progress" aria-hidden="true"></div>
   <main id="main">
     <article class="article">
       <div class="wrap">
-        <a class="back" href="./#writing">&larr; All notes</a>
+        <a class="back" href="notes.html">&larr; All notes</a>
         <p class="eyebrow">Note</p>
         <h1>{_html.escape(n["title"])}</h1>
         <p class="lead">{_html.escape(n["lead"])}</p>
@@ -254,11 +234,71 @@ for i, n in enumerate(NOTES):
     print("wrote", n["file"])
 
 
+# --------------------------------------------------------------------------- about and notes index
+
+import about_content  # noqa: E402
+
+ABOUT_ACTIONS = """        <div class="actions">
+          <a class="btn btn-primary" href="resume.html">Résumé</a>
+          <a class="btn" href="files/Ishan-Mathur-Resume.pdf" download>Download PDF</a>
+          <button class="btn" type="button" data-copy="mathur.ishan11@gmail.com">Copy email</button>
+        </div>"""
+
+about_page = head("About | Ishan Mathur",
+                  "About Ishan Mathur: Data & BI Analyst in New Zealand. Background, experience timeline and where each tool shows up across projects and roles.",
+                  "about.html", "home", "profile", html_class="has-subnav") + header("about") + f"""
+  <main id="main">
+    <section class="case-hero">
+      <div class="wrap">
+        <p class="eyebrow">About</p>
+        <h1>Ishan Mathur</h1>
+        <p class="lead">Data &amp; BI Analyst in Hamilton, New Zealand. I build the reporting layer between messy source
+          systems and the people who need answers.</p>
+{ABOUT_ACTIONS}
+      </div>
+    </section>
+{about_content.BACKGROUND}{about_content.EXPERIENCE}{about_content.TOOLS}{about_content.STATEMENT}  </main>
+""" + footer()
+open("about.html", "w", encoding="utf-8", newline="\n").write(about_page)
+print("wrote about.html")
+
+note_cards = "\n".join(f"""          <article class="note-card rise{" r" + str(i % 3) if i % 3 else ""}">
+            <p class="n-meta">Note · {n["minutes"]} min read</p>
+            <h3><a href="{n["file"]}">{_html.escape(n["title"])}</a></h3>
+            <p>{_html.escape(n["card"])}</p>
+            <span class="more">Read the note <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" /></svg></span>
+          </article>""" for i, n in enumerate(NOTES))
+notes_page = head("Notes | Ishan Mathur",
+                  "Short notes by Ishan Mathur on reporting: validation, data modelling and reading public data honestly.",
+                  "notes.html", "home", "website") + header("notes") + f"""
+  <main id="main">
+    <section class="case-hero">
+      <div class="wrap">
+        <p class="eyebrow">Notes</p>
+        <h1>Notes on reporting</h1>
+        <p class="lead">Short reads on how I build reporting people can trust: validation, modelling and being honest
+          about what the data can say.</p>
+      </div>
+    </section>
+    <section class="section" aria-label="All notes">
+      <div class="wrap">
+        <div class="notes">
+{note_cards}
+        </div>
+      </div>
+    </section>
+  </main>
+""" + footer()
+open("notes.html", "w", encoding="utf-8", newline="\n").write(notes_page)
+print("wrote notes.html")
+
+
 # --------------------------------------------------------------------------- sitemap
 
 import datetime  # noqa: E402
 
-SITEMAP_PAGES = [""] + [p["file"] for p in __import__("build_site").PROJECTS] + ["resume.html"] + [n["file"] for n in NOTES]
+SITEMAP_PAGES = ([""] + [p["file"] for p in __import__("build_site").PROJECTS]
+                 + ["about.html", "notes.html", "resume.html"] + [n["file"] for n in NOTES])
 today = datetime.date.today().isoformat()
 lines = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
 lines += [f"  <url><loc>https://mathurishan.github.io/{p}</loc><lastmod>{today}</lastmod></url>" for p in SITEMAP_PAGES]

@@ -232,9 +232,10 @@
         ['Home', './', 'Page'],
         ['Selected work', './#work', 'Home'],
         ['How I work', './#approach', 'Home'],
-        ['Experience timeline', './#experience', 'Home'],
-        ['Tools and projects', './#tools', 'Home'],
-        ['Notes on reporting', './#writing', 'Home'],
+        ['About Ishan', 'about.html', 'Page'],
+        ['Experience timeline', 'about.html#experience', 'About'],
+        ['Where each tool shows up', 'about.html#tools', 'About'],
+        ['Notes on reporting', 'notes.html', 'Page'],
         ['Contact', './#contact', 'Home'],
         ['Retail Sales & Returns Analysis', 'powerbi-retail.html', 'Power BI'],
         ['Retail DAX measures', 'powerbi-retail.html#dax', 'Power BI'],
@@ -347,6 +348,41 @@
             if (palette && palette.classList.contains('open')) closePalette(); else openPalette();
         }
     });
+
+    // Phone menu: a full-screen sheet opened from the Menu button.
+    var menuBtn = document.querySelector('.menu-btn');
+    var sheet = document.getElementById('menu-sheet');
+    if (menuBtn && sheet) {
+        var setMenu = function (open) {
+            menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+            menuBtn.querySelector('.menu-label').textContent = open ? 'Close' : 'Menu';
+            document.body.classList.toggle('menu-open', open);
+            if (open) {
+                sheet.hidden = false;
+                requestAnimationFrame(function () { sheet.classList.add('open'); });
+                var first = sheet.querySelector('a');
+                if (first) first.focus();
+            } else {
+                sheet.classList.remove('open');
+                sheet.hidden = true;
+            }
+        };
+        menuBtn.addEventListener('click', function () {
+            setMenu(menuBtn.getAttribute('aria-expanded') !== 'true');
+        });
+        sheet.addEventListener('click', function (e) {
+            if (e.target.closest('a, [data-palette]')) setMenu(false);
+        });
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && menuBtn.getAttribute('aria-expanded') === 'true') {
+                setMenu(false);
+                menuBtn.focus();
+            }
+        });
+        window.addEventListener('resize', function () {
+            if (window.innerWidth > 760 && menuBtn.getAttribute('aria-expanded') === 'true') setMenu(false);
+        });
+    }
 
     // Reading progress bar along the top of project and article pages.
     var bar = document.querySelector('.progress');

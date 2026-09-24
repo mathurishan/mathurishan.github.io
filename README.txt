@@ -7,6 +7,7 @@ site, assets/js/charts.js for the interactive charts). No framework.
 
 HOW TO EDIT
   Home page ........ edit index.html directly.
+  About page ....... tools/about_content.py (background, timeline, tools grid)
   Project pages .... edit the PROJECTS list in tools/build_site.py
   Charts, SQL, DAX . tools/extras.py and tools/extras2.py
   Résumé, 404 ...... tools/build.py
@@ -28,6 +29,8 @@ CHECKS
 
 PAGES
   index.html                              Home
+  about.html                              About (background, experience, tools grid)
+  notes.html                              Notes index
   powerbi-retail.html                     Retail Sales & Returns Analysis (Power BI)
   powerbi-air-nz.html                     Air New Zealand Analysis (Power BI)
   sql-nz-building-consents.html           NZ Building Consents (SQL)
