@@ -95,9 +95,12 @@
             svg.setAttribute('viewBox', '0 0 ' + width + ' ' + height);
             svg.setAttribute('height', height);
 
-            var sorted = rows.slice().sort(function (a, b) { return b.d[metric] - a.d[metric]; });
-            var max = niceMax(sorted[0].d[metric]);
             var def = metrics.filter(function (x) { return x.key === metric; })[0];
+            // Worst first: highest values, or lowest when the target is a floor (e.g. on-time %).
+            var sorted = rows.slice().sort(function (a, b) {
+                return def.below ? a.d[metric] - b.d[metric] : b.d[metric] - a.d[metric];
+            });
+            var max = niceMax(Math.max.apply(null, rows.map(function (r) { return r.d[metric]; }).concat(def.threshold || 0)));
             svg.setAttribute('aria-label', def.label + ' by region, 2025. Highest: ' + sorted[0].d.label + ', ' + fmt(metric, sorted[0].d[metric]) + '.');
 
             while (gridG.firstChild) gridG.removeChild(gridG.firstChild);
@@ -123,7 +126,9 @@
             sorted.forEach(function (r, i) {
                 var y = top + i * rowH;
                 var w = Math.max(plotW * r.d[metric] / max, 1.5);
-                r.g.classList.toggle('over', def.threshold != null && r.d[metric] > def.threshold);
+                var miss = def.threshold != null &&
+                    (def.below ? r.d[metric] < def.threshold : r.d[metric] > def.threshold);
+                r.g.classList.toggle('over', miss);
                 r.g.style.transform = 'translateY(' + y + 'px)';
                 r.rect.setAttribute('y', 5);
                 r.rect.setAttribute('width', w);

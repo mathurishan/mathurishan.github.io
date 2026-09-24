@@ -1,0 +1,219 @@
+{
+ "routes": [
+  {
+   "label": "Wellington → Christchurch",
+   "short": "WLG → CHC",
+   "cancellations": 90,
+   "rate": 4.03,
+   "otp": 82.4,
+   "scheduled": 2233,
+   "cum": 3.0
+  },
+  {
+   "label": "Christchurch → Auckland",
+   "short": "CHC → AKL",
+   "cancellations": 81,
+   "rate": 2.93,
+   "otp": 75.9,
+   "scheduled": 2768,
+   "cum": 5.8
+  },
+  {
+   "label": "Auckland → Christchurch",
+   "short": "AKL → CHC",
+   "cancellations": 80,
+   "rate": 2.86,
+   "otp": 77.2,
+   "scheduled": 2795,
+   "cum": 8.5
+  },
+  {
+   "label": "Wellington → Auckland",
+   "short": "WLG → AKL",
+   "cancellations": 80,
+   "rate": 3.05,
+   "otp": 75.4,
+   "scheduled": 2625,
+   "cum": 11.2
+  },
+  {
+   "label": "Christchurch → Wellington",
+   "short": "CHC → WLG",
+   "cancellations": 73,
+   "rate": 3.2,
+   "otp": 85.6,
+   "scheduled": 2282,
+   "cum": 13.6
+  },
+  {
+   "label": "Auckland → Wellington",
+   "short": "AKL → WLG",
+   "cancellations": 72,
+   "rate": 2.77,
+   "otp": 82.1,
+   "scheduled": 2597,
+   "cum": 16.0
+  },
+  {
+   "label": "Palmerston North → Auckland",
+   "short": "PMR → AKL",
+   "cancellations": 70,
+   "rate": 4.11,
+   "otp": 79.9,
+   "scheduled": 1703,
+   "cum": 18.4
+  },
+  {
+   "label": "Nelson → Wellington",
+   "short": "NSN → WLG",
+   "cancellations": 69,
+   "rate": 5.03,
+   "otp": 80.5,
+   "scheduled": 1373,
+   "cum": 20.7
+  },
+  {
+   "label": "Wellington → Nelson",
+   "short": "WLG → NSN",
+   "cancellations": 67,
+   "rate": 4.79,
+   "otp": 72.9,
+   "scheduled": 1398,
+   "cum": 23.0
+  },
+  {
+   "label": "Auckland → Palmerston North",
+   "short": "AKL → PMR",
+   "cancellations": 66,
+   "rate": 3.88,
+   "otp": 79.0,
+   "scheduled": 1701,
+   "cum": 25.2
+  },
+  {
+   "label": "Hawke's Bay → Auckland",
+   "short": "NPE → AKL",
+   "cancellations": 64,
+   "rate": 3.49,
+   "otp": 75.0,
+   "scheduled": 1834,
+   "cum": 27.4
+  },
+  {
+   "label": "New Plymouth → Auckland",
+   "short": "NPL → AKL",
+   "cancellations": 64,
+   "rate": 5.11,
+   "otp": 79.1,
+   "scheduled": 1253,
+   "cum": 29.5
+  },
+  {
+   "label": "Hamilton → Wellington",
+   "short": "HLZ → WLG",
+   "cancellations": 62,
+   "rate": 6.4,
+   "otp": 78.4,
+   "scheduled": 968,
+   "cum": 31.6
+  },
+  {
+   "label": "Nelson → Auckland",
+   "short": "NSN → AKL",
+   "cancellations": 59,
+   "rate": 3.8,
+   "otp": 75.4,
+   "scheduled": 1554,
+   "cum": 33.6
+  },
+  {
+   "label": "Auckland → New Plymouth",
+   "short": "AKL → NPL",
+   "cancellations": 55,
+   "rate": 4.39,
+   "otp": 78.5,
+   "scheduled": 1252,
+   "cum": 35.5
+  },
+  {
+   "label": "Hawke's Bay → Wellington",
+   "short": "NPE → WLG",
+   "cancellations": 54,
+   "rate": 7.63,
+   "otp": 84.6,
+   "scheduled": 708,
+   "cum": 37.3
+  },
+  {
+   "label": "Wellington → Hamilton",
+   "short": "WLG → HLZ",
+   "cancellations": 51,
+   "rate": 5.26,
+   "otp": 83.2,
+   "scheduled": 969,
+   "cum": 39.0
+  },
+  {
+   "label": "Auckland → Hawke's Bay",
+   "short": "AKL → NPE",
+   "cancellations": 51,
+   "rate": 2.79,
+   "otp": 78.5,
+   "scheduled": 1831,
+   "cum": 40.7
+  },
+  {
+   "label": "Auckland → Nelson",
+   "short": "AKL → NSN",
+   "cancellations": 49,
+   "rate": 3.15,
+   "otp": 75.9,
+   "scheduled": 1554,
+   "cum": 42.4
+  },
+  {
+   "label": "Wellington → Hawke's Bay",
+   "short": "WLG → NPE",
+   "cancellations": 48,
+   "rate": 6.78,
+   "otp": 84.1,
+   "scheduled": 708,
+   "cum": 44.0
+  }
+ ],
+ "kpis": {
+  "Air NZ": {
+   "sectors_scheduled": 78702.0,
+   "sectors_flown": 75730.0,
+   "cancellations": 2966.0,
+   "departures_ot": 57850.0,
+   "arrivals_ot": 59498.0,
+   "flight_completion_rate": 0.9622373001956748,
+   "cancellation_rate": 0.03768646285990191,
+   "departure_otp": 0.7638980588934372,
+   "arrival_otp": 0.7856595800871518
+  },
+  "Jetstar": {
+   "sectors_scheduled": 9935.0,
+   "sectors_flown": 9796.0,
+   "cancellations": 139.0,
+   "departures_ot": 7733.0,
+   "arrivals_ot": 7854.0,
+   "flight_completion_rate": 0.9860090588827378,
+   "cancellation_rate": 0.013990941117262205,
+   "departure_otp": 0.7894038383013475,
+   "arrival_otp": 0.8017558187015108
+  }
+ },
+ "gap": {
+  "Scope": "Air NZ top-10 routes (May–Oct 2025)",
+  "Scheduled sectors": "22369",
+  "Cancellations (actual)": "727",
+  "Cancellation rate (actual)": "0.03250033528543967",
+  "Arrival OTP (actual)": "0.7904150106294482",
+  "Arrival OTP target": "0.85",
+  "Cancellation rate target": "0.02",
+  "Extra on-time arrivals needed (to hit target)": "1289.2999999999993",
+  "Cancellations to avoid (to hit target)": "279.62"
+ }
+}

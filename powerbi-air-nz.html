@@ -16,14 +16,15 @@
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="theme-color" content="#faf9f5" />
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="icon" href="favicon.ico?v=2" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg?v=2">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=2">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
   <link rel="manifest" href="site.webmanifest">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/site.css?v=6" />
+  <link rel="stylesheet" href="assets/css/site.css?v=7" />
   <script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){d.setAttribute('data-theme',t);}}catch(e){}})()</script>
 </head>
 
@@ -85,7 +86,7 @@
     </div>
 
     <nav class="subnav" aria-label="On this page">
-      <div class="wrap"><a href="#problem">Problem</a><a href="#data">Data</a><a href="#built">What I built</a><a href="#dax">DAX</a><a href="#findings">What changed</a><a href="#gallery">Gallery</a></div>
+      <div class="wrap"><a href="#problem">Problem</a><a href="#data">Data</a><a href="#built">What I built</a><a href="#explore">Explore</a><a href="#dax">DAX</a><a href="#findings">What changed</a><a href="#gallery">Gallery</a></div>
     </nav>
 
     <section class="case-body">
@@ -118,6 +119,53 @@
       </div>
     </section>
 
+
+    <section class="section" id="explore" aria-labelledby="explore-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="explore-title">Explore the data</h2>
+          <span class="muted">Domestic network, May to October 2025</span>
+        </div>
+        <div class="chart rise" data-chart="bar" data-metrics='[{&quot;key&quot;: &quot;cancellations&quot;, &quot;label&quot;: &quot;Cancellations&quot;}, {&quot;key&quot;: &quot;rate&quot;, &quot;label&quot;: &quot;Cancellation rate&quot;, &quot;suffix&quot;: &quot;%&quot;, &quot;decimals&quot;: 1, &quot;threshold&quot;: 2}, {&quot;key&quot;: &quot;otp&quot;, &quot;label&quot;: &quot;On-time arrivals&quot;, &quot;suffix&quot;: &quot;%&quot;, &quot;decimals&quot;: 1, &quot;threshold&quot;: 85, &quot;below&quot;: true}]'>
+          <div class="chart-head">
+            <div>
+              <h3>Top 20 routes by cancellations</h3>
+              <p>Worst first on each measure. Targets: 2% cancellations, 85% on-time arrivals.</p>
+            </div>
+            <div class="seg" aria-label="Measure"><button type="button" data-metric="cancellations" aria-pressed="true">Cancellations</button><button type="button" data-metric="rate" aria-pressed="false">Cancellation rate</button><button type="button" data-metric="otp" aria-pressed="false">On-time arrivals</button></div>
+          </div>
+          <div class="chart-canvas"></div>
+          <p class="chart-note">Highlighted bars miss the target on the selected measure.</p>
+          <details>
+            <summary>View as a table</summary>
+            <table>
+              <thead><tr><th>Route</th><th>Scheduled</th><th>Cancelled</th><th>Cancellation rate</th><th>On-time arrivals</th></tr></thead>
+              <tbody><tr><td>Wellington → Christchurch</td><td>2,233</td><td>90</td><td>4.0%</td><td>82.4%</td></tr><tr><td>Christchurch → Auckland</td><td>2,768</td><td>81</td><td>2.9%</td><td>75.9%</td></tr><tr><td>Auckland → Christchurch</td><td>2,795</td><td>80</td><td>2.9%</td><td>77.2%</td></tr><tr><td>Wellington → Auckland</td><td>2,625</td><td>80</td><td>3.0%</td><td>75.4%</td></tr><tr><td>Christchurch → Wellington</td><td>2,282</td><td>73</td><td>3.2%</td><td>85.6%</td></tr><tr><td>Auckland → Wellington</td><td>2,597</td><td>72</td><td>2.8%</td><td>82.1%</td></tr><tr><td>Palmerston North → Auckland</td><td>1,703</td><td>70</td><td>4.1%</td><td>79.9%</td></tr><tr><td>Nelson → Wellington</td><td>1,373</td><td>69</td><td>5.0%</td><td>80.5%</td></tr><tr><td>Wellington → Nelson</td><td>1,398</td><td>67</td><td>4.8%</td><td>72.9%</td></tr><tr><td>Auckland → Palmerston North</td><td>1,701</td><td>66</td><td>3.9%</td><td>79.0%</td></tr><tr><td>Hawke&#x27;s Bay → Auckland</td><td>1,834</td><td>64</td><td>3.5%</td><td>75.0%</td></tr><tr><td>New Plymouth → Auckland</td><td>1,253</td><td>64</td><td>5.1%</td><td>79.1%</td></tr><tr><td>Hamilton → Wellington</td><td>968</td><td>62</td><td>6.4%</td><td>78.4%</td></tr><tr><td>Nelson → Auckland</td><td>1,554</td><td>59</td><td>3.8%</td><td>75.4%</td></tr><tr><td>Auckland → New Plymouth</td><td>1,252</td><td>55</td><td>4.4%</td><td>78.5%</td></tr><tr><td>Hawke&#x27;s Bay → Wellington</td><td>708</td><td>54</td><td>7.6%</td><td>84.6%</td></tr><tr><td>Wellington → Hamilton</td><td>969</td><td>51</td><td>5.3%</td><td>83.2%</td></tr><tr><td>Auckland → Hawke&#x27;s Bay</td><td>1,831</td><td>51</td><td>2.8%</td><td>78.5%</td></tr><tr><td>Auckland → Nelson</td><td>1,554</td><td>49</td><td>3.1%</td><td>75.9%</td></tr><tr><td>Wellington → Hawke&#x27;s Bay</td><td>708</td><td>48</td><td>6.8%</td><td>84.1%</td></tr></tbody>
+            </table>
+          </details>
+          <script type="application/json">[{"label": "Wellington → Christchurch", "short": "WLG → CHC", "cancellations": 90, "rate": 4.03, "otp": 82.4, "scheduled": 2233, "cum": 3.0}, {"label": "Christchurch → Auckland", "short": "CHC → AKL", "cancellations": 81, "rate": 2.93, "otp": 75.9, "scheduled": 2768, "cum": 5.8}, {"label": "Auckland → Christchurch", "short": "AKL → CHC", "cancellations": 80, "rate": 2.86, "otp": 77.2, "scheduled": 2795, "cum": 8.5}, {"label": "Wellington → Auckland", "short": "WLG → AKL", "cancellations": 80, "rate": 3.05, "otp": 75.4, "scheduled": 2625, "cum": 11.2}, {"label": "Christchurch → Wellington", "short": "CHC → WLG", "cancellations": 73, "rate": 3.2, "otp": 85.6, "scheduled": 2282, "cum": 13.6}, {"label": "Auckland → Wellington", "short": "AKL → WLG", "cancellations": 72, "rate": 2.77, "otp": 82.1, "scheduled": 2597, "cum": 16.0}, {"label": "Palmerston North → Auckland", "short": "PMR → AKL", "cancellations": 70, "rate": 4.11, "otp": 79.9, "scheduled": 1703, "cum": 18.4}, {"label": "Nelson → Wellington", "short": "NSN → WLG", "cancellations": 69, "rate": 5.03, "otp": 80.5, "scheduled": 1373, "cum": 20.7}, {"label": "Wellington → Nelson", "short": "WLG → NSN", "cancellations": 67, "rate": 4.79, "otp": 72.9, "scheduled": 1398, "cum": 23.0}, {"label": "Auckland → Palmerston North", "short": "AKL → PMR", "cancellations": 66, "rate": 3.88, "otp": 79.0, "scheduled": 1701, "cum": 25.2}, {"label": "Hawke's Bay → Auckland", "short": "NPE → AKL", "cancellations": 64, "rate": 3.49, "otp": 75.0, "scheduled": 1834, "cum": 27.4}, {"label": "New Plymouth → Auckland", "short": "NPL → AKL", "cancellations": 64, "rate": 5.11, "otp": 79.1, "scheduled": 1253, "cum": 29.5}, {"label": "Hamilton → Wellington", "short": "HLZ → WLG", "cancellations": 62, "rate": 6.4, "otp": 78.4, "scheduled": 968, "cum": 31.6}, {"label": "Nelson → Auckland", "short": "NSN → AKL", "cancellations": 59, "rate": 3.8, "otp": 75.4, "scheduled": 1554, "cum": 33.6}, {"label": "Auckland → New Plymouth", "short": "AKL → NPL", "cancellations": 55, "rate": 4.39, "otp": 78.5, "scheduled": 1252, "cum": 35.5}, {"label": "Hawke's Bay → Wellington", "short": "NPE → WLG", "cancellations": 54, "rate": 7.63, "otp": 84.6, "scheduled": 708, "cum": 37.3}, {"label": "Wellington → Hamilton", "short": "WLG → HLZ", "cancellations": 51, "rate": 5.26, "otp": 83.2, "scheduled": 969, "cum": 39.0}, {"label": "Auckland → Hawke's Bay", "short": "AKL → NPE", "cancellations": 51, "rate": 2.79, "otp": 78.5, "scheduled": 1831, "cum": 40.7}, {"label": "Auckland → Nelson", "short": "AKL → NSN", "cancellations": 49, "rate": 3.15, "otp": 75.9, "scheduled": 1554, "cum": 42.4}, {"label": "Wellington → Hawke's Bay", "short": "WLG → NPE", "cancellations": 48, "rate": 6.78, "otp": 84.1, "scheduled": 708, "cum": 44.0}]</script>
+        </div>
+
+        <div class="duo rise">
+          <div class="h2h">
+            <h3>Air NZ against Jetstar</h3>
+            <p class="muted">Domestic sectors, May to October 2025</p>
+            <table>
+              <thead><tr><th scope="col"></th><th scope="col">Air NZ</th><th scope="col">Jetstar</th></tr></thead>
+              <tbody><tr><th scope="row">Cancellation rate</th><td>3.8%</td><td>1.4%</td></tr><tr><th scope="row">Arrival on-time rate</th><td>78.6%</td><td>80.2%</td></tr><tr><th scope="row">Departure on-time rate</th><td>76.4%</td><td>78.9%</td></tr><tr><th scope="row">Flight completion</th><td>96.2%</td><td>98.6%</td></tr><tr><th scope="row">Sectors scheduled</th><td>78,702</td><td>9,935</td></tr></tbody>
+            </table>
+          </div>
+          <div class="gap">
+            <h3>Gap to target</h3>
+            <p class="muted">Air NZ's ten most-cancelled routes, 22,369 scheduled sectors</p>
+            <dl>
+              <div><dt>1,289</dt><dd>more on-time arrivals needed to reach the 85% target</dd></div>
+              <div><dt>280</dt><dd>fewer cancellations needed to reach the 2% target</dd></div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <section class="section" id="dax" aria-labelledby="dax-title">
       <div class="wrap">
@@ -256,7 +304,8 @@
     </div>
   </footer>
 
-  <script src="assets/js/site.js?v=6" defer></script>
+  <script src="assets/js/site.js?v=7" defer></script>
+  <script src="assets/js/charts.js?v=7" defer></script>
 </body>
 
 </html>

@@ -155,7 +155,7 @@ open("resume.html", "w", encoding="utf-8", newline="\n").write(resume)
 print("wrote resume.html")
 
 page404 = (head("Page not found | Ishan Mathur", "This page doesn't exist or has moved.", "404.html", "home", "website")
-           .replace('href="favicon.svg"', 'href="/favicon.svg"')
+           .replace('href="favicon', 'href="/favicon').replace('href="apple-touch', 'href="/apple-touch').replace('href="site.webmanifest', 'href="/site.webmanifest')
            .replace('href="assets/', 'href="/assets/')
            .replace('<meta name="theme-color"', '<meta name="robots" content="noindex" />\n  <meta name="theme-color"')) + '''
 <body>
@@ -197,7 +197,7 @@ page404 = (head("Page not found | Ishan Mathur", "This page doesn't exist or has
       </div>
     </section>
   </main>
-  <script src="/assets/js/site.js?v=6" defer></script>
+  <script src="/assets/js/site.js?v=7" defer></script>
 </body>
 
 </html>

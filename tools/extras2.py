@@ -322,3 +322,81 @@ def raw_to_model():
       </div>
     </section>
 '''
+
+
+# ------------------------------------------------------------------ Air NZ: routes, head-to-head, gap to target
+
+def airnz_chart():
+    import os
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "airnz_routes_may_oct_2025.json")
+    d = json.load(open(path, encoding="utf-8"))
+    routes, k, gap = d["routes"], d["kpis"], d["gap"]
+    metrics = [{"key": "cancellations", "label": "Cancellations"},
+               {"key": "rate", "label": "Cancellation rate", "suffix": "%", "decimals": 1, "threshold": 2},
+               {"key": "otp", "label": "On-time arrivals", "suffix": "%", "decimals": 1, "threshold": 85, "below": True}]
+    seg = "".join(f'<button type="button" data-metric="{m["key"]}" aria-pressed="{"true" if i == 0 else "false"}">{E(m["label"])}</button>'
+                  for i, m in enumerate(metrics))
+    table = "".join(f'<tr><td>{E(r["label"])}</td><td>{r["scheduled"]:,}</td><td>{r["cancellations"]}</td>'
+                    f'<td>{r["rate"]:.1f}%</td><td>{r["otp"]:.1f}%</td></tr>' for r in routes)
+    nz, js = k["Air NZ"], k["Jetstar"]
+
+    def pct(v, dp=1):
+        return f"{v * 100:.{dp}f}%"
+
+    rows = [("Cancellation rate", pct(nz["cancellation_rate"]), pct(js["cancellation_rate"])),
+            ("Arrival on-time rate", pct(nz["arrival_otp"]), pct(js["arrival_otp"])),
+            ("Departure on-time rate", pct(nz["departure_otp"]), pct(js["departure_otp"])),
+            ("Flight completion", pct(nz["flight_completion_rate"]), pct(js["flight_completion_rate"])),
+            ("Sectors scheduled", f'{int(nz["sectors_scheduled"]):,}', f'{int(js["sectors_scheduled"]):,}')]
+    h2h = "".join(f"<tr><th scope=\"row\">{E(a)}</th><td>{b}</td><td>{c}</td></tr>" for a, b, c in rows)
+    extra_ot = round(float(gap["Extra on-time arrivals needed (to hit target)"]))
+    avoid = round(float(gap["Cancellations to avoid (to hit target)"]))
+    sched = int(gap["Scheduled sectors"])
+    return f'''
+    <section class="section" id="explore" aria-labelledby="explore-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="explore-title">Explore the data</h2>
+          <span class="muted">Domestic network, May to October 2025</span>
+        </div>
+        <div class="chart rise" data-chart="bar" data-metrics='{E(json.dumps(metrics))}'>
+          <div class="chart-head">
+            <div>
+              <h3>Top 20 routes by cancellations</h3>
+              <p>Worst first on each measure. Targets: 2% cancellations, 85% on-time arrivals.</p>
+            </div>
+            <div class="seg" aria-label="Measure">{seg}</div>
+          </div>
+          <div class="chart-canvas"></div>
+          <p class="chart-note">Highlighted bars miss the target on the selected measure.</p>
+          <details>
+            <summary>View as a table</summary>
+            <table>
+              <thead><tr><th>Route</th><th>Scheduled</th><th>Cancelled</th><th>Cancellation rate</th><th>On-time arrivals</th></tr></thead>
+              <tbody>{table}</tbody>
+            </table>
+          </details>
+          <script type="application/json">{json.dumps(routes, ensure_ascii=False)}</script>
+        </div>
+
+        <div class="duo rise">
+          <div class="h2h">
+            <h3>Air NZ against Jetstar</h3>
+            <p class="muted">Domestic sectors, May to October 2025</p>
+            <table>
+              <thead><tr><th scope="col"></th><th scope="col">Air NZ</th><th scope="col">Jetstar</th></tr></thead>
+              <tbody>{h2h}</tbody>
+            </table>
+          </div>
+          <div class="gap">
+            <h3>Gap to target</h3>
+            <p class="muted">Air NZ's ten most-cancelled routes, {sched:,} scheduled sectors</p>
+            <dl>
+              <div><dt>{extra_ot:,}</dt><dd>more on-time arrivals needed to reach the 85% target</dd></div>
+              <div><dt>{avoid}</dt><dd>fewer cancellations needed to reach the 2% target</dd></div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+'''

@@ -7,8 +7,8 @@ import extras
 import extras2
 
 SITE = "https://mathurishan.github.io/"
-CSS_V = "6"
-JS_V = "6"
+CSS_V = "7"
+JS_V = "7"
 FONTS = ("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@"
          "0,6..72,400;0,6..72,500;1,6..72,400&display=swap")
 ARROW = ('<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" '
@@ -36,9 +36,10 @@ def head(title, desc, path, og, og_type="article", html_class=""):
   <meta property="og:type" content="{og_type}" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="theme-color" content="#faf9f5" />
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="icon" href="favicon.ico?v=2" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg?v=2">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=2">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
   <link rel="manifest" href="site.webmanifest">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -439,7 +440,7 @@ for p in PROJECTS:
         p["extra"] = extras2.retail_chart() + extras2.dax_showcase("retail")
         p["note"] = "Independent portfolio project. Not affiliated with or endorsed by Grupo Bimbo."
     elif p["og"] == "air-nz":
-        p["extra"] = extras2.dax_showcase("airnz")
+        p["extra"] = extras2.airnz_chart() + extras2.dax_showcase("airnz")
         p["note"] = "Independent analysis of public data. Not affiliated with or endorsed by Air New Zealand."
 
 for i, p in enumerate(PROJECTS):
