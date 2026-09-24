@@ -389,7 +389,7 @@ HOW_ART = {
     "decide": """<svg class="nv nv-aim" viewBox="0 0 160 100" aria-hidden="true">
         <circle class="nv-ring" cx="80" cy="50" r="38" /><circle class="nv-ring" cx="80" cy="50" r="25" />
         <circle class="nv-fill" cx="80" cy="50" r="11" />
-        <path class="nv-tick t2" pathLength="1" d="M146 14 L88 44" /><path class="nv-tick t3" pathLength="1" d="M88 44 l3 -12 M88 44 l12 -2" />
+        <path class="nv-tick t2" pathLength="1" d="M146 14 L91.4 43.8" /><path class="nv-tick t3" pathLength="1" d="M102.4 44.1 L91.4 43.8 L97.1 34.4" />
       </svg>""",
     "handover": """<svg class="nv nv-doc" viewBox="0 0 160 100" aria-hidden="true">
         <path class="nv-bubble" d="M44 8h52l16 16v68a4 4 0 0 1-4 4H44a4 4 0 0 1-4-4V12a4 4 0 0 1 4-4z" />
