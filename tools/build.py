@@ -9,7 +9,7 @@ are edited by hand.
 import sys, os
 import re
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from build_site import head, header, footer  # noqa: E402  (also rebuilds project pages)
+from build_site import head, header, footer, JS_V  # noqa: E402  (also rebuilds project pages)
 
 
 def role(title, org, when, bullets):
@@ -184,6 +184,7 @@ page404 = (head("Page not found | Ishan Mathur", "This page doesn't exist or has
 
 </html>
 '''
+page404 = page404.replace("site.js?v=9", f"site.js?v={JS_V}")
 open("404.html", "w", encoding="utf-8", newline="\n").write(page404)
 print("wrote 404.html")
 
@@ -209,6 +210,15 @@ def _colour_code(body):
 # Each note gets a small drawing of its idea: beside it in note lists, large at the top of the note,
 # and on the "Next note" card. Hovering a list row or card plays the drawing; an article plays it on load.
 NOTE_ART = {
+    "note-one-name-for-every-system.html": """<svg class="nv nv-merge" viewBox="0 0 160 100" aria-hidden="true">
+        <path class="nv-flow m1" pathLength="1" d="M50 20 C78 20 78 50 104 50" />
+        <path class="nv-flow m2" pathLength="1" d="M50 50 L104 50" />
+        <path class="nv-flow m3" pathLength="1" d="M50 80 C78 80 78 50 104 50" />
+        <g class="nv-regs"><rect x="8" y="10" width="42" height="20" rx="3" /><rect x="8" y="40" width="42" height="20" rx="3" /><rect x="8" y="70" width="42" height="20" rx="3" /></g>
+        <g class="nv-regl"><rect x="14" y="18" width="22" height="4" rx="2" /><rect x="14" y="48" width="28" height="4" rx="2" /><rect x="14" y="78" width="18" height="4" rx="2" /></g>
+        <rect class="nv-fill nv-one" x="104" y="34" width="48" height="32" rx="5" />
+        <rect class="nv-onel" x="112" y="48" width="32" height="4" rx="2" />
+      </svg>""",
     "note-a-number-needs-a-sentence.html": """<svg class="nv nv-say" viewBox="0 0 160 100" aria-hidden="true">
         <g class="nv-bars"><rect x="10" y="62" width="14" height="28" /><rect x="28" y="46" width="14" height="44" /></g>
         <rect class="nv-fill" x="46" y="30" width="14" height="60" />
@@ -305,6 +315,7 @@ import about_content  # noqa: E402
 ABOUT_ACTIONS = """        <div class="actions">
           <a class="btn btn-primary" href="resume.html">Résumé</a>
           <a class="btn" href="files/Ishan-Mathur-Resume.pdf" download>Download PDF</a>
+          <a class="btn" href="how-i-work.html">How I work</a>
           <button class="btn" type="button" data-copy="mathur.ishan11@gmail.com">Copy email</button>
         </div>"""
 
@@ -364,12 +375,143 @@ open("index.html", "w", encoding="utf-8", newline="\n").write(home)
 print("updated notes on index.html")
 
 
+# --------------------------------------------------------------------------- how I work
+
+HOW_ART = {
+    "decide": """<svg class="nv nv-aim" viewBox="0 0 160 100" aria-hidden="true">
+        <circle class="nv-ring" cx="80" cy="50" r="38" /><circle class="nv-ring" cx="80" cy="50" r="25" />
+        <circle class="nv-fill" cx="80" cy="50" r="11" />
+        <path class="nv-tick t2" pathLength="1" d="M146 14 L88 44" /><path class="nv-tick t3" pathLength="1" d="M88 44 l3 -12 M88 44 l12 -2" />
+      </svg>""",
+    "handover": """<svg class="nv nv-doc" viewBox="0 0 160 100" aria-hidden="true">
+        <path class="nv-bubble" d="M44 8h52l16 16v68a4 4 0 0 1-4 4H44a4 4 0 0 1-4-4V12a4 4 0 0 1 4-4z" />
+        <path class="nv-bubble" d="M96 8v16h16" />
+        <rect class="nv-line nv-write w1" x="50" y="34" width="50" height="5" rx="2.5" />
+        <rect class="nv-line nv-write w2" x="50" y="46" width="40" height="5" rx="2.5" />
+        <rect class="nv-line nv-write w3" x="50" y="58" width="46" height="5" rx="2.5" />
+        <circle class="nv-fill" cx="118" cy="78" r="16" />
+        <path class="nv-tick nv-on-fill t3" pathLength="1" d="M110 78l6 6 10-11" />
+      </svg>""",
+}
+
+STEPS = [
+    ("Start with the decision", HOW_ART["decide"],
+     "Before touching any data I ask what decision the report supports and who will read it. I work with managers and "
+     "staff to turn reporting needs into practical dashboards, metrics and reporting frameworks.",
+     "At Arcesium I gathered requirements from global investment clients and led structured discussions to clarify "
+     "ambiguous business logic in reconciliation rules, which cut misalignment and rework between teams.",
+     [("resume.html", "Résumé")]),
+    ("Model the data", NOTE_ART["note-start-with-a-star-schema.html"],
+     "I decide what one row means, then build a star schema: a fact table and a few clean dimensions, with one agreed "
+     "name for everything.",
+     "At Arcesium I designed data models on star and snowflake schema principles across multiple client datasets. "
+     "In the Library I brought 58 systems under one naming layer, so every name means one thing.",
+     [("note-start-with-a-star-schema.html", "Why my reports start with a star schema"),
+      ("note-one-name-for-every-system.html", "One name for every system")]),
+    ("Validate before building", NOTE_ART["note-validate-before-you-visualise.html"],
+     "Totals add back to a trusted figure, the grain is written down, partial periods stay out of trends and personal "
+     "data stays out of the release.",
+     "Validation checks and SQL control routines cut the time to produce daily reconciliation reporting for 10+ global "
+     "investment clients by 40%. A monthly Library report runs 36 cross-checks against its evidence workbook, and "
+     "its release stops if any personal text survives.",
+     [("note-validate-before-you-visualise.html", "Validate before you visualise"),
+      ("sql-nz-building-consents.html", "NZ Building Consents project")]),
+    ("Build for the reader", NOTE_ART["note-a-number-needs-a-sentence.html"],
+     "Every page leads with a sentence that says what the chart shows. Labels use the reader's words, and "
+     "disagreements in the data are shown, not hidden.",
+     "I have built 5+ dashboards and reports for senior Library leadership, client groups and third-party "
+     "stakeholders, covering Library service, technology and usage data.",
+     [("note-a-number-needs-a-sentence.html", "A number needs a sentence"),
+      ("powerbi-retail.html", "Retail Sales &amp; Returns dashboard")]),
+    ("Automate the repeat work", NOTE_ART["note-half-a-day-to-under-an-hour.html"],
+     "Anything that happens every month should be a template or a workflow, not a rebuild. The time saved goes back "
+     "into the analysis.",
+     "Reusable templates cut a recurring reporting task from about half a day to under an hour, and an API reporting "
+     "workflow now runs monthly in production, with fortnightly reporting.",
+     [("note-half-a-day-to-under-an-hour.html", "Half a day to under an hour")]),
+    ("Document and hand over", HOW_ART["handover"],
+     "I write down metric definitions, how every number traces to its source and how to refresh the report, then "
+     "publish it where the people who use it will find it.",
+     "On a Power BI prototype bringing three systems into one view, an evidence workbook of 11 tabs and 109 formulas "
+     "traces every number to its source, and a written refresh procedure lets someone else continue it. Every Library "
+     "dashboard and report is published through SharePoint to the site of the team it serves.",
+     [("about.html", "About me")]),
+]
+
+step_items = "\n".join(f"""          <li class="how-step nv-host rise" id="step-{i + 1}">
+            <span class="hs-node" aria-hidden="true">{i + 1:02d}</span>
+            <div class="hs-card">
+              <div class="hs-text">
+                <p class="hs-kicker">Step {i + 1:02d}</p>
+                <h2>{title}</h2>
+                <p class="hs-what">{what}</p>
+                <div class="hs-proof">
+                  <p class="hs-proof-label">In practice</p>
+                  <p>{proof}</p>
+                </div>
+                <p class="hs-links">{"".join(f'<a href="{h}">{t} {ARROW}</a>' for h, t in links)}</p>
+              </div>
+              <div class="hs-art">
+                <span class="hs-water" aria-hidden="true">{i + 1:02d}</span>
+      {art}
+              </div>
+            </div>
+          </li>""" for i, (title, art, what, proof, links) in enumerate(STEPS))
+
+step_map = "\n".join(f'            <li><a href="#step-{i + 1}"><span>{i + 1:02d}</span>{title}</a></li>'
+                     for i, (title, *_rest) in enumerate(STEPS))
+
+how_page = head("How I work | Ishan Mathur",
+                "How Ishan Mathur approaches a reporting job: start with the decision, model the data, validate, build for the reader, automate the repeat work, document and hand over.",
+                "how-i-work.html", "home", "website") + header("how") + f"""
+  <main id="main">
+    <section class="case-hero notes-hero how-hero">
+      <div class="wrap how-hero-grid">
+        <div>
+          <p class="eyebrow">Process</p>
+          <h1>How I work</h1>
+          <svg class="nh-line" viewBox="0 0 320 36" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M2 32 L40 27 L78 29 L118 19 L158 22 L200 12 L240 14 L280 7 L318 3" /></svg>
+          <p class="lead">Six steps I follow on every reporting job, from the first question to the handover. Each
+            one is backed by work I have delivered, and links to it.</p>
+        </div>
+        <nav class="how-map" aria-label="The six steps">
+          <p class="how-map-title">The six steps</p>
+          <ol>
+{step_map}
+          </ol>
+        </nav>
+      </div>
+    </section>
+    <section class="section how-body" aria-label="Six steps">
+      <div class="wrap">
+        <ol class="how-steps">
+{step_items}
+        </ol>
+      </div>
+    </section>
+    <section class="section band how-cta" aria-labelledby="how-cta-title">
+      <div class="wrap">
+        <p class="eyebrow">Next step</p>
+        <h2 class="display rise" id="how-cta-title">Hiring for a data, BI or reporting role? I'd be glad to talk it through.</h2>
+        <div class="actions">
+          <a class="btn btn-primary" href="resume.html">View résumé</a>
+          <button class="btn" type="button" data-copy="mathur.ishan11@gmail.com">Copy email</button>
+          <a class="btn" href="https://www.linkedin.com/in/mathurishan" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+  </main>
+""" + footer(dark=True)
+open("how-i-work.html", "w", encoding="utf-8", newline="\n").write(how_page)
+print("wrote how-i-work.html")
+
+
 # --------------------------------------------------------------------------- sitemap
 
 import datetime  # noqa: E402
 
 SITEMAP_PAGES = ([""] + [p["file"] for p in __import__("build_site").PROJECTS]
-                 + ["about.html", "notes.html", "resume.html"] + [n["file"] for n in NOTES])
+                 + ["about.html", "how-i-work.html", "notes.html", "resume.html"] + [n["file"] for n in NOTES])
 today = datetime.date.today().isoformat()
 lines = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
 lines += [f"  <url><loc>https://mathurishan.github.io/{p}</loc><lastmod>{today}</lastmod></url>" for p in SITEMAP_PAGES]

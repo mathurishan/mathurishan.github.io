@@ -2,6 +2,54 @@
 
 NOTES = [
     dict(
+        file="note-one-name-for-every-system.html",
+        title="One name for every system",
+        desc="How three separate registers became one searchable view of 58 Library systems: a naming layer, conflicts reported rather than hidden, automated checks and views built around real questions.",
+        lead="Three registers described the same systems in three different ways. The fix was not a better spreadsheet but one agreed name for everything.",
+        minutes=3,
+        card="Three registers, three sets of names, one question nobody could answer quickly. How 58 systems became one view people trust.",
+        body="""
+<p>At the University of Waikato Library, three registers each described part of the same landscape: one for
+  services, one for technical solutions and one for integrations. Each was reasonable on its own. Together they
+  could not answer simple questions such as which systems the Library runs, who owns each one and what connects
+  to what. The same system could appear under different names in different registers, so every answer started
+  with detective work.</p>
+
+<p>I brought the three registers together into one searchable dashboard that gives Library leadership a single
+  view of systems, ownership and integrations. It now covers 58 systems and is in use at version 15. Four design
+  decisions did most of the work.</p>
+
+<h2>1. A naming layer before anything else</h2>
+
+<p>The first job was not a chart. It was deciding what each thing is called. Every alias found in the source
+  registers maps to one canonical record, so a system appears once, under one name, wherever it is referenced.
+  This is the same idea as a clean dimension table in a star schema: agree the entities first, and everything
+  built on them stays simple.</p>
+
+<h2>2. Report conflicts, do not resolve them quietly</h2>
+
+<p>When registers disagree, it is tempting to pick the value that looks most recent and move on. I did not. The
+  consolidation found 8 conflicting statuses, and each one went back to the person who owns that system. The
+  owner knows which answer is right. My job was to make the disagreement visible, not to guess.</p>
+
+<h2>3. Checks that run every time</h2>
+
+<p>A consolidated view is only useful if people can trust it after the next update, not just on the day it was
+  built. The view has 68 automated checks that confirm the data still hangs together. Relationships between
+  systems were checked against platform investigation and web analytics evidence, so connections were verified
+  rather than assumed.</p>
+
+<h2>4. Views built around questions</h2>
+
+<p>Different readers ask different questions. A manager wants to know what they own; someone planning a change
+  wants to know what depends on what. Rather than one crowded page, the dashboard has 11 views, each shaped
+  around one kind of question.</p>
+
+<blockquote>A register records what someone knew. A consolidated view has to show what is true, and say plainly
+  where nobody knows yet.</blockquote>
+""",
+    ),
+    dict(
         file="note-a-number-needs-a-sentence.html",
         title="A number needs a sentence",
         desc="How to explain numbers to people who do not work with data: lead with the sentence, use their words, say what the number cannot tell you and show where the data disagrees.",

@@ -9,8 +9,8 @@ import extras2
 import diagrams
 
 SITE = "https://mathurishan.github.io/"
-CSS_V = "15"
-JS_V = "11"
+CSS_V = "17"
+JS_V = "12"
 # Links that leave the site open in a new tab
 EXTERNAL = ' target="_blank" rel="noopener"'
 FONTS = ("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@"
@@ -56,9 +56,10 @@ def head(title, desc, path, og, og_type="article", html_class=""):
 
 
 def header(current=None, home=False):
-    """Site header. `current` is one of work, about, notes, resume, contact."""
+    """Site header. `current` is one of work, about, how, notes, resume, contact."""
     base = "" if home else "./"
-    links = [(base + "#work", "Work", "work"), ("about.html", "About", "about"), ("notes.html", "Notes", "notes"),
+    links = [(base + "#work", "Work", "work"), ("about.html", "About", "about"),
+             ("how-i-work.html", "How I work", "how"), ("notes.html", "Notes", "notes"),
              ("resume.html", "Résumé", "resume"), (base + "#contact", "Contact", "contact")]
 
     def a(href, label, key):

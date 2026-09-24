@@ -4,15 +4,15 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Reading rent data honestly | Ishan Mathur</title>
-  <meta name="description" content="Medians, thresholds, backcasts and sample sizes: the choices that decide what a housing analysis can fairly claim." />
-  <link rel="canonical" href="https://mathurishan.github.io/note-reading-rent-data-honestly.html" />
-  <meta property="og:title" content="Reading rent data honestly | Ishan Mathur" />
-  <meta property="og:description" content="Medians, thresholds, backcasts and sample sizes: the choices that decide what a housing analysis can fairly claim." />
+  <title>One name for every system | Ishan Mathur</title>
+  <meta name="description" content="How three separate registers became one searchable view of 58 Library systems: a naming layer, conflicts reported rather than hidden, automated checks and views built around real questions." />
+  <link rel="canonical" href="https://mathurishan.github.io/note-one-name-for-every-system.html" />
+  <meta property="og:title" content="One name for every system | Ishan Mathur" />
+  <meta property="og:description" content="How three separate registers became one searchable view of 58 Library systems: a naming layer, conflicts reported rather than hidden, automated checks and views built around real questions." />
   <meta property="og:image" content="https://mathurishan.github.io/images/social/home.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:url" content="https://mathurishan.github.io/note-reading-rent-data-honestly.html" />
+  <meta property="og:url" content="https://mathurishan.github.io/note-one-name-for-every-system.html" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="theme-color" content="#faf9f5" media="(prefers-color-scheme: light)" />
@@ -86,62 +86,10 @@
       <div class="wrap">
         <a class="back" href="notes.html">&larr; All notes</a>
         <p class="eyebrow">Note</p>
-        <h1>Reading rent data honestly</h1>
-        <p class="lead">Housing numbers are emotive. The analysis has to be careful about what it can and cannot say.</p>
-        <div class="byline"><span>Ishan Mathur</span><span>September 2026</span><span>2 min read</span></div>
+        <h1>One name for every system</h1>
+        <p class="lead">Three registers described the same systems in three different ways. The fix was not a better spreadsheet but one agreed name for everything.</p>
+        <div class="byline"><span>Ishan Mathur</span><span>September 2026</span><span>3 min read</span></div>
         <div class="article-art nv-auto rise">
-      <svg class="nv nv-hist" viewBox="0 0 160 100" aria-hidden="true">
-        <g class="nv-bars"><rect x="14" y="74" width="14" height="16" /><rect x="32" y="56" width="14" height="34" /><rect x="50" y="32" width="14" height="58" /><rect x="68" y="22" width="14" height="68" /><rect x="86" y="40" width="14" height="50" /><rect x="104" y="60" width="14" height="30" /><rect x="122" y="72" width="14" height="18" /><rect x="140" y="80" width="10" height="10" /></g>
-        <line class="nv-median" x1="76" y1="8" x2="76" y2="94" />
-        <text class="nv-label" x="81" y="14">median</text>
-      </svg>
-        </div>
-        <div class="article-body">
-
-<p>When I built my <a href="python_nz_housing_affordability.html">NZ Housing Affordability</a> analysis, the
-  charts were the easy part. The harder part was deciding what the data could fairly support. Four choices
-  mattered most.</p>
-
-<h2>1. Medians over means</h2>
-
-<p>Rents are skewed: a small number of expensive tenancies pull an average upwards. The tenancy bond data
-  includes every bond lodged, cheap and expensive alike, so I report the median, because it describes the
-  typical renter rather than the top of the market. On that measure, national weekly rent rose 31.7% from Q1 2019 to Q4 2025, from $452 to $595.</p>
-
-<h2>2. A threshold is a convention, so say so</h2>
-
-<p>The 30% rent-to-income line is a widely used benchmark, not a law of nature. It is useful because it gives a
-  shared reference point: six affordability geographies sat above it in the latest quarter, led by Northland at
-  35.3%. I draw the line on the chart and name it as a benchmark, so nobody mistakes it for an official
-  definition of unaffordable.</p>
-
-<h2>3. Label every estimate</h2>
-
-<p>Household income is not published every quarter for every region. For 2019 to 2022 I backcast income from
-  observed 2023 to 2025 levels. That is a reasonable method, but it is still an estimate, so the note travels
-  with the chart everywhere it appears, including the interactive version on the project page.</p>
-
-<h2>4. Small samples swing</h2>
-
-<p>Suburb-level data is where the most striking numbers live, and the least reliable ones. A suburb with a
-  handful of new bonds can double its median rent through chance. I only ranked suburbs with an adequate
-  number of bonds. Even then, Mayfield in Marlborough showed 58.2% two-year growth, which is a signal worth
-  investigating rather than a headline to repeat.</p>
-
-<blockquote>State the method next to the number, and let the reader check it.</blockquote>
-
-<h2>Compare growth, not just levels</h2>
-
-<p>Levels tell you where rent is highest; growth tells you where pressure is building. Hamilton City rents rose
-  34.9% since Q1 2019, 3.2 percentage points faster than the national pace, even though Hamilton is not among
-  the most expensive markets. Both views belong in the same analysis.</p>
-
-<p>None of this makes the story less interesting. It makes it one you can defend in a room full of people who
-  know the data as well as you do.</p>
-
-        </div>
-        <a class="next-card nv-host" href="note-one-name-for-every-system.html">
-          <span class="nc-art">
       <svg class="nv nv-merge" viewBox="0 0 160 100" aria-hidden="true">
         <path class="nv-flow m1" pathLength="1" d="M50 20 C78 20 78 50 104 50" />
         <path class="nv-flow m2" pathLength="1" d="M50 50 L104 50" />
@@ -151,10 +99,63 @@
         <rect class="nv-fill nv-one" x="104" y="34" width="48" height="32" rx="5" />
         <rect class="nv-onel" x="112" y="48" width="32" height="4" rx="2" />
       </svg>
+        </div>
+        <div class="article-body">
+
+<p>At the University of Waikato Library, three registers each described part of the same landscape: one for
+  services, one for technical solutions and one for integrations. Each was reasonable on its own. Together they
+  could not answer simple questions such as which systems the Library runs, who owns each one and what connects
+  to what. The same system could appear under different names in different registers, so every answer started
+  with detective work.</p>
+
+<p>I brought the three registers together into one searchable dashboard that gives Library leadership a single
+  view of systems, ownership and integrations. It now covers 58 systems and is in use at version 15. Four design
+  decisions did most of the work.</p>
+
+<h2>1. A naming layer before anything else</h2>
+
+<p>The first job was not a chart. It was deciding what each thing is called. Every alias found in the source
+  registers maps to one canonical record, so a system appears once, under one name, wherever it is referenced.
+  This is the same idea as a clean dimension table in a star schema: agree the entities first, and everything
+  built on them stays simple.</p>
+
+<h2>2. Report conflicts, do not resolve them quietly</h2>
+
+<p>When registers disagree, it is tempting to pick the value that looks most recent and move on. I did not. The
+  consolidation found 8 conflicting statuses, and each one went back to the person who owns that system. The
+  owner knows which answer is right. My job was to make the disagreement visible, not to guess.</p>
+
+<h2>3. Checks that run every time</h2>
+
+<p>A consolidated view is only useful if people can trust it after the next update, not just on the day it was
+  built. The view has 68 automated checks that confirm the data still hangs together. Relationships between
+  systems were checked against platform investigation and web analytics evidence, so connections were verified
+  rather than assumed.</p>
+
+<h2>4. Views built around questions</h2>
+
+<p>Different readers ask different questions. A manager wants to know what they own; someone planning a change
+  wants to know what depends on what. Rather than one crowded page, the dashboard has 11 views, each shaped
+  around one kind of question.</p>
+
+<blockquote>A register records what someone knew. A consolidated view has to show what is true, and say plainly
+  where nobody knows yet.</blockquote>
+
+        </div>
+        <a class="next-card nv-host" href="note-a-number-needs-a-sentence.html">
+          <span class="nc-art">
+      <svg class="nv nv-say" viewBox="0 0 160 100" aria-hidden="true">
+        <g class="nv-bars"><rect x="10" y="62" width="14" height="28" /><rect x="28" y="46" width="14" height="44" /></g>
+        <rect class="nv-fill" x="46" y="30" width="14" height="60" />
+        <path class="nv-bubble" d="M78 12h66a8 8 0 0 1 8 8v30a8 8 0 0 1-8 8H94l-14 12 2-12a8 8 0 0 1-12-8V20a8 8 0 0 1 8-8z" />
+        <rect class="nv-line nv-write w1" x="82" y="24" width="58" height="5" rx="2.5" />
+        <rect class="nv-line nv-write w2" x="82" y="34" width="46" height="5" rx="2.5" />
+        <rect class="nv-fill nv-write w3" x="82" y="44" width="28" height="5" rx="2.5" />
+      </svg>
           </span>
           <span class="nc-text">
             <span class="nc-label">Next note</span>
-            <span class="nc-title">One name for every system</span>
+            <span class="nc-title">A number needs a sentence</span>
             <span class="n-meta">3 min read</span>
           </span>
           <span class="nr-go"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" /></svg></span>
