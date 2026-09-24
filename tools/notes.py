@@ -2,6 +2,88 @@
 
 NOTES = [
     dict(
+        file="note-every-dashboard-is-a-small-project.html",
+        title="Every dashboard is a small project",
+        desc="How PMP® project discipline scales down to reporting work: a one-paragraph charter, mapped dependencies, a risk list with a control for each risk, quality gates before release and a proper handover.",
+        lead="A dashboard has a sponsor, a scope, risks, a release and a handover. It is a project whether or not anyone calls it one.",
+        minutes=4,
+        card="What project management looks like at the size of a report: a short charter, a risk list with a control for each risk, a gate before release and a real handover.",
+        body="""
+<p>I hold the Project Management Professional (PMP®) certification. People tend to associate it with large
+  programmes, Gantt charts and steering committees. I find it most useful on small work, because small work is
+  where nobody writes anything down. A dashboard gets requested in passing, built in a hurry and quietly
+  abandoned, and nobody can say whether it did what it was for.</p>
+
+<p>So I run every reporting job as a small project. It adds very little paperwork: a paragraph, a short list
+  and a checklist. These five habits come straight from the PMP® lifecycle, scaled down to the size of a
+  report.</p>
+
+<h2>1. Initiate: a charter in one paragraph</h2>
+
+<p>Before any data, I write down what decision the report supports, who will read it and what is out of
+  scope. At Arcesium I gathered requirements from global investment clients and turned them into reporting
+  outputs, and I led structured discussions to clarify ambiguous business logic in reconciliation rules.
+  Clearer requirements at the start were how we reduced rework later.</p>
+
+<p>The paragraph also protects the scope. When someone later asks for "just one more page", there is a written
+  purpose to check the request against. Sometimes the answer is yes; it should never be yes by accident.</p>
+
+<h2>2. Plan: map the dependencies, not just the visuals</h2>
+
+<p>A report depends on things outside the report: access to a source, an agreed definition, an owner who can
+  confirm a number. At Arcesium I managed several client workstreams at once, each end to end from
+  requirements through build, test, release and ongoing support. What made delivery predictable was the
+  unglamorous part: a clear scope, risks named early, dependencies mapped and a realistic timeline.</p>
+
+<p>The same thinking shaped an 11-page working paper I wrote for the University of Waikato Library, setting
+  out a phased roadmap for how the Library can make better use of its service, systems and technology data.
+  A phased roadmap is a dependency map in plain language: what has to be in place before the next step is
+  worth taking.</p>
+
+<h2>3. A risk list for data</h2>
+
+<p>Reporting risks are specific, which makes them easy to manage once they are written down. Each one on my list
+  gets a control:</p>
+
+<ul>
+  <li><strong>Double counting.</strong> In one usage analysis, 3,157 events, about 24%, would have been counted
+    twice. The control was de-duplication against a kept archive.</li>
+  <li><strong>Personal data leaving the building.</strong> The control is a gate that blocks any release still
+    containing personal data.</li>
+  <li><strong>Two sources, two answers.</strong> Consolidating 58 Library systems turned up 8 conflicting
+    statuses. Each went to the owner of that system as an issue to resolve, rather than being settled quietly
+    by me.</li>
+</ul>
+
+<h2>4. Monitor and control: a quality gate before release</h2>
+
+<p>A project has acceptance criteria. A report should too. A monthly Library report I built runs 36
+  cross-checks confirming the report and its evidence workbook agree, and the release stops if any personal
+  text survives. The consolidated systems view runs 68 automated checks and is now in use at version 15.</p>
+
+<p>At Arcesium the same discipline applied to releases: coordinated testing inputs, issue triage and
+  stakeholder sign-off before anything went live, including scheduled and out-of-hours releases.</p>
+
+<h2>5. Close: hand it over properly</h2>
+
+<p>Closing a project means someone else can run what you built. On a Power BI prototype bringing three systems
+  into one view, an evidence workbook of 11 tabs and 109 formulas traces every number to its source, and a
+  written refresh procedure lets someone else continue it. Every Library dashboard and report is published
+  through SharePoint to the site of the team or stakeholder group it serves, so it lives where its readers
+  already are.</p>
+
+<blockquote>A report nobody scoped gets rebuilt. A report nobody handed over gets abandoned.</blockquote>
+
+<h2>Proportion is part of the method</h2>
+
+<p>None of this means heavy process. PMP® is as much about tailoring as about templates: a one-paragraph
+  charter, a risk list of a few lines and a release checklist are enough for most reports. The point is not
+  the documents. It is that scope, risk and quality get decided on purpose, before a reader finds out the hard
+  way. The <a href="how-i-work.html">six steps I follow on every reporting job</a> are this lifecycle in
+  practice.</p>
+""",
+    ),
+    dict(
         file="note-one-name-for-every-system.html",
         title="One name for every system",
         desc="How three separate registers became one searchable view of 58 Library systems: a naming layer, conflicts reported rather than hidden, automated checks and views built around real questions.",

@@ -4994,3 +4994,186 @@ html:not(.js) .hs-node {
   from { transform: scale(0.6); }
   to { transform: scale(1); }
 }
+
+/* --- PMP: lifecycle phases on How I work --- */
+.hs-phase {
+  margin-left: 0.6rem;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  vertical-align: 0.05em;
+}
+
+.how-map a small {
+  margin-left: auto;
+  padding-left: 0.75rem;
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  text-align: right;
+}
+
+.how-pmp {
+  margin: 1.25rem 0 0;
+  padding-left: 1rem;
+  border-left: 2px solid var(--accent);
+  max-width: 34rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+
+.how-pmp a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.how-pmp a svg {
+  width: 0.9rem;
+  height: 0.9rem;
+}
+
+/* --- PMP: project brief on project pages --- */
+.brief {
+  padding: clamp(2.5rem, 6vw, 4rem) 0 0;
+}
+
+.brief-card {
+  display: grid;
+  grid-template-columns: minmax(0, 14rem) minmax(0, 1fr);
+  gap: 1.5rem clamp(1.5rem, 5vw, 4rem);
+  padding: clamp(1.4rem, 3.5vw, 2.25rem);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.brief-kicker {
+  margin: 0 0 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.brief-head h2 {
+  font-size: 1.6rem;
+  margin-bottom: 0.75rem;
+}
+
+.brief-head p:last-child {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.brief-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem 2rem;
+  margin: 0;
+}
+
+.brief-grid dt {
+  margin-bottom: 0.4rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.brief-grid dd {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+
+.brief-risks,
+.brief-grid > div:last-child {
+  grid-column: 1 / -1;
+}
+
+.brief-risks ul {
+  display: grid;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.brief-risks li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+  gap: 0.35rem 1.5rem;
+  margin: 0;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg);
+}
+
+.br-risk {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.br-control {
+  position: relative;
+  padding-left: 1.4rem;
+}
+
+.br-control::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+@media (max-width: 860px) {
+  .brief-card {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .brief-grid,
+  .brief-risks li {
+    grid-template-columns: 1fr;
+  }
+
+  .how-map a small {
+    display: none;
+  }
+}
+
+/* New drawing: a plan of staggered bars ending in a milestone */
+@media (prefers-reduced-motion: no-preference) {
+  :is(.nv-host:hover, .nv-auto.in) .nv-plan .nv-grow {
+    animation: nv-fill 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  :is(.nv-host:hover, .nv-auto.in) .nv-plan .g2 {
+    animation-delay: 0.15s;
+  }
+
+  :is(.nv-host:hover, .nv-auto.in) .nv-plan .g3 {
+    animation-delay: 0.3s;
+  }
+
+  :is(.nv-host:hover, .nv-auto.in) .nv-plan .nv-one {
+    animation: nv-pop 0.4s 0.5s cubic-bezier(0.2, 0.7, 0.2, 1.4) both;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+}

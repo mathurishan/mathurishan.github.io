@@ -25,7 +25,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/site.css?v=18" />
+  <link rel="stylesheet" href="assets/css/site.css?v=19" />
   <script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){d.setAttribute('data-theme',t);}}catch(e){}})()</script>
 </head>
 
@@ -109,8 +109,31 @@
     </div>
 
     <nav class="subnav" aria-label="On this page">
-      <div class="wrap"><a href="#problem">Problem</a><a href="#data">Data</a><a href="#built">What I built</a><a href="#diagram">Data flow</a><a href="#explore">Explore</a><a href="#findings">What changed</a><a href="#gallery">Gallery</a></div>
+      <div class="wrap"><a href="#brief">Brief</a><a href="#problem">Problem</a><a href="#data">Data</a><a href="#built">What I built</a><a href="#diagram">Data flow</a><a href="#explore">Explore</a><a href="#findings">What changed</a><a href="#gallery">Gallery</a></div>
     </nav>
+
+    <section class="brief" id="brief" aria-labelledby="brief-title">
+      <div class="wrap">
+        <div class="brief-card rise">
+          <div class="brief-head">
+            <p class="brief-kicker">Project brief</p>
+            <h2 id="brief-title">Scoped like a project</h2>
+            <p>The objective, scope, risks and deliverables, set out the way I brief any piece of work as a
+              <a href="note-every-dashboard-is-a-small-project.html">PMP&reg;-certified analyst</a>.</p>
+          </div>
+          <dl class="brief-grid">
+            <div><dt>Objective</dt><dd>Find where rental pressure has intensified most since 2019, which regions sit above the 30% affordability threshold and which local markets show accelerating stress.</dd></div>
+            <div><dt>In scope</dt><dd>MBIE tenancy bond data (national, regional and suburb level), Stats NZ household income and Stats NZ building consents, Q1 2019 to Q4 2025.</dd></div>
+            <div class="brief-risks"><dt>Risks and how I controlled them</dt><dd><ul>
+              <li><span class="br-risk">Skewed rents pulling an average upwards</span><span class="br-control">Medians rather than means, to describe the typical renter</span></li>
+              <li><span class="br-risk">Household income not published every quarter for 2019 to 2022</span><span class="br-control">Income backcast from observed 2023 to 2025 levels, labelled as an estimate wherever it appears</span></li>
+              <li><span class="br-risk">Small suburb samples producing striking but unreliable numbers</span><span class="br-control">Only suburbs with an adequate number of bonds are ranked</span></li>
+            </ul></dd></div>
+            <div><dt>Delivered</dt><dd>A Python analysis with reusable code: national and regional rent trends, affordability ratios, Hamilton and Auckland deep dives, suburb hotspots and an affordability risk index.</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
 
     <section class="case-body">
       <div class="wrap">
@@ -251,8 +274,8 @@
     </div>
   </footer>
 
-  <script src="assets/js/site.js?v=12" defer></script>
-  <script src="assets/js/charts.js?v=12" defer></script>
+  <script src="assets/js/site.js?v=13" defer></script>
+  <script src="assets/js/charts.js?v=13" defer></script>
 </body>
 
 </html>

@@ -25,7 +25,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/site.css?v=18" />
+  <link rel="stylesheet" href="assets/css/site.css?v=19" />
   <script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){d.setAttribute('data-theme',t);}}catch(e){}})()</script>
 </head>
 
@@ -108,8 +108,30 @@
     </div>
 
     <nav class="subnav" aria-label="On this page">
-      <div class="wrap"><a href="#problem">Problem</a><a href="#data">Data</a><a href="#built">What I built</a><a href="#diagram">Data flow</a><a href="#findings">What changed</a><a href="#gallery">Gallery</a></div>
+      <div class="wrap"><a href="#brief">Brief</a><a href="#problem">Problem</a><a href="#data">Data</a><a href="#built">What I built</a><a href="#diagram">Data flow</a><a href="#findings">What changed</a><a href="#gallery">Gallery</a></div>
     </nav>
+
+    <section class="brief" id="brief" aria-labelledby="brief-title">
+      <div class="wrap">
+        <div class="brief-card rise">
+          <div class="brief-head">
+            <p class="brief-kicker">Project brief</p>
+            <h2 id="brief-title">Scoped like a project</h2>
+            <p>The objective, scope, risks and deliverables, set out the way I brief any piece of work as a
+              <a href="note-every-dashboard-is-a-small-project.html">PMP&reg;-certified analyst</a>.</p>
+          </div>
+          <dl class="brief-grid">
+            <div><dt>Objective</dt><dd>Find which New Zealand industries earn the most, on what margins, and how sales recovered after COVID.</dd></div>
+            <div><dt>In scope</dt><dd>Stats NZ quarterly business financial data: sales, operating profit, assets and inventories, by industry.</dd></div>
+            <div class="brief-risks"><dt>Risks and how I controlled them</dt><dd><ul>
+              <li><span class="br-risk">Four different measures mixed in one quarterly series</span><span class="br-control">The series cleaned and split into separate subsets for sales, profit, assets and inventories</span></li>
+              <li><span class="br-risk">Total profit hiding thin margins</span><span class="br-control">A scorecard that plots average margin against total profit, sized by sales</span></li>
+            </ul></dd></div>
+            <div><dt>Delivered</dt><dd>A Python analysis charting top industries by sales and profit, a profitability scorecard, year-on-year growth and seasonality, and sales before and after COVID.</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
 
     <section class="case-body">
       <div class="wrap">
@@ -205,7 +227,7 @@
     </div>
   </footer>
 
-  <script src="assets/js/site.js?v=12" defer></script>
+  <script src="assets/js/site.js?v=13" defer></script>
 </body>
 
 </html>

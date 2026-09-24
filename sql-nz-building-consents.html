@@ -25,7 +25,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/site.css?v=18" />
+  <link rel="stylesheet" href="assets/css/site.css?v=19" />
   <script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){d.setAttribute('data-theme',t);}}catch(e){}})()</script>
 </head>
 
@@ -109,8 +109,31 @@
     </div>
 
     <nav class="subnav" aria-label="On this page">
-      <div class="wrap"><a href="#problem">Problem</a><a href="#data">Data</a><a href="#built">What I built</a><a href="#explore">Explore</a><a href="#model">Raw to model</a><a href="#diagram">Model</a><a href="#sql">SQL</a><a href="#findings">What changed</a><a href="#gallery">Gallery</a></div>
+      <div class="wrap"><a href="#brief">Brief</a><a href="#problem">Problem</a><a href="#data">Data</a><a href="#built">What I built</a><a href="#explore">Explore</a><a href="#model">Raw to model</a><a href="#diagram">Model</a><a href="#sql">SQL</a><a href="#findings">What changed</a><a href="#gallery">Gallery</a></div>
     </nav>
+
+    <section class="brief" id="brief" aria-labelledby="brief-title">
+      <div class="wrap">
+        <div class="brief-card rise">
+          <div class="brief-head">
+            <p class="brief-kicker">Project brief</p>
+            <h2 id="brief-title">Scoped like a project</h2>
+            <p>The objective, scope, risks and deliverables, set out the way I brief any piece of work as a
+              <a href="note-every-dashboard-is-a-small-project.html">PMP&reg;-certified analyst</a>.</p>
+          </div>
+          <dl class="brief-grid">
+            <div><dt>Objective</dt><dd>Find where New Zealand&#x27;s building pipeline is strongest, how COVID reshaped consent activity, which dwelling types are gaining share and whether supply is concentrating.</dd></div>
+            <div><dt>In scope</dt><dd>The Stats NZ Building Consents Issued dataset (December 2025 release): 1990 to 2025, 16 regions and 67 territorial authorities.</dd></div>
+            <div class="brief-risks"><dt>Risks and how I controlled them</dt><dd><ul>
+              <li><span class="br-risk">A long-format source with one row per measure</span><span class="br-control">A Python load script that pivots it into a star schema of four dimension tables and two fact tables</span></li>
+              <li><span class="br-risk">Totals that do not match the published figures</span><span class="br-control">Fact rows reconciled to the published figures: Waikato&#x27;s Q3 2025 rows add back exactly to the 949 consents Stats NZ reports</span></li>
+              <li><span class="br-risk">A half-loaded month read as a collapse</span><span class="br-control">A completeness check that flags any month where not every region has loaded</span></li>
+            </ul></dd></div>
+            <div><dt>Delivered</dt><dd>A star-schema SQLite database, ten analytical SQL queries, a reusable executive summary view and the code on GitHub.</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
 
     <section class="case-body">
       <div class="wrap">
@@ -418,8 +441,8 @@ national <span class="tok-k">AS</span> (
     </div>
   </footer>
 
-  <script src="assets/js/site.js?v=12" defer></script>
-  <script src="assets/js/charts.js?v=12" defer></script>
+  <script src="assets/js/site.js?v=13" defer></script>
+  <script src="assets/js/charts.js?v=13" defer></script>
 </body>
 
 </html>

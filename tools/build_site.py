@@ -9,8 +9,8 @@ import extras2
 import diagrams
 
 SITE = "https://mathurishan.github.io/"
-CSS_V = "18"
-JS_V = "12"
+CSS_V = "19"
+JS_V = "13"
 # Links that leave the site open in a new tab
 EXTERNAL = ' target="_blank" rel="noopener"'
 FONTS = ("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@"
@@ -332,6 +332,63 @@ PROJECTS = [
 ]
 
 
+# A project brief for each page: objective, scope, risks with the control used for each, and deliverables.
+# Every line restates facts already on that project's page or in its notes.
+BRIEFS = {
+    "retail": dict(
+        objective="Show sales growth and returns side by side, so the categories, channels and stores that drive revenue, and the returns that eat into it, are visible together.",
+        scope="Weekly sales, demand and returns by product category, sales channel, purchaser and town.",
+        risks=[("Measures that change depending on how the data is sliced",
+                "One star-schema model shared by all six pages, with explicit DAX measures and rates built from their parts"),
+               ("A return rate read without context",
+                "A 2% return-rate threshold drawn on the charts, with the categories above it highlighted")],
+        delivered="A six-page Power BI report with drill-through pages, a Key Influencers view of what drives returns, and the full report as a PDF.",
+    ),
+    "air-nz": dict(
+        objective="One view of demand, reliability and capacity: how traffic recovered after 2021, where cancellations and delays concentrate, and what engine groundings would mean for capacity.",
+        scope="Public data on Air New Zealand arrivals, departures, cancellations, on-time performance and capacity, 2020 to 2025.",
+        risks=[("Several public sources that do not line up on their own",
+                "One Power BI data model in which a shared Date table filters the traffic, monthly summary, forecast and engine tables"),
+               ("Rates that go wrong when rolled up",
+                "Rates written as measures, such as cancellations divided by scheduled sectors"),
+               ("Being read as the airline's own figures",
+                "Labelled as an independent analysis of public data, not affiliated with or endorsed by Air New Zealand")],
+        delivered="Five report views: executive summary, passenger demand, operational performance, demand and reliability trade-offs, and a capacity shock scenario.",
+    ),
+    "sql": dict(
+        objective="Find where New Zealand's building pipeline is strongest, how COVID reshaped consent activity, which dwelling types are gaining share and whether supply is concentrating.",
+        scope="The Stats NZ Building Consents Issued dataset (December 2025 release): 1990 to 2025, 16 regions and 67 territorial authorities.",
+        risks=[("A long-format source with one row per measure",
+                "A Python load script that pivots it into a star schema of four dimension tables and two fact tables"),
+               ("Totals that do not match the published figures",
+                "Fact rows reconciled to the published figures: Waikato's Q3 2025 rows add back exactly to the 949 consents Stats NZ reports"),
+               ("A half-loaded month read as a collapse",
+                "A completeness check that flags any month where not every region has loaded")],
+        delivered="A star-schema SQLite database, ten analytical SQL queries, a reusable executive summary view and the code on GitHub.",
+    ),
+    "housing": dict(
+        objective="Find where rental pressure has intensified most since 2019, which regions sit above the 30% affordability threshold and which local markets show accelerating stress.",
+        scope="MBIE tenancy bond data (national, regional and suburb level), Stats NZ household income and Stats NZ building consents, Q1 2019 to Q4 2025.",
+        risks=[("Skewed rents pulling an average upwards",
+                "Medians rather than means, to describe the typical renter"),
+               ("Household income not published every quarter for 2019 to 2022",
+                "Income backcast from observed 2023 to 2025 levels, labelled as an estimate wherever it appears"),
+               ("Small suburb samples producing striking but unreliable numbers",
+                "Only suburbs with an adequate number of bonds are ranked")],
+        delivered="A Python analysis with reusable code: national and regional rent trends, affordability ratios, Hamilton and Auckland deep dives, suburb hotspots and an affordability risk index.",
+    ),
+    "financials": dict(
+        objective="Find which New Zealand industries earn the most, on what margins, and how sales recovered after COVID.",
+        scope="Stats NZ quarterly business financial data: sales, operating profit, assets and inventories, by industry.",
+        risks=[("Four different measures mixed in one quarterly series",
+                "The series cleaned and split into separate subsets for sales, profit, assets and inventories"),
+               ("Total profit hiding thin margins",
+                "A scorecard that plots average margin against total profit, sized by sales")],
+        delivered="A Python analysis charting top industries by sales and profit, a profitability scorecard, year-on-year growth and seasonality, and sales before and after COVID.",
+    ),
+}
+
+
 def dims(path, w, h):
     if w and h:
         return w, h
@@ -372,7 +429,32 @@ def project_page(p, nxt):
         note = (f'<p class="disclaimer"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" '
                 f'stroke-linecap="round" aria-hidden="true"><circle cx="8" cy="8" r="6.2"/><path d="M8 7.2v3.6M8 5.2v.1"/></svg>'
                 f'{E(p["note"])}</p>')
-    labels = [("problem", "Problem"), ("data", "Data"), ("built", "What I built")]
+    b = BRIEFS[p["og"]]
+    risks = "\n".join(f'              <li><span class="br-risk">{E(r)}</span><span class="br-control">{E(c)}</span></li>'
+                      for r, c in b["risks"])
+    brief = f'''
+    <section class="brief" id="brief" aria-labelledby="brief-title">
+      <div class="wrap">
+        <div class="brief-card rise">
+          <div class="brief-head">
+            <p class="brief-kicker">Project brief</p>
+            <h2 id="brief-title">Scoped like a project</h2>
+            <p>The objective, scope, risks and deliverables, set out the way I brief any piece of work as a
+              <a href="note-every-dashboard-is-a-small-project.html">PMP&reg;-certified analyst</a>.</p>
+          </div>
+          <dl class="brief-grid">
+            <div><dt>Objective</dt><dd>{E(b["objective"])}</dd></div>
+            <div><dt>In scope</dt><dd>{E(b["scope"])}</dd></div>
+            <div class="brief-risks"><dt>Risks and how I controlled them</dt><dd><ul>
+{risks}
+            </ul></dd></div>
+            <div><dt>Delivered</dt><dd>{E(b["delivered"])}</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+'''
+    labels = [("brief", "Brief"), ("problem", "Problem"), ("data", "Data"), ("built", "What I built")]
     extra = p.get("extra", "")
     found = [(extra.find(f'id="{sid}"'), sid, lab) for sid, lab in
              [("before-after", "Before and after"), ("explore", "Explore"), ("model", "Raw to model"),
@@ -406,7 +488,7 @@ def project_page(p, nxt):
     <nav class="subnav" aria-label="On this page">
       <div class="wrap">{subnav}</div>
     </nav>
-
+{brief}
     <section class="case-body">
       <div class="wrap">
         <div class="block rise" id="problem">

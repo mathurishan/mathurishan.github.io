@@ -210,6 +210,14 @@ def _colour_code(body):
 # Each note gets a small drawing of its idea: beside it in note lists, large at the top of the note,
 # and on the "Next note" card. Hovering a list row or card plays the drawing; an article plays it on load.
 NOTE_ART = {
+    "note-every-dashboard-is-a-small-project.html": """<svg class="nv nv-plan" viewBox="0 0 160 100" aria-hidden="true">
+        <g class="nv-faint"><rect x="8" y="12" width="144" height="12" rx="3" /><rect x="8" y="32" width="144" height="12" rx="3" /><rect x="8" y="52" width="144" height="12" rx="3" /><rect x="8" y="72" width="144" height="12" rx="3" /></g>
+        <rect class="nv-fill nv-grow g1" x="8" y="12" width="36" height="12" rx="3" />
+        <rect class="nv-fill nv-grow g2" x="36" y="32" width="50" height="12" rx="3" />
+        <rect class="nv-fill nv-grow g3" x="76" y="52" width="46" height="12" rx="3" />
+        <path class="nv-fill nv-one" d="M136 70l9 8-9 8-9-8z" />
+        <path class="nv-tick nv-on-fill t3" pathLength="1" d="M132.5 78l2.5 2.5 4.5-5" />
+      </svg>""",
     "note-one-name-for-every-system.html": """<svg class="nv nv-merge" viewBox="0 0 160 100" aria-hidden="true">
         <path class="nv-flow m1" pathLength="1" d="M50 20 C78 20 78 50 104 50" />
         <path class="nv-flow m2" pathLength="1" d="M50 50 L104 50" />
@@ -400,7 +408,8 @@ STEPS = [
      "staff to turn reporting needs into practical dashboards, metrics and reporting frameworks.",
      "At Arcesium I gathered requirements from global investment clients and led structured discussions to clarify "
      "ambiguous business logic in reconciliation rules, which cut misalignment and rework between teams.",
-     [("resume.html", "Résumé")]),
+     [("note-every-dashboard-is-a-small-project.html", "Every dashboard is a small project"),
+      ("resume.html", "Résumé")]),
     ("Model the data", NOTE_ART["note-start-with-a-star-schema.html"],
      "I decide what one row means, then build a star schema: a fact table and a few clean dimensions, with one agreed "
      "name for everything.",
@@ -438,6 +447,10 @@ STEPS = [
      [("about.html", "About me")]),
 ]
 
+# The PMI project lifecycle each step belongs to, shown beside its step number.
+PHASES = ["Initiating", "Planning", "Monitoring &amp; controlling", "Executing", "Executing", "Closing"]
+PHASE_SHORT = ["Initiate", "Plan", "Control", "Execute", "Execute", "Close"]
+
 CHECK = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.5l2.5 2.5L12 5.5" /></svg>'
 
 
@@ -450,7 +463,7 @@ step_items = "\n".join(f"""          <li class="how-step nv-host rise" id="step-
             <span class="hs-node" aria-hidden="true">{i + 1:02d}</span>
             <div class="hs-card">
               <div class="hs-text">
-                <p class="hs-kicker">Step {i + 1:02d}</p>
+                <p class="hs-kicker">Step {i + 1:02d}<span class="hs-phase">{PHASES[i]}</span></p>
                 <h2>{title}</h2>
                 <p class="hs-what">{what}</p>
                 <div class="hs-proof">
@@ -466,11 +479,11 @@ step_items = "\n".join(f"""          <li class="how-step nv-host rise" id="step-
             </div>
           </li>""" for i, (title, art, what, proof, links) in enumerate(STEPS))
 
-step_map = "\n".join(f'            <li><a href="#step-{i + 1}"><span>{i + 1:02d}</span>{title}</a></li>'
+step_map = "\n".join(f'            <li><a href="#step-{i + 1}"><span>{i + 1:02d}</span>{title}<small>{PHASE_SHORT[i]}</small></a></li>'
                      for i, (title, *_rest) in enumerate(STEPS))
 
 how_page = head("How I work | Ishan Mathur",
-                "How Ishan Mathur approaches a reporting job: start with the decision, model the data, validate, build for the reader, automate the repeat work, document and hand over.",
+                "How Ishan Mathur, PMP®, approaches a reporting job as a small project: start with the decision, model the data, validate, build for the reader, automate the repeat work, document and hand over.",
                 "how-i-work.html", "home", "website") + header("how") + f"""
   <main id="main">
     <section class="case-hero notes-hero how-hero">
@@ -481,6 +494,9 @@ how_page = head("How I work | Ishan Mathur",
           <svg class="nh-line" viewBox="0 0 320 36" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M2 32 L40 27 L78 29 L118 19 L158 22 L200 12 L240 14 L280 7 L318 3" /></svg>
           <p class="lead">Six steps I follow on every reporting job, from the first question to the handover. Each
             one is backed by work I have delivered, and links to it.</p>
+          <p class="how-pmp">I run each job as a small project. As a Project Management Professional (PMP®), I map
+            every step to the project lifecycle: initiate, plan, execute, monitor and control, close.
+            <a href="note-every-dashboard-is-a-small-project.html">Why it works at the size of a report {ARROW}</a></p>
         </div>
         <nav class="how-map" aria-label="The six steps">
           <p class="how-map-title">The six steps</p>

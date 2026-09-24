@@ -254,6 +254,7 @@
         ['NZ Housing Affordability', 'python_nz_housing_affordability.html', 'Python'],
         ['Rents by region chart', 'python_nz_housing_affordability.html#explore', 'Python'],
         ['NZ Business Financials', 'python_business_financials.html', 'Python'],
+        ['Every dashboard is a small project', 'note-every-dashboard-is-a-small-project.html', 'Note'],
         ['One name for every system', 'note-one-name-for-every-system.html', 'Note'],
         ['A number needs a sentence', 'note-a-number-needs-a-sentence.html', 'Note'],
         ['Half a day to under an hour', 'note-half-a-day-to-under-an-hour.html', 'Note'],
