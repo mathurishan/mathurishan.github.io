@@ -24,7 +24,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/site.css?v=4" />
+  <link rel="stylesheet" href="assets/css/site.css?v=5" />
   <script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){d.setAttribute('data-theme',t);}}catch(e){}})()</script>
 </head>
 
@@ -62,6 +62,7 @@
     <section class="hero">
       <div class="wrap hero-grid">
         <div>
+          <p class="status reveal"><span class="pulse" aria-hidden="true"></span>Open to data, BI and reporting roles across NZ</p>
           <p class="eyebrow reveal">Ishan Mathur · Data &amp; BI Analyst · New Zealand</p>
           <h1 class="reveal d1">Turning complex data into <em>clear, reliable</em> reporting.</h1>
           <p class="lead reveal d2">I build the reporting layer between messy source systems and the people who need
@@ -125,7 +126,7 @@
 
         <div class="features">
           <article class="feature rise">
-            <div class="stage tone-sand">
+            <div class="stage tone-sand" style="view-transition-name: shot-retail">
               <div class="frame"><img src="images/projects/retail/executive-overview.jpg" alt="" width="1600"
                   height="925" loading="lazy" /></div>
             </div>
@@ -156,7 +157,7 @@
           </article>
 
           <article class="feature flip rise">
-            <div class="stage tone-slate">
+            <div class="stage tone-slate" style="view-transition-name: shot-air-nz">
               <div class="frame"><img src="images/projects/air-nz/executive-summary-overview.jpg" alt="" width="1600"
                   height="925" loading="lazy" /></div>
             </div>
@@ -189,7 +190,7 @@
 
         <div class="work three" style="margin-top: clamp(3.5rem, 8vw, 6rem);">
           <article class="card tone-sage rise">
-            <div class="frame"><img src="images/thumbs/sql-consents.jpg" alt="" width="960" height="600"
+            <div class="frame" style="view-transition-name: shot-sql"><img src="images/thumbs/sql-consents.jpg" alt="" width="960" height="600"
                 loading="lazy" /></div>
             <p class="meta">SQL analytics</p>
             <h3><a href="sql-nz-building-consents.html">NZ Building Consents</a></h3>
@@ -200,7 +201,7 @@
               </svg></span>
           </article>
           <article class="card tone-clay rise r1">
-            <div class="frame"><img src="images/thumbs/py-housing.jpg" alt="" width="960" height="600"
+            <div class="frame" style="view-transition-name: shot-housing"><img src="images/thumbs/py-housing.jpg" alt="" width="960" height="600"
                 loading="lazy" /></div>
             <p class="meta">Python analysis</p>
             <h3><a href="python_nz_housing_affordability.html">NZ Housing Affordability</a></h3>
@@ -211,7 +212,7 @@
               </svg></span>
           </article>
           <article class="card tone-lilac rise r2">
-            <div class="frame"><img src="images/thumbs/py-financials.jpg" alt="" width="960" height="600"
+            <div class="frame" style="view-transition-name: shot-financials"><img src="images/thumbs/py-financials.jpg" alt="" width="960" height="600"
                 loading="lazy" /></div>
             <p class="meta">Python analysis</p>
             <h3><a href="python_business_financials.html">NZ Business Financials</a></h3>
@@ -382,7 +383,17 @@
       <div class="wrap">
         <p class="eyebrow">Contact</p>
         <h2 class="display rise" id="contact-title">Open to data, BI and reporting analyst roles across New Zealand.</h2>
-        <a class="big" href="mailto:mathur.ishan11@gmail.com">mathur.ishan11@gmail.com</a>
+        <div class="email-row">
+          <a class="big" href="mailto:mathur.ishan11@gmail.com">mathur.ishan11@gmail.com</a>
+          <button class="copy-btn" type="button" data-copy="mathur.ishan11@gmail.com">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" aria-hidden="true">
+              <rect x="5.5" y="5.5" width="8" height="8" rx="1.5" />
+              <path d="M10.5 5.5v-2a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2" />
+            </svg>
+            Copy email
+          </button>
+        </div>
         <dl>
           <div>
             <dt>LinkedIn</dt>
@@ -415,7 +426,7 @@
     </div>
   </footer>
 
-  <script src="assets/js/site.js?v=3" defer></script>
+  <script src="assets/js/site.js?v=5" defer></script>
 </body>
 
 </html>

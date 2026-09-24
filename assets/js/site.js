@@ -57,7 +57,9 @@
                 var x = box.left + box.width / 2;
                 var y = box.top + box.height / 2;
                 var reach = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
+                root.classList.add('theme-switching');
                 var transition = document.startViewTransition(function () { applyTheme(next); });
+                transition.finished.finally(function () { root.classList.remove('theme-switching'); });
                 transition.ready.then(function () {
                     root.animate(
                         { clipPath: ['circle(0px at ' + x + 'px ' + y + 'px)', 'circle(' + reach + 'px at ' + x + 'px ' + y + 'px)'] },
@@ -116,6 +118,81 @@
         }, { threshold: 0.6 });
         counters.forEach(function (el) { counted.observe(el); });
     }
+
+    // Copy email to the clipboard, with a small confirmation.
+    var toast = null;
+    function say(message) {
+        if (!toast) {
+            toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.setAttribute('role', 'status');
+            toast.setAttribute('aria-live', 'polite');
+            document.body.appendChild(toast);
+        }
+        toast.innerHTML = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" ' +
+            'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3.5 8.5 3 3 6-7"/></svg>' + message;
+        toast.classList.add('show');
+        clearTimeout(say.timer);
+        say.timer = setTimeout(function () { toast.classList.remove('show'); }, 2200);
+    }
+
+    function legacyCopy(text) {
+        var area = document.createElement('textarea');
+        area.value = text;
+        area.setAttribute('readonly', '');
+        area.style.position = 'fixed';
+        area.style.opacity = '0';
+        document.body.appendChild(area);
+        area.select();
+        var ok = false;
+        try { ok = document.execCommand('copy'); } catch (e) { /* ignore */ }
+        document.body.removeChild(area);
+        return ok;
+    }
+
+    // Resolves true when the text reached the clipboard, false when every method was refused.
+    function copyText(text) {
+        if (navigator.clipboard && window.isSecureContext) {
+            return navigator.clipboard.writeText(text).then(function () { return true; }, function () { return legacyCopy(text); });
+        }
+        return Promise.resolve(legacyCopy(text));
+    }
+
+    document.querySelectorAll('[data-copy]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            var text = btn.getAttribute('data-copy');
+            copyText(text).then(function (ok) { say(ok ? 'Email copied' : text); });
+        });
+    });
+
+    // Tabbed code samples (arrow keys move between tabs), with a copy button.
+    document.querySelectorAll('[data-tabs]').forEach(function (card) {
+        var tabs = Array.prototype.slice.call(card.querySelectorAll('[role="tab"]'));
+        function select(tab) {
+            tabs.forEach(function (t) {
+                var on = t === tab;
+                t.setAttribute('aria-selected', on ? 'true' : 'false');
+                t.tabIndex = on ? 0 : -1;
+                document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+            });
+        }
+        tabs.forEach(function (t, i) {
+            t.addEventListener('click', function () { select(t); });
+            t.addEventListener('keydown', function (e) {
+                var n = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+                if (!n) return;
+                e.preventDefault();
+                var target = tabs[(i + n + tabs.length) % tabs.length];
+                select(target);
+                target.focus();
+            });
+        });
+        var copy = card.querySelector('[data-copy-code]');
+        if (copy) copy.addEventListener('click', function () {
+            var panel = card.querySelector('[role="tabpanel"]:not([hidden]) code');
+            copyText(panel.textContent).then(function (ok) { say(ok ? 'SQL copied' : 'Select the code to copy it'); });
+        });
+    });
 
     // Screenshot viewer: click (or Enter) on a project image to see it full size.
     var images = Array.prototype.slice.call(document.querySelectorAll('.shot img'));

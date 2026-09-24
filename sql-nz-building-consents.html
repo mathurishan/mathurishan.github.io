@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/site.css?v=4" />
+  <link rel="stylesheet" href="assets/css/site.css?v=5" />
   <script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){d.setAttribute('data-theme',t);}}catch(e){}})()</script>
 </head>
 
@@ -73,10 +73,10 @@
 
     <div class="wrap">
       <figure class="shot">
-        <div class="stage tone-sage">
-          <div class="frame"><img src="images/projects/sql/nz-building-consents/01_regional_pipeline_2025.png" alt="Horizontal bar chart of New Zealand 2025 building consent value by region, showing Auckland leading at $9.7B." width="1522" height="958" /></div>
+        <div class="stage tone-sage" style="view-transition-name: shot-sql">
+          <div class="frame"><img src="images/projects/sql/nz-building-consents/02_dwelling_mix_shift.png" alt="Stacked area chart showing the share of New Zealand dwelling consents shifting from standalone houses toward townhouses between 2015 and 2025." width="1520" height="888" /></div>
         </div>
-        <figcaption>Regional pipeline, 2025: new consent value by region.</figcaption>
+        <figcaption>Dwelling type mix, 2015 to 2025: houses fell from 70% to 45% of new dwelling consents as townhouses rose from 14% to 44%.</figcaption>
       </figure>
     </div>
 
@@ -115,6 +115,153 @@
       </div>
     </section>
 
+
+    <section class="section" aria-labelledby="explore-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="explore-title">Explore the data</h2>
+          <span class="muted">Hover or tab through the bars</span>
+        </div>
+        <div class="chart rise" data-chart="bar" data-metrics='[{&quot;key&quot;: &quot;value&quot;, &quot;label&quot;: &quot;Consent value&quot;, &quot;prefix&quot;: &quot;$&quot;, &quot;suffix&quot;: &quot;M&quot;}, {&quot;key&quot;: &quot;consents&quot;, &quot;label&quot;: &quot;Consents&quot;}, {&quot;key&quot;: &quot;area&quot;, &quot;label&quot;: &quot;Floor area&quot;, &quot;suffix&quot;: &quot;k m²&quot;}, {&quot;key&quot;: &quot;avg&quot;, &quot;label&quot;: &quot;Value per consent&quot;, &quot;prefix&quot;: &quot;$&quot;}]'>
+          <div class="chart-head">
+            <div>
+              <h3>Regional building pipeline, 2025</h3>
+              <p>New consents for all buildings, by region. Output of Query 1 below.</p>
+            </div>
+            <div class="seg" aria-label="Measure"><button type="button" data-metric="value" aria-pressed="true">Consent value</button><button type="button" data-metric="consents" aria-pressed="false">Consents</button><button type="button" data-metric="area" aria-pressed="false">Floor area</button><button type="button" data-metric="avg" aria-pressed="false">Value per consent</button></div>
+          </div>
+          <div class="chart-canvas"></div>
+          <details>
+            <summary>View as a table</summary>
+            <table>
+              <thead><tr><th>Region</th><th>Value</th><th>Consents</th><th>Floor area</th><th>Per consent</th></tr></thead>
+              <tbody><tr><td>Auckland</td><td>$9,746.7M</td><td>16,108</td><td>2,771k m²</td><td>$605,087</td></tr><tr><td>Canterbury</td><td>$4,042.6M</td><td>7,980</td><td>1,511k m²</td><td>$506,593</td></tr><tr><td>Waikato</td><td>$2,014.8M</td><td>3,625</td><td>757k m²</td><td>$555,799</td></tr><tr><td>Otago</td><td>$1,664.7M</td><td>2,882</td><td>459k m²</td><td>$577,626</td></tr><tr><td>Wellington</td><td>$1,448.0M</td><td>2,357</td><td>352k m²</td><td>$614,334</td></tr><tr><td>Bay of Plenty</td><td>$932.6M</td><td>1,599</td><td>311k m²</td><td>$583,218</td></tr><tr><td>Manawatū-Whanganui</td><td>$702.7M</td><td>1,322</td><td>249k m²</td><td>$531,519</td></tr><tr><td>Northland</td><td>$497.3M</td><td>944</td><td>188k m²</td><td>$526,768</td></tr><tr><td>Hawke&#x27;s Bay</td><td>$437.6M</td><td>768</td><td>169k m²</td><td>$569,769</td></tr><tr><td>Southland</td><td>$348.1M</td><td>642</td><td>175k m²</td><td>$542,270</td></tr><tr><td>Taranaki</td><td>$279.8M</td><td>579</td><td>124k m²</td><td>$483,324</td></tr><tr><td>Tasman</td><td>$237.4M</td><td>333</td><td>71k m²</td><td>$713,015</td></tr><tr><td>Nelson</td><td>$144.5M</td><td>278</td><td>46k m²</td><td>$519,855</td></tr><tr><td>Marlborough</td><td>$139.8M</td><td>224</td><td>47k m²</td><td>$624,200</td></tr><tr><td>West Coast</td><td>$90.8M</td><td>215</td><td>34k m²</td><td>$422,439</td></tr><tr><td>Gisborne</td><td>$86.4M</td><td>230</td><td>27k m²</td><td>$375,502</td></tr></tbody>
+            </table>
+          </details>
+          <script type="application/json">[{"label": "Auckland", "short": "Auckland", "value": 9746.7, "consents": 16108.0, "area": 2771.0, "avg": 605087.0}, {"label": "Canterbury", "short": "Canterbury", "value": 4042.6, "consents": 7980.0, "area": 1511.0, "avg": 506593.0}, {"label": "Waikato", "short": "Waikato", "value": 2014.8, "consents": 3625.0, "area": 757.0, "avg": 555799.0}, {"label": "Otago", "short": "Otago", "value": 1664.7, "consents": 2882.0, "area": 459.0, "avg": 577626.0}, {"label": "Wellington", "short": "Wellington", "value": 1448.0, "consents": 2357.0, "area": 352.0, "avg": 614334.0}, {"label": "Bay of Plenty", "short": "Bay of Plenty", "value": 932.6, "consents": 1599.0, "area": 311.0, "avg": 583218.0}, {"label": "Manawatū-Whanganui", "short": "Manawatū-Wh.", "value": 702.7, "consents": 1322.0, "area": 249.0, "avg": 531519.0}, {"label": "Northland", "short": "Northland", "value": 497.3, "consents": 944.0, "area": 188.0, "avg": 526768.0}, {"label": "Hawke's Bay", "short": "Hawke's Bay", "value": 437.6, "consents": 768.0, "area": 169.0, "avg": 569769.0}, {"label": "Southland", "short": "Southland", "value": 348.1, "consents": 642.0, "area": 175.0, "avg": 542270.0}, {"label": "Taranaki", "short": "Taranaki", "value": 279.8, "consents": 579.0, "area": 124.0, "avg": 483324.0}, {"label": "Tasman", "short": "Tasman", "value": 237.4, "consents": 333.0, "area": 71.0, "avg": 713015.0}, {"label": "Nelson", "short": "Nelson", "value": 144.5, "consents": 278.0, "area": 46.0, "avg": 519855.0}, {"label": "Marlborough", "short": "Marlborough", "value": 139.8, "consents": 224.0, "area": 47.0, "avg": 624200.0}, {"label": "West Coast", "short": "West Coast", "value": 90.8, "consents": 215.0, "area": 34.0, "avg": 422439.0}, {"label": "Gisborne", "short": "Gisborne", "value": 86.4, "consents": 230.0, "area": 27.0, "avg": 375502.0}]</script>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="sql-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="sql-title">The SQL</h2>
+          <a class="muted" href="https://github.com/mathurishan/nz-building-consents-sql/blob/main/queries/analysis_queries.sql">All ten queries on GitHub &rarr;</a>
+        </div>
+        <div class="code-card rise" data-tabs>
+          <div class="code-tabs" role="tablist" aria-label="SQL queries">
+            <button type="button" role="tab" id="sqltab-1" aria-controls="sqlpanel-1" aria-selected="true" tabindex="0">Rank regions</button><button type="button" role="tab" id="sqltab-2" aria-controls="sqlpanel-2" aria-selected="false" tabindex="-1">Year-on-year growth</button><button type="button" role="tab" id="sqltab-7" aria-controls="sqlpanel-7" aria-selected="false" tabindex="-1">3-month moving average</button>
+            <button type="button" class="copy" data-copy-code>Copy SQL</button>
+          </div>
+          <div class="code-panel" role="tabpanel" id="sqlpanel-1" aria-labelledby="sqltab-1">
+            <p class="why"><b>Query 1.</b> Which regions are driving the most construction activity in the latest full year? Rank all regions by total consent value to show where the building pipeline is strongest. <span class="tech">Techniques: aggregation, RANK() window function, multiple metrics.</span></p>
+            <pre><code><span class="tok-k">SELECT</span>
+    r.region_name                                       <span class="tok-k">AS</span> region,
+    <span class="tok-f">SUM</span>(f.number_of_consents)                           <span class="tok-k">AS</span> total_consents,
+    <span class="tok-f">ROUND</span>(<span class="tok-f">SUM</span>(f.value_nzd) / <span class="tok-n">1e6</span>, <span class="tok-n">1</span>)                   <span class="tok-k">AS</span> total_value_millions,
+    <span class="tok-f">ROUND</span>(<span class="tok-f">SUM</span>(f.floor_area_sqm) / <span class="tok-n">1000</span>, <span class="tok-n">0</span>)             <span class="tok-k">AS</span> total_floor_area_000sqm,
+    <span class="tok-f">ROUND</span>(<span class="tok-f">SUM</span>(f.value_nzd) / <span class="tok-f">NULLIF</span>(<span class="tok-f">SUM</span>(f.number_of_consents), <span class="tok-n">0</span>), <span class="tok-n">0</span>)
+                                                        <span class="tok-k">AS</span> avg_value_per_consent,
+    <span class="tok-f">RANK</span>() <span class="tok-k">OVER</span> (<span class="tok-k">ORDER</span> <span class="tok-k">BY</span> <span class="tok-f">SUM</span>(f.value_nzd) <span class="tok-k">DESC</span>)        <span class="tok-k">AS</span> value_rank
+<span class="tok-k">FROM</span> fact_region_consents f
+<span class="tok-k">JOIN</span> dim_date d          <span class="tok-k">ON</span> f.date_id = d.date_id
+<span class="tok-k">JOIN</span> dim_region r        <span class="tok-k">ON</span> f.region_id = r.region_id
+<span class="tok-k">JOIN</span> dim_building_type bt <span class="tok-k">ON</span> f.building_type_id = bt.building_type_id
+<span class="tok-k">WHERE</span> d.year = <span class="tok-n">2025</span>
+  <span class="tok-k">AND</span> r.is_aggregate = <span class="tok-n">0</span>
+  <span class="tok-k">AND</span> bt.building_type_name = <span class="tok-s">&#x27;All buildings&#x27;</span>
+  <span class="tok-k">AND</span> f.consent_nature = <span class="tok-s">&#x27;New&#x27;</span>
+<span class="tok-k">GROUP</span> <span class="tok-k">BY</span> r.region_name
+<span class="tok-k">ORDER</span> <span class="tok-k">BY</span> value_rank;</code></pre>
+          </div><div class="code-panel" role="tabpanel" id="sqlpanel-2" aria-labelledby="sqltab-2" hidden>
+            <p class="why"><b>Query 2.</b> Which regions have grown or shrunk their building consent volumes over the last five years? Identify where construction momentum is accelerating vs stalling so resource allocation can be prioritised. <span class="tech">Techniques: LAG() window function, YoY percentage change calculation.</span></p>
+            <pre><code><span class="tok-k">WITH</span> annual_consents <span class="tok-k">AS</span> (
+    <span class="tok-k">SELECT</span>
+        r.region_name,
+        d.year,
+        <span class="tok-f">SUM</span>(f.number_of_consents) <span class="tok-k">AS</span> annual_consents
+    <span class="tok-k">FROM</span> fact_region_consents f
+    <span class="tok-k">JOIN</span> dim_date d          <span class="tok-k">ON</span> f.date_id = d.date_id
+    <span class="tok-k">JOIN</span> dim_region r        <span class="tok-k">ON</span> f.region_id = r.region_id
+    <span class="tok-k">JOIN</span> dim_building_type bt <span class="tok-k">ON</span> f.building_type_id = bt.building_type_id
+    <span class="tok-k">WHERE</span> d.year <span class="tok-k">BETWEEN</span> <span class="tok-n">2020</span> <span class="tok-k">AND</span> <span class="tok-n">2025</span>
+      <span class="tok-k">AND</span> r.is_aggregate = <span class="tok-n">0</span>
+      <span class="tok-k">AND</span> bt.building_type_name = <span class="tok-s">&#x27;All buildings&#x27;</span>
+      <span class="tok-k">AND</span> f.consent_nature = <span class="tok-s">&#x27;New&#x27;</span>
+    <span class="tok-k">GROUP</span> <span class="tok-k">BY</span> r.region_name, d.year
+)
+<span class="tok-k">SELECT</span>
+    region_name,
+    year,
+    annual_consents,
+    <span class="tok-f">LAG</span>(annual_consents) <span class="tok-k">OVER</span> (<span class="tok-k">PARTITION</span> <span class="tok-k">BY</span> region_name <span class="tok-k">ORDER</span> <span class="tok-k">BY</span> year)
+                                                    <span class="tok-k">AS</span> prev_year_consents,
+    <span class="tok-f">ROUND</span>(
+        (annual_consents - <span class="tok-f">LAG</span>(annual_consents)
+            <span class="tok-k">OVER</span> (<span class="tok-k">PARTITION</span> <span class="tok-k">BY</span> region_name <span class="tok-k">ORDER</span> <span class="tok-k">BY</span> year))
+        * <span class="tok-n">100.0</span>
+        / <span class="tok-f">NULLIF</span>(<span class="tok-f">LAG</span>(annual_consents)
+            <span class="tok-k">OVER</span> (<span class="tok-k">PARTITION</span> <span class="tok-k">BY</span> region_name <span class="tok-k">ORDER</span> <span class="tok-k">BY</span> year), <span class="tok-n">0</span>),
+        <span class="tok-n">1</span>
+    )                                               <span class="tok-k">AS</span> yoy_change_pct
+<span class="tok-k">FROM</span> annual_consents
+<span class="tok-k">ORDER</span> <span class="tok-k">BY</span> region_name, year;</code></pre>
+          </div><div class="code-panel" role="tabpanel" id="sqlpanel-7" aria-labelledby="sqltab-7" hidden>
+            <p class="why"><b>Query 7.</b> How does Hamilton City&#x27;s dwelling consent trend compare to the national average? Use a 3-month moving average to smooth monthly noise and highlight whether Hamilton is outpacing or trailing New Zealand. <span class="tech">Techniques: moving average window function, subquery comparison, local relevance.</span></p>
+            <pre><code><span class="tok-k">WITH</span> hamilton <span class="tok-k">AS</span> (
+    <span class="tok-k">SELECT</span>
+        d.date_id,
+        d.year,
+        d.month,
+        f.number_of_consents                        <span class="tok-k">AS</span> hamilton_consents,
+        f.value_nzd                                 <span class="tok-k">AS</span> hamilton_value
+    <span class="tok-k">FROM</span> fact_ta_consents f
+    <span class="tok-k">JOIN</span> dim_date d          <span class="tok-k">ON</span> f.date_id = d.date_id
+    <span class="tok-k">JOIN</span> dim_authority a     <span class="tok-k">ON</span> f.authority_id = a.authority_id
+    <span class="tok-k">JOIN</span> dim_building_type bt <span class="tok-k">ON</span> f.building_type_id = bt.building_type_id
+    <span class="tok-k">WHERE</span> a.authority_name = <span class="tok-s">&#x27;Hamilton City&#x27;</span>
+      <span class="tok-k">AND</span> bt.building_type_name = <span class="tok-s">&#x27;Dwelling units&#x27;</span>
+      <span class="tok-k">AND</span> f.consent_nature = <span class="tok-s">&#x27;New&#x27;</span>
+      <span class="tok-k">AND</span> d.year &gt;= <span class="tok-n">2019</span>
+),
+national <span class="tok-k">AS</span> (
+    <span class="tok-k">SELECT</span>
+        d.date_id,
+        f.number_of_consents                        <span class="tok-k">AS</span> nz_consents
+    <span class="tok-k">FROM</span> fact_region_consents f
+    <span class="tok-k">JOIN</span> dim_date d          <span class="tok-k">ON</span> f.date_id = d.date_id
+    <span class="tok-k">JOIN</span> dim_region r        <span class="tok-k">ON</span> f.region_id = r.region_id
+    <span class="tok-k">JOIN</span> dim_building_type bt <span class="tok-k">ON</span> f.building_type_id = bt.building_type_id
+    <span class="tok-k">WHERE</span> r.region_name = <span class="tok-s">&#x27;New Zealand&#x27;</span>
+      <span class="tok-k">AND</span> bt.building_type_name = <span class="tok-s">&#x27;Dwelling units&#x27;</span>
+      <span class="tok-k">AND</span> f.consent_nature = <span class="tok-s">&#x27;New&#x27;</span>
+      <span class="tok-k">AND</span> d.year &gt;= <span class="tok-n">2019</span>
+)
+<span class="tok-k">SELECT</span>
+    h.date_id,
+    h.year,
+    h.month,
+    h.hamilton_consents,
+    n.nz_consents,
+    <span class="tok-f">ROUND</span>(<span class="tok-f">AVG</span>(h.hamilton_consents)
+        <span class="tok-k">OVER</span> (<span class="tok-k">ORDER</span> <span class="tok-k">BY</span> h.date_id
+              <span class="tok-k">ROWS</span> <span class="tok-k">BETWEEN</span> <span class="tok-n">2</span> <span class="tok-k">PRECEDING</span> <span class="tok-k">AND</span> <span class="tok-k">CURRENT</span> <span class="tok-k">ROW</span>), <span class="tok-n">1</span>)
+                                                    <span class="tok-k">AS</span> hamilton_3mo_avg,
+    <span class="tok-f">ROUND</span>(<span class="tok-f">AVG</span>(n.nz_consents)
+        <span class="tok-k">OVER</span> (<span class="tok-k">ORDER</span> <span class="tok-k">BY</span> h.date_id
+              <span class="tok-k">ROWS</span> <span class="tok-k">BETWEEN</span> <span class="tok-n">2</span> <span class="tok-k">PRECEDING</span> <span class="tok-k">AND</span> <span class="tok-k">CURRENT</span> <span class="tok-k">ROW</span>), <span class="tok-n">1</span>)
+                                                    <span class="tok-k">AS</span> nz_3mo_avg,
+    <span class="tok-f">ROUND</span>(h.hamilton_consents * <span class="tok-n">100.0</span>
+        / <span class="tok-f">NULLIF</span>(n.nz_consents, <span class="tok-n">0</span>), <span class="tok-n">2</span>)              <span class="tok-k">AS</span> hamilton_share_pct
+<span class="tok-k">FROM</span> hamilton h
+<span class="tok-k">JOIN</span> national n <span class="tok-k">ON</span> h.date_id = n.date_id
+<span class="tok-k">ORDER</span> <span class="tok-k">BY</span> h.date_id;</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="section band" aria-labelledby="findings-title">
       <div class="wrap">
         <div class="section-head">
@@ -140,10 +287,6 @@
         </div>
         <div class="gallery">
           <figure class="shot">
-        <div class="frame"><img src="images/projects/sql/nz-building-consents/02_dwelling_mix_shift.png" alt="Stacked area chart showing the share of New Zealand dwelling consents shifting from standalone houses toward townhouses between 2015 and 2025." width="1520" height="888" loading="lazy" /></div>
-        <figcaption>Dwelling type mix, 2015 to 2025.</figcaption>
-      </figure>
-          <figure class="shot">
         <div class="frame"><img src="images/projects/sql/nz-building-consents/03_covid_impact.png" alt="Bar chart comparing average monthly consent volumes across pre-COVID, trough, recovery and recent periods." width="1379" height="889" loading="lazy" /></div>
         <figcaption>COVID impact and recovery.</figcaption>
       </figure>
@@ -162,10 +305,6 @@
           <figure class="shot">
         <div class="frame"><img src="images/projects/sql/nz-building-consents/07_supply_concentration.png" alt="Line chart tracking the share of national dwelling consents held by Auckland, Canterbury and Waikato from 2017 to 2025." width="1548" height="888" loading="lazy" /></div>
         <figcaption>Supply concentration in the top three regions.</figcaption>
-      </figure>
-          <figure class="shot">
-        <div class="frame"><img src="images/projects/sql/nz-building-consents/08_seasonal_pattern.png" alt="Bar chart of average monthly consent volumes across the calendar year." width="1519" height="890" loading="lazy" /></div>
-        <figcaption>Seasonal pattern by month.</figcaption>
       </figure>
           <figure class="shot">
         <div class="frame"><img src="images/projects/sql/nz-building-consents/09_value_quartiles.png" alt="Horizontal bar chart classifying New Zealand regions into NTILE quartiles by average consent value." width="1522" height="958" loading="lazy" /></div>
@@ -192,7 +331,8 @@
     </div>
   </footer>
 
-  <script src="assets/js/site.js?v=3" defer></script>
+  <script src="assets/js/site.js?v=5" defer></script>
+  <script src="assets/js/charts.js?v=5" defer></script>
 </body>
 
 </html>
