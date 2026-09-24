@@ -82,7 +82,7 @@ def sql_showcase():
       <div class="wrap">
         <div class="section-head">
           <h2 id="sql-title">The SQL</h2>
-          <a class="muted" href="https://github.com/mathurishan/nz-building-consents-sql/blob/main/queries/analysis_queries.sql">All ten queries on GitHub &rarr;</a>
+          <a class="muted" href="https://github.com/mathurishan/nz-building-consents-sql/blob/main/queries/analysis_queries.sql" target="_blank" rel="noopener">All ten queries on GitHub &rarr;</a>
         </div>
         <div class="code-card rise" data-tabs>
           <div class="code-tabs" role="tablist" aria-label="SQL queries">

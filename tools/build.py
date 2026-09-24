@@ -72,8 +72,8 @@ resume = head("Résumé | Ishan Mathur",
         </div>
         <ul class="tools-row cv-contact" aria-label="Contact">
           <li><a href="mailto:mathur.ishan11@gmail.com">mathur.ishan11@gmail.com</a></li>
-          <li><a href="https://www.linkedin.com/in/mathurishan">linkedin.com/in/mathurishan</a></li>
-          <li><a href="https://github.com/mathurishan">github.com/mathurishan</a></li>
+          <li><a href="https://www.linkedin.com/in/mathurishan" target="_blank" rel="noopener">linkedin.com/in/mathurishan</a></li>
+          <li><a href="https://github.com/mathurishan" target="_blank" rel="noopener">github.com/mathurishan</a></li>
         </ul>
         <dl class="glance" aria-label="Key achievements">
           <div><dt>&lt;1 hr</dt><dd>for a recurring reporting task that took about 4 hours, using reusable templates</dd></div>
@@ -146,7 +146,7 @@ resume = head("Résumé | Ishan Mathur",
           <h2>Referees</h2>
           <div class="body">
             <p>Professional referees available on request. Full profile on
-              <a href="https://www.linkedin.com/in/mathurishan">LinkedIn</a>.</p>
+              <a href="https://www.linkedin.com/in/mathurishan" target="_blank" rel="noopener">LinkedIn</a>.</p>
           </div>
         </div>
       </div>

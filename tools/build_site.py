@@ -11,6 +11,8 @@ import diagrams
 SITE = "https://mathurishan.github.io/"
 CSS_V = "14"
 JS_V = "11"
+# Links that leave the site open in a new tab
+EXTERNAL = ' target="_blank" rel="noopener"'
 FONTS = ("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@"
          "0,6..72,400;0,6..72,500;1,6..72,400&display=swap")
 ARROW = ('<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" '
@@ -114,7 +116,7 @@ def footer(dark=False, links=None, charts=False):
                       ("https://github.com/mathurishan", "GitHub")]
     cls = "site-footer on-band" if dark else "site-footer"
     chart_js = f'\n  <script src="assets/js/charts.js?v={JS_V}" defer></script>' if charts else ""
-    items = "\n        ".join(f'<a href="{h}">{t}</a>' for h, t in links)
+    items = "\n        ".join(f'<a href="{h}"{EXTERNAL if h.startswith("http") else ""}>{t}</a>' for h, t in links)
     return f'''
   <footer class="{cls}">
     <div class="wrap">
@@ -353,7 +355,7 @@ def figure(src, w, h, alt, cap, lazy=True, stage=None, vt=None):
 def project_page(p, nxt):
     tools = "".join(f"<li>{E(t)}</li>" for t in p["tools"])
     if p["link"]:
-        tools += f'<li class="link"><a href="{p["link"][0]}">{E(p["link"][1])} &rarr;</a></li>'
+        tools += f'<li class="link"><a href="{p["link"][0]}"{EXTERNAL}>{E(p["link"][1])} &rarr;</a></li>'
     def glance_dt(v):
         m = re.fullmatch(r"(\d+)([%+]?)", v)
         if m:
