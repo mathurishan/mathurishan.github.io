@@ -1,182 +1,157 @@
-<!DOCTYPE HTML>
-<html lang="en" class="no-js">
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Air New Zealand Analysis (Power BI) | Ishan Mathur</title>
-  <meta name="description"
-    content="Power BI case study: Air New Zealand route, capacity and performance analysis built from public data, with a documented data model and plain-language metric definitions." />
+  <meta name="description" content="Power BI dashboard: Air New Zealand route, capacity and performance analysis built from public data, with a documented data model and plain-language metric definitions." />
+  <link rel="canonical" href="https://mathurishan.github.io/powerbi-air-nz.html" />
   <meta property="og:title" content="Air New Zealand Analysis (Power BI) | Ishan Mathur" />
-  <meta property="og:description"
-    content="Power BI case study: Air New Zealand route, capacity and performance analysis built from public data, with a documented data model and plain-language metric definitions." />
+  <meta property="og:description" content="Power BI dashboard: Air New Zealand route, capacity and performance analysis built from public data, with a documented data model and plain-language metric definitions." />
   <meta property="og:image" content="https://mathurishan.github.io/images/social/air-nz.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:url" content="https://mathurishan.github.io/powerbi-air-nz.html" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary_large_image" />
-  <link rel="canonical" href="https://mathurishan.github.io/powerbi-air-nz.html" />
+  <meta name="theme-color" content="#faf9f5" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@500;700&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/main.css?v=4" />
-  <noscript>
-    <link rel="stylesheet" href="assets/css/noscript.css" />
-  </noscript>
-  <style>
-    .project-header {
-      width: 100%;
-      max-width: 100%;
-    }
-
-    .project-header > :first-child {
-      width: 100%;
-      white-space: normal;
-      overflow-wrap: anywhere;
-    }
-
-    .project-header > p {
-      width: 100%;
-      white-space: normal;
-      overflow-wrap: anywhere;
-      letter-spacing: 0.18em;
-    }
-
-    @media screen and (max-width: 736px) {
-      .project-header > p {
-        letter-spacing: 0.14em;
-      }
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/site.css?v=3" />
+  <script>document.documentElement.classList.add('js')</script>
 </head>
 
-<body class="is-preload">
-  <div id="wrapper">
-    <header id="header">
-      <a href="index.html" class="logo"><strong>Ishan Mathur</strong><span>&nbsp;Portfolio</span></a>
-      <nav><a href="#menu">Menu</a></nav>
-    </header>
-    <nav id="menu">
-      <ul class="links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="powerbi.html">Power BI</a></li>
-        <li><a href="sql.html">SQL</a></li>
-        <li><a href="python.html">Python</a></li>
-        <li><a href="resume.html">Résumé</a></li>
-        <li><a href="#footer">Contact</a></li>
-      </ul>
-    </nav>
-    <section id="main" class="wrapper">
-      <div class="inner">
-        <header class="major animate-on-scroll project-header">
-          <h1>Air New Zealand: Capacity, Reliability &amp; Demand Intelligence in Power BI</h1>
-          <p>A multi-page dashboard suite covering airline demand, operational reliability, route performance, and
-            disruption-led capacity scenarios.</p>
-        </header>
-        <span class="image main animate-on-scroll delay-1"><img
-            src="images/projects/air-nz/executive-summary-overview.jpg"
-            alt="Air New Zealand Power BI executive dashboard showing arrivals, departures, cancellation rate, on-time performance, capacity utilisation, route cancellations, and profitable sectors."
-            loading="lazy" /></span>
-        <div class="row gtr-200">
-          <div class="col-8 col-12-medium animate-on-scroll delay-2">
-            <h2>Problem</h2>
-            <p>An airline network needs one view of demand, reliability and capacity: how traffic recovered after
-              2021, where cancellations and delays concentrate, and what a capacity shock such as engine groundings
-              would mean.</p>
-            <h2>Data</h2>
-            <p>Public data on Air New Zealand arrivals, departures, cancellations, on-time performance and capacity,
-              2020 to 2025, brought into one Power BI data model with the model and its metric definitions written out
-              in plain language.</p>
-            <h2>What I built</h2>
-            <p>A route, capacity and performance analysis in Power BI:</p>
-            <ul>
-              <li><strong>Executive summary</strong>: arrivals, departures, cancellation rate, on-time performance and
-                capacity utilisation, with route-level cancellations</li>
-              <li><strong>Passenger demand trends</strong>, 2020 to 2025</li>
-              <li><strong>Operational performance</strong>: utilisation, cancellations and on-time performance by
-                month</li>
-              <li><strong>Demand and reliability trade-offs</strong>: traffic against cancellation rate and on-time
-                arrival</li>
-              <li><strong>Capacity shock scenario</strong>: the effect of engine groundings on capacity by segment</li>
-            </ul>
-            <h2>What changed</h2>
-            <p>The dashboard shows passenger volumes recovering from the 2021 low through to 2025, cancellations
-              peaking in June 2025, and which routes carry the highest cancellation rates month by month.</p>
-          </div>
-          <div class="col-4 col-12-medium animate-on-scroll delay-3">
-            <div class="box alt">
-              <h3>Tools</h3>
-              <ul class="alt">
-                <li><strong>Power BI</strong>: data model and report</li>
-                <li><strong>DAX</strong>: KPI measures</li>
-                <li><strong>Power Query</strong>: data preparation</li>
-              </ul>
-            </div>
-            <ul class="actions stacked">
-              <li><a href="powerbi.html" class="button fit icon solid fa-arrow-left">All Power BI work</a></li>
-            </ul>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="./">Ishan Mathur</a>
+      <nav class="nav" aria-label="Main">
+        <a href="./#work" aria-current="page">Work</a>
+        <a href="resume.html">Résumé</a>
+        <a href="./#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="case-hero">
+      <div class="wrap">
+        <a class="back" href="./#work">&larr; All work</a>
+        <p class="eyebrow">Power BI dashboard</p>
+        <h1>Air New Zealand Analysis</h1>
+        <p class="lead">Route, capacity and performance analysis built from public data, with a documented data model and plain-language metric definitions.</p>
+        <ul class="tools-row" aria-label="Tools"><li>Power BI</li><li>DAX</li><li>Power Query</li><li>Public data</li></ul>
+        <dl class="glance">
+          <div><dt>2020–25</dt><dd>years of public data</dd></div>
+          <div><dt>6</dt><dd>headline KPIs on the overview</dd></div>
+          <div><dt>5</dt><dd>report views shown here</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <figure class="shot">
+        <div class="stage tone-slate">
+          <div class="frame"><img src="images/projects/air-nz/executive-summary-overview.jpg" alt="Air New Zealand Power BI executive dashboard showing arrivals, departures, cancellation rate, on-time performance, capacity utilisation, route cancellations and profitable sectors." width="1600" height="925" /></div>
+        </div>
+        <figcaption>Executive summary: traffic, reliability and capacity on one page, with route-level cancellations.</figcaption>
+      </figure>
+    </div>
+
+    <section class="case-body">
+      <div class="wrap">
+        <div class="block rise">
+          <h2>Problem</h2>
+          <div class="body">
+            <p>An airline network needs one view of demand, reliability and capacity: how traffic recovered after 2021, where cancellations and delays concentrate, and what a capacity shock such as engine groundings would mean.</p>
           </div>
         </div>
-        <div class="animate-on-scroll">
-          <h2>Screenshots</h2>
-          <div class="row gtr-50">
-            <div class="col-6 col-12-small">
-              <span class="image fit"><img src="images/projects/air-nz/passenger-demand-trends.jpg"
-                  alt="Air New Zealand passenger demand trends dashboard showing arrivals, departures, and year-over-year change from 2020 to 2025."
-                  loading="lazy" /></span>
-              <p><strong>Passenger Demand Trends (2020-2025)</strong> - This page focuses on long-run demand movement,
-                using arrivals, departures, and YoY patterns to show how traffic changed through disruption and
-                recovery.</p>
-            </div>
-            <div class="col-6 col-12-small">
-              <span class="image fit"><img src="images/projects/air-nz/operational-performance-snapshot.jpg"
-                  alt="Air New Zealand operational performance dashboard comparing capacity utilisation, cancellation rate, and arrival and departure on-time performance for 2025."
-                  loading="lazy" /></span>
-              <p><strong>Operational Performance Snapshot (2025)</strong> - A monthly operating view that compares
-                utilisation, cancellations, and OTP, helping explain where short-term performance strengthened or came
-                under pressure.</p>
-            </div>
-            <div class="col-6 col-12-small">
-              <span class="image fit"><img src="images/projects/air-nz/demand-reliability-tradeoffs.jpg"
-                  alt="Air New Zealand demand and reliability trade-off dashboard with bubble charts comparing arrivals, cancellation rate, and arrival on-time performance in 2025."
-                  loading="lazy" /></span>
-              <p><strong>Demand-Reliability Trade-offs (2025)</strong> - Bubble-chart analysis is used to frame how
-                traffic levels interact with cancellation rate and arrival OTP, making the demand-versus-service
-                relationship easier to interpret.</p>
-            </div>
-            <div class="col-6 col-12-small">
-              <span class="image fit"><img src="images/projects/air-nz/capacity-shock-scenario-analysis.jpg"
-                  alt="Air New Zealand capacity shock dashboard showing revenue, load factor, engine grounding impact, fleet utilisation, forecast RPK, scenario comparison, and segment-level ASK analysis."
-                  loading="lazy" /></span>
-              <p><strong>Capacity Shock / Engine Groundings Impact</strong> - This page shifts the dashboard suite into
-                strategic decision support, using scenario comparison and segment-level capacity views to frame the
-                business implications of disruption.</p>
-            </div>
+        <div class="block rise">
+          <h2>Data</h2>
+          <div class="body">
+            <p>Public data on Air New Zealand arrivals, departures, cancellations, on-time performance and capacity, 2020 to 2025, brought into one Power BI data model with the model and its metric definitions written out in plain language.</p>
+          </div>
+        </div>
+        <div class="block rise">
+          <h2>What I built</h2>
+          <div class="body">
+            <p>A route, capacity and performance analysis in Power BI:</p>
+            <ul>
+              <li><strong>Executive summary:</strong> arrivals, departures, cancellation rate, on-time performance and capacity utilisation, with route-level cancellations</li>
+              <li><strong>Passenger demand trends</strong>, 2020 to 2025</li>
+              <li><strong>Operational performance:</strong> utilisation, cancellations and on-time performance by month</li>
+              <li><strong>Demand and reliability trade-offs:</strong> traffic against cancellation rate and on-time arrival</li>
+              <li><strong>Capacity shock scenario:</strong> the effect of engine groundings on capacity by segment</li>
+            </ul>
           </div>
         </div>
       </div>
     </section>
-    <footer id="footer">
-      <div class="inner">
-        <ul class="icons">
-          <li><a href="https://github.com/mathurishan" class="icon brands alt fa-github"><span
-                class="label">GitHub</span></a></li>
-          <li><a href="https://www.linkedin.com/in/mathurishan" class="icon brands alt fa-linkedin-in"><span
-                class="label">LinkedIn</span></a></li>
-          <li><a href="mailto:mathur.ishan11@gmail.com" class="icon solid alt fa-envelope"><span
-                class="label">Email</span></a></li>
-        </ul>
-        <ul class="copyright">
-          <li>&copy; Ishan Mathur 2026</li>
-          <li>Design adapted from <a href="https://html5up.net/forty">HTML5 UP Forty</a></li>
-        </ul>
+
+    <section class="section band" aria-labelledby="findings-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="findings-title">What changed</h2>
+          <span class="muted">What the analysis shows</span>
+        </div>
+        <div class="findings">
+          <div class="finding rise"><p>Passenger volumes recover from the 2021 low through to 2025.</p></div>
+          <div class="finding rise r1"><p>Cancellations peak in June 2025.</p></div>
+          <div class="finding rise r2"><p>A route-by-month view shows which routes carry the highest cancellation rates.</p></div>
+        </div>
       </div>
-    </footer>
-  </div>
-  <script src="assets/js/main.js?v=4" defer></script>
+    </section>
+
+    <section class="section" aria-labelledby="gallery-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="gallery-title">Gallery</h2>
+          <span class="muted">Select an image to enlarge</span>
+        </div>
+        <div class="gallery">
+          <figure class="shot">
+        <div class="frame"><img src="images/projects/air-nz/passenger-demand-trends.jpg" alt="Passenger demand trends dashboard showing arrivals, departures and year-over-year change from 2020 to 2025." width="1600" height="925" loading="lazy" /></div>
+        <figcaption>Passenger demand, 2020 to 2025: arrivals, departures and year-on-year change.</figcaption>
+      </figure>
+          <figure class="shot">
+        <div class="frame"><img src="images/projects/air-nz/operational-performance-snapshot.jpg" alt="Operational performance dashboard comparing capacity utilisation, cancellation rate, and arrival and departure on-time performance for 2025." width="1600" height="925" loading="lazy" /></div>
+        <figcaption>Operational performance, 2025: utilisation, cancellations and on-time performance by month.</figcaption>
+      </figure>
+          <figure class="shot">
+        <div class="frame"><img src="images/projects/air-nz/demand-reliability-tradeoffs.jpg" alt="Demand and reliability trade-off dashboard with bubble charts comparing arrivals, cancellation rate and arrival on-time performance in 2025." width="1600" height="925" loading="lazy" /></div>
+        <figcaption>Demand against reliability: traffic, cancellation rate and on-time arrival.</figcaption>
+      </figure>
+          <figure class="shot">
+        <div class="frame"><img src="images/projects/air-nz/capacity-shock-scenario-analysis.jpg" alt="Capacity shock dashboard showing revenue, load factor, engine grounding impact, fleet utilisation, forecast RPK, scenario comparison and segment-level ASK analysis." width="1600" height="925" loading="lazy" /></div>
+        <figcaption>Capacity shock scenario: what engine groundings mean for capacity by segment.</figcaption>
+      </figure>
+        </div>
+
+        <div class="next">
+          <span class="muted">Next project</span>
+          <a href="sql-nz-building-consents.html">NZ Building Consents &rarr;</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>© 2026 Ishan Mathur</span>
+      <nav aria-label="Footer">
+        <a href="mailto:mathur.ishan11@gmail.com">Email</a>
+        <a href="https://www.linkedin.com/in/mathurishan">LinkedIn</a>
+        <a href="https://github.com/mathurishan">GitHub</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="assets/js/site.js?v=2" defer></script>
 </body>
 
 </html>

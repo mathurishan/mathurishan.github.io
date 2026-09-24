@@ -1,255 +1,182 @@
-<!DOCTYPE HTML>
-<html lang="en" class="no-js">
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>NZ Building Consents (SQL) | Ishan Mathur</title>
-  <meta name="description"
-    content="SQL case study: Stats NZ building consents 1990 to 2025 in a star-schema SQLite database, with ten analytical queries using window functions." />
+  <meta name="description" content="SQL analytics: Stats NZ building consents 1990 to 2025 in a star-schema SQLite database, with ten analytical queries using window functions." />
+  <link rel="canonical" href="https://mathurishan.github.io/sql-nz-building-consents.html" />
   <meta property="og:title" content="NZ Building Consents (SQL) | Ishan Mathur" />
-  <meta property="og:description"
-    content="SQL case study: Stats NZ building consents 1990 to 2025 in a star-schema SQLite database, with ten analytical queries using window functions." />
+  <meta property="og:description" content="SQL analytics: Stats NZ building consents 1990 to 2025 in a star-schema SQLite database, with ten analytical queries using window functions." />
   <meta property="og:image" content="https://mathurishan.github.io/images/social/sql.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:url" content="https://mathurishan.github.io/sql-nz-building-consents.html" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary_large_image" />
-  <link rel="canonical" href="https://mathurishan.github.io/sql-nz-building-consents.html" />
+  <meta name="theme-color" content="#faf9f5" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@500;700&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/main.css?v=4" />
-  <noscript>
-    <link rel="stylesheet" href="assets/css/noscript.css" />
-  </noscript>
-  <style>
-    .project-header {
-      width: 100%;
-      max-width: 100%;
-    }
-
-    .project-header > :first-child {
-      width: 100%;
-      white-space: normal;
-      overflow-wrap: anywhere;
-    }
-
-    .project-header > p {
-      width: 100%;
-      white-space: normal;
-      overflow-wrap: anywhere;
-      letter-spacing: 0.12em;
-    }
-
-    .metric-list li {
-      margin-bottom: 0.75rem;
-    }
-
-    .box ul.alt li {
-      margin-bottom: 0.45rem;
-    }
-
-    @media screen and (max-width: 736px) {
-      .project-header > p {
-        letter-spacing: 0.08em;
-      }
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/site.css?v=3" />
+  <script>document.documentElement.classList.add('js')</script>
 </head>
 
-<body class="is-preload">
-  <div id="wrapper">
-    <header id="header">
-      <a href="index.html" class="logo"><strong>Ishan Mathur</strong><span>&nbsp;Portfolio</span></a>
-      <nav><a href="#menu">Menu</a></nav>
-    </header>
-    <nav id="menu">
-      <ul class="links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="powerbi.html">Power BI</a></li>
-        <li><a href="sql.html">SQL</a></li>
-        <li><a href="python.html">Python</a></li>
-        <li><a href="resume.html">Résumé</a></li>
-        <li><a href="#footer">Contact</a></li>
-      </ul>
-    </nav>
-    <section id="main" class="wrapper">
-      <div class="inner">
-        <header class="major animate-on-scroll project-header">
-          <h1>NZ Building Consents: Regional Pipeline, Recovery &amp; Risk Analysis in SQL</h1>
-          <p>Analysing Stats NZ building consent data across 16 regions and 67 territorial authorities to surface
-            construction trends, COVID recovery patterns, dwelling-type shifts, and supply concentration risk.</p>
-          <ul class="actions">
-            <li><a href="https://github.com/mathurishan/nz-building-consents-sql" class="button primary"
-                target="_blank" rel="noopener">View on GitHub</a></li>
-          </ul>
-        </header>
-        <span class="image main animate-on-scroll delay-1"><img
-            src="images/projects/sql/nz-building-consents/01_regional_pipeline_2025.png"
-            alt="Horizontal bar chart of New Zealand 2025 building consent value by region, showing Auckland leading at $9.7B."
-            loading="lazy" /></span>
-        <div class="row gtr-200">
-          <div class="col-8 col-12-medium animate-on-scroll delay-2">
-            <h2>Problem</h2>
-            <p>Where is New Zealand's building pipeline strongest, how did COVID reshape consent activity, which
-              dwelling types are gaining share, and is national supply becoming concentrated in a handful of
-              regions?</p>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
 
-            <h2>Data</h2>
-            <p>The Stats NZ Building Consents Issued dataset (December 2025 release): 1990 to 2025, across 16 regions
-              and 67 territorial authorities.</p>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="./">Ishan Mathur</a>
+      <nav class="nav" aria-label="Main">
+        <a href="./#work" aria-current="page">Work</a>
+        <a href="resume.html">Résumé</a>
+        <a href="./#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-            <h2>What I built</h2>
-            <p>A Python load script turns the long-format CSVs into a star-schema SQLite database (four dimension
-              tables, two fact tables). Ten SQL queries then answer the questions above, using window functions (LAG,
-              RANK, NTILE), moving averages, CTEs and a reusable executive summary view:</p>
-            <ul>
-              <li><strong>Regional pipeline and ranking</strong> — total consents, value, and floor area by region for
-                2025, ranked by consent value to show where construction investment is concentrated.</li>
-              <li><strong>Year-over-year growth trends</strong> — five-year YoY consent change by region using LAG
-                window functions to identify which markets are accelerating or contracting.</li>
-              <li><strong>COVID impact and recovery phases</strong> — national consent volumes grouped into pre-COVID,
-                trough, recovery, and recent periods to quantify the pandemic's effect on construction.</li>
-              <li><strong>Dwelling type mix shift</strong> — how the national share of houses vs apartments vs
-                townhouses has changed from 2015 to 2025, showing the move toward medium-density housing.</li>
-              <li><strong>Seasonal patterns</strong> — average monthly consent activity by month-of-year to reveal peak
-                and trough periods for council workload planning.</li>
-              <li><strong>Territorial authority ranking</strong> — top 10 councils by consent value with average consent
-                size metrics, joining across fact and dimension tables.</li>
-              <li><strong>Hamilton deep dive</strong> — monthly dwelling consent trends for Hamilton City with a 3-month
-                moving average, compared to the national average for local relevance.</li>
-              <li><strong>High-value consent analysis</strong> — NTILE-based quartile classification of regions by
-                average consent value, identifying premium vs budget construction markets.</li>
-              <li><strong>Supply concentration risk</strong> — tracking the top 3 regions' share of national dwelling
-                consents over a decade to assess pipeline diversification.</li>
-              <li><strong>Executive summary view</strong> — a reusable SQL view delivering total consents, value, QoQ
-                and YoY changes, and the top region for any quarter.</li>
-            </ul>
+  <main id="main">
+    <section class="case-hero">
+      <div class="wrap">
+        <a class="back" href="./#work">&larr; All work</a>
+        <p class="eyebrow">SQL analytics</p>
+        <h1>NZ Building Consents</h1>
+        <p class="lead">A star-schema SQLite database and ten analytical queries on Stats NZ building consents, 1990 to 2025.</p>
+        <ul class="tools-row" aria-label="Tools"><li>SQL (SQLite)</li><li>Window functions</li><li>CTEs</li><li>Python load script</li><li class="link"><a href="https://github.com/mathurishan/nz-building-consents-sql">Code on GitHub &rarr;</a></li></ul>
+        <dl class="glance">
+          <div><dt>35</dt><dd>years of data, 1990 to 2025</dd></div>
+          <div><dt>16</dt><dd>regions</dd></div>
+          <div><dt>67</dt><dd>territorial authorities</dd></div>
+          <div><dt>10</dt><dd>analytical SQL queries</dd></div>
+        </dl>
+      </div>
+    </section>
 
-            <h2>What changed</h2>
-            <p>What the analysis shows:</p>
-            <ul class="metric-list">
-              <li><strong>Auckland dominated the 2025 pipeline with $9,747M in new consent value</strong>, more than
-                double Canterbury ($4,043M) and almost five times Waikato ($2,015M), reinforcing Auckland's outsized role in
-                national construction activity.</li>
-              <li><strong>Townhouses briefly overtook standalone houses in 2023</strong>, the first time nationally.
-                Standalone houses fell from 70.2% of new dwelling consents in 2015 to 45.4% in 2025, while
-                townhouses rose from 13.5% to 44.1%, leaving the two almost level: a structural shift toward
-                higher-density living.</li>
-              <li><strong>COVID barely dented national consent numbers</strong> — average monthly consents actually rose
-                from 3,647 (2019) to 3,717 (2020). The recovery period (2021–22) spiked to 4,529 per month before
-                pulling back to 3,277 in the recent period (2023–25).</li>
-              <li><strong>Supply concentration is increasing</strong> — Auckland, Canterbury, and Waikato accounted for
-                70.9% of all new dwelling consents in 2025, up from 62.3% in 2017. The same three regions have topped
-                the national list for the entire decade.</li>
-              <li><strong>Wellington posted the sharpest recent rebound</strong> at +17.0% YoY in 2025, after falling
-                36.3% in 2023 and 23.9% in 2024. Southland (+25.9%) and Nelson (+25.2%) also showed strong
-                recoveries.</li>
-              <li><strong>November is the busiest month</strong> for consent activity (avg 3,931 consents, 2015–2025),
-                while the quietest month (avg 2,594) falls in the summer holiday break, consistent with the NZ
-                construction calendar.</li>
-            </ul>
-          </div>
-          <div class="col-4 col-12-medium animate-on-scroll delay-3">
-            <div class="box alt">
-              <h3>Skills</h3>
-              <ul class="alt">
-                <li>SQL (SQLite)</li>
-                <li>Star schema design</li>
-                <li>Window functions (LAG, RANK, NTILE)</li>
-                <li>Moving averages (ROWS BETWEEN)</li>
-                <li>CTEs &amp; subqueries</li>
-                <li>Time-series analysis</li>
-                <li>YoY / QoQ calculations</li>
-                <li>Executive reporting views</li>
-                <li>Python (ETL / data loading)</li>
-              </ul>
-            </div>
-            <div class="box alt">
-              <h3>Data &amp; Tools</h3>
-              <ul class="alt">
-                <li><strong>Source:</strong> Stats NZ Building Consents Issued, December 2025 release</li>
-                <li><strong>Coverage:</strong> 1.9M+ fact rows spanning 1990–2025 across 16 regions and 67 territorial
-                  authorities</li>
-                <li><strong>Database:</strong> SQLite star schema with 4 dimension tables and 2 fact tables</li>
-                <li><strong>ETL:</strong> Python script transforms long-format CSVs into normalised, pivoted fact
-                  tables</li>
-              </ul>
-            </div>
-            <ul class="actions stacked">
-              <li><a href="sql.html" class="button fit icon solid fa-arrow-left">All SQL work</a></li>
-            </ul>
+    <div class="wrap">
+      <figure class="shot">
+        <div class="stage tone-sage">
+          <div class="frame"><img src="images/projects/sql/nz-building-consents/01_regional_pipeline_2025.png" alt="Horizontal bar chart of New Zealand 2025 building consent value by region, showing Auckland leading at $9.7B." width="1522" height="958" /></div>
+        </div>
+        <figcaption>Regional pipeline, 2025: new consent value by region.</figcaption>
+      </figure>
+    </div>
+
+    <section class="case-body">
+      <div class="wrap">
+        <div class="block rise">
+          <h2>Problem</h2>
+          <div class="body">
+            <p>Where is New Zealand's building pipeline strongest, how did COVID reshape consent activity, which dwelling types are gaining share, and is national supply becoming concentrated in a handful of regions?</p>
           </div>
         </div>
-        <div class="animate-on-scroll">
-          <h2>Charts</h2>
-          <div class="row gtr-50">
-            <div class="col-6 col-12-small">
-              <span class="image fit"><img src="images/projects/sql/nz-building-consents/02_dwelling_mix_shift.png"
-                  alt="Stacked area chart showing the share of New Zealand dwelling consents shifting from standalone houses toward townhouses between 2015 and 2025." loading="lazy" /></span>
-              <p><strong>Dwelling Type Mix Shift</strong> - Standalone houses fell from 70% of new dwelling consents in 2015 to 45% in 2025, while townhouses surged from 14% to 44%, marking a structural move toward higher-density living.</p>
-            </div>
-            <div class="col-6 col-12-small">
-              <span class="image fit"><img src="images/projects/sql/nz-building-consents/03_covid_impact.png"
-                  alt="Bar chart comparing average monthly consent volumes across pre-COVID, trough, recovery, and recent periods." loading="lazy" /></span>
-              <p><strong>COVID Impact and Recovery</strong> - National consents barely dipped during the trough, then spiked during 2021-22 recovery before pulling back to 3,277 per month in the recent period as interest rates bit.</p>
-            </div>
-            <div class="col-6 col-12-small">
-              <span class="image fit"><img src="images/projects/sql/nz-building-consents/04_yoy_growth_heatmap.png"
-                  alt="Heatmap of year-over-year consent growth by New Zealand region from 2020 through 2025." loading="lazy" /></span>
-              <p><strong>YoY Growth Heatmap</strong> - A LAG-based view across regions and years exposes the post-2022 contraction and the 2025 rebound led by Wellington (+17%), Southland (+26%), and Nelson (+25%).</p>
-            </div>
-            <div class="col-6 col-12-small">
-              <span class="image fit"><img src="images/projects/sql/nz-building-consents/05_top_10_tas.png"
-                  alt="Horizontal bar chart of the top 10 New Zealand territorial authorities by 2025 consent value, with Hamilton highlighted." loading="lazy" /></span>
-              <p><strong>Top 10 Territorial Authorities</strong> - Auckland Council dominates the council ranking, but Hamilton City still earns a clear top-10 placement, anchoring the local deep dive that follows.</p>
-            </div>
-            <div class="col-6 col-12-small">
-              <span class="image fit"><img src="images/projects/sql/nz-building-consents/06_hamilton_deep_dive.png"
-                  alt="Hamilton City monthly dwelling consent trend with a 3-month moving average overlay." loading="lazy" /></span>
-              <p><strong>Hamilton Deep Dive</strong> - A 3-month moving average smooths the noisy monthly series and highlights how Hamilton's pipeline tracks the national cycle while keeping a distinct local rhythm.</p>
-            </div>
-            <div class="col-6 col-12-small">
-              <span class="image fit"><img src="images/projects/sql/nz-building-consents/07_supply_concentration.png"
-                  alt="Line chart tracking the share of national dwelling consents held by Auckland, Canterbury, and Waikato from 2017 to 2025." loading="lazy" /></span>
-              <p><strong>Supply Concentration Risk</strong> - The top three regions now account for 70.9% of all new dwelling consents, up from 62.3% in 2017, flagging a national supply pipeline that is increasingly concentrated.</p>
-            </div>
-            <div class="col-6 col-12-small">
-              <span class="image fit"><img src="images/projects/sql/nz-building-consents/08_seasonal_pattern.png"
-                  alt="Bar chart of average monthly consent volumes across the calendar year, highlighting summer and winter contrasts." loading="lazy" /></span>
-              <p><strong>Seasonal Patterns</strong> - November is the busiest month at 3,931 average consents, while the summer holiday month drops to 2,594, mirroring the NZ construction calendar and council workload cycle.</p>
-            </div>
-            <div class="col-6 col-12-small">
-              <span class="image fit"><img src="images/projects/sql/nz-building-consents/09_value_quartiles.png"
-                  alt="Horizontal bar chart classifying New Zealand regions into NTILE quartiles by average consent value." loading="lazy" /></span>
-              <p><strong>Value Quartiles (NTILE)</strong> - An NTILE(4) classification segments regions into premium and budget construction markets, revealing where average consent values run highest.</p>
-            </div>
+        <div class="block rise">
+          <h2>Data</h2>
+          <div class="body">
+            <p>The Stats NZ Building Consents Issued dataset (December 2025 release): 1990 to 2025, across 16 regions and 67 territorial authorities.</p>
+          </div>
+        </div>
+        <div class="block rise">
+          <h2>What I built</h2>
+          <div class="body">
+            <p>A Python load script turns the long-format CSVs into a star-schema SQLite database (four dimension tables, two fact tables). Ten SQL queries then answer the questions above:</p>
+            <ul>
+              <li><strong>Regional pipeline and ranking:</strong> consents, value and floor area by region for 2025</li>
+              <li><strong>Year-on-year growth:</strong> five-year change by region with LAG window functions</li>
+              <li><strong>COVID impact and recovery:</strong> national volumes across pre-COVID, trough, recovery and recent periods</li>
+              <li><strong>Dwelling type mix:</strong> the share of houses, apartments and townhouses, 2015 to 2025</li>
+              <li><strong>Seasonal patterns:</strong> average consent activity by month of year</li>
+              <li><strong>Top 10 territorial authorities</strong> by consent value, joining fact and dimension tables</li>
+              <li><strong>Hamilton deep dive:</strong> monthly dwelling consents with a 3-month moving average</li>
+              <li><strong>Value quartiles:</strong> NTILE classification of regions by average consent value</li>
+              <li><strong>Supply concentration:</strong> the top three regions' share of national dwelling consents</li>
+              <li><strong>Executive summary view:</strong> a reusable view with totals, QoQ and YoY change and the top region for any quarter</li>
+            </ul>
           </div>
         </div>
       </div>
     </section>
-    <footer id="footer">
-      <div class="inner">
-        <ul class="icons">
-          <li><a href="https://github.com/mathurishan" class="icon brands alt fa-github"><span
-                class="label">GitHub</span></a></li>
-          <li><a href="https://www.linkedin.com/in/mathurishan" class="icon brands alt fa-linkedin-in"><span
-                class="label">LinkedIn</span></a></li>
-          <li><a href="mailto:mathur.ishan11@gmail.com" class="icon solid alt fa-envelope"><span
-                class="label">Email</span></a></li>
-        </ul>
-        <ul class="copyright">
-          <li>&copy; Ishan Mathur 2026</li>
-          <li>Design adapted from <a href="https://html5up.net/forty">HTML5 UP Forty</a></li>
-        </ul>
+
+    <section class="section band" aria-labelledby="findings-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="findings-title">What changed</h2>
+          <span class="muted">What the analysis shows</span>
+        </div>
+        <div class="findings">
+          <div class="finding rise"><p>Auckland led the 2025 pipeline with $9,747M in new consent value, more than double Canterbury ($4,043M) and almost five times Waikato ($2,015M).</p></div>
+          <div class="finding rise r1"><p>Townhouses briefly overtook standalone houses in 2023. Houses fell from 70.2% of new dwelling consents in 2015 to 45.4% in 2025, while townhouses rose from 13.5% to 44.1%.</p></div>
+          <div class="finding rise r2"><p>COVID barely dented national consents: the monthly average rose from 3,647 in 2019 to 3,717 in 2020, spiked to 4,529 in 2021–22, then eased to 3,277 in 2023–25.</p></div>
+          <div class="finding rise"><p>Auckland, Canterbury and Waikato accounted for 70.9% of new dwelling consents in 2025, up from 62.3% in 2017.</p></div>
+          <div class="finding rise r1"><p>Wellington posted the sharpest recent rebound, +17.0% in 2025 after falls of 36.3% in 2023 and 23.9% in 2024.</p></div>
+          <div class="finding rise r2"><p>November is the busiest month (average 3,931 consents, 2015–2025), and the summer holiday month the quietest (2,594).</p></div>
+        </div>
       </div>
-    </footer>
-  </div>
-  <script src="assets/js/main.js?v=4" defer></script>
+    </section>
+
+    <section class="section" aria-labelledby="gallery-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="gallery-title">Gallery</h2>
+          <span class="muted">Select an image to enlarge</span>
+        </div>
+        <div class="gallery">
+          <figure class="shot">
+        <div class="frame"><img src="images/projects/sql/nz-building-consents/02_dwelling_mix_shift.png" alt="Stacked area chart showing the share of New Zealand dwelling consents shifting from standalone houses toward townhouses between 2015 and 2025." width="1520" height="888" loading="lazy" /></div>
+        <figcaption>Dwelling type mix, 2015 to 2025.</figcaption>
+      </figure>
+          <figure class="shot">
+        <div class="frame"><img src="images/projects/sql/nz-building-consents/03_covid_impact.png" alt="Bar chart comparing average monthly consent volumes across pre-COVID, trough, recovery and recent periods." width="1379" height="889" loading="lazy" /></div>
+        <figcaption>COVID impact and recovery.</figcaption>
+      </figure>
+          <figure class="shot">
+        <div class="frame"><img src="images/projects/sql/nz-building-consents/04_yoy_growth_heatmap.png" alt="Heatmap of year-over-year consent growth by New Zealand region from 2020 through 2025." width="1381" height="1098" loading="lazy" /></div>
+        <figcaption>Year-on-year growth by region.</figcaption>
+      </figure>
+          <figure class="shot">
+        <div class="frame"><img src="images/projects/sql/nz-building-consents/05_top_10_tas.png" alt="Horizontal bar chart of the top 10 New Zealand territorial authorities by 2025 consent value, with Hamilton highlighted." width="1520" height="958" loading="lazy" /></div>
+        <figcaption>Top 10 territorial authorities.</figcaption>
+      </figure>
+          <figure class="shot">
+        <div class="frame"><img src="images/projects/sql/nz-building-consents/06_hamilton_deep_dive.png" alt="Hamilton City monthly dwelling consent trend with a 3-month moving average overlay." width="1519" height="1098" loading="lazy" /></div>
+        <figcaption>Hamilton deep dive with a 3-month moving average.</figcaption>
+      </figure>
+          <figure class="shot">
+        <div class="frame"><img src="images/projects/sql/nz-building-consents/07_supply_concentration.png" alt="Line chart tracking the share of national dwelling consents held by Auckland, Canterbury and Waikato from 2017 to 2025." width="1548" height="888" loading="lazy" /></div>
+        <figcaption>Supply concentration in the top three regions.</figcaption>
+      </figure>
+          <figure class="shot">
+        <div class="frame"><img src="images/projects/sql/nz-building-consents/08_seasonal_pattern.png" alt="Bar chart of average monthly consent volumes across the calendar year." width="1519" height="890" loading="lazy" /></div>
+        <figcaption>Seasonal pattern by month.</figcaption>
+      </figure>
+          <figure class="shot">
+        <div class="frame"><img src="images/projects/sql/nz-building-consents/09_value_quartiles.png" alt="Horizontal bar chart classifying New Zealand regions into NTILE quartiles by average consent value." width="1522" height="958" loading="lazy" /></div>
+        <figcaption>Value quartiles by region (NTILE).</figcaption>
+      </figure>
+        </div>
+
+        <div class="next">
+          <span class="muted">Next project</span>
+          <a href="python_nz_housing_affordability.html">NZ Housing Affordability &rarr;</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>© 2026 Ishan Mathur</span>
+      <nav aria-label="Footer">
+        <a href="mailto:mathur.ishan11@gmail.com">Email</a>
+        <a href="https://www.linkedin.com/in/mathurishan">LinkedIn</a>
+        <a href="https://github.com/mathurishan">GitHub</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="assets/js/site.js?v=2" defer></script>
 </body>
 
 </html>

@@ -1,137 +1,151 @@
-<!DOCTYPE HTML>
-<html lang="en" class="no-js">
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Retail Sales &amp; Returns Analysis (Power BI) | Ishan Mathur</title>
-  <meta name="description"
-    content="Power BI case study: a sales, margin and returns dashboard with a star-schema model, DAX time intelligence and drill-through pages across six linked pages." />
+  <meta name="description" content="Power BI dashboard: sales, margin and returns across six linked pages, on a star-schema model with DAX time intelligence and drill-through pages." />
   <link rel="canonical" href="https://mathurishan.github.io/powerbi-retail.html" />
   <meta property="og:title" content="Retail Sales &amp; Returns Analysis (Power BI) | Ishan Mathur" />
-  <meta property="og:description"
-    content="Star-schema model, DAX time intelligence and drill-through pages across six linked Power BI pages." />
+  <meta property="og:description" content="Power BI dashboard: sales, margin and returns across six linked pages, on a star-schema model with DAX time intelligence and drill-through pages." />
   <meta property="og:image" content="https://mathurishan.github.io/images/social/retail.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:url" content="https://mathurishan.github.io/powerbi-retail.html" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#faf9f5" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@500;700&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/main.css?v=4" />
-  <noscript>
-    <link rel="stylesheet" href="assets/css/noscript.css" />
-  </noscript>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/site.css?v=3" />
+  <script>document.documentElement.classList.add('js')</script>
 </head>
 
-<body class="is-preload">
-  <div id="wrapper">
-    <header id="header">
-      <a href="index.html" class="logo"><strong>Ishan Mathur</strong><span>&nbsp;Portfolio</span></a>
-      <nav><a href="#menu">Menu</a></nav>
-    </header>
-    <nav id="menu">
-      <ul class="links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="powerbi.html">Power BI</a></li>
-        <li><a href="sql.html">SQL</a></li>
-        <li><a href="python.html">Python</a></li>
-        <li><a href="resume.html">Résumé</a></li>
-        <li><a href="#footer">Contact</a></li>
-      </ul>
-    </nav>
-    <section id="main" class="wrapper">
-      <div class="inner">
-        <header class="major animate-on-scroll project-header">
-          <h1>Retail Sales &amp; Returns Analysis</h1>
-          <p>Power BI case study</p>
-        </header>
-        <span class="image main animate-on-scroll delay-1"><img src="images/projects/retail/executive-overview.jpg"
-            alt="Executive Sales Overview page: net sales, gross sales, demand and return rate cards, net sales by product category, and weekly sales against return rate."
-            width="1600" height="925" /></span>
-        <div class="row gtr-200">
-          <div class="col-8 col-12-medium animate-on-scroll delay-2">
-            <h2>Problem</h2>
-            <p>A retail business needs to see sales growth and returns side by side: which product categories,
-              channels and stores drive revenue, and where returns eat into it.</p>
-            <h2>Data</h2>
-            <p>Weekly sales, demand and returns data by product category, sales channel, purchaser and town,
-              modelled as a star schema in Power BI.</p>
-            <h2>What I built</h2>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="./">Ishan Mathur</a>
+      <nav class="nav" aria-label="Main">
+        <a href="./#work" aria-current="page">Work</a>
+        <a href="resume.html">Résumé</a>
+        <a href="./#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="case-hero">
+      <div class="wrap">
+        <a class="back" href="./#work">&larr; All work</a>
+        <p class="eyebrow">Power BI dashboard</p>
+        <h1>Retail Sales &amp; Returns Analysis</h1>
+        <p class="lead">A six-page sales, margin and returns dashboard on a star-schema model, with DAX time intelligence and drill-through pages.</p>
+        <ul class="tools-row" aria-label="Tools"><li>Power BI</li><li>DAX</li><li>Power Query</li><li>Star schema</li><li class="link"><a href="files/Retail-Sales-Returns-Analysis.pdf">Full report (PDF) &rarr;</a></li></ul>
+        <dl class="glance">
+          <div><dt>6</dt><dd>linked report pages</dd></div>
+          <div><dt>4</dt><dd>headline KPIs on the overview</dd></div>
+          <div><dt>10</dt><dd>product categories compared</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <figure class="shot">
+        <div class="stage tone-sand">
+          <div class="frame"><img src="images/projects/retail/executive-overview.jpg" alt="Executive Sales Overview page: net sales, gross sales, demand and return rate cards, net sales by product category, and weekly sales against return rate." width="1600" height="925" /></div>
+        </div>
+        <figcaption>Executive overview: headline sales, demand and return rate, with the weekly trend.</figcaption>
+      </figure>
+    </div>
+
+    <section class="case-body">
+      <div class="wrap">
+        <div class="block rise">
+          <h2>Problem</h2>
+          <div class="body">
+            <p>A retail business needs to see sales growth and returns side by side: which product categories, channels and stores drive revenue, and where returns eat into it.</p>
+          </div>
+        </div>
+        <div class="block rise">
+          <h2>Data</h2>
+          <div class="body">
+            <p>Weekly sales, demand and returns data by product category, sales channel, purchaser and town, modelled as a star schema in Power BI.</p>
+          </div>
+        </div>
+        <div class="block rise">
+          <h2>What I built</h2>
+          <div class="body">
             <p>A sales, margin and returns dashboard across six linked pages:</p>
             <ul>
-              <li><strong>Executive overview</strong>: net sales, gross sales, demand and return rate, with weekly
-                trend</li>
+              <li><strong>Executive overview:</strong> net sales, gross sales, demand and return rate, with weekly trend</li>
               <li><strong>Product and category performance</strong></li>
               <li><strong>Geographical sales and returns</strong></li>
               <li><strong>Purchaser analysis</strong></li>
               <li><strong>Returns analysis</strong></li>
-              <li><strong>AI insights</strong>: a Key Influencers view of what drives returns</li>
+              <li><strong>AI insights:</strong> a Key Influencers view of what drives returns</li>
             </ul>
-            <p>DAX time-intelligence measures drive the trends, and drill-through pages take the reader from a
-              category or store down to its detail.</p>
-            <h2>What changed</h2>
-            <p>The dashboard shows that Snack and Bread bring in most of net sales, that Bread, Donut and Tortilla
-              are the categories whose return rates sit above the 2% threshold, and that returns are concentrated in a
-              small number of purchasers.</p>
-          </div>
-          <div class="col-4 col-12-medium animate-on-scroll delay-3">
-            <div class="box alt">
-              <h3>Tools</h3>
-              <ul class="alt">
-                <li><strong>Power BI</strong>: star-schema data model</li>
-                <li><strong>DAX</strong>: time intelligence</li>
-                <li><strong>Power Query</strong>: data preparation</li>
-              </ul>
-            </div>
-            <ul class="actions stacked">
-              <li><a href="files/Retail-Sales-Returns-Analysis.pdf" class="button primary fit icon solid fa-file-pdf">Full
-                  report (PDF, 6 pages)</a></li>
-              <li><a href="powerbi.html" class="button fit icon solid fa-arrow-left">All Power BI work</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="animate-on-scroll">
-          <h2>Screenshots</h2>
-          <div class="row gtr-50">
-            <div class="col-6 col-12-small">
-              <span class="image fit"><img src="images/projects/retail/product-category-performance.jpg"
-                  alt="Product and Category Performance page: net sales, demand and return rate by product category, with categories above the 2% return threshold highlighted."
-                  width="1600" height="925" loading="lazy" /></span>
-              <p><strong>Product and category performance</strong>: net sales against return rate by category</p>
-            </div>
-            <div class="col-6 col-12-small">
-              <span class="image fit"><img src="images/projects/retail/returns-analysis.jpg"
-                  alt="Returns Analysis page: return value and rate by week, top ten purchasers by returns, and return rate by product category against a 2% threshold."
-                  width="1600" height="925" loading="lazy" /></span>
-              <p><strong>Returns analysis</strong>: which purchasers and categories drive returns</p>
-            </div>
+            <p>DAX time-intelligence measures drive the trends, and drill-through pages take the reader from a category or store down to its detail.</p>
           </div>
         </div>
       </div>
     </section>
-    <footer id="footer">
-      <div class="inner">
-        <ul class="icons">
-          <li><a href="https://github.com/mathurishan" class="icon brands alt fa-github"><span
-                class="label">GitHub</span></a></li>
-          <li><a href="https://www.linkedin.com/in/mathurishan" class="icon brands alt fa-linkedin-in"><span
-                class="label">LinkedIn</span></a></li>
-          <li><a href="mailto:mathur.ishan11@gmail.com" class="icon solid alt fa-envelope"><span
-                class="label">Email</span></a></li>
-        </ul>
-        <ul class="copyright">
-          <li>&copy; Ishan Mathur 2026</li>
-          <li>Design adapted from <a href="https://html5up.net/forty">HTML5 UP Forty</a></li>
-        </ul>
+
+    <section class="section band" aria-labelledby="findings-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="findings-title">What changed</h2>
+          <span class="muted">What the analysis shows</span>
+        </div>
+        <div class="findings">
+          <div class="finding rise"><p>Snack and Bread bring in most of net sales.</p></div>
+          <div class="finding rise r1"><p>Bread, Donut and Tortilla are the categories whose return rates sit above the 2% threshold.</p></div>
+          <div class="finding rise r2"><p>Returns are concentrated in a small number of purchasers.</p></div>
+        </div>
       </div>
-    </footer>
-  </div>
-  <script src="assets/js/main.js?v=4" defer></script>
+    </section>
+
+    <section class="section" aria-labelledby="gallery-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="gallery-title">Gallery</h2>
+          <span class="muted">Select an image to enlarge</span>
+        </div>
+        <div class="gallery">
+          <figure class="shot">
+        <div class="frame"><img src="images/projects/retail/product-category-performance.jpg" alt="Product and Category Performance page: net sales, demand and return rate by product category, with categories above the 2% return threshold highlighted." width="1600" height="925" loading="lazy" /></div>
+        <figcaption>Product and category performance: net sales against return rate by category.</figcaption>
+      </figure>
+          <figure class="shot">
+        <div class="frame"><img src="images/projects/retail/returns-analysis.jpg" alt="Returns Analysis page: return value and rate by week, top ten purchasers by returns, and return rate by product category against a 2% threshold." width="1600" height="925" loading="lazy" /></div>
+        <figcaption>Returns analysis: which purchasers and categories drive returns.</figcaption>
+      </figure>
+        </div>
+
+        <div class="next">
+          <span class="muted">Next project</span>
+          <a href="powerbi-air-nz.html">Air New Zealand Analysis &rarr;</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>© 2026 Ishan Mathur</span>
+      <nav aria-label="Footer">
+        <a href="mailto:mathur.ishan11@gmail.com">Email</a>
+        <a href="https://www.linkedin.com/in/mathurishan">LinkedIn</a>
+        <a href="https://github.com/mathurishan">GitHub</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="assets/js/site.js?v=2" defer></script>
 </body>
 
 </html>
