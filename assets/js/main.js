@@ -21,12 +21,11 @@
     // window.addEventListener
     (function () { if ("addEventListener" in window) return; window.addEventListener = function (type, f) { window.attachEvent("on" + type, f) } })();
 
-    // Play initial animations on page load.
-    window.addEventListener('load', function () {
-        window.setTimeout(function () {
-            $body.classList.remove('is-preload');
-        }, 100);
-    });
+    // Play initial animations as soon as the page is parsed. Waiting for the
+    // window 'load' event kept the hero hidden until every image had downloaded.
+    window.setTimeout(function () {
+        $body.classList.remove('is-preload');
+    }, 50);
 
     // Scrolly.
     document.querySelectorAll('.scrolly').forEach(anchor => {
@@ -150,10 +149,22 @@
 
 // Scroll Animations using IntersectionObserver
 document.addEventListener('DOMContentLoaded', function () {
+    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // No observer support, or the visitor prefers less motion: show everything.
+    if (!('IntersectionObserver' in window) || reduceMotion) {
+        animatedElements.forEach(el => el.classList.add('is-visible'));
+        document.documentElement.classList.remove('no-js');
+        document.documentElement.classList.add('js');
+        return;
+    }
+
+    // threshold 0 so tall sections (taller than the screen) still reveal.
     const observerOptions = {
         root: null,
-        rootMargin: '0px',
-        threshold: 0.1
+        rootMargin: '0px 0px -40px 0px',
+        threshold: 0
     };
 
     const observer = new IntersectionObserver((entries, observer) => {
@@ -165,7 +176,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }, observerOptions);
 
-    const animatedElements = document.querySelectorAll('.animate-on-scroll');
     animatedElements.forEach(el => observer.observe(el));
 
     // Enable JS mode only after observer is ready

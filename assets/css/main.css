@@ -2891,10 +2891,12 @@ button:disabled,
 	z-index: 3;
 }
 
+.tiles article h2,
 .tiles article h3 {
 	font-size: 1.75em;
 }
 
+.tiles article h2 a:hover,
 .tiles article h3 a:hover {
 	color: inherit !important;
 }
@@ -3011,6 +3013,7 @@ button:disabled,
 		min-height: 0;
 	}
 
+	.tiles article h2,
 	.tiles article h3 {
 		font-size: 1.5em;
 	}
@@ -4178,4 +4181,54 @@ button,
 
 .animate-on-scroll.delay-3 {
 	transition-delay: 0.3s;
+}
+/* Home: shorter hero so the first case studies show above the fold */
+#banner.major.home-banner {
+	height: 58vh;
+	min-height: 24em;
+	max-height: 36em;
+}
+
+.side-project {
+	margin-top: 2rem;
+}
+
+/* Faster intro: the template faded the hero overlay over 3+ seconds */
+#banner:after {
+	transition: opacity 0.6s ease;
+	transition-delay: 0s;
+}
+
+#banner>.inner {
+	transition: opacity 0.5s ease, transform 0.4s ease-out, filter 0.4s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	#banner:after,
+	#banner>.inner,
+	.animate-on-scroll {
+		transition: none !important;
+	}
+}
+
+.hub-note {
+	padding-top: 2.5em;
+	padding-bottom: 0.5em;
+}
+
+.image img {
+	height: auto;
+}
+
+/* Case-study titles wrap instead of overflowing on phones */
+.project-header {
+	width: 100%;
+	max-width: 100%;
+}
+
+.project-header> :first-child,
+.project-header>p {
+	width: 100%;
+	white-space: normal;
+	overflow-wrap: anywhere;
 }
