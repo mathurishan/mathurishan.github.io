@@ -37,7 +37,7 @@ BACKGROUND = '''
               <ul class="plain">
                 <li>Master of Management (Business Analytics), University of Waikato, 2026</li>
                 <li>Project Management Professional (PMP®)</li>
-                <li>MBA, Finance, IMT Ghaziabad</li>
+                <li>MBA, Finance &amp; Financial Management, IMT Ghaziabad</li>
                 <li>Microsoft Power BI and Excel courses (Coursera)</li>
               </ul>
             </div>
@@ -65,7 +65,7 @@ EXPERIENCE = '''
           <li>
             <span class="when">2022 – 2025</span>
             <h3>Arcesium</h3>
-            <p>Consultant, Data Operations. Daily SQL and reconciliation reporting for 10+ global investment clients.
+            <p>Consultant, Data Operations &amp; Client Solutions. Daily SQL and reconciliation reporting for 10+ global investment clients.
             </p>
           </li>
           <li>

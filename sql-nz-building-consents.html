@@ -15,7 +15,8 @@
   <meta property="og:url" content="https://mathurishan.github.io/sql-nz-building-consents.html" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="theme-color" content="#faf9f5" />
+  <meta name="theme-color" content="#faf9f5" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#1a1917" media="(prefers-color-scheme: dark)" />
   <link rel="icon" href="favicon.ico?v=3" sizes="any">
   <link rel="icon" type="image/svg+xml" href="favicon.svg?v=3">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=3">
@@ -24,7 +25,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/site.css?v=10" />
+  <link rel="stylesheet" href="assets/css/site.css?v=11" />
   <script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){d.setAttribute('data-theme',t);}}catch(e){}})()</script>
 </head>
 
@@ -129,7 +130,7 @@
             <p>A Python load script turns the long-format CSVs into a star-schema SQLite database (four dimension tables, two fact tables). Ten SQL queries then answer the questions above:</p>
             <ul>
               <li><strong>Regional pipeline and ranking:</strong> consents, value and floor area by region for 2025</li>
-              <li><strong>Year-on-year growth:</strong> five-year change by region with LAG window functions</li>
+              <li><strong>Year-on-year growth:</strong> annual change by region, 2020 to 2025, with LAG window functions</li>
               <li><strong>COVID impact and recovery:</strong> national volumes across pre-COVID, trough, recovery and recent periods</li>
               <li><strong>Dwelling type mix:</strong> the share of houses, apartments and townhouses, 2015 to 2025</li>
               <li><strong>Seasonal patterns:</strong> average consent activity by month of year</li>
@@ -162,10 +163,12 @@
           <div class="chart-canvas"></div>
           <details>
             <summary>View as a table</summary>
-            <table>
-              <thead><tr><th>Region</th><th>Value</th><th>Consents</th><th>Floor area</th><th>Per consent</th></tr></thead>
-              <tbody><tr><td>Auckland</td><td>$9,746.7M</td><td>16,108</td><td>2,771k m²</td><td>$605,087</td></tr><tr><td>Canterbury</td><td>$4,042.6M</td><td>7,980</td><td>1,511k m²</td><td>$506,593</td></tr><tr><td>Waikato</td><td>$2,014.8M</td><td>3,625</td><td>757k m²</td><td>$555,799</td></tr><tr><td>Otago</td><td>$1,664.7M</td><td>2,882</td><td>459k m²</td><td>$577,626</td></tr><tr><td>Wellington</td><td>$1,448.0M</td><td>2,357</td><td>352k m²</td><td>$614,334</td></tr><tr><td>Bay of Plenty</td><td>$932.6M</td><td>1,599</td><td>311k m²</td><td>$583,218</td></tr><tr><td>Manawatū-Whanganui</td><td>$702.7M</td><td>1,322</td><td>249k m²</td><td>$531,519</td></tr><tr><td>Northland</td><td>$497.3M</td><td>944</td><td>188k m²</td><td>$526,768</td></tr><tr><td>Hawke&#x27;s Bay</td><td>$437.6M</td><td>768</td><td>169k m²</td><td>$569,769</td></tr><tr><td>Southland</td><td>$348.1M</td><td>642</td><td>175k m²</td><td>$542,270</td></tr><tr><td>Taranaki</td><td>$279.8M</td><td>579</td><td>124k m²</td><td>$483,324</td></tr><tr><td>Tasman</td><td>$237.4M</td><td>333</td><td>71k m²</td><td>$713,015</td></tr><tr><td>Nelson</td><td>$144.5M</td><td>278</td><td>46k m²</td><td>$519,855</td></tr><tr><td>Marlborough</td><td>$139.8M</td><td>224</td><td>47k m²</td><td>$624,200</td></tr><tr><td>West Coast</td><td>$90.8M</td><td>215</td><td>34k m²</td><td>$422,439</td></tr><tr><td>Gisborne</td><td>$86.4M</td><td>230</td><td>27k m²</td><td>$375,502</td></tr></tbody>
-            </table>
+            <div class="table-scroll">
+              <table>
+                <thead><tr><th>Region</th><th>Value</th><th>Consents</th><th>Floor area</th><th>Per consent</th></tr></thead>
+                <tbody><tr><td>Auckland</td><td>$9,746.7M</td><td>16,108</td><td>2,771k m²</td><td>$605,087</td></tr><tr><td>Canterbury</td><td>$4,042.6M</td><td>7,980</td><td>1,511k m²</td><td>$506,593</td></tr><tr><td>Waikato</td><td>$2,014.8M</td><td>3,625</td><td>757k m²</td><td>$555,799</td></tr><tr><td>Otago</td><td>$1,664.7M</td><td>2,882</td><td>459k m²</td><td>$577,626</td></tr><tr><td>Wellington</td><td>$1,448.0M</td><td>2,357</td><td>352k m²</td><td>$614,334</td></tr><tr><td>Bay of Plenty</td><td>$932.6M</td><td>1,599</td><td>311k m²</td><td>$583,218</td></tr><tr><td>Manawatū-Whanganui</td><td>$702.7M</td><td>1,322</td><td>249k m²</td><td>$531,519</td></tr><tr><td>Northland</td><td>$497.3M</td><td>944</td><td>188k m²</td><td>$526,768</td></tr><tr><td>Hawke&#x27;s Bay</td><td>$437.6M</td><td>768</td><td>169k m²</td><td>$569,769</td></tr><tr><td>Southland</td><td>$348.1M</td><td>642</td><td>175k m²</td><td>$542,270</td></tr><tr><td>Taranaki</td><td>$279.8M</td><td>579</td><td>124k m²</td><td>$483,324</td></tr><tr><td>Tasman</td><td>$237.4M</td><td>333</td><td>71k m²</td><td>$713,015</td></tr><tr><td>Nelson</td><td>$144.5M</td><td>278</td><td>46k m²</td><td>$519,855</td></tr><tr><td>Marlborough</td><td>$139.8M</td><td>224</td><td>47k m²</td><td>$624,200</td></tr><tr><td>West Coast</td><td>$90.8M</td><td>215</td><td>34k m²</td><td>$422,439</td></tr><tr><td>Gisborne</td><td>$86.4M</td><td>230</td><td>27k m²</td><td>$375,502</td></tr></tbody>
+              </table>
+            </div>
           </details>
           <script type="application/json">[{"label": "Auckland", "short": "Auckland", "value": 9746.7, "consents": 16108.0, "area": 2771.0, "avg": 605087.0}, {"label": "Canterbury", "short": "Canterbury", "value": 4042.6, "consents": 7980.0, "area": 1511.0, "avg": 506593.0}, {"label": "Waikato", "short": "Waikato", "value": 2014.8, "consents": 3625.0, "area": 757.0, "avg": 555799.0}, {"label": "Otago", "short": "Otago", "value": 1664.7, "consents": 2882.0, "area": 459.0, "avg": 577626.0}, {"label": "Wellington", "short": "Wellington", "value": 1448.0, "consents": 2357.0, "area": 352.0, "avg": 614334.0}, {"label": "Bay of Plenty", "short": "Bay of Plenty", "value": 932.6, "consents": 1599.0, "area": 311.0, "avg": 583218.0}, {"label": "Manawatū-Whanganui", "short": "Manawatū-Wh.", "value": 702.7, "consents": 1322.0, "area": 249.0, "avg": 531519.0}, {"label": "Northland", "short": "Northland", "value": 497.3, "consents": 944.0, "area": 188.0, "avg": 526768.0}, {"label": "Hawke's Bay", "short": "Hawke's Bay", "value": 437.6, "consents": 768.0, "area": 169.0, "avg": 569769.0}, {"label": "Southland", "short": "Southland", "value": 348.1, "consents": 642.0, "area": 175.0, "avg": 542270.0}, {"label": "Taranaki", "short": "Taranaki", "value": 279.8, "consents": 579.0, "area": 124.0, "avg": 483324.0}, {"label": "Tasman", "short": "Tasman", "value": 237.4, "consents": 333.0, "area": 71.0, "avg": 713015.0}, {"label": "Nelson", "short": "Nelson", "value": 144.5, "consents": 278.0, "area": 46.0, "avg": 519855.0}, {"label": "Marlborough", "short": "Marlborough", "value": 139.8, "consents": 224.0, "area": 47.0, "avg": 624200.0}, {"label": "West Coast", "short": "West Coast", "value": 90.8, "consents": 215.0, "area": 34.0, "avg": 422439.0}, {"label": "Gisborne", "short": "Gisborne", "value": 86.4, "consents": 230.0, "area": 27.0, "avg": 375502.0}]</script>
         </div>
@@ -413,8 +416,8 @@ national <span class="tok-k">AS</span> (
     </div>
   </footer>
 
-  <script src="assets/js/site.js?v=10" defer></script>
-  <script src="assets/js/charts.js?v=10" defer></script>
+  <script src="assets/js/site.js?v=11" defer></script>
+  <script src="assets/js/charts.js?v=11" defer></script>
 </body>
 
 </html>

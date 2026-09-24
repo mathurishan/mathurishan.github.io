@@ -259,10 +259,12 @@ def retail_chart():
           <p class="chart-note">On return rate, bars past the dashed line are above the 2% target.</p>
           <details>
             <summary>View as a table</summary>
-            <table>
-              <thead><tr><th>Category</th><th>Net sales</th><th>Demand</th><th>Return rate</th></tr></thead>
-              <tbody>{table}</tbody>
-            </table>
+            <div class="table-scroll">
+              <table>
+                <thead><tr><th>Category</th><th>Net sales</th><th>Demand</th><th>Return rate</th></tr></thead>
+                <tbody>{table}</tbody>
+              </table>
+            </div>
           </details>
           <script type="application/json">{json.dumps(data)}</script>
         </div>
@@ -371,10 +373,12 @@ def airnz_chart():
           <p class="chart-note">Highlighted bars miss the target on the selected measure.</p>
           <details>
             <summary>View as a table</summary>
-            <table>
-              <thead><tr><th>Route</th><th>Scheduled</th><th>Cancelled</th><th>Cancellation rate</th><th>On-time arrivals</th></tr></thead>
-              <tbody>{table}</tbody>
-            </table>
+            <div class="table-scroll">
+              <table>
+                <thead><tr><th>Route</th><th>Scheduled</th><th>Cancelled</th><th>Cancellation rate</th><th>On-time arrivals</th></tr></thead>
+                <tbody>{table}</tbody>
+              </table>
+            </div>
           </details>
           <script type="application/json">{json.dumps(routes, ensure_ascii=False)}</script>
         </div>
@@ -390,7 +394,7 @@ def airnz_chart():
           </div>
           <div class="gap">
             <h3>Gap to target</h3>
-            <p class="muted">Air NZ's ten most-cancelled routes, {sched:,} scheduled sectors</p>
+            <p class="muted">Air NZ's ten busiest routes, {sched:,} scheduled sectors</p>
             <dl>
               <div><dt>{extra_ot:,}</dt><dd>more on-time arrivals needed to reach the 85% target</dd></div>
               <div><dt>{avoid}</dt><dd>fewer cancellations needed to reach the 2% target</dd></div>

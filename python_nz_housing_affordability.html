@@ -15,7 +15,8 @@
   <meta property="og:url" content="https://mathurishan.github.io/python_nz_housing_affordability.html" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="theme-color" content="#faf9f5" />
+  <meta name="theme-color" content="#faf9f5" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#1a1917" media="(prefers-color-scheme: dark)" />
   <link rel="icon" href="favicon.ico?v=3" sizes="any">
   <link rel="icon" type="image/svg+xml" href="favicon.svg?v=3">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=3">
@@ -24,7 +25,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/site.css?v=10" />
+  <link rel="stylesheet" href="assets/css/site.css?v=11" />
   <script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){d.setAttribute('data-theme',t);}}catch(e){}})()</script>
 </head>
 
@@ -176,10 +177,12 @@
           <p class="chart-note">Household income for 2019 to 2022 is backcast from observed 2023 to 2025 levels.</p>
           <details>
             <summary>View as a table</summary>
-            <table>
-              <thead><tr><th>Region</th><th>2019-Q1</th><th>2025-Q4</th><th>Share of income, 2025-Q4</th></tr></thead>
-              <tbody><tr><td>Auckland</td><td>$546</td><td>$650</td><td>25.9%</td></tr><tr><td>Bay of Plenty</td><td>$453</td><td>$637</td><td>34.9%</td></tr><tr><td>Gisborne, Hawke&#x27;s Bay</td><td>$378</td><td>$604</td><td>32.8%</td></tr><tr><td>New Zealand</td><td>$452</td><td>$595</td><td>28.2%</td></tr><tr><td>Wellington</td><td>$513</td><td>$583</td><td>24.2%</td></tr><tr><td>Otago</td><td>$404</td><td>$580</td><td>32.0%</td></tr><tr><td>Waikato</td><td>$400</td><td>$568</td><td>27.0%</td></tr><tr><td>Northland</td><td>$380</td><td>$565</td><td>35.3%</td></tr><tr><td>Canterbury</td><td>$397</td><td>$564</td><td>28.0%</td></tr><tr><td>Taranaki</td><td>$344</td><td>$561</td><td>31.3%</td></tr><tr><td>Tasman, Nelson, Marlborough, West Coast</td><td>$373</td><td>$539</td><td>29.6%</td></tr><tr><td>Manawatū-Whanganui</td><td>$313</td><td>$518</td><td>30.4%</td></tr><tr><td>Southland</td><td>$276</td><td>$474</td><td>29.7%</td></tr></tbody>
-            </table>
+            <div class="table-scroll">
+              <table>
+                <thead><tr><th>Region</th><th>2019-Q1</th><th>2025-Q4</th><th>Share of income, 2025-Q4</th></tr></thead>
+                <tbody><tr><td>Auckland</td><td>$546</td><td>$650</td><td>25.9%</td></tr><tr><td>Bay of Plenty</td><td>$453</td><td>$637</td><td>34.9%</td></tr><tr><td>Gisborne, Hawke&#x27;s Bay</td><td>$378</td><td>$604</td><td>32.8%</td></tr><tr><td>New Zealand</td><td>$452</td><td>$595</td><td>28.2%</td></tr><tr><td>Wellington</td><td>$513</td><td>$583</td><td>24.2%</td></tr><tr><td>Otago</td><td>$404</td><td>$580</td><td>32.0%</td></tr><tr><td>Waikato</td><td>$400</td><td>$568</td><td>27.0%</td></tr><tr><td>Northland</td><td>$380</td><td>$565</td><td>35.3%</td></tr><tr><td>Canterbury</td><td>$397</td><td>$564</td><td>28.0%</td></tr><tr><td>Taranaki</td><td>$344</td><td>$561</td><td>31.3%</td></tr><tr><td>Tasman, Nelson, Marlborough, West Coast</td><td>$373</td><td>$539</td><td>29.6%</td></tr><tr><td>Manawatū-Whanganui</td><td>$313</td><td>$518</td><td>30.4%</td></tr><tr><td>Southland</td><td>$276</td><td>$474</td><td>29.7%</td></tr></tbody>
+              </table>
+            </div>
           </details>
           <script type="application/json">{"quarters":["2019-Q1","2019-Q2","2019-Q3","2019-Q4","2020-Q1","2020-Q2","2020-Q3","2020-Q4","2021-Q1","2021-Q2","2021-Q3","2021-Q4","2022-Q1","2022-Q2","2022-Q3","2022-Q4","2023-Q1","2023-Q2","2023-Q3","2023-Q4","2024-Q1","2024-Q2","2024-Q3","2024-Q4","2025-Q1","2025-Q2","2025-Q3","2025-Q4"],"series":{"Auckland":{"rent":[546,550,545,550,560,558,556,568,584,580,587,598,600,598,595,600,615,643,650,650,658,667,653,650,650,650,650,650],"ratio":[28.5,28.7,28.5,28.7,28.2,28.1,28.0,28.6,28.7,28.6,28.9,29.5,27.3,27.2,27.1,27.3,26.5,27.7,28.0,28.0,26.8,27.2,26.6,26.5,25.9,25.9,25.9,25.9]},"Bay of Plenty":{"rent":[453,453,457,468,485,478,493,504,513,540,540,556,558,572,579,580,598,600,616,611,640,650,643,650,653,637,637,637],"ratio":[34.7,34.7,35.0,35.9,35.6,35.1,36.2,37.0,36.1,38.0,38.0,39.1,36.0,36.9,37.3,37.4,36.6,36.7,37.7,37.4,37.0,37.6,37.2,37.6,35.8,34.9,34.9,34.9]},"Canterbury":{"rent":[397,382,382,390,409,394,397,403,430,420,429,451,466,458,467,492,500,500,517,538,553,543,537,560,554,545,537,564],"ratio":[27.4,26.4,26.4,27.0,27.1,26.1,26.3,26.8,27.5,26.8,27.4,28.8,27.3,26.9,27.4,28.9,27.9,27.9,28.8,29.9,27.8,27.3,27.0,28.2,27.5,27.0,26.6,28.0]},"Gisborne, Hawke's Bay":{"rent":[378,390,381,404,422,419,427,440,457,488,493,502,524,527,539,543,542,553,585,589,607,614,609,617,623,612,603,604],"ratio":[27.8,28.6,28.0,29.7,29.5,29.3,29.9,30.8,30.5,32.6,32.9,33.6,32.1,32.2,33.0,33.2,31.4,32.0,33.9,34.2,33.4,33.8,33.6,34.0,33.8,33.2,32.7,32.8]},"Manawatū-Whanganui":{"rent":[313,322,342,354,353,358,365,394,404,414,419,450,442,463,469,483,470,492,500,514,506,514,514,527,522,509,507,518],"ratio":[27.3,28.1,29.9,30.9,29.4,29.9,30.4,32.8,32.2,33.0,33.4,35.9,32.2,33.8,34.3,35.3,32.5,34.0,34.6,35.5,31.0,31.4,31.5,32.3,30.6,29.9,29.8,30.4]},"New Zealand":{"rent":[452,450,450,463,480,468,470,487,500,500,503,530,550,547,545,550,567,575,580,590,603,600,600,600,607,597,590,595],"ratio":[29.2,29.1,29.1,29.9,29.8,29.0,29.2,30.2,30.0,30.0,30.2,31.8,30.6,30.4,30.3,30.6,29.8,30.2,30.5,31.0,29.8,29.6,29.6,29.6,28.8,28.3,28.0,28.2]},"Northland":{"rent":[380,393,392,404,425,424,427,444,456,481,480,494,506,533,500,512,516,540,536,557,560,570,569,562,559,580,560,565],"ratio":[30.3,31.3,31.2,32.3,32.3,32.2,32.4,33.7,33.1,34.8,34.8,35.8,33.6,35.4,33.2,33.9,32.4,33.9,33.7,35.0,36.3,36.9,36.9,36.4,34.9,36.2,34.9,35.3]},"Otago":{"rent":[404,403,398,414,458,429,419,440,478,437,441,461,517,490,465,489,575,513,507,532,611,566,561,577,668,590,556,580],"ratio":[30.5,30.4,30.1,31.2,33.1,31.1,30.3,31.8,33.2,30.4,30.6,32.0,32.9,31.2,29.6,31.1,34.7,31.0,30.6,32.1,32.0,29.7,29.4,30.2,36.9,32.6,30.6,32.0]},"Southland":{"rent":[276,293,288,300,307,318,322,333,341,348,353,362,383,392,380,399,397,421,436,429,456,448,461,477,473,480,479,474],"ratio":[21.8,23.1,22.7,23.7,23.3,24.1,24.4,25.2,24.8,25.4,25.7,26.3,25.6,26.2,25.4,26.6,25.1,26.6,27.6,27.2,27.8,27.3,28.1,29.1,29.6,30.1,30.0,29.7]},"Taranaki":{"rent":[344,345,350,363,372,372,380,390,410,421,449,450,460,470,497,493,516,525,533,543,560,567,563,565,562,573,567,561],"ratio":[25.3,25.4,25.8,26.7,26.3,26.3,26.8,27.5,27.8,28.5,30.4,30.5,28.5,29.2,30.8,30.6,30.4,30.9,31.4,32.0,31.2,31.6,31.4,31.4,31.4,31.9,31.6,31.3]},"Tasman, Nelson, Marlborough, West Coast":{"rent":[373,387,395,396,407,412,410,426,443,443,446,456,470,471,476,484,498,510,510,513,532,529,536,543,556,549,529,539],"ratio":[30.5,31.6,32.2,32.4,31.8,32.2,32.0,33.3,33.2,33.1,33.4,34.1,32.3,32.3,32.6,33.2,32.4,33.2,33.2,33.4,32.2,32.0,32.4,32.9,30.5,30.1,29.0,29.6]},"Waikato":{"rent":[400,403,400,417,430,429,431,447,460,462,476,487,493,493,500,510,523,530,540,550,553,554,570,570,566,565,565,568],"ratio":[27.7,27.9,27.7,28.8,28.6,28.5,28.6,29.6,29.4,29.5,30.5,31.1,29.0,29.0,29.4,30.0,29.1,29.5,30.1,30.7,31.3,31.3,32.3,32.3,27.0,26.9,26.9,27.0]},"Wellington":{"rent":[513,477,488,510,542,504,503,544,578,547,555,590,608,579,580,583,620,600,603,624,633,620,618,630,636,593,571,583],"ratio":[27.0,25.1,25.7,26.8,27.5,25.6,25.6,27.6,28.5,27.0,27.4,29.1,27.9,26.5,26.6,26.7,27.0,26.2,26.3,27.2,27.0,26.5,26.4,26.9,26.4,24.6,23.7,24.2]}}}</script>
         </div>
@@ -194,7 +197,7 @@
         </div>
         <div class="findings">
           <div class="finding rise"><p>National weekly rents rose 31.7% from Q1 2019 to Q4 2025, from $452 to $595.</p></div>
-          <div class="finding rise r1"><p>Auckland was the most expensive region in the latest quarter at $650 a week, against $441 on the West Coast.</p></div>
+          <div class="finding rise r1"><p>Auckland was the most expensive region in the latest quarter at $650 a week, and Southland the least expensive at $474.</p></div>
           <div class="finding rise r2"><p>Six affordability geographies sat above the 30% threshold in the latest quarter, led by Northland at 35.3%.</p></div>
           <div class="finding rise"><p>Hamilton City rents rose 34.9% since Q1 2019, 3.2 percentage points faster than the national pace.</p></div>
           <div class="finding rise r1"><p>Mayfield in Marlborough recorded the strongest two-year suburb rent growth among adequately sampled suburbs, at 58.2%.</p></div>
@@ -246,8 +249,8 @@
     </div>
   </footer>
 
-  <script src="assets/js/site.js?v=10" defer></script>
-  <script src="assets/js/charts.js?v=10" defer></script>
+  <script src="assets/js/site.js?v=11" defer></script>
+  <script src="assets/js/charts.js?v=11" defer></script>
 </body>
 
 </html>

@@ -9,8 +9,8 @@ import extras2
 import diagrams
 
 SITE = "https://mathurishan.github.io/"
-CSS_V = "10"
-JS_V = "10"
+CSS_V = "11"
+JS_V = "11"
 FONTS = ("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@"
          "0,6..72,400;0,6..72,500;1,6..72,400&display=swap")
 ARROW = ('<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" '
@@ -37,7 +37,8 @@ def head(title, desc, path, og, og_type="article", html_class=""):
   <meta property="og:url" content="{SITE}{path}" />
   <meta property="og:type" content="{og_type}" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="theme-color" content="#faf9f5" />
+  <meta name="theme-color" content="#faf9f5" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#1a1917" media="(prefers-color-scheme: dark)" />
   <link rel="icon" href="favicon.ico?v=3" sizes="any">
   <link rel="icon" type="image/svg+xml" href="favicon.svg?v=3">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=3">
@@ -223,7 +224,7 @@ PROJECTS = [
         built="""<p>A Python load script turns the long-format CSVs into a star-schema SQLite database (four dimension tables, two fact tables). Ten SQL queries then answer the questions above:</p>
             <ul>
               <li><strong>Regional pipeline and ranking:</strong> consents, value and floor area by region for 2025</li>
-              <li><strong>Year-on-year growth:</strong> five-year change by region with LAG window functions</li>
+              <li><strong>Year-on-year growth:</strong> annual change by region, 2020 to 2025, with LAG window functions</li>
               <li><strong>COVID impact and recovery:</strong> national volumes across pre-COVID, trough, recovery and recent periods</li>
               <li><strong>Dwelling type mix:</strong> the share of houses, apartments and townhouses, 2015 to 2025</li>
               <li><strong>Seasonal patterns:</strong> average consent activity by month of year</li>
@@ -281,7 +282,7 @@ PROJECTS = [
               <li><strong>Suburb hotspots</strong> from SA2-level tenancy data</li>
             </ul>""",
         findings=["National weekly rents rose 31.7% from Q1 2019 to Q4 2025, from $452 to $595.",
-                  "Auckland was the most expensive region in the latest quarter at $650 a week, against $441 on the West Coast.",
+                  "Auckland was the most expensive region in the latest quarter at $650 a week, and Southland the least expensive at $474.",
                   "Six affordability geographies sat above the 30% threshold in the latest quarter, led by Northland at 35.3%.",
                   "Hamilton City rents rose 34.9% since Q1 2019, 3.2 percentage points faster than the national pace.",
                   "Mayfield in Marlborough recorded the strongest two-year suburb rent growth among adequately sampled suburbs, at 58.2%."],

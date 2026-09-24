@@ -6,7 +6,7 @@ NOTES = [
         title="Half a day to under an hour",
         desc="How templates, upfront checks and automated preparation took the manual work out of recurring reports, and how to state the time saved honestly.",
         lead="Most of the time spent on a recurring report goes on rebuilding it, not on the analysis.",
-        minutes=5,
+        minutes=4,
         card="What actually makes a recurring report faster: templates, checks at the front and automated preparation. And how to state the saving honestly.",
         body="""
 <p>A recurring report rarely takes long because the analysis is hard. It takes long because someone rebuilds
@@ -26,9 +26,9 @@ NOTES = [
   is where the hours go, and answering them slightly differently each time is where inconsistency creeps in.</p>
 
 <p>A template is those decisions written down once. At the Library I built reusable templates for executive
-  briefs, Excel workbooks and dashboards: a fixed structure, agreed metric definitions and consistent
-  formatting. The next run starts from a finished shape and only the data changes. That is most of how half a
-  day became under an hour.</p>
+  briefs, Excel workbooks and dashboards, each with a fixed structure and consistent formatting. The next run
+  starts from a finished shape and only the data changes. That is most of how half a day became under an
+  hour.</p>
 
 <p>A good template has a side effect that matters as much as the time saved: readers learn where to look. When
   the same number sits in the same place every period, people stop hunting for the figure and start comparing
@@ -94,13 +94,13 @@ ORDER BY d.year DESC, d.month DESC;</code></pre>
         title="Validate before you visualise",
         desc="Why the checks that run before a dashboard matter more than the dashboard itself: reconciliation, grain and gaps.",
         lead="A dashboard is only as trustworthy as the checks that run before anyone sees it.",
-        minutes=4,
+        minutes=3,
         card="The most expensive dashboard is the one that is wrong and looks right. Three checks I run before building a single visual.",
         body="""
 <p>The most expensive dashboard is the one that is wrong and looks right. Nobody questions a clean chart, so a
   small error in the data travels a long way before anyone notices.</p>
 
-<p>I learned this in reconciliation work. For three years at Arcesium I investigated and resolved 10–20
+<p>I learned this in reconciliation work. For more than three years at Arcesium I investigated and resolved 10–20
   reconciliation exceptions a day across cash, positions and P&amp;L for global investment clients. That job
   teaches one habit above all: a number is not true because it appears on a screen. It is true when it agrees
   with an independent source.</p>
@@ -151,7 +151,7 @@ GROUP BY r.region_name;</code></pre>
         title="Why my reports start with a star schema",
         desc="How a clear fact table and a few well-built dimensions make Power BI reports faster to build, easier to trust and simpler to extend.",
         lead="Before I drag a single visual onto a page, I decide what one row of the fact table means.",
-        minutes=4,
+        minutes=2,
         card="Flat files are quick to start and slow to trust. How a fact table and a few clean dimensions keep reports simple.",
         body="""
 <p>Most reporting problems I see are not visual problems. They are shape problems. A single wide table works for
@@ -208,7 +208,7 @@ DIVIDE ( SUM ( Sales[Returned Units] ), [Actual Demand] )</code></pre>
         title="Reading rent data honestly",
         desc="Medians, thresholds, backcasts and sample sizes: the choices that decide what a housing analysis can fairly claim.",
         lead="Housing numbers are emotive. The analysis has to be careful about what it can and cannot say.",
-        minutes=4,
+        minutes=2,
         card="Medians, thresholds, backcasts and small samples: the method choices that decide what a housing analysis can fairly claim.",
         body="""
 <p>When I built my <a href="python_nz_housing_affordability.html">NZ Housing Affordability</a> analysis, the
@@ -218,8 +218,8 @@ DIVIDE ( SUM ( Sales[Returned Units] ), [Actual Demand] )</code></pre>
 <h2>1. Medians over means</h2>
 
 <p>Rents are skewed: a small number of expensive tenancies pull an average upwards. The tenancy bond data
-  includes both, and I report the median, because it describes the typical renter rather than the top of the
-  market. On that measure, national weekly rent rose 31.7% from Q1 2019 to Q4 2025, from $452 to $595.</p>
+  includes every bond lodged, cheap and expensive alike, so I report the median, because it describes the
+  typical renter rather than the top of the market. On that measure, national weekly rent rose 31.7% from Q1 2019 to Q4 2025, from $452 to $595.</p>
 
 <h2>2. A threshold is a convention, so say so</h2>
 

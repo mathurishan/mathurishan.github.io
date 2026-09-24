@@ -13,18 +13,27 @@ from html.parser import HTMLParser
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REDIRECTS = {"powerbi.html", "sql.html", "python.html"}
 
-# Wording the manuscript rules out, library systems that stay private, and personal details.
+# Wording the manuscript rules out. Private terms (library system names, personal details,
+# referee names) are deliberately NOT listed here, because this repository is public: they are
+# read from the PRIVATE_TERMS environment variable (a GitHub Actions secret) or from
+# tools/private_terms.txt, which is git-ignored. One regular expression per line.
 BANNED = [
-    (r"\bcurrently pursuing\b|\bexpected (june )?2026\b", "study described as unfinished"),
-    (r"\bpostgresql\b|\bscikit", "tool the manuscript does not support"),
-    (r"\bcase stud(y|ies)\b", "use 'project' wording, not 'case study'"),
-    (r"\bjanuary\b|fixed[- ]term|[removed]", "availability month or contract end date"),
-    (r"[removed]|[removed]|[removed]|[removed]|[removed]|[removed]|[removed]|[removed]|[removed]|[removed]|[removed]",
-     "library system name"),
-    (r"[removed]|\bpassport\b|date of birth", "personal detail"),
-    (r"[removed]|[removed]|[removed]", "referee name"),
+    (r"currently pursuing|expected (june )?2026", "study described as unfinished"),
+    (r"postgresql|scikit", "tool the manuscript does not support"),
+    (r"case stud(y|ies)", "use 'project' wording, not 'case study'"),
+    (r"january|fixed[- ]term", "availability month or contract wording"),
+    (r"passport|date of birth", "personal detail"),
     (r"15[‑–-]25\s?%|100% efficiency", "unsupported metric"),
 ]
+
+
+def private_terms():
+    """Private patterns from the environment or the local git-ignored file; empty if neither."""
+    raw = os.environ.get("PRIVATE_TERMS", "")
+    local = os.path.join(ROOT, "tools", "private_terms.txt")
+    if not raw and os.path.exists(local):
+        raw = open(local, encoding="utf-8").read()
+    return [line.strip() for line in raw.splitlines() if line.strip() and not line.startswith("#")]
 
 
 class Page(HTMLParser):
@@ -64,6 +73,7 @@ def main():
         p.feed(open(path, encoding="utf-8").read())
         pages[path] = p
 
+    private = private_terms()
     problems = []
     for path, p in pages.items():
         dupes = {i for i in p.ids if p.ids.count(i) > 1}
@@ -93,18 +103,29 @@ def main():
             m = re.search(pattern, text)
             if m:
                 problems.append(f"{path}: {why}: '{m.group(0)}'")
+        # Private terms are checked against the whole file (text, attributes, scripts, JSON-LD),
+        # and a match is reported without echoing it, so CI logs stay clean too.
+        raw_file = open(path, encoding="utf-8").read().lower()
+        if any(re.search(t, raw_file) for t in private):
+            problems.append(f"{path}: contains a private term (see tools/private_terms.txt)")
 
     sitemap = open("sitemap.xml", encoding="utf-8").read()
     for loc in re.findall(r"<loc>https://mathurishan\.github\.io/([^<]*)</loc>", sitemap):
         if not os.path.exists(loc or "index.html"):
             problems.append(f"sitemap.xml lists a missing page: {loc}")
 
+    for path in glob.glob("assets/js/*.js") + ["sitemap.xml", "site.webmanifest"]:
+        text = open(path, encoding="utf-8").read().lower()
+        if any(re.search(t, text) for t in private):
+            problems.append(f"{path}: contains a private term (see tools/private_terms.txt)")
+
     if problems:
         print(f"{len(problems)} problem(s):")
         for line in problems:
             print("  -", line)
         sys.exit(1)
-    print(f"All checks passed ({len(pages)} pages).")
+    note = "" if private else " Private-term check skipped: no PRIVATE_TERMS or tools/private_terms.txt."
+    print(f"All checks passed ({len(pages)} pages).{note}")
 
 
 if __name__ == "__main__":

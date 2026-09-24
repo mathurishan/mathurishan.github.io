@@ -15,7 +15,8 @@
   <meta property="og:url" content="https://mathurishan.github.io/note-reading-rent-data-honestly.html" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="theme-color" content="#faf9f5" />
+  <meta name="theme-color" content="#faf9f5" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#1a1917" media="(prefers-color-scheme: dark)" />
   <link rel="icon" href="favicon.ico?v=3" sizes="any">
   <link rel="icon" type="image/svg+xml" href="favicon.svg?v=3">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=3">
@@ -24,7 +25,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/site.css?v=10" />
+  <link rel="stylesheet" href="assets/css/site.css?v=11" />
   <script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){d.setAttribute('data-theme',t);}}catch(e){}})()</script>
 </head>
 
@@ -85,7 +86,7 @@
         <p class="eyebrow">Note</p>
         <h1>Reading rent data honestly</h1>
         <p class="lead">Housing numbers are emotive. The analysis has to be careful about what it can and cannot say.</p>
-        <div class="byline"><span>Ishan Mathur</span><span>September 2026</span><span>4 min read</span></div>
+        <div class="byline"><span>Ishan Mathur</span><span>September 2026</span><span>2 min read</span></div>
         <div class="article-body">
 
 <p>When I built my <a href="python_nz_housing_affordability.html">NZ Housing Affordability</a> analysis, the
@@ -95,8 +96,8 @@
 <h2>1. Medians over means</h2>
 
 <p>Rents are skewed: a small number of expensive tenancies pull an average upwards. The tenancy bond data
-  includes both, and I report the median, because it describes the typical renter rather than the top of the
-  market. On that measure, national weekly rent rose 31.7% from Q1 2019 to Q4 2025, from $452 to $595.</p>
+  includes every bond lodged, cheap and expensive alike, so I report the median, because it describes the
+  typical renter rather than the top of the market. On that measure, national weekly rent rose 31.7% from Q1 2019 to Q4 2025, from $452 to $595.</p>
 
 <h2>2. A threshold is a convention, so say so</h2>
 
@@ -149,7 +150,7 @@
     </div>
   </footer>
 
-  <script src="assets/js/site.js?v=10" defer></script>
+  <script src="assets/js/site.js?v=11" defer></script>
 </body>
 
 </html>

@@ -14,3 +14,5 @@ jobs:
           python-version: "3.12"
       - name: Check links, images, headings and wording
         run: python tools/check_site.py
+        env:
+          PRIVATE_TERMS: ${{ secrets.PRIVATE_TERMS }}

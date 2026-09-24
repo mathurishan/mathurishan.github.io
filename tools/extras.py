@@ -135,10 +135,12 @@ def pipeline_chart():
           <div class="chart-canvas"></div>
           <details>
             <summary>View as a table</summary>
-            <table>
-              <thead><tr><th>Region</th><th>Value</th><th>Consents</th><th>Floor area</th><th>Per consent</th></tr></thead>
-              <tbody>{table}</tbody>
-            </table>
+            <div class="table-scroll">
+              <table>
+                <thead><tr><th>Region</th><th>Value</th><th>Consents</th><th>Floor area</th><th>Per consent</th></tr></thead>
+                <tbody>{table}</tbody>
+              </table>
+            </div>
           </details>
           <script type="application/json">{json.dumps(data, ensure_ascii=False)}</script>
         </div>
@@ -176,10 +178,12 @@ def rent_chart():
           <p class="chart-note">Household income for 2019 to 2022 is backcast from observed 2023 to 2025 levels.</p>
           <details>
             <summary>View as a table</summary>
-            <table>
-              <thead><tr><th>Region</th><th>{E(data["quarters"][0])}</th><th>{E(last)}</th><th>Share of income, {E(last)}</th></tr></thead>
-              <tbody>{table}</tbody>
-            </table>
+            <div class="table-scroll">
+              <table>
+                <thead><tr><th>Region</th><th>{E(data["quarters"][0])}</th><th>{E(last)}</th><th>Share of income, {E(last)}</th></tr></thead>
+                <tbody>{table}</tbody>
+              </table>
+            </div>
           </details>
           <script type="application/json">{json.dumps(data, ensure_ascii=False, separators=(",", ":"))}</script>
         </div>

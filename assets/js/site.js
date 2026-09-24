@@ -32,8 +32,10 @@
             toggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
             toggle.setAttribute('title', theme === 'dark' ? 'Light theme' : 'Dark theme');
         }
-        var meta = document.querySelector('meta[name="theme-color"]');
-        if (meta) meta.setAttribute('content', theme === 'dark' ? '#1a1917' : '#faf9f5');
+        // Both the light and dark theme-color tags follow the chosen theme.
+        document.querySelectorAll('meta[name="theme-color"]').forEach(function (meta) {
+            meta.setAttribute('content', theme === 'dark' ? '#1a1917' : '#faf9f5');
+        });
     }
 
     function applyTheme(theme) {
@@ -93,7 +95,10 @@
     }
 
     // Key figures count up once, e.g. <b data-count="40" data-suffix="%">40%</b>.
-    var counters = document.querySelectorAll('[data-count]');
+    // Small whole numbers ("6 pages") just flicker, so only larger figures animate.
+    var counters = Array.prototype.filter.call(document.querySelectorAll('[data-count]'), function (el) {
+        return parseFloat(el.getAttribute('data-count')) >= 20;
+    });
     function countUp(el) {
         var end = parseFloat(el.getAttribute('data-count'));
         var suffix = el.getAttribute('data-suffix') || '';
