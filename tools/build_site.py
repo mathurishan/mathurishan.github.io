@@ -9,7 +9,7 @@ import extras2
 import diagrams
 
 SITE = "https://mathurishan.github.io/"
-CSS_V = "11"
+CSS_V = "14"
 JS_V = "11"
 FONTS = ("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@"
          "0,6..72,400;0,6..72,500;1,6..72,400&display=swap")

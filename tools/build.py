@@ -262,29 +262,67 @@ about_page = head("About | Ishan Mathur",
 open("about.html", "w", encoding="utf-8", newline="\n").write(about_page)
 print("wrote about.html")
 
-note_cards = "\n".join(f"""          <article class="note-card rise{" r" + str(i % 3) if i % 3 else ""}">
-            <p class="n-meta">Note · {n["minutes"]} min read</p>
-            <h3><a href="{n["file"]}">{_html.escape(n["title"])}</a></h3>
-            <p>{_html.escape(n["card"])}</p>
-            <span class="more">Read the note <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" /></svg></span>
-          </article>""" for i, n in enumerate(NOTES))
+# Each note gets a small drawing of its idea, shown beside it on the notes page.
+NOTE_ART = {
+    "note-half-a-day-to-under-an-hour.html": """<svg class="nv nv-time" viewBox="0 0 160 100" aria-hidden="true">
+        <text class="nv-label" x="8" y="26">Before</text>
+        <rect class="nv-track" x="8" y="32" width="144" height="14" rx="3" />
+        <rect class="nv-before nv-grow" x="8" y="32" width="144" height="14" rx="3" />
+        <text class="nv-label" x="8" y="66">After</text>
+        <rect class="nv-track" x="8" y="72" width="144" height="14" rx="3" />
+        <rect class="nv-fill nv-grow nv-after" x="8" y="72" width="26" height="14" rx="3" />
+      </svg>""",
+    "note-validate-before-you-visualise.html": """<svg class="nv nv-checks" viewBox="0 0 160 100" aria-hidden="true">
+        <circle class="nv-ring" cx="36" cy="50" r="18" /><circle class="nv-ring" cx="80" cy="50" r="18" /><circle class="nv-ring" cx="124" cy="50" r="18" />
+        <path class="nv-tick t1" pathLength="1" d="M28 50l6 6 11-12" /><path class="nv-tick t2" pathLength="1" d="M72 50l6 6 11-12" /><path class="nv-tick t3" pathLength="1" d="M116 50l6 6 11-12" />
+      </svg>""",
+    "note-start-with-a-star-schema.html": """<svg class="nv nv-star" viewBox="0 0 160 100" aria-hidden="true">
+        <g class="nv-links"><line x1="80" y1="50" x2="80" y2="14" /><line x1="80" y1="50" x2="80" y2="86" /><line x1="80" y1="50" x2="26" y2="50" /><line x1="80" y1="50" x2="134" y2="50" /></g>
+        <g class="nv-dims"><rect class="d-n" x="64" y="6" width="32" height="14" rx="3" /><rect class="d-s" x="64" y="80" width="32" height="14" rx="3" /><rect class="d-w" x="8" y="43" width="32" height="14" rx="3" /><rect class="d-e" x="120" y="43" width="32" height="14" rx="3" /></g>
+        <rect class="nv-fill" x="62" y="38" width="36" height="24" rx="4" />
+      </svg>""",
+    "note-reading-rent-data-honestly.html": """<svg class="nv nv-hist" viewBox="0 0 160 100" aria-hidden="true">
+        <g class="nv-bars"><rect x="14" y="74" width="14" height="16" /><rect x="32" y="56" width="14" height="34" /><rect x="50" y="32" width="14" height="58" /><rect x="68" y="22" width="14" height="68" /><rect x="86" y="40" width="14" height="50" /><rect x="104" y="60" width="14" height="30" /><rect x="122" y="72" width="14" height="18" /><rect x="140" y="80" width="10" height="10" /></g>
+        <line class="nv-median" x1="76" y1="8" x2="76" y2="94" />
+        <text class="nv-label" x="81" y="14">median</text>
+      </svg>""",
+}
+ARROW = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" /></svg>'
+
+index_rows = "\n".join(f"""          <li class="note-row rise{" r" + str(i) if 0 < i < 4 else ""}">
+            <span class="nr-num" aria-hidden="true">{i + 1:02d}</span>
+            <div class="nr-text">
+              <h3><a href="{n["file"]}">{_html.escape(n["title"])}</a></h3>
+              <p>{_html.escape(n["card"])}</p>
+              <span class="n-meta">{n["minutes"]} min read</span>
+            </div>
+            <div class="nr-art">
+      {NOTE_ART[n["file"]]}
+            </div>
+            <span class="nr-go">{ARROW}</span>
+          </li>""" for i, n in enumerate(NOTES))
 notes_page = head("Notes | Ishan Mathur",
                   "Short notes by Ishan Mathur on reporting: validation, data modelling, automating recurring reports and reading public data honestly.",
                   "notes.html", "home", "website") + header("notes") + f"""
   <main id="main">
-    <section class="case-hero">
+    <section class="case-hero notes-hero">
       <div class="wrap">
         <p class="eyebrow">Notes</p>
         <h1>Notes on reporting</h1>
+        <svg class="nh-line" viewBox="0 0 320 36" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M2 32 L40 27 L78 29 L118 19 L158 22 L200 12 L240 14 L280 7 L318 3" /></svg>
         <p class="lead">Short reads on how I build reporting people can trust: validation, modelling, automation and
           being honest about what the data can say.</p>
+        <dl class="nh-stats">
+          <div><dt>Notes</dt><dd>{len(NOTES)}</dd></div>
+          <div><dt>Minutes to read them all</dt><dd>{sum(n["minutes"] for n in NOTES)}</dd></div>
+        </dl>
       </div>
     </section>
-    <section class="section" aria-label="All notes">
+    <section class="section notes-list" aria-label="All notes">
       <div class="wrap">
-        <div class="notes">
-{note_cards}
-        </div>
+        <ol class="note-index">
+{index_rows}
+        </ol>
       </div>
     </section>
   </main>

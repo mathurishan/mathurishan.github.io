@@ -4066,3 +4066,350 @@ body.menu-open .site-header {
     margin-block: -0.7rem;
   }
 }
+
+/* --- Notes page: graph-paper hero, featured note and a numbered index with small drawings --- */
+
+.notes-hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.notes-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(var(--line-strong) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line-strong) 1px, transparent 1px);
+  background-size: 28px 28px;
+  background-position: -1px -1px;
+  -webkit-mask-image: radial-gradient(ellipse 70% 90% at 75% 40%, #000 20%, transparent 75%);
+  mask-image: radial-gradient(ellipse 70% 90% at 75% 40%, #000 20%, transparent 75%);
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.notes-hero .wrap {
+  position: relative;
+}
+
+.notes-hero h1 {
+  margin-bottom: 0.4rem;
+}
+
+.nh-line {
+  display: block;
+  width: min(22rem, 70%);
+  height: 2.25rem;
+  margin: 0 0 1.4rem;
+  overflow: visible;
+}
+
+.nh-line path {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.nh-stats {
+  display: flex;
+  gap: 2.5rem;
+  margin: 2rem 0 0;
+}
+
+.nh-stats div {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.nh-stats dd {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 2.25rem;
+  line-height: 1;
+  color: var(--ink);
+}
+
+.nh-stats dt {
+  margin-top: 0.4rem;
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+/* Numbered index */
+.note-row .n-meta {
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+.note-row h3 a {
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.note-row h3 a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.note-row:hover h3 a {
+  color: var(--accent);
+}
+
+.note-index {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line-strong);
+}
+
+.note-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 3.5rem minmax(0, 1fr) 9.5rem 1.5rem;
+  gap: 1.5rem;
+  align-items: center;
+  padding: 1.75rem 1rem;
+  margin: 0 -1rem;
+  border-bottom: 1px solid var(--line);
+  border-radius: 14px;
+  transition: background-color 0.25s ease;
+}
+
+.note-row:hover {
+  background: var(--surface);
+}
+
+.nr-num {
+  font-family: var(--serif);
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--accent);
+  align-self: start;
+  padding-top: 0.2rem;
+}
+
+.note-row h3 {
+  font-size: clamp(1.35rem, 2.2vw, 1.65rem);
+  margin-bottom: 0.4rem;
+}
+
+.note-row p {
+  margin: 0 0 0.6rem;
+  font-size: 0.95rem;
+  color: var(--muted);
+  max-width: 40rem;
+}
+
+.nr-art {
+  padding: 0.6rem 0.75rem;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  transition: border-color 0.25s ease, transform 0.3s ease;
+}
+
+.note-row:hover .nr-art {
+  border-color: var(--line-strong);
+  transform: rotate(-1.5deg) scale(1.03);
+}
+
+.nr-art .nv {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.nr-go {
+  color: var(--muted);
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.nr-go svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  display: block;
+}
+
+.note-row:hover .nr-go {
+  color: var(--accent);
+  transform: translateX(4px);
+}
+
+/* The drawings */
+.nv .nv-label {
+  font-family: var(--sans);
+  font-size: 9px;
+  fill: var(--muted);
+}
+
+.nv .nv-track {
+  fill: var(--line-strong);
+}
+
+.nv .nv-faint {
+  fill: var(--line);
+}
+
+.nv .nv-fill {
+  fill: var(--accent);
+}
+
+.nv .nv-ring {
+  fill: var(--surface);
+  stroke: var(--line-strong);
+  stroke-width: 2;
+  transition: stroke 0.3s ease;
+}
+
+.nv .nv-tick {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+
+.nv .nv-links line {
+  stroke: var(--line-strong);
+  stroke-width: 2;
+}
+
+.nv .nv-dims rect {
+  fill: var(--accent-soft);
+  stroke: var(--accent);
+  stroke-width: 1;
+  transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.nv .nv-bars rect {
+  fill: var(--accent-soft);
+  stroke: var(--accent);
+  stroke-width: 0.75;
+  transform-box: fill-box;
+  transform-origin: bottom;
+}
+
+.nv .nv-median {
+  stroke: var(--accent);
+  stroke-width: 1.5;
+  stroke-dasharray: 3 3;
+}
+
+.nv .nv-before {
+  fill: var(--muted);
+}
+
+.nv .nv-grow {
+  transform-box: fill-box;
+  transform-origin: left;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .js .nh-line path {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: nh-draw 1.6s 0.2s cubic-bezier(0.6, 0, 0.2, 1) forwards;
+  }
+
+  /* On hover each drawing acts out its note */
+  .note-row:hover .nv-after {
+    animation: nv-fill 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  .note-row:hover .nv-tick {
+    animation: nv-draw 0.45s ease both;
+  }
+
+  .note-row:hover .nv-tick.t2 {
+    animation-delay: 0.15s;
+  }
+
+  .note-row:hover .nv-tick.t3 {
+    animation-delay: 0.3s;
+  }
+
+  .note-row:hover .nv-ring {
+    stroke: var(--accent);
+  }
+
+  .note-row:hover .d-n {
+    transform: translateY(-3px);
+  }
+
+  .note-row:hover .d-s {
+    transform: translateY(3px);
+  }
+
+  .note-row:hover .d-w {
+    transform: translateX(-3px);
+  }
+
+  .note-row:hover .d-e {
+    transform: translateX(3px);
+  }
+
+  .note-row:hover .nv-bars rect {
+    animation: nv-rise 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  .note-row:hover .nv-bars rect:nth-child(2) { animation-delay: 0.04s; }
+  .note-row:hover .nv-bars rect:nth-child(3) { animation-delay: 0.08s; }
+  .note-row:hover .nv-bars rect:nth-child(4) { animation-delay: 0.12s; }
+  .note-row:hover .nv-bars rect:nth-child(5) { animation-delay: 0.16s; }
+  .note-row:hover .nv-bars rect:nth-child(6) { animation-delay: 0.2s; }
+  .note-row:hover .nv-bars rect:nth-child(7) { animation-delay: 0.24s; }
+  .note-row:hover .nv-bars rect:nth-child(8) { animation-delay: 0.28s; }
+}
+
+@keyframes nh-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+/* "Before" stays put as the reference; only the short "after" bar fills in */
+@keyframes nv-fill {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@keyframes nv-draw {
+  from { stroke-dashoffset: 1; }
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes nv-rise {
+  from { transform: scaleY(0.15); }
+  to { transform: scaleY(1); }
+}
+
+@media (max-width: 760px) {
+  .note-row {
+    grid-template-columns: 2.25rem minmax(0, 1fr);
+    gap: 0.9rem 1rem;
+    padding: 1.4rem 0.75rem;
+    margin: 0 -0.75rem;
+  }
+
+  .nr-num {
+    font-size: 1.5rem;
+  }
+
+  .nr-go {
+    display: none;
+  }
+
+  .nr-art {
+    grid-column: 2;
+    width: 9rem;
+    padding: 0.4rem 0.5rem;
+  }
+
+  .nh-stats {
+    gap: 1.75rem;
+  }
+}
