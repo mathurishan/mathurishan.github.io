@@ -4486,9 +4486,9 @@ body.menu-open .site-header {
 }
 
 .home-glance dl {
-  flex: 1 1 36rem;
+  flex: 1 1 44rem;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 0.9rem 1.5rem;
   margin: 0;
 }
@@ -4507,6 +4507,16 @@ body.menu-open .site-header {
   font-size: 0.9375rem;
   line-height: 1.45;
   color: var(--ink);
+}
+
+.home-glance dd a {
+  color: inherit;
+  text-decoration-color: var(--accent);
+  text-underline-offset: 0.2em;
+}
+
+.home-glance dd a:hover {
+  color: var(--accent);
 }
 
 .glance-link {
@@ -4540,6 +4550,10 @@ body.menu-open .site-header {
 @media (max-width: 900px) {
   .home-glance dl {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .home-glance dl > div:last-child {
+    grid-column: 1 / -1;
   }
 }
 

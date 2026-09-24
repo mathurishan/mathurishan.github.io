@@ -15,6 +15,14 @@ BACKGROUND = '''
             and 5+ dashboards and reports for senior leadership, client groups and third-party stakeholders.</p>
           <p>Earlier, at Arcesium (a D.E. Shaw Group company), daily SQL for 10+ global investment clients and
             validation controls that cut the time to produce daily reconciliation reporting by 40%.</p>
+          <p>I run reporting work as small projects, and hold the Project Management Professional (PMP®)
+            certification. At Arcesium I managed several concurrent client workstreams end to end, from
+            requirements through build, test, release and ongoing support, using clear scope, early risk
+            identification, dependency mapping and timeline management to keep delivery predictable. I also
+            supported release readiness through testing inputs, issue triage and stakeholder sign-off. At the
+            Library the same habits show up as an 11-page working paper setting out a phased analytics roadmap,
+            and as release gates that stop a monthly report if any personal text survives.
+            <a href="note-every-dashboard-is-a-small-project.html">How that works at the size of a report &rarr;</a></p>
           <p>I work day to day in SharePoint (lists, libraries, permissions, reporting on SharePoint data) and Power
             Automate (approval, scheduled, file-handling and form-to-list flows); at the Library every dashboard I
             build is published through SharePoint to the team it serves.</p>
@@ -36,7 +44,7 @@ BACKGROUND = '''
               <h3>Credentials</h3>
               <ul class="plain">
                 <li>Master of Management (Business Analytics), University of Waikato, 2026</li>
-                <li>Project Management Professional (PMP®)</li>
+                <li>Project Management Professional (PMP®), PMI</li>
                 <li>MBA, Finance &amp; Financial Management, IMT Ghaziabad</li>
                 <li>Microsoft Power BI and Excel courses (Coursera)</li>
               </ul>
