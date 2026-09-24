@@ -165,6 +165,47 @@
         });
     });
 
+    // Reading progress bar along the top of project and article pages.
+    var bar = document.querySelector('.progress');
+    if (bar) {
+        var ticking = false;
+        var paint = function () {
+            var max = document.documentElement.scrollHeight - window.innerHeight;
+            bar.style.transform = 'scaleX(' + (max > 0 ? Math.min(window.scrollY / max, 1) : 0) + ')';
+            ticking = false;
+        };
+        window.addEventListener('scroll', function () {
+            if (!ticking) { ticking = true; requestAnimationFrame(paint); }
+        }, { passive: true });
+        window.addEventListener('resize', paint);
+        paint();
+    }
+
+    // Section menu: underline the section currently in view.
+    var subnav = document.querySelector('.subnav');
+    if (subnav && 'IntersectionObserver' in window) {
+        var links = Array.prototype.slice.call(subnav.querySelectorAll('a[href^="#"]'));
+        var byId = {};
+        links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+        var mark = function (id) {
+            links.forEach(function (a) { a.removeAttribute('aria-current'); });
+            var a = byId[id];
+            if (a) {
+                a.setAttribute('aria-current', 'true');
+                var wrap = subnav.querySelector('.wrap');
+                var left = a.offsetLeft - wrap.clientWidth / 2 + a.clientWidth / 2;
+                wrap.scrollTo({ left: left, behavior: calm ? 'auto' : 'smooth' });
+            }
+        };
+        var spy = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) { if (e.isIntersecting) mark(e.target.id); });
+        }, { rootMargin: '-35% 0px -60% 0px', threshold: 0 });
+        Object.keys(byId).forEach(function (id) {
+            var target = document.getElementById(id);
+            if (target) spy.observe(target);
+        });
+    }
+
     // Tabbed code samples (arrow keys move between tabs), with a copy button.
     document.querySelectorAll('[data-tabs]').forEach(function (card) {
         var tabs = Array.prototype.slice.call(card.querySelectorAll('[role="tab"]'));

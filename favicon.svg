@@ -1,4 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect x="0" y="0" width="64" height="64" rx="12" fill="#242943"/>
-  <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-weight="bold" font-size="36" fill="#ffffff">IM</text>
+  <title>Ishan Mathur</title>
+  <rect width="64" height="64" rx="14" fill="#1d1c1a"/>
+  <g fill="#f4f1ea">
+    <path d="M7.5 14h15.6v2.6h-5.2v27.8h5.2V47H7.5v-2.6h5.2V16.6H7.5z"/>
+    <path d="M25 14h8.4l8.2 23.6L49.6 14h7.4v2.6h-2.5v27.8H57V47H45.9v-2.6h3V24.4L41.7 47h-2.3l-8.8-24.4v21.8h3.1V47H25v-2.6h2.6V16.6H25z"/>
+  </g>
+  <rect x="25" y="51.2" width="14" height="3.4" rx="1.7" fill="#e0916b"/>
 </svg>

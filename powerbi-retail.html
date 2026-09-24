@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="has-subnav">
 
 <head>
   <meta charset="utf-8" />
@@ -17,10 +17,13 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="theme-color" content="#faf9f5" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/site.css?v=5" />
+  <link rel="stylesheet" href="assets/css/site.css?v=6" />
   <script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){d.setAttribute('data-theme',t);}}catch(e){}})()</script>
 </head>
 
@@ -54,6 +57,7 @@
     </div>
   </header>
 
+  <div class="progress" aria-hidden="true"></div>
   <main id="main">
     <section class="case-hero">
       <div class="wrap">
@@ -62,6 +66,7 @@
         <h1>Retail Sales &amp; Returns Analysis</h1>
         <p class="lead">A six-page sales, margin and returns dashboard on a star-schema model, with DAX time intelligence and drill-through pages.</p>
         <ul class="tools-row" aria-label="Tools"><li>Power BI</li><li>DAX</li><li>Power Query</li><li>Star schema</li><li class="link"><a href="files/Retail-Sales-Returns-Analysis.pdf">Full report (PDF) &rarr;</a></li></ul>
+        <p class="disclaimer"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><circle cx="8" cy="8" r="6.2"/><path d="M8 7.2v3.6M8 5.2v.1"/></svg>Independent portfolio project. Not affiliated with or endorsed by Grupo Bimbo.</p>
         <dl class="glance">
           <div><dt>6</dt><dd>linked report pages</dd></div>
           <div><dt>4</dt><dd>headline KPIs on the overview</dd></div>
@@ -79,21 +84,25 @@
       </figure>
     </div>
 
+    <nav class="subnav" aria-label="On this page">
+      <div class="wrap"><a href="#problem">Problem</a><a href="#data">Data</a><a href="#built">What I built</a><a href="#explore">Explore</a><a href="#dax">DAX</a><a href="#findings">What changed</a><a href="#gallery">Gallery</a></div>
+    </nav>
+
     <section class="case-body">
       <div class="wrap">
-        <div class="block rise">
+        <div class="block rise" id="problem">
           <h2>Problem</h2>
           <div class="body">
             <p>A retail business needs to see sales growth and returns side by side: which product categories, channels and stores drive revenue, and where returns eat into it.</p>
           </div>
         </div>
-        <div class="block rise">
+        <div class="block rise" id="data">
           <h2>Data</h2>
           <div class="body">
             <p>Weekly sales, demand and returns data by product category, sales channel, purchaser and town, modelled as a star schema in Power BI.</p>
           </div>
         </div>
-        <div class="block rise">
+        <div class="block rise" id="built">
           <h2>What I built</h2>
           <div class="body">
             <p>A sales, margin and returns dashboard across six linked pages:</p>
@@ -112,7 +121,118 @@
     </section>
 
 
-    <section class="section band" aria-labelledby="findings-title">
+    <section class="section" id="explore" aria-labelledby="explore-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="explore-title">Explore the data</h2>
+          <span class="muted">Switch the measure to see the story change</span>
+        </div>
+        <div class="chart rise" data-chart="bar" data-metrics='[{&quot;key&quot;: &quot;sales&quot;, &quot;label&quot;: &quot;Net sales&quot;, &quot;prefix&quot;: &quot;$&quot;, &quot;suffix&quot;: &quot;M&quot;, &quot;decimals&quot;: 2}, {&quot;key&quot;: &quot;demand&quot;, &quot;label&quot;: &quot;Demand&quot;}, {&quot;key&quot;: &quot;rate&quot;, &quot;label&quot;: &quot;Return rate&quot;, &quot;suffix&quot;: &quot;%&quot;, &quot;decimals&quot;: 1, &quot;threshold&quot;: 2}]'>
+          <div class="chart-head">
+            <div>
+              <h3>Product categories</h3>
+              <p>Net sales, demand and return rate by category, from the Product and Category Performance page.</p>
+            </div>
+            <div class="seg" aria-label="Measure"><button type="button" data-metric="sales" aria-pressed="true">Net sales</button><button type="button" data-metric="demand" aria-pressed="false">Demand</button><button type="button" data-metric="rate" aria-pressed="false">Return rate</button></div>
+          </div>
+          <div class="chart-canvas"></div>
+          <p class="chart-note">On return rate, bars past the dashed line are above the 2% target.</p>
+          <details>
+            <summary>View as a table</summary>
+            <table>
+              <thead><tr><th>Category</th><th>Net sales</th><th>Demand</th><th>Return rate</th></tr></thead>
+              <tbody><tr><td>Snack</td><td>$2,607,154.02</td><td>325,482</td><td>0.8%</td></tr><tr><td>Bread</td><td>$2,280,960.03</td><td>111,482</td><td>3.6%</td></tr><tr><td>Bun</td><td>$900,037.21</td><td>51,910</td><td>1.7%</td></tr><tr><td>Tortilla</td><td>$560,576.50</td><td>42,406</td><td>2.5%</td></tr><tr><td>Muffin</td><td>$344,764.38</td><td>39,574</td><td>0.8%</td></tr><tr><td>Cake</td><td>$262,698.16</td><td>17,314</td><td>1.0%</td></tr><tr><td>Donut</td><td>$146,363.87</td><td>18,106</td><td>2.8%</td></tr><tr><td>Sandwich</td><td>$39,747.36</td><td>2,348</td><td>0.2%</td></tr><tr><td>Breadcrumb</td><td>$30,115.62</td><td>3,239</td><td>1.4%</td></tr><tr><td>Beverage</td><td>$1,529.92</td><td>292</td><td>0.0%</td></tr></tbody>
+            </table>
+          </details>
+          <script type="application/json">[{"label": "Snack", "sales": 2.607, "demand": 325482, "rate": 0.8}, {"label": "Bread", "sales": 2.281, "demand": 111482, "rate": 3.6}, {"label": "Bun", "sales": 0.9, "demand": 51910, "rate": 1.7}, {"label": "Tortilla", "sales": 0.561, "demand": 42406, "rate": 2.5}, {"label": "Muffin", "sales": 0.345, "demand": 39574, "rate": 0.8}, {"label": "Cake", "sales": 0.263, "demand": 17314, "rate": 1.0}, {"label": "Donut", "sales": 0.146, "demand": 18106, "rate": 2.8}, {"label": "Sandwich", "sales": 0.04, "demand": 2348, "rate": 0.2}, {"label": "Breadcrumb", "sales": 0.03, "demand": 3239, "rate": 1.4}, {"label": "Beverage", "sales": 0.002, "demand": 292, "rate": 0.0}]</script>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="dax" aria-labelledby="dax-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="dax-title">The DAX</h2>
+          <span class="muted">Measures behind the report</span>
+        </div>
+        <div class="code-card rise" data-tabs>
+          <div class="code-tabs" role="tablist" aria-label="The DAX">
+            <button type="button" role="tab" id="tab-dax-0" aria-controls="panel-dax-0" aria-selected="true" tabindex="0">Core measures</button><button type="button" role="tab" id="tab-dax-1" aria-controls="panel-dax-1" aria-selected="false" tabindex="-1">Week on week</button><button type="button" role="tab" id="tab-dax-2" aria-controls="panel-dax-2" aria-selected="false" tabindex="-1">Targets and ranking</button><button type="button" role="tab" id="tab-dax-3" aria-controls="panel-dax-3" aria-selected="false" tabindex="-1">Field parameter</button>
+            <button type="button" class="copy" data-copy-code>Copy DAX</button>
+          </div>
+          <div class="code-panel" role="tabpanel" id="panel-dax-0" aria-labelledby="tab-dax-0">
+            <p class="why"><b>Base measures.</b> Every visual builds on a handful of explicit measures over the sales fact table, so a number means the same thing on every page.</p>
+            <pre><code><span class="tok-m">Gross Sales</span> =
+<span class="tok-f">SUM</span> ( <span class="tok-r">Sales[Gross Sales]</span> )
+
+<span class="tok-m">Return Value</span> =
+<span class="tok-f">SUM</span> ( <span class="tok-r">Sales[Return Value]</span> )
+
+<span class="tok-m">Net Sales</span> =
+<span class="tok-r">[Gross Sales]</span> - <span class="tok-r">[Return Value]</span>
+
+<span class="tok-m">Actual Demand</span> =
+<span class="tok-f">SUM</span> ( <span class="tok-r">Sales[Demand Units]</span> )
+
+<span class="tok-m">Return Rate %</span> =
+<span class="tok-f">DIVIDE</span> ( <span class="tok-f">SUM</span> ( <span class="tok-r">Sales[Returned Units]</span> ), <span class="tok-r">[Actual Demand]</span> )</code></pre>
+          </div><div class="code-panel" role="tabpanel" id="panel-dax-1" aria-labelledby="tab-dax-1" hidden>
+            <p class="why"><b>Time intelligence.</b> The data runs week by week, so the trend compares each week with the one before it, ignoring any other date filter.</p>
+            <pre><code><span class="tok-m">Net Sales Prior Week</span> =
+<span class="tok-k">VAR</span> CurrentWeek = <span class="tok-f">MAX</span> ( <span class="tok-r">&#x27;Date&#x27;[Week Number]</span> )
+<span class="tok-k">RETURN</span>
+    <span class="tok-f">CALCULATE</span> (
+        <span class="tok-r">[Net Sales]</span>,
+        <span class="tok-f">REMOVEFILTERS</span> ( <span class="tok-r">&#x27;Date&#x27;</span> ),
+        <span class="tok-r">&#x27;Date&#x27;[Week Number]</span> = CurrentWeek - <span class="tok-n">1</span>
+    )
+
+<span class="tok-m">Net Sales WoW %</span> =
+<span class="tok-k">VAR</span> PriorWeek = <span class="tok-r">[Net Sales Prior Week]</span>
+<span class="tok-k">RETURN</span>
+    <span class="tok-f">IF</span> (
+        <span class="tok-k">NOT</span> <span class="tok-f">ISBLANK</span> ( PriorWeek ),
+        <span class="tok-f">DIVIDE</span> ( <span class="tok-r">[Net Sales]</span> - PriorWeek, PriorWeek )
+    )</code></pre>
+          </div><div class="code-panel" role="tabpanel" id="panel-dax-2" aria-labelledby="tab-dax-2" hidden>
+            <p class="why"><b>Business rules.</b> The 2% return-rate target drives the red flags on the category pages, and the ranking follows whatever the report is filtered to.</p>
+            <pre><code><span class="tok-m">Return Rate Target</span> = <span class="tok-n">0.02</span>
+
+<span class="tok-m">Return Rate Status</span> =
+<span class="tok-f">IF</span> (
+    <span class="tok-r">[Return Rate %]</span> &gt; <span class="tok-r">[Return Rate Target]</span>,
+    <span class="tok-s">&quot;Above target&quot;</span>,
+    <span class="tok-s">&quot;Within target&quot;</span>
+)
+
+<span class="tok-m">Category Rank</span> =
+<span class="tok-f">RANKX</span> (
+    <span class="tok-f">ALLSELECTED</span> ( <span class="tok-r">Product[Category]</span> ),
+    <span class="tok-r">[Net Sales]</span>,
+    ,
+    <span class="tok-k">DESC</span>,
+    <span class="tok-k">DENSE</span>
+)
+
+<span class="tok-m">Snack and Bread Share</span> =
+<span class="tok-f">DIVIDE</span> (
+    <span class="tok-f">CALCULATE</span> ( <span class="tok-r">[Net Sales]</span>, <span class="tok-r">Product[Category]</span> <span class="tok-k">IN</span> { <span class="tok-s">&quot;Snack&quot;</span>, <span class="tok-s">&quot;Bread&quot;</span> } ),
+    <span class="tok-f">CALCULATE</span> ( <span class="tok-r">[Net Sales]</span>, <span class="tok-f">ALLSELECTED</span> ( <span class="tok-r">Product[Category]</span> ) )
+)</code></pre>
+          </div><div class="code-panel" role="tabpanel" id="panel-dax-3" aria-labelledby="tab-dax-3" hidden>
+            <p class="why"><b>One visual, three breakdowns.</b> The Parameter buttons on the overview swap the chart between sales channel, purchaser and product category.</p>
+            <pre><code><span class="tok-m">Breakdown</span> =
+{
+    ( <span class="tok-s">&quot;Sales Channel&quot;</span>, <span class="tok-f">NAMEOF</span> ( <span class="tok-r">Channel[Sales Channel]</span> ), <span class="tok-n">0</span> ),
+    ( <span class="tok-s">&quot;Purchaser&quot;</span>, <span class="tok-f">NAMEOF</span> ( <span class="tok-r">Purchaser[Purchaser]</span> ), <span class="tok-n">1</span> ),
+    ( <span class="tok-s">&quot;Product Category&quot;</span>, <span class="tok-f">NAMEOF</span> ( <span class="tok-r">Product[Category]</span> ), <span class="tok-n">2</span> )
+}</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section band" id="findings" aria-labelledby="findings-title">
       <div class="wrap">
         <div class="section-head">
           <h2 id="findings-title">What changed</h2>
@@ -126,7 +246,7 @@
       </div>
     </section>
 
-    <section class="section" aria-labelledby="gallery-title">
+    <section class="section" id="gallery" aria-labelledby="gallery-title">
       <div class="wrap">
         <div class="section-head">
           <h2 id="gallery-title">Gallery</h2>
@@ -162,7 +282,8 @@
     </div>
   </footer>
 
-  <script src="assets/js/site.js?v=5" defer></script>
+  <script src="assets/js/site.js?v=6" defer></script>
+  <script src="assets/js/charts.js?v=6" defer></script>
 </body>
 
 </html>

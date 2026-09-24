@@ -108,9 +108,22 @@
                 tl.textContent = fmt(metric, max * t / 4).replace(/\.0+(?=\D*$)/, '');
             }
 
+            // Optional target line (e.g. a 2% return-rate target): bars past it are highlighted.
+            var oldLine = svg.querySelector('.target-line');
+            if (oldLine) oldLine.parentNode.removeChild(oldLine);
+            var oldLabel = svg.querySelector('.target-label');
+            if (oldLabel) oldLabel.parentNode.removeChild(oldLabel);
+            if (def.threshold != null) {
+                var tx = labelW + plotW * def.threshold / max;
+                el('line', { x1: tx, x2: tx, y1: top - 4, y2: height - 20, class: 'target-line' }, svg);
+                var tlab = el('text', { x: tx + 5, y: top + 6, class: 'target-label' }, svg);
+                tlab.textContent = fmt(metric, def.threshold) + ' target';
+            }
+
             sorted.forEach(function (r, i) {
                 var y = top + i * rowH;
                 var w = Math.max(plotW * r.d[metric] / max, 1.5);
+                r.g.classList.toggle('over', def.threshold != null && r.d[metric] > def.threshold);
                 r.g.style.transform = 'translateY(' + y + 'px)';
                 r.rect.setAttribute('y', 5);
                 r.rect.setAttribute('width', w);
@@ -121,7 +134,7 @@
                 r.val.setAttribute('x', labelW + w + 8);
                 r.val.setAttribute('y', rowH / 2);
                 r.val.textContent = fmt(metric, r.d[metric]);
-                r.g.classList.toggle('lead', i === 0);
+                r.g.classList.toggle('lead', i === 0 && def.threshold == null);
                 r.g.setAttribute('aria-label', r.d.label + ': ' + fmt(metric, r.d[metric]) + ', rank ' + (i + 1));
             });
         }

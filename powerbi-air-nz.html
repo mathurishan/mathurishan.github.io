@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="has-subnav">
 
 <head>
   <meta charset="utf-8" />
@@ -17,10 +17,13 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="theme-color" content="#faf9f5" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/site.css?v=5" />
+  <link rel="stylesheet" href="assets/css/site.css?v=6" />
   <script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){d.setAttribute('data-theme',t);}}catch(e){}})()</script>
 </head>
 
@@ -54,6 +57,7 @@
     </div>
   </header>
 
+  <div class="progress" aria-hidden="true"></div>
   <main id="main">
     <section class="case-hero">
       <div class="wrap">
@@ -62,6 +66,7 @@
         <h1>Air New Zealand Analysis</h1>
         <p class="lead">Route, capacity and performance analysis built from public data, brought together in one Power BI data model.</p>
         <ul class="tools-row" aria-label="Tools"><li>Power BI</li><li>DAX</li><li>Power Query</li><li>Public data</li></ul>
+        <p class="disclaimer"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><circle cx="8" cy="8" r="6.2"/><path d="M8 7.2v3.6M8 5.2v.1"/></svg>Independent analysis of public data. Not affiliated with or endorsed by Air New Zealand.</p>
         <dl class="glance">
           <div><dt>2020–25</dt><dd>years of public data</dd></div>
           <div><dt>6</dt><dd>headline KPIs on the overview</dd></div>
@@ -79,21 +84,25 @@
       </figure>
     </div>
 
+    <nav class="subnav" aria-label="On this page">
+      <div class="wrap"><a href="#problem">Problem</a><a href="#data">Data</a><a href="#built">What I built</a><a href="#dax">DAX</a><a href="#findings">What changed</a><a href="#gallery">Gallery</a></div>
+    </nav>
+
     <section class="case-body">
       <div class="wrap">
-        <div class="block rise">
+        <div class="block rise" id="problem">
           <h2>Problem</h2>
           <div class="body">
             <p>An airline network needs one view of demand, reliability and capacity: how traffic recovered after 2021, where cancellations and delays concentrate, and what a capacity shock such as engine groundings would mean.</p>
           </div>
         </div>
-        <div class="block rise">
+        <div class="block rise" id="data">
           <h2>Data</h2>
           <div class="body">
             <p>Public data on Air New Zealand arrivals, departures, cancellations, on-time performance and capacity, 2020 to 2025, brought into one Power BI data model.</p>
           </div>
         </div>
-        <div class="block rise">
+        <div class="block rise" id="built">
           <h2>What I built</h2>
           <div class="body">
             <p>A route, capacity and performance analysis in Power BI:</p>
@@ -110,7 +119,86 @@
     </section>
 
 
-    <section class="section band" aria-labelledby="findings-title">
+    <section class="section" id="dax" aria-labelledby="dax-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="dax-title">The DAX</h2>
+          <span class="muted">Measures behind the report</span>
+        </div>
+        <div class="code-card rise" data-tabs>
+          <div class="code-tabs" role="tablist" aria-label="The DAX">
+            <button type="button" role="tab" id="tab-dax-0" aria-controls="panel-dax-0" aria-selected="true" tabindex="0">Reliability KPIs</button><button type="button" role="tab" id="tab-dax-1" aria-controls="panel-dax-1" aria-selected="false" tabindex="-1">Year on year</button><button type="button" role="tab" id="tab-dax-2" aria-controls="panel-dax-2" aria-selected="false" tabindex="-1">Capacity and scenarios</button>
+            <button type="button" class="copy" data-copy-code>Copy DAX</button>
+          </div>
+          <div class="code-panel" role="tabpanel" id="panel-dax-0" aria-labelledby="tab-dax-0">
+            <p class="why"><b>Headline measures.</b> The six cards on the executive summary come from a dedicated measures table, so rates are always recalculated from their parts.</p>
+            <pre><code><span class="tok-m">Total Arrivals</span> =
+<span class="tok-f">SUM</span> ( <span class="tok-r">&#x27;Table 1&#x27;[Arrival]</span> )
+
+<span class="tok-m">Total Departures</span> =
+<span class="tok-f">SUM</span> ( <span class="tok-r">&#x27;Table 1&#x27;[Departure]</span> )
+
+<span class="tok-m">Cancellations</span> =
+<span class="tok-f">SUM</span> ( <span class="tok-r">&#x27;Monthly Summary&#x27;[Cancelled Sectors]</span> )
+
+<span class="tok-m">Scheduled Sectors</span> =
+<span class="tok-f">SUM</span> ( <span class="tok-r">&#x27;Monthly Summary&#x27;[Scheduled Sectors]</span> )
+
+<span class="tok-m">Cancellation Rate</span> =
+<span class="tok-f">DIVIDE</span> ( <span class="tok-r">[Cancellations]</span>, <span class="tok-r">[Scheduled Sectors]</span> )
+
+<span class="tok-m">Arrival OTP</span> =
+<span class="tok-f">DIVIDE</span> (
+    <span class="tok-f">SUM</span> ( <span class="tok-r">&#x27;Monthly Summary&#x27;[On-time Arrivals]</span> ),
+    <span class="tok-f">SUM</span> ( <span class="tok-r">&#x27;Monthly Summary&#x27;[Flown Arrivals]</span> )
+)</code></pre>
+          </div><div class="code-panel" role="tabpanel" id="panel-dax-1" aria-labelledby="tab-dax-1" hidden>
+            <p class="why"><b>Recovery trend.</b> Year-on-year change drives the demand page; it stays blank where there is no prior year to compare with.</p>
+            <pre><code><span class="tok-m">Arrivals YoY %</span> =
+<span class="tok-k">VAR</span> ThisPeriod = <span class="tok-r">[Total Arrivals]</span>
+<span class="tok-k">VAR</span> LastYear =
+    <span class="tok-f">CALCULATE</span> ( <span class="tok-r">[Total Arrivals]</span>, <span class="tok-f">SAMEPERIODLASTYEAR</span> ( <span class="tok-r">&#x27;Date&#x27;[Date]</span> ) )
+<span class="tok-k">RETURN</span>
+    <span class="tok-f">IF</span> (
+        <span class="tok-k">NOT</span> <span class="tok-f">ISBLANK</span> ( LastYear ),
+        <span class="tok-f">DIVIDE</span> ( ThisPeriod - LastYear, LastYear )
+    )
+
+<span class="tok-m">Departures YoY %</span> =
+<span class="tok-k">VAR</span> ThisPeriod = <span class="tok-r">[Total Departures]</span>
+<span class="tok-k">VAR</span> LastYear =
+    <span class="tok-f">CALCULATE</span> ( <span class="tok-r">[Total Departures]</span>, <span class="tok-f">SAMEPERIODLASTYEAR</span> ( <span class="tok-r">&#x27;Date&#x27;[Date]</span> ) )
+<span class="tok-k">RETURN</span>
+    <span class="tok-f">IF</span> (
+        <span class="tok-k">NOT</span> <span class="tok-f">ISBLANK</span> ( LastYear ),
+        <span class="tok-f">DIVIDE</span> ( ThisPeriod - LastYear, LastYear )
+    )</code></pre>
+          </div><div class="code-panel" role="tabpanel" id="panel-dax-2" aria-labelledby="tab-dax-2" hidden>
+            <p class="why"><b>What-if analysis.</b> Capacity measures feed the operational page, and the scenario slicer on the forecast page switches every visual at once.</p>
+            <pre><code><span class="tok-m">Capacity Utilisation</span> =
+<span class="tok-f">DIVIDE</span> (
+    <span class="tok-f">SUM</span> ( <span class="tok-r">&#x27;Monthly Summary&#x27;[Seats Flown]</span> ),
+    <span class="tok-f">SUM</span> ( <span class="tok-r">&#x27;Monthly Summary&#x27;[Seats Scheduled]</span> )
+)
+
+<span class="tok-m">Net Engine Impact</span> =
+<span class="tok-f">SUM</span> ( <span class="tok-r">&#x27;Engine Availability &amp; Compensation&#x27;[Compensation]</span> )
+    - <span class="tok-f">SUM</span> ( <span class="tok-r">&#x27;Engine Availability &amp; Compensation&#x27;[Lost Revenue]</span> )
+
+<span class="tok-m">Scenario RPK</span> =
+<span class="tok-k">VAR</span> SelectedScenario =
+    <span class="tok-f">SELECTEDVALUE</span> ( <span class="tok-r">&#x27;Forecast &amp; What-If Scenarios&#x27;[Scenario]</span>, <span class="tok-s">&quot;Base&quot;</span> )
+<span class="tok-k">RETURN</span>
+    <span class="tok-f">CALCULATE</span> (
+        <span class="tok-f">SUM</span> ( <span class="tok-r">&#x27;Forecast &amp; What-If Scenarios&#x27;[ForecastRPK]</span> ),
+        <span class="tok-r">&#x27;Forecast &amp; What-If Scenarios&#x27;[Scenario]</span> = SelectedScenario
+    )</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section band" id="findings" aria-labelledby="findings-title">
       <div class="wrap">
         <div class="section-head">
           <h2 id="findings-title">What changed</h2>
@@ -124,7 +212,7 @@
       </div>
     </section>
 
-    <section class="section" aria-labelledby="gallery-title">
+    <section class="section" id="gallery" aria-labelledby="gallery-title">
       <div class="wrap">
         <div class="section-head">
           <h2 id="gallery-title">Gallery</h2>
@@ -168,7 +256,7 @@
     </div>
   </footer>
 
-  <script src="assets/js/site.js?v=5" defer></script>
+  <script src="assets/js/site.js?v=6" defer></script>
 </body>
 
 </html>

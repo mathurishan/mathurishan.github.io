@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Validate before you visualise | Ishan Mathur</title>
+  <meta name="description" content="Why the checks that run before a dashboard matter more than the dashboard itself: reconciliation, grain and gaps." />
+  <link rel="canonical" href="https://mathurishan.github.io/note-validate-before-you-visualise.html" />
+  <meta property="og:title" content="Validate before you visualise | Ishan Mathur" />
+  <meta property="og:description" content="Why the checks that run before a dashboard matter more than the dashboard itself: reconciliation, grain and gaps." />
+  <meta property="og:image" content="https://mathurishan.github.io/images/social/home.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:url" content="https://mathurishan.github.io/note-validate-before-you-visualise.html" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#faf9f5" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/site.css?v=6" />
+  <script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){d.setAttribute('data-theme',t);}}catch(e){}})()</script>
+</head>
+
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="./">Ishan Mathur</a>
+      <div class="header-end">
+        <nav class="nav" aria-label="Main">
+          <a href="./#work" aria-current="page">Work</a>
+          <a href="resume.html">Résumé</a>
+          <a href="./#contact">Contact</a>
+        </nav>
+        <button class="theme-toggle" type="button" aria-label="Switch theme">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <mask id="theme-mask">
+              <rect width="24" height="24" fill="#fff" />
+              <circle class="shade" cx="30" cy="0" r="7" fill="#000" />
+            </mask>
+            <g mask="url(#theme-mask)">
+              <circle class="core" cx="12" cy="12" r="5" />
+            </g>
+            <g class="rays" fill="none" stroke-width="1.6" stroke-linecap="round">
+              <path d="M12 2.5v1.8M12 19.7v1.8M2.5 12h1.8M19.7 12h1.8M5.3 5.3l1.3 1.3M17.4 17.4l1.3 1.3M5.3 18.7l1.3-1.3M17.4 6.6l1.3-1.3" />
+            </g>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="progress" aria-hidden="true"></div>
+  <main id="main">
+    <article class="article">
+      <div class="wrap">
+        <a class="back" href="./#writing">&larr; All notes</a>
+        <p class="eyebrow">Note</p>
+        <h1>Validate before you visualise</h1>
+        <p class="lead">A dashboard is only as trustworthy as the checks that run before anyone sees it.</p>
+        <div class="byline"><span>Ishan Mathur</span><span>September 2026</span><span>4 min read</span></div>
+        <div class="article-body">
+
+<p>The most expensive dashboard is the one that is wrong and looks right. Nobody questions a clean chart, so a
+  small error in the data travels a long way before anyone notices.</p>
+
+<p>I learned this in reconciliation work. For three years at Arcesium I investigated and resolved 10–20
+  reconciliation exceptions a day across cash, positions and P&amp;L for global investment clients. That job
+  teaches one habit above all: a number is not true because it appears on a screen. It is true when it agrees
+  with an independent source.</p>
+
+<h2>Three checks before the first visual</h2>
+
+<p><strong>1. Does it add back?</strong> Totals should reconcile to a figure you trust. In my
+  <a href="sql-nz-building-consents.html#model">NZ Building Consents</a> project, the monthly rows in my fact
+  table for Waikato add back exactly to the quarter Stats NZ publishes: 949 consents, $506,230,468 in value and
+  191,777 m² of floor area. If they had not matched, the problem would have been in my model, not in the chart.</p>
+
+<pre><code><span class="tok-c">-- Do my monthly fact rows add back to the published quarter?</span>
+<span class="tok-k">SELECT</span> r.region_name,
+       <span class="tok-f">SUM</span>(f.number_of_consents) <span class="tok-k">AS</span> consents,
+       <span class="tok-f">SUM</span>(f.value_nzd)          <span class="tok-k">AS</span> value_nzd,
+       <span class="tok-f">SUM</span>(f.floor_area_sqm)     <span class="tok-k">AS</span> floor_area_sqm
+<span class="tok-k">FROM</span> fact_region_consents f
+<span class="tok-k">JOIN</span> dim_date d   <span class="tok-k">ON</span> f.date_id = d.date_id
+<span class="tok-k">JOIN</span> dim_region r <span class="tok-k">ON</span> f.region_id = r.region_id
+<span class="tok-k">WHERE</span> r.region_name = <span class="tok-s">&#x27;Waikato Region&#x27;</span>
+  <span class="tok-k">AND</span> d.year = <span class="tok-n">2025</span> <span class="tok-k">AND</span> d.month <span class="tok-k">IN</span> (<span class="tok-n">7</span>, <span class="tok-n">8</span>, <span class="tok-n">9</span>)
+  <span class="tok-k">AND</span> f.consent_nature = <span class="tok-s">&#x27;New&#x27;</span>
+<span class="tok-k">GROUP</span> <span class="tok-k">BY</span> r.region_name;</code></pre>
+
+<p><strong>2. Is the grain what I think it is?</strong> Every table has a grain: one row per what? If a table I
+  believe is one row per region per month is really one row per region per month per building type, every sum
+  quietly multiplies. I write the grain down before I write a measure.</p>
+
+<p><strong>3. What is missing?</strong> Blanks, suppressed values and partial periods do more damage than
+  outliers, because they hide. A month that is only half loaded looks like a collapse on a trend line. Partial
+  periods come out of trends until they are complete.</p>
+
+<h2>Checks make reporting faster, not slower</h2>
+
+<p>It is tempting to treat validation as a cost. My experience is the opposite. At Arcesium, introducing
+  validation checks and SQL control routines cut the time to produce daily reconciliation reporting by 40%.
+  The checks did not add work; they removed the manual chasing that happens when nobody trusts the first
+  answer.</p>
+
+<blockquote>Speed and trust come from the same place: knowing the numbers are right before anyone asks.</blockquote>
+
+<p>So before I open Power BI, I ask three questions. Does it add back? What is one row? What is missing? A
+  dashboard built on those answers rarely needs defending.</p>
+
+        </div>
+        <div class="article-end">
+          <span class="muted">Next note</span>
+          <a class="next-note" href="note-start-with-a-star-schema.html">Why my reports start with a star schema &rarr;</a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>© 2026 Ishan Mathur</span>
+      <nav aria-label="Footer">
+        <a href="mailto:mathur.ishan11@gmail.com">Email</a>
+        <a href="https://www.linkedin.com/in/mathurishan">LinkedIn</a>
+        <a href="https://github.com/mathurishan">GitHub</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="assets/js/site.js?v=6" defer></script>
+</body>
+
+</html>

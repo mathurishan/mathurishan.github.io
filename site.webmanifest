@@ -1,0 +1,11 @@
+{
+  "name": "Ishan Mathur | Data & BI Analyst",
+  "short_name": "Ishan Mathur",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ],
+  "theme_color": "#1d1c1a",
+  "background_color": "#faf9f5",
+  "display": "browser"
+}

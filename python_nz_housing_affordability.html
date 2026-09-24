@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="has-subnav">
 
 <head>
   <meta charset="utf-8" />
@@ -17,10 +17,13 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="theme-color" content="#faf9f5" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/site.css?v=5" />
+  <link rel="stylesheet" href="assets/css/site.css?v=6" />
   <script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){d.setAttribute('data-theme',t);}}catch(e){}})()</script>
 </head>
 
@@ -54,6 +57,7 @@
     </div>
   </header>
 
+  <div class="progress" aria-hidden="true"></div>
   <main id="main">
     <section class="case-hero">
       <div class="wrap">
@@ -62,6 +66,7 @@
         <h1>NZ Housing Affordability</h1>
         <p class="lead">Where rental pressure is rising fastest across New Zealand, from tenancy bond, household income and building consent data.</p>
         <ul class="tools-row" aria-label="Tools"><li>Python</li><li>pandas</li><li>matplotlib</li><li>seaborn</li></ul>
+        
         <dl class="glance">
           <div><dt>2019–25</dt><dd>quarterly rent data</dd></div>
           <div><dt>3</dt><dd>public data sources</dd></div>
@@ -80,21 +85,25 @@
       </figure>
     </div>
 
+    <nav class="subnav" aria-label="On this page">
+      <div class="wrap"><a href="#problem">Problem</a><a href="#data">Data</a><a href="#built">What I built</a><a href="#explore">Explore</a><a href="#findings">What changed</a><a href="#gallery">Gallery</a></div>
+    </nav>
+
     <section class="case-body">
       <div class="wrap">
-        <div class="block rise">
+        <div class="block rise" id="problem">
           <h2>Problem</h2>
           <div class="body">
             <p>Where has rental pressure intensified most since 2019, which regions now sit above the typical 30% affordability threshold, and which local markets show the strongest signs of accelerating stress?</p>
           </div>
         </div>
-        <div class="block rise">
+        <div class="block rise" id="data">
           <h2>Data</h2>
           <div class="body">
             <p>MBIE tenancy bond data (national, regional and suburb level), Stats NZ median household income and Stats NZ building consents, Q1 2019 to Q4 2025. Household income for 2019 to 2022 is backcast from observed 2023 to 2025 levels.</p>
           </div>
         </div>
-        <div class="block rise">
+        <div class="block rise" id="built">
           <h2>What I built</h2>
           <div class="body">
             <p>A Python analysis (pandas, matplotlib, seaborn), backed by reusable code, that cleans and harmonises the three sources and covers:</p>
@@ -111,7 +120,7 @@
     </section>
 
 
-    <section class="section" aria-labelledby="explore-title">
+    <section class="section" id="explore" aria-labelledby="explore-title">
       <div class="wrap">
         <div class="section-head">
           <h2 id="explore-title">Explore the data</h2>
@@ -143,7 +152,7 @@
       </div>
     </section>
 
-    <section class="section band" aria-labelledby="findings-title">
+    <section class="section band" id="findings" aria-labelledby="findings-title">
       <div class="wrap">
         <div class="section-head">
           <h2 id="findings-title">What changed</h2>
@@ -159,7 +168,7 @@
       </div>
     </section>
 
-    <section class="section" aria-labelledby="gallery-title">
+    <section class="section" id="gallery" aria-labelledby="gallery-title">
       <div class="wrap">
         <div class="section-head">
           <h2 id="gallery-title">Gallery</h2>
@@ -203,8 +212,8 @@
     </div>
   </footer>
 
-  <script src="assets/js/site.js?v=5" defer></script>
-  <script src="assets/js/charts.js?v=5" defer></script>
+  <script src="assets/js/site.js?v=6" defer></script>
+  <script src="assets/js/charts.js?v=6" defer></script>
 </body>
 
 </html>

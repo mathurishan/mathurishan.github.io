@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="has-subnav">
 
 <head>
   <meta charset="utf-8" />
@@ -17,10 +17,13 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="theme-color" content="#faf9f5" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/site.css?v=5" />
+  <link rel="stylesheet" href="assets/css/site.css?v=6" />
   <script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){d.setAttribute('data-theme',t);}}catch(e){}})()</script>
 </head>
 
@@ -54,6 +57,7 @@
     </div>
   </header>
 
+  <div class="progress" aria-hidden="true"></div>
   <main id="main">
     <section class="case-hero">
       <div class="wrap">
@@ -62,6 +66,7 @@
         <h1>NZ Business Financials</h1>
         <p class="lead">Which New Zealand industries earn the most, on what margins, and how sales recovered after COVID.</p>
         <ul class="tools-row" aria-label="Tools"><li>Python</li><li>pandas</li><li>matplotlib</li><li>seaborn</li></ul>
+        
         <dl class="glance">
           <div><dt>4</dt><dd>measures: sales, profit, assets, inventories</dd></div>
           <div><dt>Top 10</dt><dd>industries by operating profit</dd></div>
@@ -79,21 +84,25 @@
       </figure>
     </div>
 
+    <nav class="subnav" aria-label="On this page">
+      <div class="wrap"><a href="#problem">Problem</a><a href="#data">Data</a><a href="#built">What I built</a><a href="#findings">What changed</a><a href="#gallery">Gallery</a></div>
+    </nav>
+
     <section class="case-body">
       <div class="wrap">
-        <div class="block rise">
+        <div class="block rise" id="problem">
           <h2>Problem</h2>
           <div class="body">
             <p>Which New Zealand industries earn the most, on what margins, and how did sales recover after COVID?</p>
           </div>
         </div>
-        <div class="block rise">
+        <div class="block rise" id="data">
           <h2>Data</h2>
           <div class="body">
             <p>Stats NZ quarterly business financial data: sales (operating income), operating profit, assets and inventories, broken down by industry.</p>
           </div>
         </div>
-        <div class="block rise">
+        <div class="block rise" id="built">
           <h2>What I built</h2>
           <div class="body">
             <p>A Python analysis in pandas, matplotlib and seaborn that cleans the quarterly series, builds subsets for sales, profit, assets and inventories, and charts:</p>
@@ -109,7 +118,7 @@
     </section>
 
 
-    <section class="section band" aria-labelledby="findings-title">
+    <section class="section band" id="findings" aria-labelledby="findings-title">
       <div class="wrap">
         <div class="section-head">
           <h2 id="findings-title">What changed</h2>
@@ -123,7 +132,7 @@
       </div>
     </section>
 
-    <section class="section" aria-labelledby="gallery-title">
+    <section class="section" id="gallery" aria-labelledby="gallery-title">
       <div class="wrap">
         <div class="section-head">
           <h2 id="gallery-title">Gallery</h2>
@@ -159,7 +168,7 @@
     </div>
   </footer>
 
-  <script src="assets/js/site.js?v=5" defer></script>
+  <script src="assets/js/site.js?v=6" defer></script>
 </body>
 
 </html>

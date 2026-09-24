@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="has-subnav">
 
 <head>
   <meta charset="utf-8" />
@@ -17,10 +17,13 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="theme-color" content="#faf9f5" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/site.css?v=5" />
+  <link rel="stylesheet" href="assets/css/site.css?v=6" />
   <script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){d.setAttribute('data-theme',t);}}catch(e){}})()</script>
 </head>
 
@@ -54,6 +57,7 @@
     </div>
   </header>
 
+  <div class="progress" aria-hidden="true"></div>
   <main id="main">
     <section class="case-hero">
       <div class="wrap">
@@ -62,6 +66,7 @@
         <h1>NZ Building Consents</h1>
         <p class="lead">A star-schema SQLite database and ten analytical queries on Stats NZ building consents, 1990 to 2025.</p>
         <ul class="tools-row" aria-label="Tools"><li>SQL (SQLite)</li><li>Window functions</li><li>CTEs</li><li>Python load script</li><li class="link"><a href="https://github.com/mathurishan/nz-building-consents-sql">Code on GitHub &rarr;</a></li></ul>
+        
         <dl class="glance">
           <div><dt>35</dt><dd>years of data, 1990 to 2025</dd></div>
           <div><dt>16</dt><dd>regions</dd></div>
@@ -80,21 +85,25 @@
       </figure>
     </div>
 
+    <nav class="subnav" aria-label="On this page">
+      <div class="wrap"><a href="#problem">Problem</a><a href="#data">Data</a><a href="#built">What I built</a><a href="#explore">Explore</a><a href="#model">Raw to model</a><a href="#sql">SQL</a><a href="#findings">What changed</a><a href="#gallery">Gallery</a></div>
+    </nav>
+
     <section class="case-body">
       <div class="wrap">
-        <div class="block rise">
+        <div class="block rise" id="problem">
           <h2>Problem</h2>
           <div class="body">
             <p>Where is New Zealand's building pipeline strongest, how did COVID reshape consent activity, which dwelling types are gaining share, and is national supply becoming concentrated in a handful of regions?</p>
           </div>
         </div>
-        <div class="block rise">
+        <div class="block rise" id="data">
           <h2>Data</h2>
           <div class="body">
             <p>The Stats NZ Building Consents Issued dataset (December 2025 release): 1990 to 2025, across 16 regions and 67 territorial authorities.</p>
           </div>
         </div>
-        <div class="block rise">
+        <div class="block rise" id="built">
           <h2>What I built</h2>
           <div class="body">
             <p>A Python load script turns the long-format CSVs into a star-schema SQLite database (four dimension tables, two fact tables). Ten SQL queries then answer the questions above:</p>
@@ -116,7 +125,7 @@
     </section>
 
 
-    <section class="section" aria-labelledby="explore-title">
+    <section class="section" id="explore" aria-labelledby="explore-title">
       <div class="wrap">
         <div class="section-head">
           <h2 id="explore-title">Explore the data</h2>
@@ -143,7 +152,46 @@
       </div>
     </section>
 
-    <section class="section" aria-labelledby="sql-title">
+    <section class="section" id="model" aria-labelledby="model-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="model-title">From raw CSV to star schema</h2>
+          <span class="muted">Waikato, all buildings, new consents</span>
+        </div>
+        <div class="transform rise">
+          <div class="t-card">
+            <p class="t-label"><span>Before</span> Stats NZ publishes one row per measure</p>
+            <div class="t-scroll">
+              <table class="data-table">
+                <thead><tr><th>Series_reference</th><th>Period</th><th>Data_value</th><th>Units</th><th>Series_title_1</th><th>Series_title_2</th><th>Series_title_3</th><th>Series_title_4</th></tr></thead>
+                <tbody><tr><td>BLDQ.SF030002A1A</td><td>2025.09</td><td>949</td><td>Number</td><td>Waikato Region</td><td>All buildings</td><td>New</td><td>Number</td></tr><tr><td>BLDQ.SF030002A2A</td><td>2025.09</td><td>506230468</td><td>Dollars</td><td>Waikato Region</td><td>All buildings</td><td>New</td><td>Value</td></tr><tr><td>BLDQ.SF030002A3A</td><td>2025.09</td><td>191777</td><td>SQM</td><td>Waikato Region</td><td>All buildings</td><td>New</td><td>Floor area</td></tr></tbody>
+              </table>
+            </div>
+            <p class="t-foot">A sample of the long format from the December 2025 release (quarterly file, Q3 2025). Measures, geography and building type all sit in text columns.</p>
+          </div>
+          <div class="t-arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16M6 14l6 6 6-6"/></svg>
+            <span>Pivot measures into columns, replace text with keys</span>
+          </div>
+          <div class="t-card">
+            <p class="t-label"><span>After</span> fact_region_consents: one row per region, month, building type</p>
+            <div class="t-scroll">
+              <table class="data-table">
+                <thead><tr><th>date_id</th><th>region_id</th><th>building_type_id</th><th>consent_nature</th><th>number_of_consents</th><th>value_nzd</th><th>floor_area_sqm</th></tr></thead>
+                <tbody><tr><td>202507</td><td>20</td><td>1</td><td>New</td><td>292</td><td>167,581,736</td><td>60,950</td></tr><tr><td>202508</td><td>20</td><td>1</td><td>New</td><td>340</td><td>170,167,270</td><td>59,421</td></tr><tr><td>202509</td><td>20</td><td>1</td><td>New</td><td>317</td><td>168,481,462</td><td>71,406</td></tr></tbody>
+              </table>
+            </div>
+            <p class="t-foot">Keys join to dim_date, dim_region and dim_building_type, so every query filters and groups on clean dimensions.</p>
+          </div>
+          <div class="t-check">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3.5 8.5 3 3 6-7"/></svg>
+            <p><strong>Reconciliation check:</strong> the three monthly fact rows add back to Stats NZ's published quarter exactly: 292 + 340 + 317 = 949 consents, $506,230,468 in value and 191,777 m² of floor area.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="sql" aria-labelledby="sql-title">
       <div class="wrap">
         <div class="section-head">
           <h2 id="sql-title">The SQL</h2>
@@ -262,7 +310,7 @@ national <span class="tok-k">AS</span> (
       </div>
     </section>
 
-    <section class="section band" aria-labelledby="findings-title">
+    <section class="section band" id="findings" aria-labelledby="findings-title">
       <div class="wrap">
         <div class="section-head">
           <h2 id="findings-title">What changed</h2>
@@ -279,7 +327,7 @@ national <span class="tok-k">AS</span> (
       </div>
     </section>
 
-    <section class="section" aria-labelledby="gallery-title">
+    <section class="section" id="gallery" aria-labelledby="gallery-title">
       <div class="wrap">
         <div class="section-head">
           <h2 id="gallery-title">Gallery</h2>
@@ -331,8 +379,8 @@ national <span class="tok-k">AS</span> (
     </div>
   </footer>
 
-  <script src="assets/js/site.js?v=5" defer></script>
-  <script src="assets/js/charts.js?v=5" defer></script>
+  <script src="assets/js/site.js?v=6" defer></script>
+  <script src="assets/js/charts.js?v=6" defer></script>
 </body>
 
 </html>
