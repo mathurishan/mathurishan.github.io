@@ -4735,39 +4735,68 @@ html:not(.js) .hs-node {
 }
 
 .hs-proof {
-  position: relative;
   margin: 0 0 1.4rem;
-  padding: 1rem 1.2rem 1.05rem 1.35rem;
+  padding: 1rem 1.25rem 1.1rem;
+  border: 1px solid var(--line);
   border-radius: 14px;
-  background: var(--accent-soft);
+  background: var(--bg);
   max-width: 38rem;
+  transition: border-color 0.3s ease;
 }
 
-.hs-proof::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 1rem;
-  bottom: 1rem;
-  width: 3px;
-  border-radius: 0 3px 3px 0;
-  background: var(--accent);
+.how-step:hover .hs-proof {
+  border-color: var(--line-strong);
 }
 
 .hs-proof p {
   margin: 0;
   font-size: 0.95rem;
-  line-height: 1.6;
+  line-height: 1.65;
   color: var(--ink-2);
 }
 
 .hs-proof .hs-proof-label {
-  margin-bottom: 0.3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.65rem;
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--accent);
+}
+
+/* a hairline that runs from the label to the edge */
+.hs-proof-label::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
+.hs-badge {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.hs-badge svg {
+  width: 0.85rem;
+  height: 0.85rem;
+}
+
+.hs-fig {
+  font-family: var(--serif);
+  font-size: 1.12em;
+  font-weight: 500;
+  color: var(--accent);
+  white-space: nowrap;
 }
 
 .hs-links {

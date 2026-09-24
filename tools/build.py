@@ -438,6 +438,14 @@ STEPS = [
      [("about.html", "About me")]),
 ]
 
+CHECK = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.5l2.5 2.5L12 5.5" /></svg>'
+
+
+def _figures(text):
+    """Set the numbers in an evidence line apart so they can be skimmed."""
+    return re.sub(r"(?<![\w-])(\d[\d,]*(?:\+|%)?)", r'<b class="hs-fig">\1</b>', text)
+
+
 step_items = "\n".join(f"""          <li class="how-step nv-host rise" id="step-{i + 1}">
             <span class="hs-node" aria-hidden="true">{i + 1:02d}</span>
             <div class="hs-card">
@@ -446,8 +454,8 @@ step_items = "\n".join(f"""          <li class="how-step nv-host rise" id="step-
                 <h2>{title}</h2>
                 <p class="hs-what">{what}</p>
                 <div class="hs-proof">
-                  <p class="hs-proof-label">In practice</p>
-                  <p>{proof}</p>
+                  <p class="hs-proof-label"><span class="hs-badge">{CHECK}</span>In practice</p>
+                  <p>{_figures(proof)}</p>
                 </div>
                 <p class="hs-links">{"".join(f'<a href="{h}">{t} {ARROW}</a>' for h, t in links)}</p>
               </div>
