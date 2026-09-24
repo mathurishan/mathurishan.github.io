@@ -7,6 +7,7 @@ appear on the public site. GitHub Actions runs this on every push (.github/workf
 import glob
 import os
 import re
+import subprocess
 import sys
 from html.parser import HTMLParser
 
@@ -29,11 +30,25 @@ BANNED = [
 
 def private_terms():
     """Private patterns from the environment or the local git-ignored file; empty if neither."""
-    raw = os.environ.get("PRIVATE_TERMS", "")
+    raw = os.environ.get("PRIVATE_TERMS", "").strip()
     local = os.path.join(ROOT, "tools", "private_terms.txt")
     if not raw and os.path.exists(local):
         raw = open(local, encoding="utf-8").read()
-    return [line.strip() for line in raw.splitlines() if line.strip() and not line.startswith("#")]
+    lines = (line.strip() for line in raw.splitlines())
+    return [line for line in lines if line and not line.startswith("#")]
+
+
+def served_text_files():
+    """Every tracked text file GitHub Pages serves (it serves the whole repository)."""
+    try:
+        out = subprocess.run(["git", "ls-files"], capture_output=True, text=True, check=True).stdout
+        files = out.splitlines()
+    except (OSError, subprocess.CalledProcessError):
+        files = glob.glob("**/*", recursive=True)
+    text_ext = (".html", ".js", ".css", ".xml", ".webmanifest", ".txt", ".py", ".json", ".csv",
+                ".sql", ".md", ".svg", ".yml")
+    return sorted(f for f in files if f.lower().endswith(text_ext) and os.path.isfile(f)
+                  and not f.startswith(".git/"))
 
 
 class Page(HTMLParser):
@@ -105,19 +120,25 @@ def main():
                 problems.append(f"{path}: {why}: '{m.group(0)}'")
         # Private terms are checked against the whole file (text, attributes, scripts, JSON-LD),
         # and a match is reported without echoing it, so CI logs stay clean too.
-        raw_file = open(path, encoding="utf-8").read().lower()
-        if any(re.search(t, raw_file) for t in private):
-            problems.append(f"{path}: contains a private term (see tools/private_terms.txt)")
 
     sitemap = open("sitemap.xml", encoding="utf-8").read()
     for loc in re.findall(r"<loc>https://mathurishan\.github\.io/([^<]*)</loc>", sitemap):
         if not os.path.exists(loc or "index.html"):
             problems.append(f"sitemap.xml lists a missing page: {loc}")
 
-    for path in glob.glob("assets/js/*.js") + ["sitemap.xml", "site.webmanifest"]:
-        text = open(path, encoding="utf-8").read().lower()
-        if any(re.search(t, text) for t in private):
+    # Private terms are checked against every served text file (pages, scripts, data, the
+    # build tools), and a match is reported without echoing it, so CI logs stay clean too.
+    for path in served_text_files():
+        text = open(path, encoding="utf-8", errors="replace").read()
+        if any(re.search(t, text, re.I) for t in private):
             problems.append(f"{path}: contains a private term (see tools/private_terms.txt)")
+
+    # In CI the check must not silently pass because the secret is missing. Pull requests
+    # from forks get no secrets, so they are the one exception.
+    in_ci = os.environ.get("GITHUB_ACTIONS") == "true"
+    from_fork = os.environ.get("GITHUB_EVENT_NAME") == "pull_request" and os.environ.get("IS_FORK") == "true"
+    if not private and in_ci and not from_fork:
+        problems.append("PRIVATE_TERMS secret is missing or empty, so the private-term check could not run")
 
     if problems:
         print(f"{len(problems)} problem(s):")

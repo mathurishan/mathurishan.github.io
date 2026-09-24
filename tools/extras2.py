@@ -2,6 +2,7 @@
 import html
 import json
 import re
+from extras import script_json
 
 E = html.escape
 
@@ -380,7 +381,7 @@ def airnz_chart():
               </table>
             </div>
           </details>
-          <script type="application/json">{json.dumps(routes, ensure_ascii=False)}</script>
+          <script type="application/json">{script_json(routes)}</script>
         </div>
 
         <div class="duo rise">
@@ -412,7 +413,7 @@ def before_after_airnz():
     import csv
     import os
     path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "airnz_top20_routes_raw.csv")
-    rows = list(csv.reader(open(path, encoding="utf-8")))
+    rows = list(csv.reader(open(path, encoding="utf-8", newline="")))
     head, body = rows[0], rows[1:17]
     cols = "".join(f"<th>{E(c) or '&nbsp;'}</th>" for c in ["", "A", "B", "C", "D", "E", "F", "G"][:len(head) + 1])
     header = "<tr><td>1</td>" + "".join(f"<th>{E(c)}</th>" for c in head) + "</tr>"

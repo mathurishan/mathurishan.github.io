@@ -611,25 +611,6 @@ strong {
   margin-bottom: 1.25rem;
 }
 
-.specs {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
-  gap: 1.25rem 2rem;
-  margin: 2.5rem 0 0;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--line);
-}
-
-.specs dt {
-  font-size: 0.8125rem;
-  color: var(--muted);
-  margin-bottom: 0.2rem;
-}
-
-.specs dd {
-  margin: 0;
-  font-size: 0.975rem;
-}
 
 .shot {
   margin: 0;
@@ -1105,23 +1086,6 @@ body.lightbox-open {
   background: var(--tone-lilac);
 }
 
-.card .tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin: 0.9rem 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.card .tags li {
-  margin: 0;
-  font-size: 0.75rem;
-  padding: 0.2rem 0.6rem;
-  border: 1px solid var(--line-strong);
-  border-radius: 999px;
-  color: var(--muted);
-}
 
 /* --- Process diagram --- */
 
@@ -1906,10 +1870,15 @@ html.theme-fading *::after {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 
   .theme-toggle .core,
   .theme-toggle .shade,
-  .theme-toggle .rays {
+  .theme-toggle .rays,
+  .bar-row,
+  .bar {
     transition: none;
   }
 }
@@ -2579,7 +2548,9 @@ html.theme-fading *::after {
    ========================================================================== */
 
 @media print {
+  /* Print is always light, including a dark device where no theme was chosen. */
   :root,
+  :root:not([data-theme="light"]),
   :root[data-theme="dark"] {
     --bg: #fff;
     --surface: #fff;
@@ -2589,6 +2560,18 @@ html.theme-fading *::after {
     --line: #ddd;
     --line-strong: #bbb;
     --accent: #9a4524;
+    --accent-soft: #f4e9e1;
+    --tone-sand: #efe7da;
+    --tone-sage: #e2e8de;
+    --tone-slate: #dfe4ec;
+    --tone-clay: #f2e2d7;
+    --tone-lilac: #e7e3ee;
+    --dot: rgba(29, 28, 26, 0.09);
+    --c1: #b4532a;
+    --c2: #3f6690;
+    --c3: #5f8a57;
+    --c4: #b98a2b;
+    --c5: #86629c;
     color-scheme: light;
   }
 

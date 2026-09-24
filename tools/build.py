@@ -9,6 +9,7 @@ are edited by hand.
 import sys, os
 import re
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+os.chdir(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # every path below is site-relative
 from build_site import head, header, footer, JS_V  # noqa: E402  (also rebuilds project pages)
 
 
@@ -165,7 +166,9 @@ def _absolute(markup):
 page404 = (head("Page not found | Ishan Mathur", "This page doesn't exist or has moved.", "404.html", "home", "website")
            .replace('href="favicon', 'href="/favicon').replace('href="apple-touch', 'href="/apple-touch').replace('href="site.webmanifest', 'href="/site.webmanifest')
            .replace('href="assets/', 'href="/assets/')
-           .replace('<meta name="theme-color"', '<meta name="robots" content="noindex" />\n  <meta name="theme-color"')) + '''
+           .replace('<meta name="theme-color"', '<meta name="robots" content="noindex" />\n  <meta name="theme-color"', 1))
+# GitHub Pages serves this page at whatever URL failed, so it gets no canonical or og:url.
+page404 = re.sub(r'  <(?:link rel="canonical"|meta property="og:url")[^>]*>\n', '', page404) + '''
 ''' + _absolute(header()) + '''
   <main id="main">
     <section class="hero">
@@ -363,8 +366,9 @@ notes_page = head("Notes | Ishan Mathur",
         </dl>
       </div>
     </section>
-    <section class="section notes-list" aria-label="All notes">
+    <section class="section notes-list" aria-labelledby="notes-list-title">
       <div class="wrap">
+        <h2 class="sr-only" id="notes-list-title">All notes</h2>
         <ol class="note-index">
 {index_rows}
         </ol>
@@ -535,10 +539,24 @@ print("wrote how-i-work.html")
 import datetime  # noqa: E402
 
 SITEMAP_PAGES = ([""] + [p["file"] for p in __import__("build_site").PROJECTS]
-                 + ["about.html", "how-i-work.html", "notes.html", "resume.html"] + [n["file"] for n in NOTES])
+                 + ["about.html", "how-i-work.html", "notes.html", "resume.html", "economics-game.html"]
+                 + [n["file"] for n in NOTES])
 today = datetime.date.today().isoformat()
+
+
+def lastmod(page):
+    """Date of the page's last commit, so a rebuild doesn't mark every URL as changed today."""
+    import subprocess
+    try:
+        out = subprocess.run(["git", "log", "-1", "--format=%cs", "--", page or "index.html"],
+                             capture_output=True, text=True, check=True).stdout.strip()
+    except (OSError, subprocess.CalledProcessError):
+        out = ""
+    return out or today
+
+
 lines = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
-lines += [f"  <url><loc>https://mathurishan.github.io/{p}</loc><lastmod>{today}</lastmod></url>" for p in SITEMAP_PAGES]
+lines += [f"  <url><loc>https://mathurishan.github.io/{p}</loc><lastmod>{lastmod(p)}</lastmod></url>" for p in SITEMAP_PAGES]
 lines.append("</urlset>")
 open("sitemap.xml", "w", encoding="utf-8", newline="\n").write("\n".join(lines) + "\n")
 print("wrote sitemap.xml")

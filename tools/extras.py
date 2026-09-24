@@ -5,6 +5,13 @@ import re
 
 import os
 DATA = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
+
+
+def script_json(value, **kw):
+    """JSON for a <script type="application/json"> block; "</" is escaped so data can't end the tag."""
+    return json.dumps(value, ensure_ascii=False, **kw).replace("</", "<\\/")
+
+
 SQL_FILE = os.path.join(DATA, "analysis_queries.sql")  # copy of the nz-building-consents-sql repo file
 E = html.escape
 
@@ -46,8 +53,6 @@ def query(number):
     end = text.find("-- QUERY", start + 10)
     block = text[start:end if end != -1 else len(text)]
     header, _, body = block.partition("-- ============================================================================\n\n")
-    question = " ".join(l[3:].strip() for l in header.splitlines() if l.startswith("-- ") and not l.startswith("-- BUSINESS")
-                        and not l.startswith("-- Demonstrates") and not l.startswith("-- QUERY") and not l.startswith("-- ="))
     q_lines = []
     capture = False
     for l in header.splitlines():
@@ -98,11 +103,8 @@ def sql_showcase():
 
 # ------------------------------------------------------------------ charts
 
-SHORT = {"Manawatu-Whanganui": "Manawatū-Wh.", "Bay of Plenty": "Bay of Plenty", "Hawke's Bay": "Hawke's Bay"}
-
-
 def pipeline_chart():
-    rows = json.load(open(os.path.join(DATA, "regional_pipeline_2025.json")))
+    rows = json.load(open(os.path.join(DATA, "regional_pipeline_2025.json"), encoding="utf-8"))
     data = []
     for r in rows:
         label = r["region"].replace(" Region", "")
@@ -142,7 +144,7 @@ def pipeline_chart():
               </table>
             </div>
           </details>
-          <script type="application/json">{json.dumps(data, ensure_ascii=False)}</script>
+          <script type="application/json">{script_json(data)}</script>
         </div>
       </div>
     </section>
@@ -185,7 +187,7 @@ def rent_chart():
               </table>
             </div>
           </details>
-          <script type="application/json">{json.dumps(data, ensure_ascii=False, separators=(",", ":"))}</script>
+          <script type="application/json">{script_json(data, separators=(",", ":"))}</script>
         </div>
       </div>
     </section>

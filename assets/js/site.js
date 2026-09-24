@@ -236,12 +236,13 @@
     var ITEMS = [
         ['Home', './', 'Page'],
         ['Selected work', './#work', 'Home'],
-        ['How I work', './#approach', 'Home'],
+        ['From source systems to decisions', './#approach', 'Home'],
         ['About Ishan', 'about.html', 'Page'],
         ['Experience timeline', 'about.html#experience', 'About'],
         ['Where each tool shows up', 'about.html#tools', 'About'],
         ['Notes on reporting', 'notes.html', 'Page'],
         ['How I work', 'how-i-work.html', 'Page'],
+        ['EcoQuest (side project)', 'economics-game.html', 'Page'],
         ['Contact', './#contact', 'Home'],
         ['Retail Sales & Returns Analysis', 'powerbi-retail.html', 'Power BI'],
         ['Retail DAX measures', 'powerbi-retail.html#dax', 'Power BI'],
@@ -268,6 +269,10 @@
         ['GitHub', 'https://github.com/mathurishan', 'Contact']
     ];
     var palette = null, input, list, results = [], active = 0, returnFocus = null;
+    // Links resolve against the site root (two levels above this script), so search also works
+    // on 404.html, which GitHub Pages serves at whatever URL was requested.
+    var siteRoot = new URL('../../', (document.currentScript && document.currentScript.src) || window.location.href);
+    function url(href) { return /^(https?:|mailto:)/.test(href) ? href : new URL(href, siteRoot).href; }
 
     function buildPalette() {
         palette = document.createElement('div');
@@ -287,7 +292,7 @@
             if (e.key === 'ArrowDown') { e.preventDefault(); move(1); }
             else if (e.key === 'ArrowUp') { e.preventDefault(); move(-1); }
             else if (e.key === 'Enter' && results[active]) { e.preventDefault(); go(results[active][1]); }
-            else if (e.key === 'Escape') { closePalette(); }
+            else if (e.key === 'Escape') { e.stopPropagation(); closePalette(); }
             else if (e.key === 'Tab') { e.preventDefault(); }
         });
         palette.addEventListener('click', function (e) { if (e.target === palette) closePalette(); });
@@ -302,7 +307,7 @@
         });
         active = 0;
         list.innerHTML = results.length ? results.map(function (it, i) {
-            return '<li role="presentation"><a role="option" id="pal-' + i + '" href="' + it[1] + '" aria-selected="' +
+            return '<li role="presentation"><a role="option" id="pal-' + i + '" href="' + url(it[1]) + '" aria-selected="' +
                 (i === 0) + '">' + it[0] + '<span>' + it[2] + '</span></a></li>';
         }).join('') : '<li class="empty">No matches</li>';
         input.setAttribute('aria-activedescendant', results.length ? 'pal-0' : '');
@@ -326,12 +331,14 @@
     function go(href) {
         closePalette();
         if (/^https?:/.test(href)) { window.open(href, '_blank', 'noopener'); return; }
-        window.location.href = href;
+        window.location.href = url(href);
     }
 
     function openPalette() {
         if (!palette) buildPalette();
         returnFocus = document.activeElement;
+        // Opened from the phone menu, which closes behind it: return focus to the Menu button.
+        if (returnFocus && returnFocus.closest && returnFocus.closest('#menu-sheet')) returnFocus = document.querySelector('.menu-btn');
         input.value = '';
         render();
         palette.classList.add('open');
@@ -342,7 +349,8 @@
     function closePalette() {
         if (!palette) return;
         palette.classList.remove('open');
-        document.body.classList.remove('lightbox-open');
+        // Keep the scroll lock if a screenshot is still open underneath.
+        if (!document.querySelector('.lightbox.is-open')) document.body.classList.remove('lightbox-open');
         if (returnFocus && returnFocus.focus) returnFocus.focus();
     }
 
@@ -384,9 +392,17 @@
             if (e.target.closest('a, [data-palette]')) setMenu(false);
         });
         document.addEventListener('keydown', function (e) {
-            if (e.key === 'Escape' && menuBtn.getAttribute('aria-expanded') === 'true') {
+            if (menuBtn.getAttribute('aria-expanded') !== 'true') return;
+            if (palette && palette.classList.contains('open')) return;
+            if (e.key === 'Escape') {
                 setMenu(false);
                 menuBtn.focus();
+            } else if (e.key === 'Tab') {
+                // The sheet covers the page, so keep Tab inside the menu.
+                var focusable = [menuBtn].concat([].slice.call(sheet.querySelectorAll('a, button')));
+                var idx = focusable.indexOf(document.activeElement);
+                e.preventDefault();
+                focusable[(idx + (e.shiftKey ? -1 : 1) + focusable.length) % focusable.length].focus();
             }
         });
         window.addEventListener('resize', function () {
@@ -540,6 +556,7 @@
 
     document.addEventListener('keydown', function (e) {
         if (!box.classList.contains('is-open')) return;
+        if (palette && palette.classList.contains('open')) return;  // search is on top
         if (e.key === 'Escape') hide();
         else if (e.key === 'ArrowLeft') show(current - 1);
         else if (e.key === 'ArrowRight') show(current + 1);

@@ -7,9 +7,19 @@
     <title>EcoQuest | Ishan Mathur</title>
     <meta name="description" content="EcoQuest, a side project by Ishan Mathur." />
     <link rel="canonical" href="https://mathurishan.github.io/economics-game.html" />
+    <meta property="og:title" content="EcoQuest | Ishan Mathur" />
+    <meta property="og:description" content="EcoQuest, a side project by Ishan Mathur." />
+    <meta property="og:image" content="https://mathurishan.github.io/images/social/home.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:url" content="https://mathurishan.github.io/economics-game.html" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" href="favicon.ico?v=3" sizes="any">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg?v=3">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg?v=3">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=3">
     <link rel="apple-touch-icon" href="apple-touch-icon.png?v=3">
+    <link rel="manifest" href="site.webmanifest">
     <style>
         :root {
             --bg: #0a0d18;
@@ -922,7 +932,7 @@
 <body>
     <div class="crt"></div>
     <div class="scan"></div>
-    <div class="wrap">
+    <main class="wrap" id="main">
         <a class="back-link" href="index.html">&larr; Back to Ishan Mathur's portfolio</a>
         <header>
             <div class="brand">
@@ -933,9 +943,9 @@
                 </div>
             </div>
             <div class="header-buttons">
-                <button class="btn btn-sound" id="btn-sound" title="Toggle Sound">🔊</button>
-                <button class="btn" id="btn-badges">🎖️ Badges</button>
-                <button class="btn" id="btn-reset">♻️ Reset</button>
+                <button class="btn btn-sound" id="btn-sound" title="Toggle Sound" aria-label="Sound" aria-pressed="true">🔊</button>
+                <button class="btn" id="btn-badges"><span aria-hidden="true">🎖️</span> Badges</button>
+                <button class="btn" id="btn-reset"><span aria-hidden="true">♻️</span> Reset</button>
             </div>
         </header>
 
@@ -989,7 +999,7 @@
         </div>
 
         <div class="credits">Tip: Use your cheat sheet. Watch the curves and think incentive → response.</div>
-    </div>
+    </main>
 
     <div class="toast" id="toast"></div>
 
@@ -1399,7 +1409,7 @@
 
         document.getElementById('btn-reset').onclick = () => {
             if (confirm('Reset all progress and badges?')) {
-                localStorage.removeItem('eco_badges');
+                try { localStorage.removeItem('eco_badges'); } catch (e) { }
                 badges = {};
                 saveBadges();
                 showToast('Progress reset.');
@@ -1411,6 +1421,7 @@
             const btn = document.getElementById('btn-sound');
             btn.textContent = soundEnabled ? '🔊' : '🔇';
             btn.classList.toggle('muted', !soundEnabled);
+            btn.setAttribute('aria-pressed', soundEnabled ? 'true' : 'false');
             if (soundEnabled) {
                 initAudio();
                 playBeep(440, 0.1);

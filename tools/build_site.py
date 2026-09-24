@@ -9,8 +9,8 @@ import extras2
 import diagrams
 
 SITE = "https://mathurishan.github.io/"
-CSS_V = "20"
-JS_V = "13"
+CSS_V = "21"
+JS_V = "14"
 # Links that leave the site open in a new tab
 EXTERNAL = ' target="_blank" rel="noopener"'
 FONTS = ("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@"
