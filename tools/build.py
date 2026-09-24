@@ -269,15 +269,15 @@ note_cards = "\n".join(f"""          <article class="note-card rise{" r" + str(i
             <span class="more">Read the note <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" /></svg></span>
           </article>""" for i, n in enumerate(NOTES))
 notes_page = head("Notes | Ishan Mathur",
-                  "Short notes by Ishan Mathur on reporting: validation, data modelling and reading public data honestly.",
+                  "Short notes by Ishan Mathur on reporting: validation, data modelling, automating recurring reports and reading public data honestly.",
                   "notes.html", "home", "website") + header("notes") + f"""
   <main id="main">
     <section class="case-hero">
       <div class="wrap">
         <p class="eyebrow">Notes</p>
         <h1>Notes on reporting</h1>
-        <p class="lead">Short reads on how I build reporting people can trust: validation, modelling and being honest
-          about what the data can say.</p>
+        <p class="lead">Short reads on how I build reporting people can trust: validation, modelling, automation and
+          being honest about what the data can say.</p>
       </div>
     </section>
     <section class="section" aria-label="All notes">

@@ -9,8 +9,8 @@ import extras2
 import diagrams
 
 SITE = "https://mathurishan.github.io/"
-CSS_V = "9"
-JS_V = "9"
+CSS_V = "10"
+JS_V = "10"
 FONTS = ("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@"
          "0,6..72,400;0,6..72,500;1,6..72,400&display=swap")
 ARROW = ('<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" '

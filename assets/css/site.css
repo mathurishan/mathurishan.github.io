@@ -3954,6 +3954,12 @@ a.dot:focus-visible {
   transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
+/* `display: flex` above would otherwise override [hidden] and leave an invisible
+   sheet over the page that swallows every tap. */
+.menu-sheet[hidden] {
+  display: none;
+}
+
 .menu-sheet.open {
   opacity: 1;
   transform: none;

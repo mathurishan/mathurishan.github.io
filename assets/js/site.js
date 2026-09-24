@@ -248,6 +248,7 @@
         ['NZ Housing Affordability', 'python_nz_housing_affordability.html', 'Python'],
         ['Rents by region chart', 'python_nz_housing_affordability.html#explore', 'Python'],
         ['NZ Business Financials', 'python_business_financials.html', 'Python'],
+        ['Half a day to under an hour', 'note-half-a-day-to-under-an-hour.html', 'Note'],
         ['Validate before you visualise', 'note-validate-before-you-visualise.html', 'Note'],
         ['Why my reports start with a star schema', 'note-start-with-a-star-schema.html', 'Note'],
         ['Reading rent data honestly', 'note-reading-rent-data-honestly.html', 'Note'],

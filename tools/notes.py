@@ -2,6 +2,94 @@
 
 NOTES = [
     dict(
+        file="note-half-a-day-to-under-an-hour.html",
+        title="Half a day to under an hour",
+        desc="How templates, upfront checks and automated preparation took the manual work out of recurring reports, and how to state the time saved honestly.",
+        lead="Most of the time spent on a recurring report goes on rebuilding it, not on the analysis.",
+        minutes=5,
+        card="What actually makes a recurring report faster: templates, checks at the front and automated preparation. And how to state the saving honestly.",
+        body="""
+<p>A recurring report rarely takes long because the analysis is hard. It takes long because someone rebuilds
+  it every time: pulling the same extracts, reshaping the same columns, fixing the same formatting and chasing
+  the same odd numbers. The thinking might take twenty minutes. The assembly takes the rest of the morning.</p>
+
+<p>Two results on my résumé came from taking that assembly away. At the University of Waikato Library,
+  reusable reporting templates cut a recurring manual reporting task from about half a day to under an hour.
+  Before that, at Arcesium, validation checks and SQL control routines cut the time to produce daily
+  reconciliation reporting for 10+ global investment clients by 40%. Different teams, different data, the same
+  three moves.</p>
+
+<h2>1. Make the decisions once</h2>
+
+<p>Every run of a manual report quietly asks the same questions again. Which layout? Which definition of
+  "active"? Which date range, which rounding, which chart? Each answer is small, but answering them every time
+  is where the hours go, and answering them slightly differently each time is where inconsistency creeps in.</p>
+
+<p>A template is those decisions written down once. At the Library I built reusable templates for executive
+  briefs, Excel workbooks and dashboards: a fixed structure, agreed metric definitions and consistent
+  formatting. The next run starts from a finished shape and only the data changes. That is most of how half a
+  day became under an hour.</p>
+
+<p>A good template has a side effect that matters as much as the time saved: readers learn where to look. When
+  the same number sits in the same place every period, people stop hunting for the figure and start comparing
+  it.</p>
+
+<h2>2. Put the checks at the front</h2>
+
+<p>The slowest part of a manual report is often the end, when a figure looks wrong and someone has to trace it
+  back by hand. At Arcesium the answer was to move that work to the start. SQL control routines ran before the
+  reporting did, and exceptions were sorted into categories, so triage began with a label rather than a blank
+  page.</p>
+
+<p>A control check does not need to be clever. It needs to fail loudly before anyone publishes. Here is the kind
+  of check I mean, written against the model from my
+  <a href="sql-nz-building-consents.html#model">NZ Building Consents</a> project: any month where not every
+  region has loaded is flagged before the report refreshes.</p>
+
+<pre><code>-- Flag any month where not every region has loaded.
+-- Run before the refresh: any rows returned mean stop and investigate.
+SELECT d.year, d.month,
+       COUNT(DISTINCT f.region_id) AS regions_loaded
+FROM fact_region_consents f
+JOIN dim_date d   ON f.date_id = d.date_id
+JOIN dim_region r ON f.region_id = r.region_id
+WHERE r.is_aggregate = 0
+GROUP BY d.year, d.month
+HAVING COUNT(DISTINCT f.region_id) &lt;
+       (SELECT COUNT(*) FROM dim_region WHERE is_aggregate = 0)
+ORDER BY d.year DESC, d.month DESC;</code></pre>
+
+<p>An empty result means go ahead. Anything else means the problem is found in minutes, upstream, instead of by a
+  stakeholder after the report has gone out. That shift, from chasing errors to preventing them, is what
+  replaced the manual steps behind the 40%.</p>
+
+<h2>3. Automate the preparation, keep the judgement</h2>
+
+<p>Once the shape is fixed and the checks are in place, the manual work left is usually data preparation:
+  getting data out of a system and into the shape the template expects. That is the part worth automating.
+  Automating data preparation and standardising templates is how recurring Library reporting that used to take
+  days now takes hours.</p>
+
+<p>The fullest version of this is an API reporting workflow I built to turn booking and questionnaire data into
+  reporting. It is in production, runs monthly with some reporting fortnightly, and was designed to be
+  privacy-conscious from the start. The finished dashboards and reports are published through SharePoint to
+  the teams who use them.</p>
+
+<p>What I do not automate is the reading. The point of saving hours of assembly is to spend some of that time
+  on what the numbers mean and what to say about them.</p>
+
+<blockquote>Automate the assembly. Keep the thinking.</blockquote>
+
+<h2>State the saving honestly</h2>
+
+<p>One last habit. "Half a day to under an hour" is an observed before-and-after on a real recurring task, not a
+  stopwatch study. So I say "about", and I do not sharpen it into a precise percentage it cannot support.</p>
+
+<p>That matters for the same reason the checks do. A time saving is a number like any other, and it should be
+  one you can explain when someone asks how you got it.</p>
+""",
+    ),
+    dict(
         file="note-validate-before-you-visualise.html",
         title="Validate before you visualise",
         desc="Why the checks that run before a dashboard matter more than the dashboard itself: reconciliation, grain and gaps.",
