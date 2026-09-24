@@ -265,11 +265,11 @@ a {
 
 a:hover {
 	border-bottom-color: transparent;
-	color: #9bf1ff !important;
+	color: #4fd1c5 !important;
 }
 
 a:active {
-	color: #53e3fb !important;
+	color: #38b2a7 !important;
 }
 
 strong,
@@ -2061,8 +2061,8 @@ input[type="search"]:focus,
 input[type="url"]:focus,
 select:focus,
 textarea:focus {
-	border-color: #9bf1ff;
-	box-shadow: 0 0 0 2px #9bf1ff;
+	border-color: #4fd1c5;
+	box-shadow: 0 0 0 2px #4fd1c5;
 }
 
 select {
@@ -2161,14 +2161,14 @@ input[type="radio"]+label:before {
 input[type="checkbox"]:checked+label:before,
 input[type="radio"]:checked+label:before {
 	background: #ffffff;
-	border-color: #9bf1ff;
+	border-color: #4fd1c5;
 	content: '\f00c';
 	color: #242943;
 }
 
 input[type="checkbox"]:focus+label:before,
 input[type="radio"]:focus+label:before {
-	box-shadow: 0 0 0 2px #9bf1ff;
+	box-shadow: 0 0 0 2px #4fd1c5;
 }
 
 input[type="radio"]+label:before {
@@ -2524,12 +2524,12 @@ ul.pagination li>.page.active {
 }
 
 ul.pagination li>.page.active:hover {
-	background-color: #9bf1ff;
+	background-color: #4fd1c5;
 	color: #242943 !important;
 }
 
 ul.pagination li>.page.active:active {
-	background-color: #53e3fb;
+	background-color: #38b2a7;
 }
 
 ul.pagination li:first-child {
@@ -2664,8 +2664,8 @@ button:hover,
 button:active,
 .button:hover,
 .button:active {
-	box-shadow: inset 0 0 0 2px #9bf1ff;
-	color: #9bf1ff;
+	box-shadow: inset 0 0 0 2px #4fd1c5;
+	color: #4fd1c5;
 }
 
 input[type="submit"]:active,
@@ -2673,9 +2673,9 @@ input[type="reset"]:active,
 input[type="button"]:active,
 button:active,
 .button:active {
-	background-color: rgba(155, 241, 255, 0.1);
-	box-shadow: inset 0 0 0 2px #53e3fb;
-	color: #53e3fb;
+	background-color: rgba(79, 209, 197, 0.1);
+	box-shadow: inset 0 0 0 2px #38b2a7;
+	color: #38b2a7;
 }
 
 input[type="submit"].icon:before,
@@ -2811,7 +2811,7 @@ button.primary:hover,
 button.primary:active,
 .button.primary:hover,
 .button.primary:active {
-	background-color: #9bf1ff;
+	background-color: #4fd1c5;
 	color: #242943 !important;
 }
 
@@ -2820,7 +2820,7 @@ input[type="reset"].primary:active,
 input[type="button"].primary:active,
 button.primary:active,
 .button.primary:active {
-	background-color: #53e3fb;
+	background-color: #38b2a7;
 }
 
 input[type="submit"].disabled,
@@ -3285,11 +3285,11 @@ button:disabled,
 }
 
 #header .logo:hover strong {
-	background-color: #9bf1ff;
+	background-color: #4fd1c5;
 }
 
 #header .logo:active strong {
-	background-color: #53e3fb;
+	background-color: #38b2a7;
 }
 
 #header nav {
@@ -4231,4 +4231,312 @@ button,
 	width: 100%;
 	white-space: normal;
 	overflow-wrap: anywhere;
+}
+
+/* ==========================================================================
+   Visual refresh (Sep 2026): one accent colour, calmer type, clearer tiles
+   ========================================================================== */
+
+:root {
+	--accent: #4fd1c5;
+	--accent-strong: #38b2a7;
+	--navy: #242943;
+	--navy-deep: #1b1f33;
+}
+
+/* --- Headings: short accent bar instead of a full-width white rule --- */
+header.major> :first-child:after {
+	background-color: var(--accent);
+	height: 3px;
+	width: 3rem;
+	max-width: 3rem;
+	border-radius: 2px;
+	margin: 0.4em 0 0.6em 0;
+}
+
+#banner .inner header.major> :first-child:after {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* --- Calmer type: sentence case, normal spacing --- */
+header.major>p,
+#banner>.inner .content p {
+	font-size: 0.95em;
+	font-weight: 400;
+	letter-spacing: 0.01em;
+	text-transform: none;
+	opacity: 0.85;
+}
+
+label {
+	letter-spacing: 0.02em;
+	text-transform: none;
+}
+
+#header {
+	letter-spacing: 0.12em;
+}
+
+#header nav a {
+	text-transform: none;
+	letter-spacing: 0.02em;
+}
+
+#menu ul.links>li>a:not(.button) {
+	font-size: 0.95em;
+	letter-spacing: 0.02em;
+	text-transform: none;
+}
+
+input[type='submit'],
+input[type='reset'],
+input[type='button'],
+button,
+.button {
+	letter-spacing: 0.02em;
+}
+
+.button.primary,
+input[type='submit'].primary {
+	background-color: var(--accent);
+	box-shadow: none;
+	color: var(--navy-deep) !important;
+}
+
+.button.primary:hover {
+	background-color: #6ee0d5;
+	color: var(--navy-deep) !important;
+}
+
+/* --- One accent everywhere: hero and hub banners share the same look --- */
+#banner:after,
+#banner.style1:after,
+#banner.style2:after,
+#banner.style3:after,
+#banner.style4:after,
+#banner.style5:after,
+#banner.style6:after {
+	background-color: var(--navy);
+	background-image:
+		radial-gradient(ellipse 60% 70% at 85% 0%, rgba(79, 209, 197, 0.16), transparent 70%),
+		radial-gradient(ellipse 50% 60% at 0% 100%, rgba(79, 209, 197, 0.07), transparent 70%);
+}
+
+#header.alt .logo strong,
+#header .logo strong {
+	color: var(--navy-deep);
+}
+
+/* --- Tiles: let the dashboards show through a soft dark gradient --- */
+.tiles article {
+	align-items: flex-end;
+	background-position: top center;
+}
+
+.tiles article:before,
+.tiles article:nth-child(n):before {
+	background-color: transparent;
+	background-image: linear-gradient(to top,
+			rgba(27, 31, 51, 0.95) 0%,
+			rgba(27, 31, 51, 0.7) 40%,
+			rgba(27, 31, 51, 0.25) 100%);
+	opacity: 1;
+}
+
+.tiles article:after {
+	background-color: transparent;
+}
+
+.tiles article:hover:before {
+	opacity: 0.8;
+}
+
+.tiles article header.major {
+	margin-bottom: 0;
+}
+
+.tiles article header.major>p {
+	font-size: 0.85em;
+	opacity: 0.9;
+}
+
+.tiles article:focus-within {
+	outline: 2px solid var(--accent);
+	outline-offset: -2px;
+}
+
+/* --- Key numbers strip (home hero) --- */
+.key-numbers {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 1.5em;
+	list-style: none;
+	margin: 2.5em auto 0;
+	padding: 1.5em 0 0;
+	border-top: 1px solid rgba(255, 255, 255, 0.12);
+	max-width: 44em;
+	text-align: center;
+	text-transform: none;
+	letter-spacing: normal;
+}
+
+.key-numbers li {
+	padding: 0;
+}
+
+.key-numbers strong {
+	display: block;
+	color: var(--accent);
+	font-family: 'Outfit', sans-serif;
+	font-size: 2.4em;
+	font-weight: 700;
+	line-height: 1.1;
+}
+
+.key-numbers span {
+	display: block;
+	font-size: 0.85em;
+	line-height: 1.4;
+	opacity: 0.85;
+	margin-top: 0.35em;
+}
+
+#banner.major.home-banner {
+	height: auto;
+	max-height: none;
+	min-height: 0;
+	padding: 8em 0 4em 0;
+}
+
+@media screen and (max-width: 736px) {
+	.key-numbers {
+		gap: 0.75em;
+	}
+
+	.key-numbers strong {
+		font-size: 1.8em;
+	}
+
+	.key-numbers span {
+		font-size: 0.75em;
+	}
+
+	#banner.major.home-banner {
+		padding: 6em 0 3em 0;
+	}
+}
+
+/* --- Screenshot viewer --- */
+.zoomable {
+	cursor: zoom-in;
+}
+
+.zoomable:focus-visible {
+	outline: 2px solid var(--accent);
+	outline-offset: 4px;
+}
+
+.lightbox {
+	position: fixed;
+	inset: 0;
+	z-index: 20000;
+	display: none;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 3.5em 1em 1em;
+	background: rgba(15, 18, 32, 0.94);
+}
+
+.lightbox.is-open {
+	display: flex;
+}
+
+.lightbox img {
+	max-width: min(1600px, 100%);
+	max-height: calc(100vh - 8em);
+	width: auto;
+	height: auto;
+	border-radius: 6px;
+	box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+	background: #fff;
+	cursor: zoom-out;
+}
+
+.lightbox figcaption {
+	margin-top: 1em;
+	max-width: 60em;
+	text-align: center;
+	font-size: 0.9em;
+	opacity: 0.85;
+}
+
+.lightbox button {
+	position: absolute;
+	background: rgba(255, 255, 255, 0.08);
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	border-radius: 50%;
+	box-shadow: none;
+	color: #fff;
+	width: 2.75em;
+	height: 2.75em;
+	line-height: 1;
+	padding: 0;
+	font-size: 1.1em;
+}
+
+.lightbox button:hover,
+.lightbox button:focus-visible {
+	background: var(--accent);
+	border-color: var(--accent);
+	color: var(--navy-deep);
+	box-shadow: none;
+}
+
+.lightbox .lb-close {
+	top: 0.9em;
+	right: 0.9em;
+}
+
+.lightbox .lb-prev {
+	left: 0.9em;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.lightbox .lb-next {
+	right: 0.9em;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.lightbox .lb-count {
+	position: absolute;
+	top: 1.4em;
+	left: 1.2em;
+	font-size: 0.85em;
+	opacity: 0.7;
+}
+
+body.lightbox-open {
+	overflow: hidden;
+}
+
+#banner.home-banner>.inner .content {
+	justify-content: center;
+}
+
+#banner.home-banner .actions {
+	justify-content: center;
+}
+
+@media screen and (max-width: 980px) {
+	#banner.home-banner>.inner .content {
+		flex-direction: column;
+	}
+
+	#banner.home-banner>.inner .content>* {
+		margin-right: 0;
+	}
 }

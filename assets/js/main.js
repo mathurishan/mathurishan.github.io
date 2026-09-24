@@ -182,3 +182,93 @@ document.addEventListener('DOMContentLoaded', function () {
     document.documentElement.classList.remove('no-js');
     document.documentElement.classList.add('js');
 });
+// Screenshot viewer: click (or Enter) on a case-study image to see it full size.
+document.addEventListener('DOMContentLoaded', function () {
+    const images = Array.from(document.querySelectorAll('#main .image.main img, #main .image.fit img'));
+    if (!images.length) return;
+
+    const box = document.createElement('div');
+    box.className = 'lightbox';
+    box.setAttribute('role', 'dialog');
+    box.setAttribute('aria-modal', 'true');
+    box.setAttribute('aria-label', 'Screenshot viewer');
+    box.innerHTML =
+        '<span class="lb-count" aria-live="polite"></span>' +
+        '<button type="button" class="lb-close" aria-label="Close">&#x2715;</button>' +
+        '<button type="button" class="lb-prev" aria-label="Previous image">&#x2039;</button>' +
+        '<button type="button" class="lb-next" aria-label="Next image">&#x203A;</button>' +
+        '<figure><img alt="" /><figcaption></figcaption></figure>';
+    document.body.appendChild(box);
+
+    const big = box.querySelector('img');
+    const caption = box.querySelector('figcaption');
+    const count = box.querySelector('.lb-count');
+    const prev = box.querySelector('.lb-prev');
+    const next = box.querySelector('.lb-next');
+    const close = box.querySelector('.lb-close');
+    let current = 0;
+    let opener = null;
+
+    // Caption: the paragraph under the image if there is one, otherwise its alt text.
+    function captionFor(img) {
+        const wrap = img.closest('.image');
+        const p = wrap && wrap.nextElementSibling;
+        return p && p.tagName === 'P' ? p.textContent.trim() : img.alt;
+    }
+
+    function show(i) {
+        current = (i + images.length) % images.length;
+        const img = images[current];
+        big.src = img.currentSrc || img.src;
+        big.alt = img.alt;
+        caption.textContent = captionFor(img);
+        count.textContent = images.length > 1 ? (current + 1) + ' / ' + images.length : '';
+    }
+
+    function open(i) {
+        opener = images[i];
+        show(i);
+        box.classList.add('is-open');
+        document.body.classList.add('lightbox-open');
+        close.focus();
+    }
+
+    function hide() {
+        box.classList.remove('is-open');
+        document.body.classList.remove('lightbox-open');
+        if (opener && opener.focus) opener.focus();
+    }
+
+    prev.hidden = next.hidden = images.length < 2;
+
+    images.forEach(function (img, i) {
+        img.classList.add('zoomable');
+        img.tabIndex = 0;
+        img.setAttribute('role', 'button');
+        img.setAttribute('aria-label', 'View larger: ' + (img.alt || 'screenshot'));
+        img.addEventListener('click', function () { open(i); });
+        img.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(i); }
+        });
+    });
+
+    close.addEventListener('click', hide);
+    prev.addEventListener('click', function () { show(current - 1); });
+    next.addEventListener('click', function () { show(current + 1); });
+    big.addEventListener('click', hide);
+    box.addEventListener('click', function (e) { if (e.target === box) hide(); });
+
+    document.addEventListener('keydown', function (e) {
+        if (!box.classList.contains('is-open')) return;
+        if (e.key === 'Escape') hide();
+        else if (e.key === 'ArrowLeft') show(current - 1);
+        else if (e.key === 'ArrowRight') show(current + 1);
+        else if (e.key === 'Tab') {
+            // Keep focus inside the viewer.
+            const focusable = [close, prev, next].filter(function (b) { return !b.hidden; });
+            const idx = focusable.indexOf(document.activeElement);
+            e.preventDefault();
+            focusable[(idx + (e.shiftKey ? -1 : 1) + focusable.length) % focusable.length].focus();
+        }
+    });
+});
