@@ -4,21 +4,23 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Air New Zealand: Capacity, Reliability &amp; Demand Intelligence | Ishan Mathur</title>
+  <title>Air New Zealand Analysis (Power BI) | Ishan Mathur</title>
   <meta name="description"
-    content="Power BI case study analysing Air New Zealand demand, reliability, route performance, and capacity shock scenarios through an executive dashboard suite." />
-  <meta property="og:title" content="Air New Zealand: Capacity, Reliability &amp; Demand Intelligence | Ishan Mathur" />
+    content="Power BI case study: Air New Zealand route, capacity and performance analysis built from public data, with a documented data model and plain-language metric definitions." />
+  <meta property="og:title" content="Air New Zealand Analysis (Power BI) | Ishan Mathur" />
   <meta property="og:description"
-    content="A multi-page Power BI dashboard suite covering airline demand, operational reliability, route performance, and disruption scenario analysis." />
-  <meta property="og:image" content="images/projects/air-nz/executive-summary-overview.jpg" />
+    content="Power BI case study: Air New Zealand route, capacity and performance analysis built from public data, with a documented data model and plain-language metric definitions." />
+  <meta property="og:image" content="https://mathurishan.github.io/images/thumbs/air-nz.jpg" />
   <meta property="og:url" content="https://mathurishan.github.io/powerbi-air-nz.html" />
   <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://mathurishan.github.io/powerbi-air-nz.html" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@500;700&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/main.css?v=2" />
+  <link rel="stylesheet" href="assets/css/main.css?v=3" />
   <noscript>
     <link rel="stylesheet" href="assets/css/noscript.css" />
   </noscript>
@@ -59,10 +61,10 @@
       <ul class="links">
         <li><a href="index.html">Home</a></li>
         <li><a href="powerbi.html">Power BI</a></li>
-        <li><a href="python.html">Python</a></li>
         <li><a href="sql.html">SQL</a></li>
-        <li><a href="resume.html">Resume</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="python.html">Python</a></li>
+        <li><a href="resume.html">Résumé</a></li>
+        <li><a href="#footer">Contact</a></li>
       </ul>
     </nav>
     <section id="main" class="wrapper">
@@ -78,58 +80,46 @@
             loading="lazy" /></span>
         <div class="row gtr-200">
           <div class="col-8 col-12-medium animate-on-scroll delay-2">
-            <h3>Project Overview</h3>
-            <p>This Power BI case study brings together the core questions behind airline performance into one connected
-              reporting flow. The dashboard suite combines demand movement, cancellations, on-time performance, capacity
-              utilisation, route-level signals, and disruption scenarios so the analysis reads as both an executive
-              summary and a decision-support tool.</p>
-            <h3>Executive Summary Dashboard</h3>
-            <p>The opening page consolidates top-line KPIs such as total arrivals, total departures, cancellation rate,
-              arrival OTP, departure OTP, and capacity utilisation alongside yearly demand trends, monthly reliability
-              patterns, route-level cancellation hotspots, and profitable sectors. It is designed as a management view
-              that quickly moves from headline performance into where attention may be needed across the network.</p>
-            <h3>What Was Analysed</h3>
+            <h2>Problem</h2>
+            <p>An airline network needs one view of demand, reliability and capacity: how traffic recovered after
+              2021, where cancellations and delays concentrate, and what a capacity shock such as engine groundings
+              would mean.</p>
+            <h2>Data</h2>
+            <p>Public data on Air New Zealand arrivals, departures, cancellations, on-time performance and capacity,
+              2020 to 2025, brought into one Power BI data model with the model and its metric definitions written out
+              in plain language.</p>
+            <h2>What I built</h2>
+            <p>A route, capacity and performance analysis in Power BI:</p>
             <ul>
-              <li><strong>Passenger demand trends</strong>: Arrivals and departures across 2020-2025 to show disruption,
-                recovery, and recent volume movement.</li>
-              <li><strong>Service reliability</strong>: Cancellation rate, arrival OTP, and departure OTP tracked over
-                time to highlight operational consistency.</li>
-              <li><strong>Capacity utilisation</strong>: Monthly utilisation patterns compared with cancellations to show
-                how operating intensity and reliability interact.</li>
-              <li><strong>Route and sector performance</strong>: Route-level cancellation heatmaps and sector views used
-                to surface where results differ across the network.</li>
-              <li><strong>Demand-reliability trade-offs</strong>: Bubble-chart comparisons exploring how traffic volumes
-                relate to cancellation pressure and on-time performance.</li>
-              <li><strong>Scenario-based disruption impact</strong>: Revenue, load factor, fleet utilisation, forecast
-                RPK, and segment-level views framed as strategic impact analysis rather than static reporting.</li>
+              <li><strong>Executive summary</strong>: arrivals, departures, cancellation rate, on-time performance and
+                capacity utilisation, with route-level cancellations</li>
+              <li><strong>Passenger demand trends</strong>, 2020 to 2025</li>
+              <li><strong>Operational performance</strong>: utilisation, cancellations and on-time performance by
+                month</li>
+              <li><strong>Demand and reliability trade-offs</strong>: traffic against cancellation rate and on-time
+                arrival</li>
+              <li><strong>Capacity shock scenario</strong>: the effect of engine groundings on capacity by segment</li>
             </ul>
-            <h3>Project Summary</h3>
-            <p>The analytical structure is deliberate: start with a clear executive overview, then deepen into recovery
-              trends, short-term operational monitoring, metric trade-offs, and finally a scenario lens on disruption
-              impact. That progression makes the work useful not only for reporting what happened, but for supporting
-              conversations around performance pressure, network priorities, and operational risk.</p>
+            <h2>What changed</h2>
+            <p>The dashboard shows passenger volumes recovering from the 2021 low through to 2025, cancellations
+              peaking in June 2025, and which routes carry the highest cancellation rates month by month.</p>
           </div>
           <div class="col-4 col-12-medium animate-on-scroll delay-3">
             <div class="box alt">
-              <h3>Skills Demonstrated</h3>
+              <h3>Tools</h3>
               <ul class="alt">
-                <li>Power BI dashboard development</li>
-                <li>KPI-led executive reporting</li>
-                <li>Analytical storytelling</li>
-                <li>Demand and time-series analysis</li>
-                <li>Operational performance monitoring</li>
-                <li>Route and sector analysis</li>
-                <li>Trade-off analysis across service metrics</li>
-                <li>Scenario-based business impact framing</li>
+                <li><strong>Power BI</strong>: data model and report</li>
+                <li><strong>DAX</strong>: KPI measures</li>
+                <li><strong>Power Query</strong>: data preparation</li>
               </ul>
             </div>
-            <ul class="actions">
-              <li><a href="powerbi.html" class="button icon solid fa-arrow-left">Back to Projects</a></li>
+            <ul class="actions stacked">
+              <li><a href="powerbi.html" class="button fit icon solid fa-arrow-left">All Power BI work</a></li>
             </ul>
           </div>
         </div>
         <div class="animate-on-scroll">
-          <h3>Dashboard Highlights</h3>
+          <h2>Screenshots</h2>
           <div class="row gtr-50">
             <div class="col-6 col-12-small">
               <span class="image fit"><img src="images/projects/air-nz/passenger-demand-trends.jpg"
@@ -165,31 +155,6 @@
             </div>
           </div>
         </div>
-        <div class="animate-on-scroll">
-          <div class="box">
-            <h3>Why This Project Is a Strong Portfolio Piece</h3>
-            <p>This work moves beyond descriptive reporting into a structured analytical narrative. It starts with
-              executive KPIs, expands into recovery and operational performance, then progresses into metric trade-offs
-              and forward-looking scenario analysis. That range shows strong visual communication in Power BI while also
-              demonstrating how dashboard design can support both monitoring and strategy.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section id="contact">
-      <div class="inner">
-        <section class="split">
-          <section>
-            <div class="contact-method"><span class="icon solid alt fa-envelope"></span>
-              <h3>Email</h3><a href="mailto:mathur.ishan11@gmail.com">mathur.ishan11@gmail.com</a>
-            </div>
-          </section>
-          <section>
-            <div class="contact-method"><span class="icon solid alt fa-home"></span>
-              <h3>Location</h3><span>Hamilton, New Zealand</span>
-            </div>
-          </section>
-        </section>
       </div>
     </section>
     <footer id="footer">
@@ -199,15 +164,17 @@
                 class="label">GitHub</span></a></li>
           <li><a href="https://www.linkedin.com/in/mathurishan" class="icon brands alt fa-linkedin-in"><span
                 class="label">LinkedIn</span></a></li>
+          <li><a href="mailto:mathur.ishan11@gmail.com" class="icon solid alt fa-envelope"><span
+                class="label">Email</span></a></li>
         </ul>
         <ul class="copyright">
           <li>&copy; Ishan Mathur 2026</li>
-          <li>Design: HTML5 UP Forty</li>
+          <li>Design adapted from <a href="https://html5up.net/forty">HTML5 UP Forty</a></li>
         </ul>
       </div>
     </footer>
   </div>
-  <script src="assets/js/main.js?v=2" defer></script>
+  <script src="assets/js/main.js?v=3" defer></script>
 </body>
 
 </html>

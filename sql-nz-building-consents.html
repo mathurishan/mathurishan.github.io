@@ -4,21 +4,23 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>NZ Building Consents: SQL Analytics Case Study | Ishan Mathur</title>
+  <title>NZ Building Consents (SQL) | Ishan Mathur</title>
   <meta name="description"
-    content="SQL case study analysing Stats NZ building consent data for regional construction pipelines, COVID recovery, dwelling-type shifts, and supply concentration risk." />
-  <meta property="og:title" content="NZ Building Consents: SQL Analytics Case Study | Ishan Mathur" />
+    content="SQL case study: Stats NZ building consents 1990 to 2025 in a star-schema SQLite database, with ten analytical queries using window functions." />
+  <meta property="og:title" content="NZ Building Consents (SQL) | Ishan Mathur" />
   <meta property="og:description"
-    content="A star-schema SQLite database and 10 analytical queries covering regional pipelines, YoY growth, dwelling mix shifts, and executive reporting views." />
-  <meta property="og:image" content="images/pic01.jpg" />
+    content="SQL case study: Stats NZ building consents 1990 to 2025 in a star-schema SQLite database, with ten analytical queries using window functions." />
+  <meta property="og:image" content="https://mathurishan.github.io/images/thumbs/sql-consents.jpg" />
   <meta property="og:url" content="https://mathurishan.github.io/sql-nz-building-consents.html" />
   <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://mathurishan.github.io/sql-nz-building-consents.html" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@500;700&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/main.css?v=2" />
+  <link rel="stylesheet" href="assets/css/main.css?v=3" />
   <noscript>
     <link rel="stylesheet" href="assets/css/noscript.css" />
   </noscript>
@@ -67,10 +69,10 @@
       <ul class="links">
         <li><a href="index.html">Home</a></li>
         <li><a href="powerbi.html">Power BI</a></li>
-        <li><a href="python.html">Python</a></li>
         <li><a href="sql.html">SQL</a></li>
-        <li><a href="resume.html">Resume</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="python.html">Python</a></li>
+        <li><a href="resume.html">Résumé</a></li>
+        <li><a href="#footer">Contact</a></li>
       </ul>
     </nav>
     <section id="main" class="wrapper">
@@ -90,42 +92,19 @@
             loading="lazy" /></span>
         <div class="row gtr-200">
           <div class="col-8 col-12-medium animate-on-scroll delay-2">
-            <h3>Project Overview</h3>
-            <p>This project takes the full Stats NZ building consents dataset (December 2025 release) and transforms it
-              into a normalised star-schema SQLite database spanning 1990 to 2025. Ten analytical SQL queries then
-              extract the insights a regional planner, housing analyst, or executive decision-maker would need: where
-              the pipeline is strongest, which regions are growing or contracting, how dwelling types have shifted, and
-              where supply risk is concentrating. The result is a structured, end-to-end SQL case study built to
-              demonstrate dimensional modelling, advanced window functions, and business-framed analytical thinking.</p>
+            <h2>Problem</h2>
+            <p>Where is New Zealand's building pipeline strongest, how did COVID reshape consent activity, which
+              dwelling types are gaining share, and is national supply becoming concentrated in a handful of
+              regions?</p>
 
-            <h3>Business Question</h3>
-            <p>Where is New Zealand's building pipeline strongest, how did COVID reshape consent activity, which dwelling
-              types are gaining share, and is the national supply pipeline becoming dangerously concentrated in a handful
-              of regions?</p>
+            <h2>Data</h2>
+            <p>The Stats NZ Building Consents Issued dataset (December 2025 release): 1990 to 2025, across 16 regions
+              and 67 territorial authorities.</p>
 
-            <h3>Key Findings</h3>
-            <ul class="metric-list">
-              <li><strong>Auckland dominated the 2025 pipeline with $9,747M in new consent value</strong>, more than
-                double Canterbury ($4,043M) and triple Waikato ($2,015M), reinforcing Auckland's outsized role in
-                national construction activity.</li>
-              <li><strong>Townhouses overtook standalone houses in 2023</strong> for the first time nationally.
-                Standalone houses dropped from 70.2% of new dwelling consents in 2015 to 45.4% in 2025, while
-                townhouses surged from 13.5% to 44.1%, signalling a structural shift toward higher-density living.</li>
-              <li><strong>COVID barely dented national consent numbers</strong> — average monthly consents actually rose
-                from 3,647 (2019) to 3,717 (2020). The recovery period (2021–22) spiked to 4,529 per month before
-                pulling back to 3,277 in the recent period (2023–25).</li>
-              <li><strong>Supply concentration is increasing</strong> — Auckland, Canterbury, and Waikato accounted for
-                70.9% of all new dwelling consents in 2025, up from 62.3% in 2017. The same three regions have topped
-                the national list for the entire decade.</li>
-              <li><strong>Wellington posted the sharpest recent rebound</strong> at +17.0% YoY in 2025, after falling
-                36.3% in 2023 and 23.9% in 2024. Southland (+25.9%) and Nelson (+25.2%) also showed strong
-                recoveries.</li>
-              <li><strong>November is the busiest month</strong> for consent activity (avg 3,931 consents, 2015–2025),
-                while January is the quietest (avg 2,594), consistent with the NZ construction calendar and summer
-                holiday slowdown.</li>
-            </ul>
-
-            <h3>What Was Analysed</h3>
+            <h2>What I built</h2>
+            <p>A Python load script turns the long-format CSVs into a star-schema SQLite database (four dimension
+              tables, two fact tables). Ten SQL queries then answer the questions above, using window functions (LAG,
+              RANK, NTILE), moving averages, CTEs and a reusable executive summary view:</p>
             <ul>
               <li><strong>Regional pipeline and ranking</strong> — total consents, value, and floor area by region for
                 2025, ranked by consent value to show where construction investment is concentrated.</li>
@@ -149,16 +128,33 @@
                 and YoY changes, and the top region for any quarter.</li>
             </ul>
 
-            <h3>Project Summary</h3>
-            <p>The analytical design is deliberate: start with a broad regional overview, then progressively drill into
-              growth trends, COVID disruption, structural shifts in dwelling types, local deep dives, value segmentation,
-              and strategic concentration risk. The final executive view ties everything together as a reusable
-              reporting layer. That progression demonstrates both technical SQL fluency and the ability to frame
-              analysis around the questions a decision-maker would actually ask.</p>
+            <h2>What changed</h2>
+            <p>What the analysis shows:</p>
+            <ul class="metric-list">
+              <li><strong>Auckland dominated the 2025 pipeline with $9,747M in new consent value</strong>, more than
+                double Canterbury ($4,043M) and almost five times Waikato ($2,015M), reinforcing Auckland's outsized role in
+                national construction activity.</li>
+              <li><strong>Townhouses briefly overtook standalone houses in 2023</strong>, the first time nationally.
+                Standalone houses fell from 70.2% of new dwelling consents in 2015 to 45.4% in 2025, while
+                townhouses rose from 13.5% to 44.1%, leaving the two almost level: a structural shift toward
+                higher-density living.</li>
+              <li><strong>COVID barely dented national consent numbers</strong> — average monthly consents actually rose
+                from 3,647 (2019) to 3,717 (2020). The recovery period (2021–22) spiked to 4,529 per month before
+                pulling back to 3,277 in the recent period (2023–25).</li>
+              <li><strong>Supply concentration is increasing</strong> — Auckland, Canterbury, and Waikato accounted for
+                70.9% of all new dwelling consents in 2025, up from 62.3% in 2017. The same three regions have topped
+                the national list for the entire decade.</li>
+              <li><strong>Wellington posted the sharpest recent rebound</strong> at +17.0% YoY in 2025, after falling
+                36.3% in 2023 and 23.9% in 2024. Southland (+25.9%) and Nelson (+25.2%) also showed strong
+                recoveries.</li>
+              <li><strong>November is the busiest month</strong> for consent activity (avg 3,931 consents, 2015–2025),
+                while the quietest month (avg 2,594) falls in the summer holiday break, consistent with the NZ
+                construction calendar.</li>
+            </ul>
           </div>
           <div class="col-4 col-12-medium animate-on-scroll delay-3">
             <div class="box alt">
-              <h3>Skills Demonstrated</h3>
+              <h3>Skills</h3>
               <ul class="alt">
                 <li>SQL (SQLite)</li>
                 <li>Star schema design</li>
@@ -182,13 +178,13 @@
                   tables</li>
               </ul>
             </div>
-            <ul class="actions">
-              <li><a href="sql.html" class="button icon solid fa-arrow-left">Back to Projects</a></li>
+            <ul class="actions stacked">
+              <li><a href="sql.html" class="button fit icon solid fa-arrow-left">All SQL work</a></li>
             </ul>
           </div>
         </div>
         <div class="animate-on-scroll">
-          <h3>Analysis Highlights</h3>
+          <h2>Charts</h2>
           <div class="row gtr-50">
             <div class="col-6 col-12-small">
               <span class="image fit"><img src="images/projects/sql/nz-building-consents/02_dwelling_mix_shift.png"
@@ -223,7 +219,7 @@
             <div class="col-6 col-12-small">
               <span class="image fit"><img src="images/projects/sql/nz-building-consents/08_seasonal_pattern.png"
                   alt="Bar chart of average monthly consent volumes across the calendar year, highlighting summer and winter contrasts." loading="lazy" /></span>
-              <p><strong>Seasonal Patterns</strong> - November is the busiest month at 3,931 average consents while January drops to 2,594, mirroring the NZ construction calendar and council workload cycle.</p>
+              <p><strong>Seasonal Patterns</strong> - November is the busiest month at 3,931 average consents, while the summer holiday month drops to 2,594, mirroring the NZ construction calendar and council workload cycle.</p>
             </div>
             <div class="col-6 col-12-small">
               <span class="image fit"><img src="images/projects/sql/nz-building-consents/09_value_quartiles.png"
@@ -232,33 +228,6 @@
             </div>
           </div>
         </div>
-        <div class="animate-on-scroll">
-          <div class="box">
-            <h3>Why This Project Is a Strong Portfolio Piece</h3>
-            <p>This case study goes beyond writing SELECT statements. It demonstrates end-to-end analytical engineering:
-              designing a normalised star schema, building an ETL pipeline to transform messy government CSV data,
-              writing 10 business-framed queries that use advanced SQL features (window functions, CTEs, NTILE,
-              moving averages, executive views), and packaging the results with real findings grounded in New Zealand's
-              construction economy. The project shows the kind of structured, insight-driven SQL work that data analyst
-              and BI roles require.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section id="contact">
-      <div class="inner">
-        <section class="split">
-          <section>
-            <div class="contact-method"><span class="icon solid alt fa-envelope"></span>
-              <h3>Email</h3><a href="mailto:mathur.ishan11@gmail.com">mathur.ishan11@gmail.com</a>
-            </div>
-          </section>
-          <section>
-            <div class="contact-method"><span class="icon solid alt fa-home"></span>
-              <h3>Location</h3><span>Hamilton, New Zealand</span>
-            </div>
-          </section>
-        </section>
       </div>
     </section>
     <footer id="footer">
@@ -268,6 +237,8 @@
                 class="label">GitHub</span></a></li>
           <li><a href="https://www.linkedin.com/in/mathurishan" class="icon brands alt fa-linkedin-in"><span
                 class="label">LinkedIn</span></a></li>
+          <li><a href="mailto:mathur.ishan11@gmail.com" class="icon solid alt fa-envelope"><span
+                class="label">Email</span></a></li>
         </ul>
         <ul class="copyright">
           <li>&copy; Ishan Mathur 2026</li>
@@ -276,7 +247,7 @@
       </div>
     </footer>
   </div>
-  <script src="assets/js/main.js?v=2" defer></script>
+  <script src="assets/js/main.js?v=3" defer></script>
 </body>
 
 </html>
