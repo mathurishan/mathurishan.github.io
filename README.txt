@@ -6,14 +6,20 @@ stylesheet (assets/css/site.css) and two small scripts (assets/js/site.js for th
 site, assets/js/charts.js for the interactive charts). No framework.
 
 HOW TO EDIT
-  Home page ........ edit index.html directly.
+  Home page ........ edit index.html directly (except the three newest notes,
+                     which build.py writes between <!-- notes:start/end -->).
   About page ....... tools/about_content.py (background, timeline, tools grid)
   Project pages .... edit the PROJECTS list in tools/build_site.py
+                     (project briefs: the BRIEFS dict in the same file)
   Charts, SQL, DAX . tools/extras.py and tools/extras2.py
+  How I work ....... tools/build.py (step cards, PHASES)
   Résumé, 404 ...... tools/build.py
-  Notes (articles) . tools/notes.py
+  Notes (articles) . tools/notes.py (text); drawings in NOTE_ART in tools/build.py
+  Site search ...... the page list in assets/js/site.js is hand-maintained;
+                     add new pages and notes there.
   Then, from this folder:
       python tools/build.py        rebuilds every generated page and sitemap.xml
+                                   (lastmod = each page's last git commit date)
       python tools/check_site.py   checks links, images, headings and wording
   Link-preview cards: python tools/social_cards.py (needs Pillow; Windows fonts)
   PDF résumé: print resume.html to PDF (A4, no headers) as files/Ishan-Mathur-Resume.pdf
@@ -30,6 +36,7 @@ CHECKS
 PAGES
   index.html                              Home
   about.html                              About (background, experience, tools grid)
+  how-i-work.html                         How I work (six-step reporting lifecycle)
   notes.html                              Notes index
   powerbi-retail.html                     Retail Sales & Returns Analysis (Power BI)
   powerbi-air-nz.html                     Air New Zealand Analysis (Power BI)
@@ -39,6 +46,7 @@ PAGES
   resume.html                             Résumé (+ files/Ishan-Mathur-Resume.pdf)
   note-*.html                             Notes
   powerbi.html / sql.html / python.html   Redirects to the homepage (old links)
-  economics-game.html                     EcoQuest (side project)
+  economics-game.html                     EcoQuest (side project; reachable via search and sitemap)
+  404.html                                Page not found (root-relative links)
 
 Fonts: Newsreader and Inter from Google Fonts.
